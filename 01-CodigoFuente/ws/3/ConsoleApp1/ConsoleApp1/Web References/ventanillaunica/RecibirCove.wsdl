@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:comun="http://www.ventanillaunica.gob.mx/cove/ws/oxml/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://www.ventanillaunica.gob.mx/cove/ws/service/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" name="RecibirCove" targetNamespace="http://www.ventanillaunica.gob.mx/cove/ws/service/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="BasicHttpBinding_IReceptorService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Lax />
+              </wsp:Policy>
+            </sp:Layout>
+            <sp:IncludeTimestamp />
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <sp:SignedSupportingTokens xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:UsernameToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+              <wsp:Policy>
+                <sp:WssUsernameToken10 />
+              </wsp:Policy>
+            </sp:UsernameToken>
+          </wsp:Policy>
+        </sp:SignedSupportingTokens>
+        <sp:Wss10 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:MustSupportRefKeyIdentifier />
+            <sp:MustSupportRefIssuerSerial />
+          </wsp:Policy>
+        </sp:Wss10>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.ventanillaunica.gob.mx/cove/ws/oxml/Imports">
+      <xsd:import schemaLocation="https://www.ventanillaunica.gob.mx:443/ventanilla/RecibirCoveService?xsd=1" namespace="http://www.ventanillaunica.gob.mx/cove/ws/oxml/" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IReceptor_RecibirCoveServicio_InputMessage">
+    <wsdl:documentation>Petición del servicio</wsdl:documentation>
+    <wsdl:part name="peticion" element="comun:solicitarRecibirCoveServicio" />
+  </wsdl:message>
+  <wsdl:message name="IReceptor_RecibirCoveServicio_OutputMessage">
+    <wsdl:documentation>Respuesta del servicio</wsdl:documentation>
+    <wsdl:part name="respuesta" element="comun:solicitarRecibirCoveServicioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReceptor_RecibirRelacionFacturasIAServicio_InputMessage">
+    <wsdl:documentation>Petición del servicio</wsdl:documentation>
+    <wsdl:part name="peticion" element="comun:solicitarRecibirRelacionFacturasIAServicio" />
+  </wsdl:message>
+  <wsdl:message name="IReceptor_RecibirRelacionFacturasIAServicio_OutputMessage">
+    <wsdl:documentation>Respuesta del servicio</wsdl:documentation>
+    <wsdl:part name="respuesta" element="comun:solicitarRecibirRelacionFacturasIAServicioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReceptor_RecibirRelacionFacturasNoIAServicio_InputMessage">
+    <wsdl:documentation>Petición del servicio</wsdl:documentation>
+    <wsdl:part name="peticion" element="comun:solicitarRecibirRelacionFacturasNoIAServicio" />
+  </wsdl:message>
+  <wsdl:message name="IReceptor_RecibirRelacionFacturasNoIAServicio_OutputMessage">
+    <wsdl:documentation>Respuesta del servicio</wsdl:documentation>
+    <wsdl:part name="respuesta" element="comun:solicitarRecibirRelacionFacturasNoIAServicioResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IReceptor">
+    <wsdl:operation name="RecibirCove">
+      <wsdl:documentation>
+&lt;pre&gt;
+Recibe una lista de facturas para registrar un Comprobante de Valor Electrónico para cada una. 
+Esta operación debera ser usada cuando se desee generar un coves que tengan solo una factura. 
+Si se tienen mas facturas, se debera registrar una Relacion  de Facturas. 
+&lt;/pre&gt;
+			</wsdl:documentation>
+      <wsdl:input message="tns:IReceptor_RecibirCoveServicio_InputMessage" />
+      <wsdl:output message="tns:IReceptor_RecibirCoveServicio_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecibirRelacionFacturasIA">
+      <wsdl:documentation>
+&lt;pre&gt;
+Recibe una lista de Relaciones de Facturas para registrar un Comprobante de Valor Electrónico por cada relacion de facturas en la petición. 
+Esta operación sera usada solo para Relaciones de Facturas de Empresas de la Industria Automotriz. Si se detecta que el usuario que envia no 
+es una empresa Autommitriz, se devolvera un error.
+&lt;/pre&gt;
+			</wsdl:documentation>
+      <wsdl:input message="tns:IReceptor_RecibirRelacionFacturasIAServicio_InputMessage" />
+      <wsdl:output message="tns:IReceptor_RecibirRelacionFacturasIAServicio_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecibirRelacionFacturasNoIA">
+      <wsdl:documentation>
+&lt;pre&gt;
+Recibe una lista de Relaciones de Facturas para registrar un Comprobante de Valor Electrónico por cada relacion de facturas en la petición. 
+Esta operación sera usada solo para Relaciones de Facturas de Empresas que no pertenecen a la Industria Automotriz
+&lt;/pre&gt;
+			</wsdl:documentation>
+      <wsdl:input message="tns:IReceptor_RecibirRelacionFacturasNoIAServicio_InputMessage" />
+      <wsdl:output message="tns:IReceptor_RecibirRelacionFacturasNoIAServicio_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="IReceptorEndpointBinding" type="tns:IReceptor">
+    <wsp:PolicyReference xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" URI="#BasicHttpBinding_IReceptorService_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RecibirCove">
+      <soap:operation soapAction="http://www.ventanillaunica.gob.mx/RecibirCove" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecibirRelacionFacturasIA">
+      <soap:operation soapAction="http://www.ventanillaunica.gob.mx/RecibirRelacionFacturasIA" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecibirRelacionFacturasNoIA">
+      <soap:operation soapAction="http://www.ventanillaunica.gob.mx/RecibirRelacionFacturasNoIA" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RecibirCoveService">
+    <wsdl:documentation>
+&lt;pre&gt;
+Recepcion de Facturas o relaciones de facturas para la generacion de Comprobantes de Valor Electrónico (COVE)
+&lt;/pre&gt;
+			</wsdl:documentation>
+    <wsdl:port name="IReceptorBinding" binding="tns:IReceptorEndpointBinding">
+      <soap:address location="https://www.ventanillaunica.gob.mx:8118/ventanilla/RecibirCoveService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
