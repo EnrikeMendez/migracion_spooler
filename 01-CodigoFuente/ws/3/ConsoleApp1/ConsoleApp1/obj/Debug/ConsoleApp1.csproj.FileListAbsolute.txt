@@ -1,2 +1,0 @@
-C:\pc\raul\programas consola\utilerias\wservices\3\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.csproj.AssemblyReference.cache
-C:\pc\raul\programas consola\utilerias\wservices\3\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.csproj.CoreCompileInputs.cache

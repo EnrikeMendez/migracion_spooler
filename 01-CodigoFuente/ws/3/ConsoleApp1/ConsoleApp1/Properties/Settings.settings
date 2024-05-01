@@ -1,9 +1,0 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ConsoleApp1.Properties" GeneratedClassName="Settings">
-  <Profiles />
-  <Settings>
-    <Setting Name="ConsoleApp1_ventanillaunica_RecibirCoveService" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">https://www.ventanillaunica.gob.mx:8118/ventanilla/RecibirCoveService</Value>
-    </Setting>
-  </Settings>
-</SettingsFile>
