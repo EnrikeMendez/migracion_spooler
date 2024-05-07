@@ -1,0 +1,17 @@
+C:\pc\raul\programas consola\main\Spooler\main\main\bin\Debug\net8.0\serverreports.exe
+C:\pc\raul\programas consola\main\Spooler\main\main\bin\Debug\net8.0\serverreports.deps.json
+C:\pc\raul\programas consola\main\Spooler\main\main\bin\Debug\net8.0\serverreports.runtimeconfig.json
+C:\pc\raul\programas consola\main\Spooler\main\main\bin\Debug\net8.0\serverreports.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\bin\Debug\net8.0\serverreports.pdb
+C:\pc\raul\programas consola\main\Spooler\main\main\obj\Debug\net8.0\serverreports.GeneratedMSBuildEditorConfig.editorconfig
+C:\pc\raul\programas consola\main\Spooler\main\main\obj\Debug\net8.0\serverreports.AssemblyInfoInputs.cache
+C:\pc\raul\programas consola\main\Spooler\main\main\obj\Debug\net8.0\serverreports.AssemblyInfo.cs
+C:\pc\raul\programas consola\main\Spooler\main\main\obj\Debug\net8.0\serverreports.csproj.CoreCompileInputs.cache
+C:\pc\raul\programas consola\main\Spooler\main\main\obj\Debug\net8.0\serverreports.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\obj\Debug\net8.0\refint\serverreports.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\obj\Debug\net8.0\serverreports.pdb
+C:\pc\raul\programas consola\main\Spooler\main\main\obj\Debug\net8.0\serverreports.genruntimeconfig.cache
+C:\pc\raul\programas consola\main\Spooler\main\main\obj\Debug\net8.0\ref\serverreports.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\obj\Debug\net8.0\serverreports.csproj.AssemblyReference.cache
+C:\pc\raul\programas consola\main\Spooler\main\main\obj\Debug\net8.0\serverre.EB6C8641.Up2Date
+C:\pc\raul\programas consola\main\Spooler\main\main\bin\Debug\net8.0\System.Data.OracleClient.dll

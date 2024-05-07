@@ -1,0 +1,14 @@
+C:\pc\raul\programas consola\main\Spooler\main\main\bin\Debug\net8.0\main.exe
+C:\pc\raul\programas consola\main\Spooler\main\main\bin\Debug\net8.0\main.deps.json
+C:\pc\raul\programas consola\main\Spooler\main\main\bin\Debug\net8.0\main.runtimeconfig.json
+C:\pc\raul\programas consola\main\Spooler\main\main\bin\Debug\net8.0\main.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\bin\Debug\net8.0\main.pdb
+C:\pc\raul\programas consola\main\Spooler\main\main\obj\Debug\net8.0\main.GeneratedMSBuildEditorConfig.editorconfig
+C:\pc\raul\programas consola\main\Spooler\main\main\obj\Debug\net8.0\main.AssemblyInfoInputs.cache
+C:\pc\raul\programas consola\main\Spooler\main\main\obj\Debug\net8.0\main.AssemblyInfo.cs
+C:\pc\raul\programas consola\main\Spooler\main\main\obj\Debug\net8.0\main.csproj.CoreCompileInputs.cache
+C:\pc\raul\programas consola\main\Spooler\main\main\obj\Debug\net8.0\main.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\obj\Debug\net8.0\refint\main.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\obj\Debug\net8.0\main.pdb
+C:\pc\raul\programas consola\main\Spooler\main\main\obj\Debug\net8.0\main.genruntimeconfig.cache
+C:\pc\raul\programas consola\main\Spooler\main\main\obj\Debug\net8.0\ref\main.dll
