@@ -1,0 +1,15 @@
+C:\pc\raul\programas consola\main\Spooler\main\main\public\serverreports.exe
+C:\pc\raul\programas consola\main\Spooler\main\main\public\serverreports.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\public\serverreports.deps.json
+C:\pc\raul\programas consola\main\Spooler\main\main\public\serverreports.runtimeconfig.json
+C:\pc\raul\programas consola\main\Spooler\main\main\public\serverreports.pdb
+C:\pc\raul\programas consola\main\Spooler\main\main\public\Microsoft.Extensions.Configuration.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\public\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\public\Microsoft.Extensions.Configuration.FileExtensions.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\public\Microsoft.Extensions.Configuration.Json.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\public\Microsoft.Extensions.Configuration.UserSecrets.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\public\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\public\Microsoft.Extensions.FileProviders.Physical.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\public\Microsoft.Extensions.FileSystemGlobbing.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\public\Microsoft.Extensions.Primitives.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\public\System.Data.OracleClient.dll
