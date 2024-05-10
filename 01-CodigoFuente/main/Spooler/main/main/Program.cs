@@ -1,33 +1,40 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System.Data;
 using System.Linq.Expressions;
+using System.Security.Cryptography;
 using serverreports;
 int id_cron = 0;
+int sw_cron = 0;
+int visible_sql = 0;
 string msg = "";
+string sqladd = " ,case when @param=1 then logis.display_fecha_confirmacion4(rep.FRECUENCIA, sysdate, sysdate,1)  end fecha  ";
 int reporte_temporal = 0;
+string FECHA_1 = "";
+string FECHA_2 = "";
 Utilerias util=new Utilerias();
 DM dM = new DM();
 string comand = args[0];
 try { id_cron = Convert.ToInt32(args[0]); } catch (Exception) {  msg = " ¡¡¡error opc de reporte¡¡"; }
 if (args.Length == 2 && args[1] == "1")
     reporte_temporal = 1;
-if (id_cron != 0)
+DataTable trep_cron = new DataTable();
+if (id_cron != 0){
+    trep_cron = dM.Main_rep("main_rp_cron", id_cron.ToString(), visible_sql, sqladd.Replace("@param", "" + reporte_temporal + ""));
+    if (trep_cron.Rows.Count > 0)
+        sw_cron = 1;
+
+}
+else
+    Console.WriteLine("Falta el numero del reporte.....");
+if (id_cron != 0 && sw_cron == 1)
 {
     Console.WriteLine("****************************");
     Console.WriteLine("*   Spooler                 *");
     Console.WriteLine("****************************");
     Console.WriteLine("ID_CRON =" + id_cron);
     Console.WriteLine("reporte_temporal =" + reporte_temporal);
-    DataTable trep_cron = new DataTable();
-    //trep_cron = dM.main_rp_cron(id_cron.ToString(),0);
-    trep_cron = dM.Main_rep("main_rp_cron", id_cron.ToString(), 0);
-
-
-
-    if (trep_cron.Rows.Count > 0)
-        Console.WriteLine(util.Tdetalle(trep_cron));
-    else
-        Console.WriteLine("Falta el numero del reporte.....");
+    Console.WriteLine(util.Tdetalle(trep_cron));
+    DataTable tmail_contact = new DataTable();
     /* por definir
      If rs.EOF Then
      GoTo Errman
@@ -36,18 +43,20 @@ if (id_cron != 0)
      GoTo Errman
      End If
     */
-    DataTable tfec_conf = new DataTable();
     if (reporte_temporal == 0)
     {
-        string SQL = " select logis.display_fecha_confirmacion4(@param, sysdate, sysdate,1)  as fecha "
-                 + "  From dual";
-        tfec_conf = dM.datos(SQL.Replace("@param", "" + util.Tcampo(trep_cron, "FRECUENCIA") + ""));
+        FECHA_1 = util.Tcampo(trep_cron, "fecha");
+        FECHA_2 = util.Tcampo(trep_cron, "fecha");
     }
     else
     {
-        tfec_conf = dM.Main_rep("main_rep_detalle", id_cron.ToString(), 0);
+        FECHA_1 = util.Tcampo(trep_cron, "fecha_1");
+        FECHA_2 = util.Tcampo(trep_cron, "fecha_2");
     }
-    Console.WriteLine("display_fecha_confirmacion4 :" + util.Tdetalle(tfec_conf));
+    Console.WriteLine("display_fecha_confirmacion4 :" + FECHA_1 + " :" + FECHA_2);
+    //////*******  Parametros *********////////////////////
+    tmail_contact = dM.Main_rep("main_mail_contact", id_cron.ToString(), visible_sql);
+    Console.WriteLine(util.Tdetalle(tmail_contact));
     /****///
 }
 else
