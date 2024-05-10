@@ -16,8 +16,10 @@ namespace serverreports
             if (dtTemp.Rows.Count>0 && campo!=null)
             {
             for (int j = 0; j < 1; j++)
-                valor = dtTemp.Rows[j][campo].ToString();        
-          
+                { 
+                   valor = dtTemp.Rows[j][campo].ToString();
+                    break;
+                }
             }
             return valor;
 
@@ -40,6 +42,16 @@ namespace serverreports
             }
             return val;
         }
+        public string arma_param(string cad, int num)
+        {
+            string valor = "";
+            for (int i = 1; i < num ; i++)
+            {
+                valor = valor + "," + cad + "" + i;
+            }
+            return valor;
+        }
+
 
 
 

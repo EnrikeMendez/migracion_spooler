@@ -9,6 +9,8 @@ using System.Linq.Expressions;
 using System.Data.OracleClient;
 using Microsoft.Extensions.Configuration;
 using System.Reflection;
+using System.Xml.Linq;
+using System.Data.SqlTypes;
 namespace serverreports;
 
 internal class DM
@@ -49,6 +51,12 @@ internal class DM
             case "main_mail_contact":
                 dtTemp = datos(main_mail_contact(id_cron.ToString(), vs));
                 break;
+            case "main_num_param":
+                dtTemp = datos(main_num_param(id_cron.ToString(), vs));                
+                break;
+            case "main_datos_rep":
+                dtTemp = datos(main_datos_rep(id_cron.ToString(), vs, addsq));
+                break;
         }
         return dtTemp;
     }
@@ -81,7 +89,83 @@ internal class DM
         return string.Format(SQL, id_cron);
     }
 
+    public string main_num_param(string id_cron, int vs)
+    {
+        string SQL = " SELECT REPORT.NUM_OF_PARAM  \n "
+                     + " FROM REP_REPORTE REPORT inner join REP_DETALLE_REPORTE REP on REPORT.ID_REP = REP.ID_REP \n "
+                     + " WHERE REP.ID_CRON = {0}";
+        /*
+        string SQL1 = " update rep_chron set in_progress=0  \n "
+                      + " where id_rapport= @id_cron ";
+        */     
+        if (vs == 1) { Console.WriteLine(string.Format(SQL, id_cron) + "\n"); }       
+        return string.Format(SQL, id_cron);        
+    }
 
+    public string main_datos_rep(string id_cron, int vs, string? addsq = "")
+    {
+        string SQL = " SELECT REP.NAME, REP.CLIENTE \n"
+                    + " , REP.FILE_NAME, REP.CARPETA \n"
+                     + " , CLI.CLINOM \n"
+                     + " , mail.NOMBRE, mail.MAIL \n"
+                     + " , REPORT.COMMAND \n"
+                     + " , REP.DAYS_DELETED \n"
+                     + " , REPORT.NUM_OF_PARAM \n"
+                     + " , REP.DEST_MAIL, to_char(REP.LAST_CONF_DATE_1, 'mm/dd/yyyy') LAST_CONF_DATE_1, to_char(REP.LAST_CONF_DATE_2, 'mm/dd/yyyy') LAST_CONF_DATE_2 \n"
+                     + "    @sqladd \n"
+                     + "  , mail.client_num \n"
+                     + "  , REPORT.ID_REP, REPORT.SUBCARPETA \n"
+                     + "  , REP.CREATED_BY \n"
+                     + "  ,TERCERO \n"
+                     + "  FROM REP_DETALLE_REPORTE REP \n"
+                     + "  , ECLIENT CLI \n"
+                     + "  , REP_DEST_MAIL DEST \n"
+                     + "  , REP_MAIL MAIL \n"
+                     + "  , REP_REPORTE REPORT \n"
+                     + "  WHERE REP.CLIENTE = CLI.CLICLEF(+) \n"
+                     + "  AND REP.ID_CRON ={0} \n"
+                     + "  AND mail.ID_MAIL(+) = DEST.ID_DEST \n"
+                     + "  AND DEST.ID_DEST_MAIL(+) = REP.MAIL_OK \n"
+                     + "  AND REPORT.ID_REP = REP.ID_REP \n"
+                     + "  AND NVL(mail.status, 1) = 1  \n"
+                     + "Union All \n"
+                     + "SELECT REP.NAME, REP.CLIENTE \n"
+                     + "  , REP.FILE_NAME, REP.CARPETA \n"
+                     + "  , CLI.CLINOM  \n"
+                     + "  , mail.NOMBRE, mail.MAIL \n"
+                     + "  , REPORT.COMMAND \n"
+                     + "  , REP.DAYS_DELETED \n"
+                     + "  , REPORT.NUM_OF_PARAM \n"
+                     + "  , REP.DEST_MAIL, to_char(REP.LAST_CONF_DATE_1, 'mm/dd/yyyy') LAST_CONF_DATE_1, to_char(REP.LAST_CONF_DATE_2, 'mm/dd/yyyy') LAST_CONF_DATE_2 \n"
+                     + "    @sqladd \n"
+                     + " , mail.client_num \n"
+                     + " , REPORT.ID_REP, REPORT.SUBCARPETA \n"
+                     + " , REP.CREATED_BY \n"
+                     + " ,TERCERO \n"
+                     + " FROM REP_DETALLE_REPORTE REP \n"
+                     + " , ECLIENT CLI \n"
+                     + " , REP_DEST_MAIL DEST \n"
+                     + " , REP_MAIL MAIL \n"
+                     + " , REP_REPORTE REPORT \n"
+                     + " WHERE REP.CLIENTE = CLI.CLICLEF(+) \n"
+                     + " AND REP.ID_CRON ={0} \n"
+                     + " AND  DEST.id_dest_mail=2888 \n"
+                     + " AND mail.ID_MAIL(+) = DEST.ID_DEST \n"
+                     + " AND REPORT.ID_REP = REP.ID_REP \n"
+                     + " AND NVL(mail.status, 1) = 1  \n"
+                     + " and REP.MAIL_OK is not null \n"
+                     + " and not exists(  SELECT null FROM REP_DEST_MAIL DESTD, REP_MAIL MAILD \n"
+                     + " Where DESTD.id_dest_mail = REP.MAIL_OK  \n"
+                     + " AND maild.ID_MAIL = DESTD.ID_DEST \n"
+                     + " AND maild.status = 1 ) \n"
+                     + " order by CLIENT_NUM, TERCERO desc , NOMBRE ";
+        //DataTable dtTemp = new DataTable();
+        SQL = string.Format(SQL, id_cron);
+        if (vs == 1) { Console.WriteLine(SQL.Replace("@sqladd", "" + addsq + "") + "\n"); }
+        //dtTemp = datos(SQL.Replace("@id_cron", "" + id_cron + ""));
+        return SQL.Replace("@sqladd", "" + addsq + "");
+        /*return dtTemp*/
+    }
 
 }
 

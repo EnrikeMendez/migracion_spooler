@@ -15,7 +15,7 @@ string sp = "select name from rep_reporte where id_rep=14 order by 1";
 //sp = "select LOGIS.SPG_PRUEBA_CARGA_MASIVA.F_PRUEBA_VARCHAR name from dual ";
 //sp = "select LOGIS.SPG_PRUEBA_CARGA_MASIVA.F_PRUEBA_NUMBER name from dual ";
 //sp = "select LOGIS.SPG_PRUEBA_CARGA_MASIVA.F_PRUEBA_NUMBER_P_E (3) as name from dual ";
-sp = "logis.SPG_PRUEBA_CARGA_MASIVA.p_PRUEBA_NUMBER_P_S";
+//sp = "logis.SPG_PRUEBA_CARGA_MASIVA.p_PRUEBA_NUMBER_P_S";
 
 /*
 sp = "set SERVEROUTPUT on "+
@@ -32,7 +32,7 @@ sp = "set SERVEROUTPUT on "+
      " end ";
 */
 //sp = "begin :RETURN := logis.SPG_PRUEBA_CARGA_MASIVA.F_PRUEBA_NUMBER_P_S(:PARAMETRO_1,:PARAMETRO_2,:PARAMETRO_4,:PARAMETRO_5); ";
-//sp = "logis.SPG_PRUEBA_CARGA_MASIVA.F_PRUEBA_NUMBER_P_S";
+sp = "logis.SPG_PRUEBA_CARGA_MASIVA.F_PRUEBA_NUMBER_P_S";
 
 using (cnn)
 {
@@ -48,7 +48,8 @@ using (cnn)
          cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandType = CommandType.Text;
         */
-        ////StoredProcedure
+        ////StoredProcedure7
+        /*
         cmd.CommandType = CommandType.StoredProcedure;
         cmd.Parameters.Add("PARAMETRO_1", OracleType.Int32).Value = 2;
         cmd.Parameters.Add("PARAMETRO_2", OracleType.VarChar, 5).Value = "valor";
@@ -60,9 +61,9 @@ using (cnn)
         string PARAMETRO_5 = (string)cmd.Parameters["PARAMETRO_5"].Value;
         Console.WriteLine("valor es PARAMETRO_4 = " + PARAMETRO_4);
         Console.WriteLine("valor es PARAMETRO_5= " + PARAMETRO_5);
-
-        /*      
-         cmd.CommandType = CommandType.StoredProcedure;
+        */
+           
+         cmd.CommandType = CommandType.Text;
          cmd.Parameters.Add("RETURN", OracleType.VarChar, 10).Direction = ParameterDirection.ReturnValue;
          cmd.Parameters.Add("PARAMETRO_1", OracleType.Int32).Value = 2;
          cmd.Parameters.Add("PARAMETRO_2", OracleType.VarChar,5).Value = "valor";
@@ -72,10 +73,17 @@ using (cnn)
          // Console.WriteLine("valor es = " +  job_no);
          Console.WriteLine("****************************");
         // OracleDataAdapter da = new OracleDataAdapter(cmd);
-         OracleDataReader reader= cmd.ExecuteReader(); 
 
-
-         while (reader.Read())
+        using (OracleDataReader reader = cmd.ExecuteReader())
+        {
+            while (reader.Read())
+            {
+                Console.WriteLine("{0,-20}{1,-20:C}{2,-20:d}{3,-20}", reader["RETURN"],
+                    reader["PARAMETRO_4"], reader["PARAMETRO_5"]);
+            }
+        }
+/*
+        while (reader.Read())
          {
              if (i == 0)
              {
@@ -85,7 +93,7 @@ using (cnn)
              Console.WriteLine("{0}\t ", reader.GetInt32(0));
              i++;
          }
-    */
+ */
 
         /*
         DataTable dtTemp = new DataTable();
