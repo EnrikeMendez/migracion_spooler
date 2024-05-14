@@ -165,7 +165,7 @@ internal class DM
         //dtTemp = datos(SQL.Replace("@id_cron", "" + id_cron + ""));
         return SQL.Replace("@sqladd", "" + addsq + "");
         /*return dtTemp*/
-    }
-
+    }                   
+    
 }
 

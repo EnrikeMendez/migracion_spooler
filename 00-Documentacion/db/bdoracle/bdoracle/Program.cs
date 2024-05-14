@@ -63,8 +63,8 @@ using (cnn)
         Console.WriteLine("valor es PARAMETRO_5= " + PARAMETRO_5);
         */
            
-         cmd.CommandType = CommandType.Text;
-         cmd.Parameters.Add("RETURN", OracleType.VarChar, 10).Direction = ParameterDirection.ReturnValue;
+         cmd.CommandType = CommandType.StoredProcedure;
+         cmd.Parameters.Add("RETURN",OracleType.VarChar,5).Direction = ParameterDirection.ReturnValue;
          cmd.Parameters.Add("PARAMETRO_1", OracleType.Int32).Value = 2;
          cmd.Parameters.Add("PARAMETRO_2", OracleType.VarChar,5).Value = "valor";
          cmd.Parameters.Add("PARAMETRO_4", OracleType.Int32).Direction = ParameterDirection.Output;
@@ -73,7 +73,10 @@ using (cnn)
          // Console.WriteLine("valor es = " +  job_no);
          Console.WriteLine("****************************");
         // OracleDataAdapter da = new OracleDataAdapter(cmd);
-
+        cmd.ExecuteNonQuery();
+        string PARAMETRO_5 = (string)cmd.Parameters["RETURN"].Value;
+        Console.WriteLine("valor es PARAMETRO_5= " + PARAMETRO_5);
+        /*
         using (OracleDataReader reader = cmd.ExecuteReader())
         {
             while (reader.Read())
@@ -82,6 +85,9 @@ using (cnn)
                     reader["PARAMETRO_4"], reader["PARAMETRO_5"]);
             }
         }
+        *7
+
+
 /*
         while (reader.Read())
          {

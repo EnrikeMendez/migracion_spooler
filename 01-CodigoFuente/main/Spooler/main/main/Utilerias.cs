@@ -10,20 +10,7 @@ namespace serverreports
 {
     internal class Utilerias
     {
-        public string Tcampo(DataTable dtTemp, string campo)
-        {
-            string valor = "";
-            if (dtTemp.Rows.Count>0 && campo!=null)
-            {
-            for (int j = 0; j < 1; j++)
-                { 
-                   valor = dtTemp.Rows[j][campo].ToString();
-                    break;
-                }
-            }
-            return valor;
 
-        }
         public string Tdetalle(DataTable dtTemp)
         {
             string tit = "";
@@ -42,18 +29,37 @@ namespace serverreports
             }
             return val;
         }
-        public string arma_param(string cad, int num)
+
+        public string Tcampo(DataTable dtTemp, string campo)
         {
             string valor = "";
-            for (int i = 1; i < num ; i++)
+            if (dtTemp.Rows.Count > 0 && campo != null)
             {
-                valor = valor + "," + cad + "" + i;
+                for (int j = 0; j < 1; j++)
+                {
+                    valor = dtTemp.Rows[j][campo].ToString();
+                    break;
+                }
             }
             return valor;
         }
 
+        public string arma_param(string cad, int num)
+        {
+            string valor = "";
+            for (int i = 1; i <= num ; i++)
+            {
+                valor = valor + "," + cad + i;
+            }
+            return valor;
+        }
 
-
-
+        public string nvl(string cadena)
+        {
+            if (string.IsNullOrEmpty(cadena))
+                return "";
+            else
+                return cadena;
+        }
     }
 }
