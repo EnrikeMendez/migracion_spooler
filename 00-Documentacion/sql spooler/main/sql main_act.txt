@@ -132,7 +132,6 @@ Recibe 1 parametro
 update rep_chron set in_progress=0
 where id_rapport= '" & rep_id & "'
 
-
 /************** borrar registro de rep proceso temporal**************
 Recibe 1 parametro   recuperar todos los datos para generar el reporte
 ************** borrar registro de rep proceso temporal**************/
@@ -147,7 +146,6 @@ INSERT INTO REP_CHRON_ERROR (ID_CHRON_ERROR, ID_REPORTE, TIPO_ERROR, IP_SERVIDOR
              VALUES (SEQ_CHRON_ERROR.nextval , " & rep_id & ",'generacion' , '" & Trim(Split(Get_IP(), " - ")(0)) & "' ,'" & SQL_Filter(errDsc) & " | Reporte : " & SQL_Filter(reporte_name) & IIf(dest_mail <> "", " | " & SQL_Filter(dest_mail) & vbCrLf, "") & "' ,1 ,sysdate )
            DM.ejecuta_sql(SQL);
        }
-
 
 /************** Genenera log de eventos **************
 Recibe 3 parametros
