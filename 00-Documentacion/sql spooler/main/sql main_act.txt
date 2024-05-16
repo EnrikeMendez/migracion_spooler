@@ -1,0 +1,158 @@
+************** detalle_reporte **************
+Recibe 1 parametro sql_detalle del reporte
+************** detalle_reporte **************
+ 
+select rep.id_rep, rep.ID_CRON, rep.NAME, rep.CONFIRMACION, rep.FRECUENCIA,
+  rep.cliente, cli.clistatus, cli.cliclef || ' - ' || InitCap(cli.clinom) cli_nom   ,case when (1=1 and rep.FRECUENCIA is not null) then logis.display_fecha_confirmacion4(rep.FRECUENCIA, sysdate, sysdate,1)  end fecha
+  , to_char(LAST_CONF_DATE_1, 'mm/dd/yyyy')  as fecha_1, to_char(LAST_CONF_DATE_2, 'mm/dd/yyyy') as fecha_2
+  , cli.CLICLEF || ' - ' || InitCap(cli.CLINOM) nomcli_err, rep.IP_ADDRESS IP_ADDRESS_err, rep.IP_NAME IP_NAME_err
+  from rep_detalle_reporte rep inner join eclient cli on cli.cliclef= rep.CLIENTE
+  Where rep.ID_CRON =   '" & rep_id & "'
+
+
+************** rep_dias_libres **************
+recibe 2 parametros fecha y cliente
+************** rep_dias_libres **************
+
+ select 1 from rep_dias_libres
+ where dia_libre = to_date('" & FECHA_1 & "', 'mm/dd/yyyy')
+ and cliente in ('" & rep_id & "', 0)
+
+
+
+************** confirma fecha **************
+recibe dos parametros rep_idm y FRECUENCIA(dentro del sql lo maneja como string y en ocaciones como entero)
+************** confirma fecha **************
+select check_fecha_confirmacion2('" & rs.Fields("FRECUENCIA") & "',conf_date, conf_date_2) as ok
+ , to_char(conf.conf_date, 'mm/dd/yyyy') as fecha_1
+ , to_char(conf.conf_date_2, 'mm/dd/yyyy') as fecha_2, conf.param
+ from rep_confirmacion conf
+ where conf.ID_CONF = '" & rep_id & "' 
+ and check_fecha_confirmacion2('" & rs.Fields("FRECUENCIA") & "',conf_date, conf_date_2) = 'ok'
+ and trunc(conf_date) +decode(" & rs.Fields("FRECUENCIA") & ", 1, 1, 0) <= trunc(sysdate)
+
+************** confirma fecha 2**************
+recibe dos parametros rep_idm y FRECUENCIA
+************** confirma fecha 2**************
+select display_fecha_confirmacion4(('" & rs.Fields("FRECUENCIA") & "',conf.CONF_DATE,conf.CONF_DATE_2,decode(conf.CONF_DATE,null,1,0)) as next_fecha
+ from rep_confirmacion conf
+ where  conf.ID_CONF =  '" & rep_id & "' 
+ order by to_date(next_fecha, 'mm/dd/yyyy') desc
+
+************** num_param **************
+recibe un parametro rep_id ,
+************** num_param **************
+ SELECT REPORT.NUM_OF_PARAM
+  FROM REP_REPORTE REPORT inner join REP_DETALLE_REPORTE REP on REPORT.ID_REP = REP.ID_REP
+  WHERE REP.ID_CRON = '" & rep_id & "' 
+
+************** correo aviso de error **************
+recibe un parametro rep_id
+************** correo aviso de error**************
+
+Recibe 1 parametro  lista de contactos corereo -err
+ SELECT REP.NAME, DEST.NOMBRE, DEST.MAIL
+  FROM REP_DETALLE_REPORTE REP
+  inner join  REP_DEST_MAIL DEST_M on REP.MAIL_ERROR = DEST_M.ID_DEST_MAIL
+  inner join  REP_MAIL DEST   on DEST_M.ID_DEST = DEST.ID_MAIL
+  WHERE status = 1
+  AND REP.ID_CRON = '" & rep_id & "'
+
+
+************** Instaciasl de repore **************
+Recibe 1 parametro   recuperar todos los datos para generar el reporte
+************** Instaciasl de repore **************
+ 
+
+
+
+SELECT REP.NAME, REP.CLIENTE
+ , REP.FILE_NAME, REP.CARPETA
+ , CLI.CLINOM
+ , mail.NOMBRE, mail.MAIL
+ , REPORT.COMMAND
+ , REP.DAYS_DELETED
+ , REPORT.NUM_OF_PARAM
+ , REP.DEST_MAIL, to_char(REP.LAST_CONF_DATE_1, 'mm/dd/yyyy') LAST_CONF_DATE_1, to_char(REP.LAST_CONF_DATE_2, 'mm/dd/yyyy') LAST_CONF_DATE_2
+    ,REP.PARAM_1,REP.PARAM_2,REP.PARAM_3,REP.PARAM_4
+  , mail.client_num
+  , REPORT.ID_REP, REPORT.SUBCARPETA
+  , REP.CREATED_BY
+  ,TERCERO
+  FROM REP_DETALLE_REPORTE REP
+  , ECLIENT CLI
+  , REP_DEST_MAIL DEST
+  , REP_MAIL MAIL
+  , REP_REPORTE REPORT
+  WHERE REP.CLIENTE = CLI.CLICLEF(+)
+  AND REP.ID_CRON ='" & rep_id & "' 
+  AND mail.ID_MAIL(+) = DEST.ID_DEST
+  AND DEST.ID_DEST_MAIL(+) = REP.MAIL_OK
+  AND REPORT.ID_REP = REP.ID_REP
+  AND NVL(mail.status, 1) = 1
+Union All
+SELECT REP.NAME, REP.CLIENTE
+  , REP.FILE_NAME, REP.CARPETA
+  , CLI.CLINOM
+  , mail.NOMBRE, mail.MAIL
+  , REPORT.COMMAND
+  , REP.DAYS_DELETED
+  , REPORT.NUM_OF_PARAM
+  , REP.DEST_MAIL, to_char(REP.LAST_CONF_DATE_1, 'mm/dd/yyyy') LAST_CONF_DATE_1, to_char(REP.LAST_CONF_DATE_2, 'mm/dd/yyyy') LAST_CONF_DATE_2
+    ,REP.PARAM_1,REP.PARAM_2,REP.PARAM_3,REP.PARAM_4
+ , mail.client_num
+ , REPORT.ID_REP, REPORT.SUBCARPETA
+ , REP.CREATED_BY
+ ,TERCERO
+ FROM REP_DETALLE_REPORTE REP
+ , ECLIENT CLI
+ , REP_DEST_MAIL DEST
+ , REP_MAIL MAIL
+ , REP_REPORTE REPORT
+ WHERE REP.CLIENTE = CLI.CLICLEF(+)
+ AND REP.ID_CRON ='" & rep_id & "' 
+ AND  DEST.id_dest_mail=2888
+ AND mail.ID_MAIL(+) = DEST.ID_DEST
+ AND REPORT.ID_REP = REP.ID_REP
+ AND NVL(mail.status, 1) = 1
+ and REP.MAIL_OK is not null
+ and not exists(  SELECT null FROM REP_DEST_MAIL DESTD, REP_MAIL MAILD
+ Where DESTD.id_dest_mail = REP.MAIL_OK
+ AND maild.ID_MAIL = DESTD.ID_DEST
+ AND maild.status = 1 )
+ order by CLIENT_NUM, TERCERO desc , NOMBRE
+
+
+
+
+************** registro de rep proceso**************
+Recibe 1 parametro   
+************** borrar registro de rep temporal**************
+update rep_chron set in_progress=0
+where id_rapport= '" & rep_id & "'
+
+
+************** borrar registro de rep temporal**************
+Recibe 1 parametro   recuperar todos los datos para generar el reporte
+************** borrar registro de rep temporal**************
+
+delete from rep_detalle_reporte where id_cron= '" + rep_id + "' and mail_ok is null
+
+
+
+************** Genenera log de errores **************
+Recibe 4 parametros
+**************  Genenera log de errores  **************
+
+INSERT INTO REP_CHRON_ERROR (ID_CHRON_ERROR, ID_REPORTE, TIPO_ERROR, IP_SERVIDOR, LOG, ACTIVO,DATE_CREATED)
+             VALUES (SEQ_CHRON_ERROR.nextval , " & rep_id & ",'generacion' , '" & Trim(Split(Get_IP(), " - ")(0)) & "' ,'" & SQL_Filter(errDsc) & " | Reporte : " & SQL_Filter(reporte_name) & IIf(dest_mail <> "", " | " & SQL_Filter(dest_mail) & vbCrLf, "") & "' ,1 ,sysdate )
+           DM.ejecuta_sql(SQL);
+       }
+
+
+************** Genenera log de eventos **************
+Recibe 3 parametros
+**************  Genenera log de errores  **************
+INSERT INTO EMODULOS_USADOS (MODULO, ACCION, INSTANCIA, USUARIO, FECHA) 
+ VALUES ('" + modulo.Substring(1, 100).Replace("'", "''") + "',\n '" + modulo.Substring( 1, 200).Replace("'", "''") + "',\n '" + modulo.Substring( 1, 50).Replace("'", "''") + "'
+                   , USER, SYSDATE)
