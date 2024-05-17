@@ -5,7 +5,7 @@ using System.Net;
 using System.Security.Cryptography;
 using serverreports;
 using static System.Net.Mime.MediaTypeNames;
-int id_cron = 0;
+int rep_id = 0;
 int sw_cron = 0;
 int visible_sql =0;
 string msg = "";
@@ -43,36 +43,36 @@ string param_string = "";
 string dest_mail = "";
 string MiComando = "";
 
-Utilerias util=new Utilerias();
+Utilerias util = new Utilerias();
 DM DM = new DM();
 init_var();
-/*
- *Generar funsion de inicalicion de variables
- */
-string comand = args[0];
-//try { id_cron = Convert.ToInt32(args[0]); } catch (Exception e) {  msg = " ¡¡¡error opc de reporte¡¡"; }
-try   { id_cron = Convert.ToInt32(args[0]); } catch (Exception e) { Console.WriteLine(e.Message); }
-
-if (args.Length == 2 && args[1] == "1")
-    reporte_temporal = 1;
 DataTable trep_cron = new DataTable();
-if (id_cron != 0){
-    trep_cron = DM.Main_rep("main_rp_cron", id_cron.ToString(), visible_sql, sqladd.Replace("@param", "" + reporte_temporal + ""));
-    if (trep_cron.Rows.Count > 0)
-        sw_cron = 1;
+DataTable tdato_repor = new DataTable();
+string comand = args[0];
+try { rep_id = Convert.ToInt32(args[0]); } catch (Exception) { msg = " ¡¡¡error opc de reporte¡¡"; }
+if (args.Length == 2 && args[1] == "1")
+reporte_temporal = 1;
+
+
+if (rep_id != 0)
+{
+trep_cron = DM.Main_rep("main_rp_cron", rep_id.ToString(), visible_sql, sqladd.Replace("@param", "" + reporte_temporal + ""));
+if (trep_cron.Rows.Count > 0)
+sw_cron = 1;
 }
 else
-    Console.WriteLine("Falta el numero del reporte.....");
-if (id_cron != 0 && sw_cron == 1)
+Console.WriteLine("Falta el numero del reporte.....");
+if (rep_id != 0 && sw_cron == 1)
 {
     Console.WriteLine("****************************");
     Console.WriteLine("*   Spooler                 *");
     Console.WriteLine("****************************");
-    Console.WriteLine("ID_CRON =" + id_cron);
+    Console.WriteLine("ID_CRON =" + rep_id);
     Console.WriteLine("reporte_temporal =" + reporte_temporal);
     Console.WriteLine(util.Tdetalle(trep_cron));
     DataTable tnum_param = new DataTable();
     DataTable tmail_contact = new DataTable();
+    //trep_cron = DM.main_rp_cron(id_cron.ToString(),0);
     /* por definir
      If rs.EOF Then
      GoTo Errman
@@ -81,6 +81,7 @@ if (id_cron != 0 && sw_cron == 1)
      GoTo Errman
      End If
     */
+    /* DataTable tfec_conf = new DataTable(); si se habilida independientes*/
     if (reporte_temporal == 0)
     {
         FECHA_1 = util.Tcampo(trep_cron, "fecha");
@@ -93,12 +94,48 @@ if (id_cron != 0 && sw_cron == 1)
     }
     Console.WriteLine("display_fecha_confirmacion4 :" + FECHA_1 + " :" + FECHA_2);
 
-    /*
- If FECHA_1 = FECHA_2 Then
-valida 
-    sql 4 y 4.1
+    //   if (FECHA_1 == FECHA_2)
+    {
+        Console.WriteLine("************** rep_dias_libres **************");
+        string SQL_p = " select 1 from rep_dias_libres \n" +
+        " where dia_libre = to_date('" + FECHA_1 + "', 'mm/dd/yyyy') \n" +
+        " and cliente in ('" + rep_id.ToString() + "', 0) \n";
+        // DM.datos(SQL_p);
+        Console.WriteLine(SQL_p);
+        Console.WriteLine("************** actializa **************");
+        SQL_p = "update rep_chron set in_progress=0 \n" +
+            "where id_rapport= '" + rep_id + "' ";
+        DM.ejecuta_sql(SQL_p, 1);
+    }
 
- */
+    //   if  ((util.nvl(util.Tcampo(trep_cron, "CONFIRMACION")) == "1") && (reporte_temporal == 0)) 
+    {
+        string SQL_p2 = "select check_fecha_confirmacion2('" + util.Tcampo(trep_cron, "FRECUENCIA") + "',conf_date, conf_date_2) as ok \n" +
+                      " , to_char(conf.conf_date, 'mm/dd/yyyy') as fecha_1 \n" +
+                      " , to_char(conf.conf_date_2, 'mm/dd/yyyy') as fecha_2, conf.param \n" +
+                      " from rep_confirmacion conf \n" +
+                      " where conf.ID_CONF = '" + rep_id + "' \n" +
+                      " and check_fecha_confirmacion2('" + util.Tcampo(trep_cron, "FRECUENCIA") + "',conf_date, conf_date_2) = 'ok' \n" +
+                      " and trunc(conf_date) +decode(" + util.Tcampo(trep_cron, "FRECUENCIA") + ", 1, 1, 0) <= trunc(sysdate) \n" +
+                      "";
+        Console.WriteLine("************** confirma fecha **************");
+        Console.WriteLine(SQL_p2);
+        SQL_p2 = "select display_fecha_confirmacion4(('" + util.Tcampo(trep_cron, "FRECUENCIA") + "',conf.CONF_DATE,conf.CONF_DATE_2,decode(conf.CONF_DATE,null,1,0)) as next_fecha \n" +
+         " from rep_confirmacion conf \n" +
+         " where  conf.ID_CONF = '" + rep_id + "' \n" +
+         " order by to_date(next_fecha, 'mm/dd/yyyy') desc \n";
+        Console.WriteLine("************** confirma fecha 2**************");
+        Console.WriteLine(SQL_p2);
+
+    }
+
+
+    /*
+     If FECHA_1 = FECHA_2 Then
+    valida 
+        sql 4 y 4.1
+
+    */
 
     //////*******  Parametros *********////////////////////
 
@@ -107,21 +144,30 @@ valida
     sql 5 y 5.1
     */
 
+
+    if (mail_error != "")
+    {
+        tmail_contact = DM.Main_rep("main_mail_contact", rep_id.ToString(), visible_sql);
+        //proceso de envio de correo
+        Console.WriteLine("************** SQL contactos **************");
+        Console.WriteLine(util.Tdetalle(tmail_contact));
+    }
     //////*******  Parametros *********////////////////////
-    tmail_contact = DM.Main_rep("main_mail_contact", id_cron.ToString(), visible_sql);
-    Console.WriteLine("************** SQL contactos **************");
-    Console.WriteLine(util.Tdetalle(tmail_contact));
 
 
-    tnum_param = DM.Main_rep("main_num_param", id_cron.ToString(), visible_sql);
-    num_of_param = Convert.ToInt32(util.Tcampo(tnum_param, "NUM_OF_PARAM"));
-    Console.WriteLine("Numero parametros :" + num_of_param);
-    Console.WriteLine("************** parametros **************");
-    Console.WriteLine(util.arma_param("REP.PARAM_", num_of_param));
 
-    DataTable tdato_repor = new DataTable();
-    tdato_repor = DM.Main_rep("main_datos_rep", id_cron.ToString(), visible_sql, util.arma_param("REP.PARAM_", num_of_param));
+    try { num_of_param = Convert.ToInt32(util.Tcampo(tnum_param, "NUM_OF_PARAM")); } catch (Exception) { }
+    Console.WriteLine("Numero Parametros : " + num_of_param);
+    util.arma_param("REP.PARAM_", num_of_param);
+    Console.WriteLine("Parametros : " + util.arma_param("REP.PARAM_", num_of_param));
+
+
+    tdato_repor = DM.Main_rep("main_datos_rep", rep_id.ToString(), visible_sql, util.arma_param("REP.PARAM_", num_of_param));
     Console.WriteLine("************** datos repore **************");
+    Console.WriteLine(util.Tdetalle(tdato_repor));
+    ///////////////////////////////////////
+
+
     //Console.WriteLine(util.Tdetalle(tdato_repor));
     /****///
     dest_mail = util.nvl(util.Tcampo(tdato_repor, "DEST_MAIL"));
@@ -151,32 +197,30 @@ valida
     Console.WriteLine("valor ''id_Reporte  '':" + id_Reporte);
     Console.WriteLine("valor ''Carpeta     '':" + Carpeta);
     Console.WriteLine("valor ''COMMAND     '' " + MiComando);
-    Console.WriteLine("valor ''Get_IP         '' " + Get_IP);
-    Console.WriteLine("valor ''first_path     '' " + first_path);
-    Console.WriteLine("valor ''second_path    '' " + second_path);
-    /*
-                 
-             IPHostEntry host = Dns.GetHostEntry(Dns.GetHostName());
-             foreach (IPAddress ip in host.AddressList)
-             {
-                 if (ip.AddressFamily.ToString() == "InterNetwork")
-                 {
-                     localIP = ip.ToString();
-                 }
-             }
-             Console.WriteLine("valor IP " + localIP);
-             return localIP;
-     */
+    Console.WriteLine("valor ''Get_IP      '' " + Get_IP);
+    Console.WriteLine("valor ''first_path  '' " + first_path);
+    Console.WriteLine("valor ''second_path '' " + second_path);
+    //servidor = "http://" & Trim(Split(Get_IP(), "-")(0))
+    servidor = "http://" + Get_IP;
+    Console.WriteLine("valor servidor:" + servidor);
+    Carpeta = "C:\\Users\\usuario\\Desktop\\Raul\\prueba1";
+    if (!Directory.Exists(Carpeta))
+    {
+        Directory.CreateDirectory(Carpeta);
+        Console.WriteLine("carpeta creada :" + Carpeta);
+    }
+    else Console.WriteLine("La carpeta existe.."+Carpeta);
 
 }
 else
-    Console.WriteLine("Error es necesario dos parametros \n 1. Falta numero repor: ''{0}'' \n 2. valor numerico: {1} " + msg, id_cron, reporte_temporal);
+    Console.WriteLine("Error es necesario dos parametros \n 1. Falta numero repor: ''{0}'' \n 2. valor numerico: {1} " + msg, rep_id, reporte_temporal);
 Console.WriteLine("Oprimar cualquier tecla para terminar");
 Console.ReadKey();
 
 void init_var()
 {
     num_of_param = 0;
+    //parametros de correos
     cc_mail = "";
     mail_server = "192.168.100.6";
     mail_footer = "\n" + "\n" + "\n" +
@@ -186,21 +230,26 @@ void init_var()
     mail_From = "web-reports@logis.com.mx";
     mail_FromName = "Logis report server";
     mail_grupo_error = "desarrollo_web@logis.com.mx;christelle@logis.com.mx;desarrollo_web@logis.com.mx;desarrollo_web@logis.com.mx;";
+    //carpeta = "E:\reportes\web_reports\"
+    //second_path = "E:\reportes\web_reports\distant\"
     IP_servidor1 = "192.168.100.5";
     IP_servidor2 = "192.168.100.4";
     first_path = "\\\\" + IP_servidor1 + "\\reportes\\web_reports\\";
     second_path = "\\\\" + IP_servidor2 + "\\reportes\\web_reports\\";
     Get_IP = util.Get_IP();
     first_path = "\\\\" + Get_IP + "\\reportes\\web_reports\\";
+
     if (Get_IP == IP_servidor1)
         second_path = "\\\\" + IP_servidor2 + "\\reportes\\web_reports\\";
     else
         second_path = "\\\\" + IP_servidor1 + "\\reportes\\web_reports\\";
+
     mail_Lots_Info = "";
     mail_adjuntarArchivoXLS = false;
     mail_adjuntarArchivoTXT = false;
     mail_tempFolder = "\\\\192.168.100.4\\reportes\\web_reports\\temp\\";
     bExit = false;
+    string Errror = "0";
 }
 void Errman(Exception e)
 {

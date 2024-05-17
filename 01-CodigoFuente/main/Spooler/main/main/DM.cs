@@ -38,6 +38,7 @@ internal class DM
                                           .AddUserSecrets(Assembly.GetExecutingAssembly())
                                           .Build();
         var orfeo = configuration["Orfeo2"];
+
         return orfeo;
     }
     public DataTable Main_rep(string nom_proc, string id_cron, int vs, string? addsq = "")
@@ -165,7 +166,41 @@ internal class DM
         //dtTemp = datos(SQL.Replace("@id_cron", "" + id_cron + ""));
         return SQL.Replace("@sqladd", "" + addsq + "");
         /*return dtTemp*/
-    }                   
-    
+    }
+   
+    public string ejecuta_sql(string sql, int? vs = 1)
+    {
+        string result = "Error conexion";
+        OracleConnection cnn = new OracleConnection(conecBD());
+        try
+        {
+            using (cnn)
+            {
+                cnn.Open();
+                if ((cnn.State) > 0)
+                {
+                    OracleCommand cmd = new OracleCommand(sql, cnn);
+                    //cmd.ExecuteNonQuery();
+                    if (vs == 1) Console.WriteLine(sql);
+                    result = "1";
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            result = e.Message;
+        }
+        return result;
+    }
+
+    public void log_SQL(string modulo, string accion, string instancia, int? vs = 0)
+    {
+        string SQL = "INSERT INTO EMODULOS_USADOS (MODULO, ACCION, INSTANCIA, USUARIO, FECHA) \n" +
+                   " VALUES ('" + modulo.Substring(1, 100).Replace("'", "''") + "',\n '" + modulo.Substring(1, 200).Replace("'", "''") + "',\n '" + modulo.Substring(1, 50).Replace("'", "''") + "' "
+                   + " ,\n USER, SYSDATE) ";
+            ejecuta_sql(SQL, vs);
+
+    }
+
 }
 
