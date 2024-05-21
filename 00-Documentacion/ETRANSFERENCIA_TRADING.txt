@@ -1,0 +1,1153 @@
+  C:\pc\Spooler\ReportServer_QA\control_imeis.bas (3 coincidencias)
+	Línea  42: SQL = SQL & "    ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 143: SQL = SQL & "       ,ETRANSFERENCIA_TRADING TRA   " & vbCrLf
+	Línea 193: SQL = SQL & "       ,ETRANSFERENCIA_TRADING TRA   " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\funciones.bas (6 coincidencias)
+	Línea  514:     SQL = SQL & "       , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  563:     SQL = SQL & "       , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  610:     SQL = SQL & "       , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  659:     SQL = SQL & "       , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  840:     SQL6 = SQL6 & "       , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  891:     SQL6 = SQL6 & " INNER JOIN ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\imei_reporte_general.bas (91 coincidencias)
+	Línea   89:     SQL_EXP_TRASLADO = SQL_EXP_TRASLADO & " , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea   99:     SQL_EXP_TRASLADO = SQL_EXP_TRASLADO & " , ETRANSFERENCIA_TRADING TRA_DEST " & vbCrLf
+	Línea  146:     SQL_EXP_TRASLADO = SQL_EXP_TRASLADO & " , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  173:     SQL_EXP_TRASLADO = SQL_EXP_TRASLADO & "   , ETRANSFERENCIA_TRADING TRA_DEST " & vbCrLf
+	Línea  265:     SQL_PEDIDO = SQL_PEDIDO & "   , ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea  273:     SQL_PEDIDO = SQL_PEDIDO & "        , ETRANSFERENCIA_TRADING TRA   " & vbCrLf
+	Línea  284:     SQL_PEDIDO = SQL_PEDIDO & "        , ETRANSFERENCIA_TRADING TRA    " & vbCrLf
+	Línea  305:     SQL_ACCESORIOS = SQL_ACCESORIOS & "   ETRANSFERENCIA_TRADING TRA_ENT, " & vbCrLf
+	Línea  336:     SQL_DESCUENTO = SQL_DESCUENTO & "   , ETRANSFERENCIA_TRADING TRA   " & vbCrLf
+	Línea  377:         SQL_REPORTE = SQL_REPORTE & "  FROM ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea  402:         SQL_REPORTE = SQL_REPORTE & "    FROM ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea  419:         SQL_REPORTE = SQL_REPORTE & "   FROM ETRANSFERENCIA_TRADING TRA   " & vbCrLf
+	Línea  444:         SQL_REPORTE = SQL_REPORTE & "        FROM ETRANSFERENCIA_TRADING TRA2   " & vbCrLf
+	Línea  446:         SQL_REPORTE = SQL_REPORTE & "        , ETRANSFERENCIA_TRADING TRA3   " & vbCrLf
+	Línea  473:         SQL_REPORTE = SQL_REPORTE & "    FROM ETRANSFERENCIA_TRADING TRA    " & vbCrLf
+	Línea  493:         SQL_REPORTE = SQL_REPORTE & "         FROM ETRANSFERENCIA_TRADING TRA2    " & vbCrLf
+	Línea  507:         SQL_REPORTE = SQL_REPORTE & "        , ETRANSFERENCIA_TRADING TRA_TRANS      " & vbCrLf
+	Línea  529:         SQL_REPORTE = SQL_REPORTE & "       , ETRANSFERENCIA_TRADING TRA_ORI " & vbCrLf
+	Línea  555:         SQL_REPORTE = SQL_REPORTE & "     FROM ETRANSFERENCIA_TRADING TRA     " & vbCrLf
+	Línea  575:         SQL_REPORTE = SQL_REPORTE & "          FROM ETRANSFERENCIA_TRADING TRA2     " & vbCrLf
+	Línea  589:         SQL_REPORTE = SQL_REPORTE & "         , ETRANSFERENCIA_TRADING TRA_TRANS       " & vbCrLf
+	Línea  604:         SQL_REPORTE = SQL_REPORTE & "         , ETRANSFERENCIA_TRADING TRA_TRANS       " & vbCrLf
+	Línea  631:         SQL_REPORTE = SQL_REPORTE & "        , ETRANSFERENCIA_TRADING TRA_ORI  " & vbCrLf
+	Línea  657:         SQL_REPORTE = SQL_REPORTE & "      FROM ETRANSFERENCIA_TRADING TRA      " & vbCrLf
+	Línea  690:         SQL_REPORTE = SQL_REPORTE & "         , ETRANSFERENCIA_TRADING TRA_ORI   " & vbCrLf
+	Línea  714:         SQL_REPORTE = SQL_REPORTE & "     , ETRANSFERENCIA_TRADING TRA_DXP  " & vbCrLf
+	Línea  735:         SQL_REPORTE = SQL_REPORTE & "      FROM ETRANSFERENCIA_TRADING TRA      " & vbCrLf
+	Línea  768:         SQL_REPORTE = SQL_REPORTE & "         , ETRANSFERENCIA_TRADING TRA_ORI   " & vbCrLf
+	Línea  792:         SQL_REPORTE = SQL_REPORTE & "     , ETRANSFERENCIA_TRADING TRA_DXP  " & vbCrLf
+	Línea  821:         SQL_REPORTE = SQL_REPORTE & "      FROM ETRANSFERENCIA_TRADING TRA      " & vbCrLf
+	Línea  863:         SQL_REPORTE = SQL_REPORTE & "         , ETRANSFERENCIA_TRADING TRA_ORI   " & vbCrLf
+	Línea  887:         SQL_REPORTE = SQL_REPORTE & "     , ETRANSFERENCIA_TRADING TRA_DXP  " & vbCrLf
+	Línea  913:         SQL_REPORTE = SQL_REPORTE & "       FROM ETRANSFERENCIA_TRADING TRA       " & vbCrLf
+	Línea  946:         SQL_REPORTE = SQL_REPORTE & "          , ETRANSFERENCIA_TRADING TRA_ORI    " & vbCrLf
+	Línea  970:         SQL_REPORTE = SQL_REPORTE & "        , ETRANSFERENCIA_TRADING TRA_DXP   " & vbCrLf
+	Línea  993:         SQL_REPORTE = SQL_REPORTE & "       , ETRANSFERENCIA_TRADING TRA_DXP  " & vbCrLf
+	Línea 1015:         SQL_REPORTE = SQL_REPORTE & "       FROM ETRANSFERENCIA_TRADING TRA       " & vbCrLf
+	Línea 1048:         SQL_REPORTE = SQL_REPORTE & "          , ETRANSFERENCIA_TRADING TRA_ORI    " & vbCrLf
+	Línea 1072:         SQL_REPORTE = SQL_REPORTE & "    , ETRANSFERENCIA_TRADING TRA_DXP " & vbCrLf
+	Línea 1094:         SQL_REPORTE = SQL_REPORTE & " FROM ETRANSFERENCIA_TRADING TRA_ORI  " & vbCrLf
+	Línea 1127:         SQL_REPORTE = SQL_REPORTE & "              , ETRANSFERENCIA_TRADING TRA_TRANS " & vbCrLf
+	Línea 1144:         SQL_REPORTE = SQL_REPORTE & "              , ETRANSFERENCIA_TRADING TRA_DEST  " & vbCrLf
+	Línea 1147:         SQL_REPORTE = SQL_REPORTE & "              , ETRANSFERENCIA_TRADING TRA_TRANS " & vbCrLf
+	Línea 1179:         SQL_REPORTE = SQL_REPORTE & "               , ETRANSFERENCIA_TRADING TRA_TRANS  " & vbCrLf
+	Línea 1195:         SQL_REPORTE = SQL_REPORTE & "     FROM ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea 1215:         SQL_REPORTE = SQL_REPORTE & "       FROM ETRANSFERENCIA_TRADING TRA2  " & vbCrLf
+	Línea 1217:         SQL_REPORTE = SQL_REPORTE & "       , ETRANSFERENCIA_TRADING TRA3  " & vbCrLf
+	Línea 1246:         SQL_REPORTE = SQL_REPORTE & "        , ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 1274:         SQL_REPORTE = SQL_REPORTE & " FROM ETRANSFERENCIA_TRADING TRA_ORI  " & vbCrLf
+	Línea 1307:         SQL_REPORTE = SQL_REPORTE & "              , ETRANSFERENCIA_TRADING TRA_TRANS " & vbCrLf
+	Línea 1324:         SQL_REPORTE = SQL_REPORTE & "              , ETRANSFERENCIA_TRADING TRA_DEST  " & vbCrLf
+	Línea 1327:         SQL_REPORTE = SQL_REPORTE & "              , ETRANSFERENCIA_TRADING TRA_TRANS " & vbCrLf
+	Línea 1359:         SQL_REPORTE = SQL_REPORTE & "               , ETRANSFERENCIA_TRADING TRA_TRANS  " & vbCrLf
+	Línea 1611:     Filtro = Filtro & " , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 1619:     Filtro = Filtro & "        , ETRANSFERENCIA_TRADING TRA_RECH  " & vbCrLf
+	Línea 1644:     Filtro = Filtro & "        , ETRANSFERENCIA_TRADING TRA_RECH  " & vbCrLf
+	Línea 1662:     Filtro = Filtro & "  , ETRANSFERENCIA_TRADING TRA_TPI " & vbCrLf
+	Línea 1801:         Mi_Tae = Mi_Tae & "   from etrans_entrada tae, etransferencia_trading train " & vbCrLf
+	Línea 1811:     Mi_Tae = Mi_Tae & "  from etrans_entrada tae, etransferencia_trading train " & vbCrLf
+	Línea 1832:    SQL = SQL & "   , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 1838:     SQL = SQL & "  , ETRANSFERENCIA_TRADING TRA    " & vbCrLf
+	Línea 1843:     SQL = SQL & "  , ETRANSFERENCIA_TRADING TRA    " & vbCrLf
+	Línea 1862:         SQL = SQL & "    ETRANSFERENCIA_TRADING TRA_ENT, " & vbCrLf
+	Línea 1869:         SQL = SQL & "    ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea 1930:             SQL = SQL & "    ETRANSFERENCIA_TRADING TRA_ENT," & vbCrLf
+	Línea 1935:             SQL = SQL & "    ETRANSFERENCIA_TRADING TRA_ENT, " & vbCrLf
+	Línea 1943:         SQL = SQL & "    ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea 2027:     SQL = SQL & "         , ETRANSFERENCIA_TRADING TRA_TRANS   " & vbCrLf
+	Línea 2035:     SQL = SQL & "         ETRANSFERENCIA_TRADING TRA_TRANS   " & vbCrLf
+	Línea 2043: SQL = SQL & "       , ETRANSFERENCIA_TRADING TRA_DEST " & vbCrLf
+	Línea 2046: SQL = SQL & "       , ETRANSFERENCIA_TRADING TRA_ORI " & vbCrLf
+	Línea 2129: SQL = SQL & "            , ETRANSFERENCIA_TRADING TRA_TRANS2    " & vbCrLf
+	Línea 2159:     SQL = SQL & "          , ETRANSFERENCIA_TRADING TRA_TRANS    " & vbCrLf
+	Línea 2191:     SQL = SQL & "          , ETRANSFERENCIA_TRADING TRA_TRANS    " & vbCrLf
+	Línea 2197: SQL = SQL & "        , ETRANSFERENCIA_TRADING TRA_DEST  " & vbCrLf
+	Línea 2200: SQL = SQL & "        , ETRANSFERENCIA_TRADING TRA_ORI  " & vbCrLf
+	Línea 2284: SQL = SQL & "            , ETRANSFERENCIA_TRADING TRA_TRANS2    " & vbCrLf
+	Línea 2320:     SQL = SQL & "         , ETRANSFERENCIA_TRADING TRA_TRANS   " & vbCrLf
+	Línea 2351:     SQL = SQL & "          , ETRANSFERENCIA_TRADING TRA_TRANS    " & vbCrLf
+	Línea 2357: SQL = SQL & "       , ETRANSFERENCIA_TRADING TRA_DEST " & vbCrLf
+	Línea 2360: SQL = SQL & "       , ETRANSFERENCIA_TRADING TRA_ORI " & vbCrLf
+	Línea 2438: SQL = SQL & "            , ETRANSFERENCIA_TRADING TRA_TRANS2    " & vbCrLf
+	Línea 2466:     SQL = SQL & "          , ETRANSFERENCIA_TRADING TRA_TRANS    " & vbCrLf
+	Línea 2498:     SQL = SQL & "     , ETRANSFERENCIA_TRADING TRA_TRANS    " & vbCrLf
+	Línea 2503: SQL = SQL & "        , ETRANSFERENCIA_TRADING TRA_DEST  " & vbCrLf
+	Línea 2506: SQL = SQL & "        , ETRANSFERENCIA_TRADING TRA_ORI  " & vbCrLf
+	Línea 2589: SQL = SQL & "            , ETRANSFERENCIA_TRADING TRA_TRANS2    " & vbCrLf
+	Línea 2805: SQL = SQL & "         , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea 2837: SQL = SQL & "           , ETRANSFERENCIA_TRADING   " & vbCrLf
+	Línea 3021:     SQL_RECHAZO = SQL_RECHAZO & "              , ETRANSFERENCIA_TRADING TRA_RECH  " & vbCrLf
+	Línea 3046:     SQL_RECHAZO = SQL_RECHAZO & "              , ETRANSFERENCIA_TRADING TRA_RECH  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_anomalias.bas (16 coincidencias)
+	Línea  68:     SQL = SQL & "    ETRANSFERENCIA_TRADING TRA," & vbCrLf
+	Línea 135:     SQL = SQL & "FROM ETRANSFERENCIA_TRADING TRA," & vbCrLf
+	Línea 156:     SQL = SQL & "            FROM ETRANSFERENCIA_TRADING TRA," & vbCrLf
+	Línea 168: '    SQL = SQL & "            FROM ETRANSFERENCIA_TRADING TRA," & vbCrLf
+	Línea 180:     SQL = SQL & "            FROM ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea 237:         SQL2 = SQL2 & "    FROM ETRANSFERENCIA_TRADING TRA," & vbCrLf
+	Línea 259: '        SQL2 = SQL2 & "    FROM ETRANSFERENCIA_TRADING TRA," & vbCrLf
+	Línea 289:             SQL2 = SQL2 & "FROM ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea 335:     SQL = SQL & "            ETRANSFERENCIA_TRADING TRA," & vbCrLf
+	Línea 347:     SQL = SQL & "            ETRANSFERENCIA_TRADING TRA," & vbCrLf
+	Línea 404:         SQL2 = SQL2 & "        ETRANSFERENCIA_TRADING TRA," & vbCrLf
+	Línea 417:         SQL2 = SQL2 & "        ETRANSFERENCIA_TRADING TRA," & vbCrLf
+	Línea 472:     SQL = SQL & "FROM ETRANSFERENCIA_TRADING TRA," & vbCrLf
+	Línea 503:     SQL = SQL & "            ETRANSFERENCIA_TRADING OTR_TRA" & vbCrLf
+	Línea 613:         SQL2 = SQL2 & "     ETRANSFERENCIA_TRADING OTR_TRA" & vbCrLf
+	Línea 696:     SQL = SQL & " FROM ECLIENT CLI, ETRANSFERENCIA_TRADING TRA, ETRANSFERENCIA_BULTOS TRB, MZONAS_TRANSFERENCIAS EZT"
+  C:\pc\Spooler\ReportServer_QA\trading_anom_captura.bas (6 coincidencias)
+	Línea  112:     SQL_DETALLE_ENTRADA = SQL_DETALLE_ENTRADA & " , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  148:     SQL_DETALLE_PEDIDO = SQL_DETALLE_PEDIDO & "   , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  199:     SQL_DETALLE_PEDIDO_TIM = SQL_DETALLE_PEDIDO_TIM & "   , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  230:     SQL_CIUDADES_SIN_TIM = SQL_CIUDADES_SIN_TIM & "    , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  263:     SQL_ERROR_CAUSA_TIPO_INCIDENCIA = SQL_ERROR_CAUSA_TIPO_INCIDENCIA & " FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  313:     SQL_DETALLE_DCK = SQL_DETALLE_DCK & "    , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_backlog2_mod.bas (4 coincidencias)
+	Línea  56: SQL_PEND = SQL_PEND & " FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 119: SQL_PEND = SQL_PEND & " FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 283: SQL_ENTREGA = SQL_ENTREGA & " FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 346: SQL_ENTREGA = SQL_ENTREGA & " FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_backlog_mod.bas (7 coincidencias)
+	Línea  124:     SQL_Evidencia = SQL_Evidencia & "  , ETRANSFERENCIA_TRADING TRA" & vbCrLf
+	Línea  187:     SQL_distribucion = SQL_distribucion & "  , ETRANSFERENCIA_TRADING TRA" & vbCrLf
+	Línea  244:     SQL_almacen = SQL_almacen & "  , ETRANSFERENCIA_TRADING TRA" & vbCrLf
+	Línea  309: 'SQL = SQL & "   ETRANSFERENCIA_TRADING TRA," & vbCrLf
+	Línea  386:     SQL = SQL & "   , ETRANSFERENCIA_TRADING TRA" & vbCrLf
+	Línea  444:     SQL = SQL & "   ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea  684:             SQL = SQL & "   , ETRANSFERENCIA_TRADING " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_cd_ltl_mod.bas (1 coincidencias)
+	Línea  79:     SQL_Facturas = SQL_Facturas & "              ETRANSFERENCIA_TRADING TRA,  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_cd_pendientes_mod.bas (9 coincidencias)
+	Línea  195: SQL_LTL = SQL_LTL & "                     ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea  227: SQL_LTL = SQL_LTL & "                    , ETRANSFERENCIA_TRADING TRA_ENT_DEST " & vbCrLf
+	Línea  583: SQL_LTL = SQL_LTL & "                     ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea  856: SQL_LTL = SQL_LTL & "                    ETRANSFERENCIA_TRADING TRA,  " & vbCrLf
+	Línea  879: SQL_LTL = SQL_LTL & "                     , ETRANSFERENCIA_TRADING TRA_ENT_DEST  " & vbCrLf
+	Línea 1265: SQL_LTL = SQL_LTL & "                    ETRANSFERENCIA_TRADING TRA,  " & vbCrLf
+	Línea 1773:     SQL = SQL & "         ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 1917:         SQL = SQL & "     ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea 1957:             SQL = SQL & "     ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_cd_pendientes_prueba_mod.bas (3 coincidencias)
+	Línea 1191:     SQL = SQL & "         ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 1310:         SQL = SQL & "     ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea 1350:             SQL = SQL & "     ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_evol_clientes_mod.bas (50 coincidencias)
+	Línea  147:         SQL_STAT = SQL_STAT & "     , ETRANSFERENCIA_TRADING  TRA   " & vbCrLf
+	Línea  232:         SQL_STAT = SQL_STAT & "     , ETRANSFERENCIA_TRADING  TRA    " & vbCrLf
+	Línea  319:         SQL_STAT = SQL_STAT & "     , ETRANSFERENCIA_TRADING  TRA        " & vbCrLf
+	Línea  399:         SQL_STAT = SQL_STAT & "     , ETRANSFERENCIA_TRADING  TRA        " & vbCrLf
+	Línea  596:         SQL_IMP_KM_KG = SQL_IMP_KM_KG & "      , ETRANSFERENCIA_TRADING  TRA    " & vbCrLf
+	Línea  654:         SQL_IMP_KM_KG = SQL_IMP_KM_KG & "      , ETRANSFERENCIA_TRADING  TRA     " & vbCrLf
+	Línea  714:         SQL_IMP_KM_KG = SQL_IMP_KM_KG & "      , ETRANSFERENCIA_TRADING  TRA         " & vbCrLf
+	Línea  768:         SQL_IMP_KM_KG = SQL_IMP_KM_KG & "      , ETRANSFERENCIA_TRADING  TRA         " & vbCrLf
+	Línea 1007:     SQL_CDAD = SQL_CDAD & "      , ETRANSFERENCIA_TRADING  TRA    " & vbCrLf
+	Línea 1078:     SQL_CDAD = SQL_CDAD & "      , ETRANSFERENCIA_TRADING  TRA     " & vbCrLf
+	Línea 1151:     SQL_CDAD = SQL_CDAD & "      , ETRANSFERENCIA_TRADING  TRA         " & vbCrLf
+	Línea 1217:     SQL_CDAD = SQL_CDAD & "      , ETRANSFERENCIA_TRADING  TRA         " & vbCrLf
+	Línea 1457:     SQL_CDAD_BASE = SQL_CDAD_BASE & "      , ETRANSFERENCIA_TRADING  TRA    " & vbCrLf
+	Línea 1524:     SQL_CDAD_BASE = SQL_CDAD_BASE & "      , ETRANSFERENCIA_TRADING  TRA     " & vbCrLf
+	Línea 1593:     SQL_CDAD_BASE = SQL_CDAD_BASE & "      , ETRANSFERENCIA_TRADING  TRA         " & vbCrLf
+	Línea 1655:     SQL_CDAD_BASE = SQL_CDAD_BASE & "      , ETRANSFERENCIA_TRADING  TRA         " & vbCrLf
+	Línea 1872:     SQL_CDAD_BASE_3MESES = SQL_CDAD_BASE_3MESES & "      , ETRANSFERENCIA_TRADING  TRA    " & vbCrLf
+	Línea 1930:     SQL_CDAD_BASE_3MESES = SQL_CDAD_BASE_3MESES & "      , ETRANSFERENCIA_TRADING  TRA     " & vbCrLf
+	Línea 1991:     SQL_CDAD_BASE_3MESES = SQL_CDAD_BASE_3MESES & "      , ETRANSFERENCIA_TRADING  TRA         " & vbCrLf
+	Línea 2044:     SQL_CDAD_BASE_3MESES = SQL_CDAD_BASE_3MESES & "      , ETRANSFERENCIA_TRADING  TRA         " & vbCrLf
+	Línea 2198:     SQL_CDAD_TRAS = SQL_CDAD_TRAS & "      , ETRANSFERENCIA_TRADING  TRA    " & vbCrLf
+	Línea 2307:     SQL_CDAD_LOCAL = SQL_CDAD_LOCAL & "      , ETRANSFERENCIA_TRADING  TRA    " & vbCrLf
+	Línea 2374:     SQL_CDAD_LOCAL = SQL_CDAD_LOCAL & "      , ETRANSFERENCIA_TRADING  TRA    " & vbCrLf
+	Línea 2512:     SQL_R_C = SQL_R_C & "    , ETRANSFERENCIA_TRADING  TRA    " & vbCrLf
+	Línea 2564:     SQL_R_C = SQL_R_C & "      , ETRANSFERENCIA_TRADING  TRA        " & vbCrLf
+	Línea 2615:     SQL_R_C = SQL_R_C & "      , ETRANSFERENCIA_TRADING  TRA      " & vbCrLf
+	Línea 2727:     SQL_ACUMULADO = SQL_ACUMULADO & "     , ETRANSFERENCIA_TRADING  TRA     " & vbCrLf
+	Línea 2759:     SQL_ACUMULADO = SQL_ACUMULADO & "       , ETRANSFERENCIA_TRADING  TRA         " & vbCrLf
+	Línea 2789:     SQL_ACUMULADO = SQL_ACUMULADO & "       , ETRANSFERENCIA_TRADING  TRA       " & vbCrLf
+	Línea 2845:     SQL_ACUMULADO = SQL_ACUMULADO & "     , ETRANSFERENCIA_TRADING  TRA     " & vbCrLf
+	Línea 2877:     SQL_ACUMULADO = SQL_ACUMULADO & "       , ETRANSFERENCIA_TRADING  TRA         " & vbCrLf
+	Línea 2907:     SQL_ACUMULADO = SQL_ACUMULADO & "     , ETRANSFERENCIA_TRADING  TRA       " & vbCrLf
+	Línea 2996:     SQL_ACUM_GRUPO = SQL_ACUM_GRUPO & "     , ETRANSFERENCIA_TRADING  TRA     " & vbCrLf
+	Línea 3028:     SQL_ACUM_GRUPO = SQL_ACUM_GRUPO & "       , ETRANSFERENCIA_TRADING  TRA         " & vbCrLf
+	Línea 3058:     SQL_ACUM_GRUPO = SQL_ACUM_GRUPO & "     , ETRANSFERENCIA_TRADING  TRA       " & vbCrLf
+	Línea 3114:     SQL_ACUM_GRUPO = SQL_ACUM_GRUPO & "     , ETRANSFERENCIA_TRADING  TRA     " & vbCrLf
+	Línea 3146:     SQL_ACUM_GRUPO = SQL_ACUM_GRUPO & "       , ETRANSFERENCIA_TRADING  TRA         " & vbCrLf
+	Línea 3176:     SQL_ACUM_GRUPO = SQL_ACUM_GRUPO & "     , ETRANSFERENCIA_TRADING  TRA       " & vbCrLf
+	Línea 3277:     SQL_ACUM_GRUPO_RANGO = SQL_ACUM_GRUPO_RANGO & "     , ETRANSFERENCIA_TRADING  TRA     " & vbCrLf
+	Línea 3311:     SQL_ACUM_GRUPO_RANGO = SQL_ACUM_GRUPO_RANGO & "       , ETRANSFERENCIA_TRADING  TRA         " & vbCrLf
+	Línea 3342:     SQL_ACUM_GRUPO_RANGO = SQL_ACUM_GRUPO_RANGO & "     , ETRANSFERENCIA_TRADING  TRA       " & vbCrLf
+	Línea 3400:     SQL_ACUM_GRUPO_RANGO = SQL_ACUM_GRUPO_RANGO & "     , ETRANSFERENCIA_TRADING  TRA     " & vbCrLf
+	Línea 3433:     SQL_ACUM_GRUPO_RANGO = SQL_ACUM_GRUPO_RANGO & "       , ETRANSFERENCIA_TRADING  TRA         " & vbCrLf
+	Línea 3464:     SQL_ACUM_GRUPO_RANGO = SQL_ACUM_GRUPO_RANGO & "     , ETRANSFERENCIA_TRADING  TRA       " & vbCrLf
+	Línea 3566:     SQL_ACUMULADO_RANGO = SQL_ACUMULADO_RANGO & "     , ETRANSFERENCIA_TRADING  TRA     " & vbCrLf
+	Línea 3600:     SQL_ACUMULADO_RANGO = SQL_ACUMULADO_RANGO & "       , ETRANSFERENCIA_TRADING  TRA         " & vbCrLf
+	Línea 3631:     SQL_ACUMULADO_RANGO = SQL_ACUMULADO_RANGO & "       , ETRANSFERENCIA_TRADING  TRA       " & vbCrLf
+	Línea 3689:     SQL_ACUMULADO_RANGO = SQL_ACUMULADO_RANGO & "     , ETRANSFERENCIA_TRADING  TRA     " & vbCrLf
+	Línea 3722:     SQL_ACUMULADO_RANGO = SQL_ACUMULADO_RANGO & "       , ETRANSFERENCIA_TRADING  TRA         " & vbCrLf
+	Línea 3753:     SQL_ACUMULADO_RANGO = SQL_ACUMULADO_RANGO & "     , ETRANSFERENCIA_TRADING  TRA       " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_factura_pendientes_mod.bas (3 coincidencias)
+	Línea 293: SQL = SQL & "      FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 304:     SQL = SQL & "  FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 335:     SQL = SQL & "  FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_fusion_pendientes_mod.bas (9 coincidencias)
+	Línea  428:     SQL_DEV = SQL_DEV & "       FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  630:                            SQL = SQL & "       FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  777:                            SQL = SQL & "       FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  837:                            SQL = SQL & "       FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  948:                            SQL = SQL & "       FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 1189:                            SQL = SQL & "       FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 1286:                            SQL = SQL & "       FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 1405:                            SQL = SQL & "       FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 1498:                            SQL = SQL & "       FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_fusion_pendientes_mod_bkupnajib.bas (9 coincidencias)
+	Línea  329:     SQL_DEV = SQL_DEV & "       FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  496:                            SQL = SQL & "       FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  649:                            SQL = SQL & "       FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  705:                            SQL = SQL & "       FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  748:                            SQL = SQL & "       FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  956:                            SQL = SQL & "       FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 1031:                            SQL = SQL & "       FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 1124:                            SQL = SQL & "       FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 1190:                            SQL = SQL & "       FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_fusion_pendientes_prueba_mod.bas (9 coincidencias)
+	Línea  327:     SQL_DEV = SQL_DEV & "       FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  494:                            SQL = SQL & "       FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  646:                            SQL = SQL & "       FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  702:                            SQL = SQL & "       FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  742:                            SQL = SQL & "       FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  950:                            SQL = SQL & "       FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 1025:                            SQL = SQL & "       FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 1118:                            SQL = SQL & "       FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 1184:                            SQL = SQL & "       FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_genera_GSK.bas (2 coincidencias)
+	Línea  51:         SQL = SQL & " WCROSS_DOCK WCD, EDIRECCIONES_ENTREGA DIE, ECLIENT_CLIENTE CCL, EDISTRIBUTEUR DIS, ECIUDADES CIU_ORI, EESTADOS EST_ORI, ECIUDADES CIU_DEST, EESTADOS EST_DEST, ETRANS_DETALLE_CROSS_DOCK TDCD, ETRANSFERENCIA_TRADING TRA, ETRANS_ENTRADA TAE   " & vbCrLf
+	Línea  79:                 SQL = SQL & "   ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_genera_TLN.bas (5 coincidencias)
+	Línea  70:         sql = sql & " FROM  (select * from ETRANSFERENCIA_TRADING where DATE_CREATED >= TRUNC(SYSDATE) - 360 ) TRA left join ( select * from ETRANS_DETALLE_CROSS_DOCK where DATE_CREATED >= TRUNC(SYSDATE) - 360  ) TDCD on (TDCD_TRACLAVE) = (TRA.TRACLAVE)  " & vbCrLf
+	Línea  80:         sql = sql & " AND TRA_MEZTCLAVE_DEST IN (24 ) AND TRA.TRA_ALLCLAVE = 1 /*AND TRA.TRA_CLICLEF  in(select distinct tra_cliclef from ETRANSFERENCIA_TRADING )*/ AND TRA.TRA_CLICLEF NOT IN (2896, 2897, 3195, 3196, 3109)  " & vbCrLf
+	Línea  84:         sql = sql & " AND (EXISTS (SELECT  NULL FROM ETRANSFERENCIA_PALETA TDP, ETRANSFERENCIA_TRADING TRA2 WHERE (TDP.TDP_TDCDCLAVE) = (TDCD.TDCDCLAVE) AND (TRA2.TRACLAVE) = (TDP.TDP_TRACLAVE) AND TRA2.TRASTATUS = '1'  " & vbCrLf
+	Línea  85:         sql = sql & " AND TRA2.TRA_MEZTCLAVE_DEST = 2 AND NOT EXISTS ( SELECT NULL FROM ETRANSFERENCIA_PALETA TDP3, ETRANSFERENCIA_TRADING TRA3 WHERE TDP3.TDP_PALCLAVE = TDP.TDP_PALCLAVE AND (TRA3.TRACLAVE) = (TDP3.TDP_TRACLAVE)  " & vbCrLf
+	Línea  86:         sql = sql & " AND (TRA3.TRA_TRACLAVE) = (TRA2.TRACLAVE) AND (TRA3.TRASTATUS) = '1' AND TRA3.TRA_MEZTCLAVE_DEST = 21 AND ROWNUM = 1 ) AND ROWNUM = 1 ) OR NOT EXISTS (SELECT  NULL FROM ETRANSFERENCIA_PALETA TDP, ETRANSFERENCIA_TRADING TRA2  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_imei_ctl_asignacion.bas (7 coincidencias)
+	Línea  29:     SQL_REINGRESO = SQL_REINGRESO & "   from ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 105: SQL = SQL & "       ETRANSFERENCIA_TRADING TRA    " & vbCrLf
+	Línea 125: SQL = SQL & "           , ETRANSFERENCIA_TRADING TRA_TRANS  " & vbCrLf
+	Línea 145: SQL = SQL & "        , ETRANSFERENCIA_TRADING TRA_TRANS  " & vbCrLf
+	Línea 162: SQL = SQL & "    , ETRANSFERENCIA_TRADING TRA_IMP " & vbCrLf
+	Línea 175: SQL = SQL & "       ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea 215: SQL = SQL & "       ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_imei_entradas_salidas_mod.bas (3 coincidencias)
+	Línea   67: SQL = SQL & "      ETRANSFERENCIA_TRADING TRA   " & vbCrLf
+	Línea  274: SQL = SQL & "        , ETRANSFERENCIA_TRADING TRA    " & vbCrLf
+	Línea  318: SQL = SQL & "     ,ETRANSFERENCIA_TRADING TRA     " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_imei_relacion_mod.bas (2 coincidencias)
+	Línea  77: SQL = SQL & "        FROM ETRANSFERENCIA_TRADING TRA,  " & vbCrLf
+	Línea 127: SQL = SQL & "        FROM ETRANSFERENCIA_TRADING TRA,  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_imei_resumen_ejecutivo.bas (30 coincidencias)
+	Línea   66:     SQL_ENTREGA_TELCEL = SQL_ENTREGA_TELCEL & "      ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  107:     SQL_ENTREGA_TELCEL = SQL_ENTREGA_TELCEL & "      ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  164:     SQL_EXP_TRASLADO = SQL_EXP_TRASLADO & "          ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  187:     SQL_EXP_TRASLADO = SQL_EXP_TRASLADO & "          ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  268:     SQL_PEDIDO = SQL_PEDIDO & "   , ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea  274:     SQL_PEDIDO = SQL_PEDIDO & "       , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea  366: SQL_GENERAL = SQL_GENERAL & "     ,  ETRANSFERENCIA_TRADING TRA    " & vbCrLf
+	Línea  374: SQL_GENERAL = SQL_GENERAL & "            ETRANSFERENCIA_TRADING TRA_ENT, " & vbCrLf
+	Línea  380: SQL_GENERAL = SQL_GENERAL & "           ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea  418: SQL_GENERAL = SQL_GENERAL & "         , ETRANSFERENCIA_TRADING TRA_TRANS   " & vbCrLf
+	Línea  422: SQL_GENERAL = SQL_GENERAL & "       , ETRANSFERENCIA_TRADING TRA_DEST " & vbCrLf
+	Línea  425: SQL_GENERAL = SQL_GENERAL & "       , ETRANSFERENCIA_TRADING TRA_ORI " & vbCrLf
+	Línea  464: SQL_GENERAL = SQL_GENERAL & "            , ETRANSFERENCIA_TRADING TRA_TRANS2    " & vbCrLf
+	Línea  485: SQL_GENERAL = SQL_GENERAL & "          , ETRANSFERENCIA_TRADING TRA_TRANS    " & vbCrLf
+	Línea  488: SQL_GENERAL = SQL_GENERAL & "        , ETRANSFERENCIA_TRADING TRA_DEST  " & vbCrLf
+	Línea  491: SQL_GENERAL = SQL_GENERAL & "        , ETRANSFERENCIA_TRADING TRA_ORI  " & vbCrLf
+	Línea  534: SQL_GENERAL = SQL_GENERAL & "            , ETRANSFERENCIA_TRADING TRA_TRANS2    " & vbCrLf
+	Línea  556: SQL_GENERAL = SQL_GENERAL & "         , ETRANSFERENCIA_TRADING TRA_TRANS   " & vbCrLf
+	Línea  560: SQL_GENERAL = SQL_GENERAL & "       , ETRANSFERENCIA_TRADING TRA_DEST " & vbCrLf
+	Línea  563: SQL_GENERAL = SQL_GENERAL & "       , ETRANSFERENCIA_TRADING TRA_ORI " & vbCrLf
+	Línea  602: SQL_GENERAL = SQL_GENERAL & "            , ETRANSFERENCIA_TRADING TRA_TRANS2    " & vbCrLf
+	Línea  623: SQL_GENERAL = SQL_GENERAL & "          , ETRANSFERENCIA_TRADING TRA_TRANS    " & vbCrLf
+	Línea  626: SQL_GENERAL = SQL_GENERAL & "        , ETRANSFERENCIA_TRADING TRA_DEST  " & vbCrLf
+	Línea  629: SQL_GENERAL = SQL_GENERAL & "        , ETRANSFERENCIA_TRADING TRA_ORI  " & vbCrLf
+	Línea  672: SQL_GENERAL = SQL_GENERAL & "            , ETRANSFERENCIA_TRADING TRA_TRANS2    " & vbCrLf
+	Línea  727: SQL_GENERAL = SQL_GENERAL & "             , ETRANSFERENCIA_TRADING TRA_RECH " & vbCrLf
+	Línea  744: SQL_GENERAL = SQL_GENERAL & "             , ETRANSFERENCIA_TRADING TRA_RECH " & vbCrLf
+	Línea  831:     SQL_INVENTARIO = SQL_INVENTARIO & "       ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 2876:     SQL_RECHAZO = SQL_RECHAZO & "              , ETRANSFERENCIA_TRADING TRA_RECH  " & vbCrLf
+	Línea 2901:     SQL_RECHAZO = SQL_RECHAZO & "              , ETRANSFERENCIA_TRADING TRA_RECH  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_imei_stat_IN_OUT_mod.bas (44 coincidencias)
+	Línea   79:     SQL_ENVIO_SL = SQL_ENVIO_SL & " FROM ETRANSFERENCIA_TRADING TRA_ORI    " & vbCrLf
+	Línea   90:     SQL_ENVIO_SL = SQL_ENVIO_SL & "     , ETRANSFERENCIA_TRADING TRA_DEST  " & vbCrLf
+	Línea   94:     SQL_ENVIO_SL = SQL_ENVIO_SL & "     , ETRANSFERENCIA_TRADING TRA_TRANS  " & vbCrLf
+	Línea  136:     SQL_ENVIO_SL = SQL_ENVIO_SL & "                    FROM ETRANSFERENCIA_TRADING TRA2  " & vbCrLf
+	Línea  168:     SQL_ENVIO_SL = SQL_ENVIO_SL & "            , ETRANSFERENCIA_TRADING TRA_TRANS2  " & vbCrLf
+	Línea  210:     SQL_RES_RECOL = SQL_RES_RECOL & "    , ETRANSFERENCIA_TRADING TRA_ORI    " & vbCrLf
+	Línea  224:     SQL_RES_RECOL = SQL_RES_RECOL & "    , ETRANSFERENCIA_TRADING TRA_TPI   " & vbCrLf
+	Línea  238:     SQL_RES_RECOL = SQL_RES_RECOL & "             ETRANSFERENCIA_TRADING TRA_ENT,  " & vbCrLf
+	Línea  244:     SQL_RES_RECOL = SQL_RES_RECOL & "            ETRANSFERENCIA_TRADING TRA,  " & vbCrLf
+	Línea  278:     SQL_RES_RECOL = SQL_RES_RECOL & "    , ETRANSFERENCIA_TRADING TRA_TPI_ORI " & vbCrLf
+	Línea  355:     SQL_TOTAL = SQL_TOTAL & "   , ETRANSFERENCIA_TRADING TRA_ORI   " & vbCrLf
+	Línea  369:     SQL_TOTAL = SQL_TOTAL & "   , ETRANSFERENCIA_TRADING TRA_TPI  " & vbCrLf
+	Línea  379:     SQL_TOTAL = SQL_TOTAL & "    , ETRANSFERENCIA_TRADING TRA_TPI_ORI " & vbCrLf
+	Línea  443:     SQL_TOTAL = SQL_TOTAL & "   , ETRANSFERENCIA_TRADING TRA_ORI   " & vbCrLf
+	Línea  753: SQL = SQL & " FROM ETRANSFERENCIA_TRADING TRA_SL_IN  " & vbCrLf
+	Línea  757: SQL = SQL & "   , ETRANSFERENCIA_TRADING TRA_ORI " & vbCrLf
+	Línea  770: SQL = SQL & "       FROM ETRANSFERENCIA_TRADING TRA_SL_IN  " & vbCrLf
+	Línea  774: SQL = SQL & "           , ETRANSFERENCIA_TRADING TRA_ORI " & vbCrLf
+	Línea  778: SQL = SQL & "           , ETRANSFERENCIA_TRADING TRA_SL_OUT " & vbCrLf
+	Línea  812: SQL = SQL & "           , ETRANSFERENCIA_TRADING TRA_SL_OUT2 " & vbCrLf
+	Línea  871: SQL = SQL & "   , ETRANSFERENCIA_TRADING TRA_SL_IN2 " & vbCrLf
+	Línea 1083: SQL = SQL & " FROM ETRANSFERENCIA_TRADING TRA_SL_IN  " & vbCrLf
+	Línea 1087: SQL = SQL & "   , ETRANSFERENCIA_TRADING TRA_ORI " & vbCrLf
+	Línea 1104: SQL = SQL & "       FROM ETRANSFERENCIA_TRADING TRA_SL_IN  " & vbCrLf
+	Línea 1108: SQL = SQL & "           , ETRANSFERENCIA_TRADING TRA_ORI " & vbCrLf
+	Línea 1112: SQL = SQL & "           , ETRANSFERENCIA_TRADING TRA_SL_OUT " & vbCrLf
+	Línea 1146: SQL = SQL & "           , ETRANSFERENCIA_TRADING TRA_SL_OUT2 " & vbCrLf
+	Línea 1198: SQL = SQL & "   , ETRANSFERENCIA_TRADING TRA_SL_IN2 " & vbCrLf
+	Línea 1406: SQL = SQL & "          , ETRANSFERENCIA_TRADING TRA_SL_OUT  " & vbCrLf
+	Línea 1409: SQL = SQL & "          , ETRANSFERENCIA_TRADING TRA_SL_IN  " & vbCrLf
+	Línea 1414: SQL = SQL & "            , ETRANSFERENCIA_TRADING TRA_ORI  " & vbCrLf
+	Línea 1471: SQL = SQL & "               , ETRANSFERENCIA_TRADING TRA_SL_OUT2  " & vbCrLf
+	Línea 1487: SQL = SQL & "               , ETRANSFERENCIA_TRADING TRA_SL_IN2   " & vbCrLf
+	Línea 1694: SQL = SQL & "  FROM MTRANSFERENCIAS_PERMITIDAS RAP_SL_OUT, ETRANSFERENCIA_TRADING TRA_SL_OUT   " & vbCrLf
+	Línea 1697: SQL = SQL & "    , ETRANSFERENCIA_TRADING TRA_ORI  " & vbCrLf
+	Línea 1708: SQL = SQL & "    FROM ETRANSFERENCIA_TRADING TRA_SL_OUT   " & vbCrLf
+	Línea 1712: SQL = SQL & "      , ETRANSFERENCIA_TRADING TRA_ORI  " & vbCrLf
+	Línea 1715: SQL = SQL & "      , ETRANSFERENCIA_TRADING TRA_EXP " & vbCrLf
+	Línea 1748: SQL = SQL & "          , ETRANSFERENCIA_TRADING TRA_SL_OUT2  " & vbCrLf
+	Línea 1805: SQL = SQL & "      , ETRANSFERENCIA_TRADING TRA_SL_OUT2  " & vbCrLf
+	Línea 2057: SQL = SQL & "  , ETRANSFERENCIA_TRADING TRA_ORI  " & vbCrLf
+	Línea 2073: SQL = SQL & "  , ETRANSFERENCIA_TRADING TRA_TPI " & vbCrLf
+	Línea 2304: SQL = SQL & "  , ETRANSFERENCIA_TRADING TRA_ORI  " & vbCrLf
+	Línea 2320: SQL = SQL & "  , ETRANSFERENCIA_TRADING TRA_TPI " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_imei_x_ref.bas (5 coincidencias)
+	Línea  51: SQL = SQL & "  ,ETRANSFERENCIA_TRADING TRA_DEST" & vbCrLf
+	Línea  54: SQL = SQL & "  ,ETRANSFERENCIA_TRADING TRA_ORI" & vbCrLf
+	Línea  62: SQL = SQL & "    FROM ETRANSFERENCIA_TRADING TRAX " & vbCrLf
+	Línea  98: SQL = SQL & "    ,ETRANSFERENCIA_TRADING TRA" & vbCrLf
+	Línea 137: SQL = SQL & "                     , ETRANSFERENCIA_TRADING " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_inventarios_ent_sal.bas (5 coincidencias)
+	Línea  71:     SQL_DETALLE = SQL_DETALLE & "   FROM ETRANSFERENCIA_TRADING TRA   " & vbCrLf
+	Línea  82:     SQL_DETALLE = SQL_DETALLE & "     AND TRA.TRACLAVE >= ( SELECT MAX(TRA2.TRACLAVE) - 1000000 FROM ETRANSFERENCIA_TRADING TRA2) " & vbCrLf
+	Línea 118:     SQL_MVTO = SQL_MVTO & "  FROM ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea 124:     SQL_MVTO = SQL_MVTO & "     AND TRA.TRACLAVE >= ( SELECT MAX(TRA2.TRACLAVE) - 1000000 FROM ETRANSFERENCIA_TRADING TRA2) " & vbCrLf
+	Línea 130:     SQL_MVTO = SQL_MVTO & "     AND TRA.TRACLAVE >= ( SELECT MAX(TRA2.TRACLAVE) - 1000000 FROM ETRANSFERENCIA_TRADING TRA2) " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_inventario_cedis_mod.bas (1 coincidencias)
+	Línea  72: SQL = SQL & "    , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_inventario_factura_mod.bas (3 coincidencias)
+	Línea  90: SQL = SQL & "   , ETRANSFERENCIA_TRADING TRA" & vbCrLf
+	Línea  93: SQL = SQL & "   , ETRANSFERENCIA_TRADING TRA_ORI " & vbCrLf
+	Línea 142: SQL = SQL & "    from etransferencia_trading tra2" & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_inventario_heidelberg_mod.bas (1 coincidencias)
+	Línea  46: SQL = SQL & "    , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_inventario_mod.bas (6 coincidencias)
+	Línea  43:     SQL_Pedimento = SQL_Pedimento & "                 ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea  47:     SQL_Pedimento = SQL_Pedimento & "                         ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  73:     SQL_Pedimento = SQL_Pedimento & "                         ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 192: SQL = SQL & "     ETRANSFERENCIA_TRADING TRA,  " & vbCrLf
+	Línea 223: ''''''SQL = SQL & "                         ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea 326:                 SQL = SQL & "     FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_inventario_SL.bas (3 coincidencias)
+	Línea  49: SQL = SQL & "    , ETRANSFERENCIA_TRADING TRA_TRANS  " & vbCrLf
+	Línea  55: SQL = SQL & "    , ETRANSFERENCIA_TRADING TRA_ENT " & vbCrLf
+	Línea  76: SQL = SQL & "        , ETRANSFERENCIA_TRADING TRA_REGRESO  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_inventario_sony_mod.bas (4 coincidencias)
+	Línea  74: '    SQL = SQL & "   , ETRANSFERENCIA_TRADING TRA" & vbCrLf
+	Línea 126: '    SQL = SQL & "   ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 204: SQL = SQL & "    , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 357:                 SQL = SQL & "   , ETRANSFERENCIA_TRADING " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_inventario_web_mod.bas (1 coincidencias)
+	Línea  65: SQL = SQL & "   , ETRANSFERENCIA_TRADING TRA" & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_invent_insumos_transito_mod.bas (11 coincidencias)
+	Línea  91: SQL_EXP_BARRAS = SQL_EXP_BARRAS & "      , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea 139: SQL_EXP_INS = SQL_EXP_INS & "        , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 180: SQL_EXP_INS = SQL_EXP_INS & "        , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 225: SQL = SQL & "    , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 520: SQL = SQL & "    , ETRANSFERENCIA_TRADING TRA   " & vbCrLf
+	Línea 574: SQL = SQL & "                ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 581: SQL = SQL & "                       ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 722: SQL = SQL & "     , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea 801: SQL = SQL & "     , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 840: SQL = SQL & "                 ETRANSFERENCIA_TRADING TRA2  " & vbCrLf
+	Línea 847: SQL = SQL & "                        ETRANSFERENCIA_TRADING TRA2  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_invent_push_mod.bas (37 coincidencias)
+	Línea  70:     SQL = SQL & "       FROM ETRANSFERENCIA_TRADING  " & vbCrLf
+	Línea  79:     SQL = SQL & "                    ,ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea  84:     SQL = SQL & "                   FROM ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea  89:     SQL = SQL & "                           FROM ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea  95:     SQL = SQL & "                                   FROM ETRANSFERENCIA_TRADING  " & vbCrLf
+	Línea 104:     SQL = SQL & "                                                ,ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 108:     SQL = SQL & "                                                   FROM ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 180:     SQL_REFERENCIAS = SQL_REFERENCIAS & "           FROM ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea 187:     SQL_REFERENCIAS = SQL_REFERENCIAS & "                   FROM ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 193:     SQL_REFERENCIAS = SQL_REFERENCIAS & "                           FROM ETRANSFERENCIA_TRADING  " & vbCrLf
+	Línea 202:     SQL_REFERENCIAS = SQL_REFERENCIAS & "                                        ,ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 206:     SQL_REFERENCIAS = SQL_REFERENCIAS & "                                           FROM ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 249:     SQL_PEDIDOS = SQL_PEDIDOS & "       FROM ETRANSFERENCIA_TRADING  " & vbCrLf
+	Línea 258:     SQL_PEDIDOS = SQL_PEDIDOS & "                    ,ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 263:     SQL_PEDIDOS = SQL_PEDIDOS & "                   FROM ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea 268:     SQL_PEDIDOS = SQL_PEDIDOS & "                           FROM ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 274:     SQL_PEDIDOS = SQL_PEDIDOS & "                                   FROM ETRANSFERENCIA_TRADING  " & vbCrLf
+	Línea 283:     SQL_PEDIDOS = SQL_PEDIDOS & "                                                ,ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 287:     SQL_PEDIDOS = SQL_PEDIDOS & "                                                   FROM ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 343:     SQL_PALETAS = SQL_PALETAS & "               ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 361:     SQL_PALETAS = SQL_PALETAS & "   FROM ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 373:     SQL_MERCANCIA = SQL_MERCANCIA & "           ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea 423:     SQL_PICKING = SQL_PICKING & "   ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea 455:     SQL_PICKING = SQL_PICKING & "               FROM ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 471:     SQL_PICKING = SQL_PICKING & "                   FROM ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 484:     SQL_PICKING = SQL_PICKING & "                                                                   ETRANSFERENCIA_TRADING TRA3 " & vbCrLf
+	Línea 499:     SQL_PICKING = SQL_PICKING & "                           from etransferencia_trading tra3, etransferencia_bultos trb3 " & vbCrLf
+	Línea 544:     SQL_PICKING = SQL_PICKING & "   ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea 572:     SQL_PICKING = SQL_PICKING & "                                       FROM ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 610:     SQL = SQL & " FROM ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea 616:     SQL = SQL & "       FROM ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 622:     SQL = SQL & "               FROM ETRANSFERENCIA_TRADING  " & vbCrLf
+	Línea 631:     SQL = SQL & "                            ,ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 635:     SQL = SQL & "                               FROM ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 696:                 SQL = SQL & " FROM ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea 702:                 SQL = SQL & "         FROM ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 852:     SQL = SQL & " From ETRANSFERENCIA_TRADING " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_invent_reab_mod.bas (5 coincidencias)
+	Línea  60: SQL = SQL & "   ETRANSFERENCIA_TRADING TRA,  " & vbCrLf
+	Línea  85: SQL = SQL & "   ETRANSFERENCIA_TRADING TRA,  " & vbCrLf
+	Línea 108: SQL = SQL & "  FROM ETRANSFERENCIA_TRADING TRA,  " & vbCrLf
+	Línea 141:     SQL = SQL & "   , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 262:     SQL = SQL & "   , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_kpi_evidencias_mod.bas (2 coincidencias)
+	Línea  72: SQL_DETALLE = SQL_DETALLE & "      , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea 166: SQL_DETALLE = SQL_DETALLE & "       , ETRANSFERENCIA_TRADING TRA     " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_kpi_evidencias_resumen_mod.bas (6 coincidencias)
+	Línea 121:     SQL = SQL & "       , ETRANSFERENCIA_TRADING TRA     " & vbCrLf
+	Línea 157:     SQL = SQL & "       , ETRANSFERENCIA_TRADING TRA     " & vbCrLf
+	Línea 280:         SQL = SQL & "  , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 337:         SQL = SQL & " , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 400:         SQL = SQL & "       , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 457:         SQL = SQL & "       , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_kpi_mod.bas (2 coincidencias)
+	Línea 110:         SQL_DETALLE = SQL_DETALLE & "     , ETRANSFERENCIA_TRADING TRA   " & vbCrLf
+	Línea 245:         SQL_DETALLE = SQL_DETALLE & "     , ETRANSFERENCIA_TRADING TRA   " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_kpi_modif_ddmm.bas (2 coincidencias)
+	Línea 106: SQL_DETALLE = SQL_DETALLE & "     , ETRANSFERENCIA_TRADING TRA   " & vbCrLf
+	Línea 250: SQL_DETALLE = SQL_DETALLE & "     , ETRANSFERENCIA_TRADING TRA   " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_kpi_modif_mod.bas (2 coincidencias)
+	Línea  90: SQL_DETALLE = SQL_DETALLE & "     , ETRANSFERENCIA_TRADING TRA   " & vbCrLf
+	Línea 203: SQL_DETALLE = SQL_DETALLE & "     , ETRANSFERENCIA_TRADING TRA   " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_kpi_rechazos_mod.bas (2 coincidencias)
+	Línea  57: SQL_DETALLE = SQL_DETALLE & " from ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 150: SQL_DETALLE = SQL_DETALLE & "  from ETRANSFERENCIA_TRADING TRA " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_kpi_resumen_mod.bas (2 coincidencias)
+	Línea  56: SQL_RESUMEN = SQL_RESUMEN & "     , ETRANSFERENCIA_TRADING TRA   " & vbCrLf
+	Línea 132: SQL_RESUMEN = SQL_RESUMEN & "     , ETRANSFERENCIA_TRADING TRA   " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_kpi_resumen_suc_mod.bas (2 coincidencias)
+	Línea  55: SQL_RES = SQL_RES & "        , ETRANSFERENCIA_TRADING TRA   " & vbCrLf
+	Línea 102: SQL_RES = SQL_RES & "        , ETRANSFERENCIA_TRADING TRA    " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_lista_citas_mod.bas (6 coincidencias)
+	Línea  56: SQL_DETALLE = SQL_DETALLE & "    , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea 182: SQL_DETALLE = SQL_DETALLE & "    , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea 297: SQL_DETALLE = SQL_DETALLE & "    , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea 302: SQL_DETALLE = SQL_DETALLE & "    , ETRANSFERENCIA_TRADING TRA_ORI  " & vbCrLf
+	Línea 438: SQL_DETALLE = SQL_DETALLE & "    , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea 547: SQL_DETALLE = SQL_DETALLE & "    , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_ltl_pendientes_mod.bas (8 coincidencias)
+	Línea  180: SQL_LTL = SQL_LTL & "                     ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea  209: SQL_LTL = SQL_LTL & "                    , ETRANSFERENCIA_TRADING TRA_ENT_DEST " & vbCrLf
+	Línea  353: SQL_LTL = SQL_LTL & "                     , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea  547: SQL_LTL = SQL_LTL & "                    select null from etrans_detalle_cross_dock tdcd_val, etransferencia_trading tra_val " & vbCrLf
+	Línea  634: SQL_LTL = SQL_LTL & "                     ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea 1135:     SQL = SQL & "         ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 1253:         SQL = SQL & "     ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea 1292:             SQL = SQL & "     ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_ltl_pendientes_prueba_mod.bas (3 coincidencias)
+	Línea 1089:     SQL = SQL & "         ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 1207:         SQL = SQL & "     ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea 1247:             SQL = SQL & "     ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_mvtos_Swap_BS_mod.bas (2 coincidencias)
+	Línea  65: SQL = SQL & " FROM ETRANSFERENCIA_TRADING TRA    " & vbCrLf
+	Línea 235: SQL = SQL & " FROM ETRANSFERENCIA_TRADING TRA    " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_observ_imei.bas (1 coincidencias)
+	Línea 118:                     SQL = SQL & "   , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_pedidos_heidelberg_mod.bas (2 coincidencias)
+	Línea 103: SQL = SQL & "   FROM ETRANSFERENCIA_TRADING TRA   " & vbCrLf
+	Línea 200: SQL = SQL & "    , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_ped_exp_sin_NC_mod.bas (13 coincidencias)
+	Línea  80:     SQL_PICKING = SQL_PICKING & "   ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea 111:     SQL_PICKING = SQL_PICKING & "       FROM ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 127:     SQL_PICKING = SQL_PICKING & "       FROM ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 140:     SQL_PICKING = SQL_PICKING & "                               ETRANSFERENCIA_TRADING TRA3 " & vbCrLf
+	Línea 190:     SQL_PICKING = SQL_PICKING & "   ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea 226:     SQL_PICKING = SQL_PICKING & "                ETRANSFERENCIA_TRADING TRA2, " & vbCrLf
+	Línea 240:     SQL_PICKING = SQL_PICKING & "                ETRANSFERENCIA_TRADING TRA2, " & vbCrLf
+	Línea 286:     SQL_PICKING = SQL_PICKING & "   ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea 331:     SQL_PICKING = SQL_PICKING & "                ETRANSFERENCIA_TRADING TRA2, " & vbCrLf
+	Línea 345:     SQL_PICKING = SQL_PICKING & "                ETRANSFERENCIA_TRADING TRA2, " & vbCrLf
+	Línea 391:     SQL_PICKING = SQL_PICKING & "   ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea 418:     SQL_PICKING = SQL_PICKING & "           FROM ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 549:         SQL = SQL & " From ETRANSFERENCIA_TRADING " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_pendientes_cedis_ori2_mod.bas (51 coincidencias)
+	Línea  151: SQL_1 = SQL_1 & "    , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea  208: SQL_1 = SQL_1 & "          , ETRANSFERENCIA_TRADING  " & vbCrLf
+	Línea  215: SQL_1 = SQL_1 & "          , ETRANSFERENCIA_TRADING  " & vbCrLf
+	Línea  310: SQL_1 = SQL_1 & "  FROM ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea  701: SQL_1 = SQL_1 & "    , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea  755: SQL_1 = SQL_1 & "         , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea  762: SQL_1 = SQL_1 & "         , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea  877: SQL_2 = SQL_2 & "      ETRANSFERENCIA_TRADING TRA,    " & vbCrLf
+	Línea  880: SQL_2 = SQL_2 & "      ETRANSFERENCIA_TRADING TRA_ORI,   " & vbCrLf
+	Línea 1047: SQL_2 = SQL_2 & "    ETRANSFERENCIA_TRADING TRA,  " & vbCrLf
+	Línea 1199: SQL_3 = SQL_3 & " FROM ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea 1263: SQL_3 = SQL_3 & "                ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 1270: SQL_3 = SQL_3 & "                       ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 1293: SQL_3 = SQL_3 & "      From ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 1393: SQL_3 = SQL_3 & " FROM ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea 1459: SQL_3 = SQL_3 & "                ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 1466: SQL_3 = SQL_3 & "                       ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 1491: SQL_3 = SQL_3 & "      From ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 1591: SQL_3 = SQL_3 & "   , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 1659: SQL_3 = SQL_3 & "                ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 1666: SQL_3 = SQL_3 & "                       ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 1693: SQL_3 = SQL_3 & "      From ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 1794: SQL_4 = SQL_4 & " FROM ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea 1858: SQL_4 = SQL_4 & "                ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 1865: SQL_4 = SQL_4 & "                       ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 1992: SQL_4 = SQL_4 & " FROM ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea 2059: SQL_4 = SQL_4 & "                ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 2066: SQL_4 = SQL_4 & "                       ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 2187: SQL_4 = SQL_4 & "   , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 2256: SQL_4 = SQL_4 & "                ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 2263: SQL_4 = SQL_4 & "                       ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 2383: SQL_5 = SQL_5 & "       ETRANSFERENCIA_TRADING TRA_ORI,      " & vbCrLf
+	Línea 2387: SQL_5 = SQL_5 & "       ETRANSFERENCIA_TRADING TRA,     " & vbCrLf
+	Línea 2551: SQL_5 = SQL_5 & "       ETRANSFERENCIA_TRADING TRA_ORI,      " & vbCrLf
+	Línea 2555: SQL_5 = SQL_5 & "       ETRANSFERENCIA_TRADING TRA,     " & vbCrLf
+	Línea 2724: SQL_6 = SQL_6 & "    , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea 2791: SQL_6 = SQL_6 & "         , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 2890: SQL_6 = SQL_6 & "  FROM ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea 2894: SQL_6 = SQL_6 & "    , ETRANSFERENCIA_TRADING TRA_ORI  " & vbCrLf
+	Línea 2968: SQL_6 = SQL_6 & "         , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 3076: SQL_7 = SQL_7 & "   , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 3240: SQL_7 = SQL_7 & " FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 3244: SQL_7 = SQL_7 & "   , ETRANSFERENCIA_TRADING TRA_ORI " & vbCrLf
+	Línea 3427: SQL_8 = SQL_8 & "    , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea 3429: SQL_8 = SQL_8 & "    , ETRANSFERENCIA_TRADING TRA_ORI  " & vbCrLf
+	Línea 3499: SQL_8 = SQL_8 & "                        ETRANSFERENCIA_TRADING TRA2  " & vbCrLf
+	Línea 3507: SQL_8 = SQL_8 & "                        ETRANSFERENCIA_TRADING TRA2  " & vbCrLf
+	Línea 3620: SQL_8 = SQL_8 & "    , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea 3630: SQL_8 = SQL_8 & "    , ETRANSFERENCIA_TRADING TRA_ORI  " & vbCrLf
+	Línea 3671: SQL_8 = SQL_8 & "                        ETRANSFERENCIA_TRADING TRA2  " & vbCrLf
+	Línea 3679: SQL_8 = SQL_8 & "                        ETRANSFERENCIA_TRADING TRA2  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_pend_cedis_mod.bas (60 coincidencias)
+	Línea  132: SQL_PEND_ENVIAR = SQL_PEND_ENVIAR & "   , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  269: SQL_PEND_ENVIAR = SQL_PEND_ENVIAR & "   , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  637: SQL_PEND_ENVIAR = SQL_PEND_ENVIAR & "   , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  647: SQL_PEND_ENVIAR = SQL_PEND_ENVIAR & "   , ETRANSFERENCIA_TRADING TRA_ORI " & vbCrLf
+	Línea  680: SQL_PEND_ENVIAR = SQL_PEND_ENVIAR & "                   ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea  687: SQL_PEND_ENVIAR = SQL_PEND_ENVIAR & "                   ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea  802: SQL_PEND_ENVIAR = SQL_PEND_ENVIAR & "   , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  811: SQL_PEND_ENVIAR = SQL_PEND_ENVIAR & "   , ETRANSFERENCIA_TRADING TRA_ORI " & vbCrLf
+	Línea  854: SQL_PEND_ENVIAR = SQL_PEND_ENVIAR & "                       ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea  861: SQL_PEND_ENVIAR = SQL_PEND_ENVIAR & "                       ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea  981: SQL_PEND_ENVIAR = SQL_PEND_ENVIAR & "   , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  991: SQL_PEND_ENVIAR = SQL_PEND_ENVIAR & "   , ETRANSFERENCIA_TRADING TRA_ORI " & vbCrLf
+	Línea 1029: SQL_PEND_ENVIAR = SQL_PEND_ENVIAR & "                       ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 1037: SQL_PEND_ENVIAR = SQL_PEND_ENVIAR & "                       ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 1155: SQL_PEND_ENVIAR = SQL_PEND_ENVIAR & "   , ETRANSFERENCIA_TRADING TRA_ORI " & vbCrLf
+	Línea 1160: SQL_PEND_ENVIAR = SQL_PEND_ENVIAR & "   , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 1222: SQL_PEND_ENVIAR = SQL_PEND_ENVIAR & "                       ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 1230: SQL_PEND_ENVIAR = SQL_PEND_ENVIAR & "                       ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 1344: SQL_TRAS_PEND = SQL_TRAS_PEND & "   , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 1396: SQL_TRAS_PEND = SQL_TRAS_PEND & "                       ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 1403: SQL_TRAS_PEND = SQL_TRAS_PEND & "                       ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 1509: SQL_TRAS_PEND = SQL_TRAS_PEND & "   , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 1564: SQL_TRAS_PEND = SQL_TRAS_PEND & "                       ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 1571: SQL_TRAS_PEND = SQL_TRAS_PEND & "                       ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 1656: SQL_TRAS_PEND = SQL_TRAS_PEND & "   , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 1713: SQL_TRAS_PEND = SQL_TRAS_PEND & "                       ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 1720: SQL_TRAS_PEND = SQL_TRAS_PEND & "                       ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 1833: SQL_EXP_SIN_NC = SQL_EXP_SIN_NC & "   , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 1889: SQL_EXP_SIN_NC = SQL_EXP_SIN_NC & "                ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 1900: SQL_EXP_SIN_NC = SQL_EXP_SIN_NC & "                       ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 2021: SQL_EXP_SIN_NC = SQL_EXP_SIN_NC & "   , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 2079: SQL_EXP_SIN_NC = SQL_EXP_SIN_NC & "                ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 2090: SQL_EXP_SIN_NC = SQL_EXP_SIN_NC & "                       ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 2206: SQL_EXP_SIN_NC = SQL_EXP_SIN_NC & "   , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 2261: SQL_EXP_SIN_NC = SQL_EXP_SIN_NC & "                ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 2272: SQL_EXP_SIN_NC = SQL_EXP_SIN_NC & "                       ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 2395: SQL_SIN_ENTREGA = SQL_SIN_ENTREGA & "      ETRANSFERENCIA_TRADING TRA,    " & vbCrLf
+	Línea 2398: SQL_SIN_ENTREGA = SQL_SIN_ENTREGA & "      ETRANSFERENCIA_TRADING TRA_ORI,   " & vbCrLf
+	Línea 2551: SQL_SIN_ENTREGA = SQL_SIN_ENTREGA & "    ETRANSFERENCIA_TRADING TRA,  " & vbCrLf
+	Línea 2682: SQL_SIN_EVIDENCIA = SQL_SIN_EVIDENCIA & "    ETRANSFERENCIA_TRADING TRA,  " & vbCrLf
+	Línea 2686: SQL_SIN_EVIDENCIA = SQL_SIN_EVIDENCIA & "    ETRANSFERENCIA_TRADING TRA_ORI, " & vbCrLf
+	Línea 2745: SQL_SIN_EVIDENCIA = SQL_SIN_EVIDENCIA & "                                   ,ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 2753: SQL_SIN_EVIDENCIA = SQL_SIN_EVIDENCIA & "                                       ,ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 2770: SQL_SIN_EVIDENCIA = SQL_SIN_EVIDENCIA & "                           ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 2778: SQL_SIN_EVIDENCIA = SQL_SIN_EVIDENCIA & "                           ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 2791: SQL_SIN_EVIDENCIA = SQL_SIN_EVIDENCIA & "                ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 2943: SQL_SIN_EVIDENCIA = SQL_SIN_EVIDENCIA & "    ETRANSFERENCIA_TRADING TRA,  " & vbCrLf
+	Línea 2986: SQL_SIN_EVIDENCIA = SQL_SIN_EVIDENCIA & "                                   ,ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 2994: SQL_SIN_EVIDENCIA = SQL_SIN_EVIDENCIA & "                                       ,ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 3011: SQL_SIN_EVIDENCIA = SQL_SIN_EVIDENCIA & "                           ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 3019: SQL_SIN_EVIDENCIA = SQL_SIN_EVIDENCIA & "                           ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 3032: SQL_SIN_EVIDENCIA = SQL_SIN_EVIDENCIA & "                ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 3177: SQL_SIN_ENVIO_EVID = SQL_SIN_ENVIO_EVID & "       ETRANSFERENCIA_TRADING TRA,     " & vbCrLf
+	Línea 3180: SQL_SIN_ENVIO_EVID = SQL_SIN_ENVIO_EVID & "       ETRANSFERENCIA_TRADING TRA_ORI,    " & vbCrLf
+	Línea 3342: 'SQL_SIN_EVID_CLI = SQL_SIN_EVID_CLI & " FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 3485: 'SQL_SIN_EVID_CLI = SQL_SIN_EVID_CLI & " FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 3489: 'SQL_SIN_EVID_CLI = SQL_SIN_EVID_CLI & "   , ETRANSFERENCIA_TRADING TRA_ORI " & vbCrLf
+	Línea 3642: SQL_SIN_EVID_CLI = SQL_SIN_EVID_CLI & "       ETRANSFERENCIA_TRADING TRA,     " & vbCrLf
+	Línea 3645: SQL_SIN_EVID_CLI = SQL_SIN_EVID_CLI & "       ETRANSFERENCIA_TRADING TRA_ORI,    " & vbCrLf
+	Línea 3792: SQL_SIN_EVID_CLI = SQL_SIN_EVID_CLI & "     ETRANSFERENCIA_TRADING TRA,   " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_pend_cedis_ori_mod.bas (66 coincidencias)
+	Línea  265: SQL_1 = SQL_1 & "    , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea  315: SQL_1 = SQL_1 & "          , ETRANSFERENCIA_TRADING  " & vbCrLf
+	Línea  322: SQL_1 = SQL_1 & "          , ETRANSFERENCIA_TRADING  " & vbCrLf
+	Línea  543: SQL_1 = SQL_1 & "    , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea  927: SQL_1 = SQL_1 & "       FROM ETRANS_DETALLE_CROSS_DOCK, ETRANSFERENCIA_TRADING  " & vbCrLf
+	Línea 1215: SQL_1 = SQL_1 & "            FROM ETRANS_DETALLE_CROSS_DOCK, ETRANSFERENCIA_TRADING  " & vbCrLf
+	Línea 1411: SQL_1 = SQL_1 & "    , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea 1461: SQL_1 = SQL_1 & "         , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 1468: SQL_1 = SQL_1 & "         , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 1696: SQL_2 = SQL_2 & "      ETRANSFERENCIA_TRADING TRA,    " & vbCrLf
+	Línea 1699: SQL_2 = SQL_2 & "      ETRANSFERENCIA_TRADING TRA_ORI,   " & vbCrLf
+	Línea 1759: SQL_2 = SQL_2 & "            from etrans_detalle_cross_dock tdcd2, etransferencia_trading tra2 " & vbCrLf
+	Línea 1795: SQL_2 = SQL_2 & "            select null from etrans_detalle_cross_dock tdcd2, etransferencia_trading tra2 " & vbCrLf
+	Línea 2145: SQL_2 = SQL_2 & "    ETRANSFERENCIA_TRADING TRA,  " & vbCrLf
+	Línea 2178: SQL_2 = SQL_2 & "            from etrans_detalle_cross_dock tdcd2, etransferencia_trading tra2 " & vbCrLf
+	Línea 2214: SQL_2 = SQL_2 & "            select null from etrans_detalle_cross_dock tdcd2, etransferencia_trading tra2 " & vbCrLf
+	Línea 2447: SQL_3 = SQL_3 & "   , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 2507: SQL_3 = SQL_3 & "                ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 2514: SQL_3 = SQL_3 & "                       ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 2537: SQL_3 = SQL_3 & "      From ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 2749: SQL_3 = SQL_3 & "   , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 2819: SQL_3 = SQL_3 & "                ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 2826: SQL_3 = SQL_3 & "                       ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 2851: SQL_3 = SQL_3 & "      From ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 3147: SQL_3 = SQL_3 & "   , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 3222: SQL_3 = SQL_3 & "                ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 3229: SQL_3 = SQL_3 & "                       ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 3252: SQL_3 = SQL_3 & "      From ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 3540: SQL_4 = SQL_4 & "   , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 3593: SQL_4 = SQL_4 & "      FROM ETRANS_DETALLE_CROSS_DOCK TDCD2, ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 3838: SQL_4 = SQL_4 & "   , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 3902: SQL_4 = SQL_4 & "       FROM ETRANS_DETALLE_CROSS_DOCK TDCD2, ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 4223: SQL_4 = SQL_4 & "   , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 4291: SQL_4 = SQL_4 & "       FROM ETRANS_DETALLE_CROSS_DOCK TDCD2, ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 4630: SQL_5 = SQL_5 & "       ETRANSFERENCIA_TRADING TRA_ORI,      " & vbCrLf
+	Línea 4634: SQL_5 = SQL_5 & "       ETRANSFERENCIA_TRADING TRA,     " & vbCrLf
+	Línea 4683: SQL_5 = SQL_5 & "            from etrans_detalle_cross_dock tdcd2, etransferencia_trading tra2 " & vbCrLf
+	Línea 4720: SQL_5 = SQL_5 & "            select null from etrans_detalle_cross_dock tdcd2, etransferencia_trading tra2 " & vbCrLf
+	Línea 5089: SQL_5 = SQL_5 & "       ETRANSFERENCIA_TRADING TRA_ORI,      " & vbCrLf
+	Línea 5093: SQL_5 = SQL_5 & "       ETRANSFERENCIA_TRADING TRA,     " & vbCrLf
+	Línea 5148: SQL_5 = SQL_5 & "            from etrans_detalle_cross_dock tdcd2, etransferencia_trading tra2 " & vbCrLf
+	Línea 5184: SQL_5 = SQL_5 & "            select null from etrans_detalle_cross_dock tdcd2, etransferencia_trading tra2 " & vbCrLf
+	Línea 5496: SQL_6 = SQL_6 & "    , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea 5560: SQL_6 = SQL_6 & "         , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 5734: SQL_6 = SQL_6 & "    , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 5737: SQL_6 = SQL_6 & "    , ETRANSFERENCIA_TRADING TRA_ORI  " & vbCrLf
+	Línea 5828: SQL_6 = SQL_6 & "         , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 6068: SQL_7 = SQL_7 & "   , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 6129: SQL_7 = SQL_7 & "            from etrans_detalle_cross_dock tdcd2, etransferencia_trading tra2 " & vbCrLf
+	Línea 6166: SQL_7 = SQL_7 & "            select null from etrans_detalle_cross_dock tdcd2, etransferencia_trading tra2 " & vbCrLf
+	Línea 6359: SQL_7 = SQL_7 & "   , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 6362: SQL_7 = SQL_7 & "   , ETRANSFERENCIA_TRADING TRA_ORI " & vbCrLf
+	Línea 6437: SQL_7 = SQL_7 & "            from etrans_detalle_cross_dock tdcd2, etransferencia_trading tra2 " & vbCrLf
+	Línea 6476: SQL_7 = SQL_7 & "            select null from etrans_detalle_cross_dock tdcd2, etransferencia_trading tra2 " & vbCrLf
+	Línea 6827: SQL_8 = SQL_8 & "    , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea 6829: SQL_8 = SQL_8 & "    , ETRANSFERENCIA_TRADING TRA_ORI  " & vbCrLf
+	Línea 6882: SQL_8 = SQL_8 & "            from etrans_detalle_cross_dock tdcd2, etransferencia_trading tra2 " & vbCrLf
+	Línea 6922: SQL_8 = SQL_8 & "            select null from etrans_detalle_cross_dock tdcd2, etransferencia_trading tra2 " & vbCrLf
+	Línea 6980: SQL_8 = SQL_8 & "                        ETRANSFERENCIA_TRADING TRA2  " & vbCrLf
+	Línea 6988: SQL_8 = SQL_8 & "                        ETRANSFERENCIA_TRADING TRA2  " & vbCrLf
+	Línea 7318: SQL_8 = SQL_8 & "    , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea 7328: SQL_8 = SQL_8 & "    , ETRANSFERENCIA_TRADING TRA_ORI  " & vbCrLf
+	Línea 7350: SQL_8 = SQL_8 & "            from etrans_detalle_cross_dock tdcd2, etransferencia_trading tra2 " & vbCrLf
+	Línea 7389: SQL_8 = SQL_8 & "            select null from etrans_detalle_cross_dock tdcd2, etransferencia_trading tra2 " & vbCrLf
+	Línea 7435: SQL_8 = SQL_8 & "                        ETRANSFERENCIA_TRADING TRA2  " & vbCrLf
+	Línea 7443: SQL_8 = SQL_8 & "                        ETRANSFERENCIA_TRADING TRA2  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_rentabilidad_exp_mod.bas (3 coincidencias)
+	Línea 108: SQL = SQL & "   ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea 238: SQL = SQL & "   ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea 522:         SQL = SQL & " FROM ETRANSFERENCIA_TRADING, " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_reports_imeis_inventarios.bas (6 coincidencias)
+	Línea  33:     SQL_DETALLE = SQL_DETALLE & "       ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 142:     SQL = SQL & " ,ETRANSFERENCIA_TRADING TRA" & vbCrLf
+	Línea 175:     SQL = SQL & "  ,ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 198:     SQL = SQL & " ,ETRANSFERENCIA_TRADING TRA" & vbCrLf
+	Línea 230:     SQL = SQL & "  ,ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 272:     SQL = SQL & "      ETRANSFERENCIA_TRADING TRA" & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_rotacion_invent_mod.bas (1 coincidencias)
+	Línea  91:     SQL_SAL = SQL_SAL & " FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_scan_picking_mod.bas (14 coincidencias)
+	Línea  92: SQL = SQL & "     , ETRANSFERENCIA_TRADING   " & vbCrLf
+	Línea 115: SQL = SQL & "        FROM ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 120: SQL = SQL & "        FROM ETRANSFERENCIA_TRADING TRA_98 " & vbCrLf
+	Línea 121: SQL = SQL & "        , ETRANSFERENCIA_TRADING TRA_8 " & vbCrLf
+	Línea 127: SQL = SQL & "        FROM ETRANSFERENCIA_TRADING TRA_98 " & vbCrLf
+	Línea 128: SQL = SQL & "        , ETRANSFERENCIA_TRADING TRA_8 " & vbCrLf
+	Línea 134: SQL = SQL & "        FROM ETRANSFERENCIA_TRADING TRA_98  " & vbCrLf
+	Línea 135: SQL = SQL & "        , ETRANSFERENCIA_TRADING TRA_8  " & vbCrLf
+	Línea 136: SQL = SQL & "        , ETRANSFERENCIA_TRADING TRA_2 " & vbCrLf
+	Línea 144: SQL = SQL & "        FROM ETRANSFERENCIA_TRADING TRA_98  " & vbCrLf
+	Línea 145: SQL = SQL & "        , ETRANSFERENCIA_TRADING TRA_8  " & vbCrLf
+	Línea 146: SQL = SQL & "        , ETRANSFERENCIA_TRADING TRA_2 " & vbCrLf
+	Línea 147: SQL = SQL & "        , ETRANSFERENCIA_TRADING TRA_21 " & vbCrLf
+	Línea 165: SQL = SQL & "  , ETRANSFERENCIA_TRADING " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_scan_recep_porteos_mod.bas (4 coincidencias)
+	Línea 103:     SQL = SQL & "    , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 161:     SQL = SQL & "   , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 300: SQL = SQL & "   , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 412: SQL = SQL & "   , ETRANSFERENCIA_TRADING " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_stats_CEDIS_resumen_mod.bas (6 coincidencias)
+	Línea  129: SQL_CEDIS = SQL_CEDIS & "        , ETRANSFERENCIA_TRADING TRA      " & vbCrLf
+	Línea  139: SQL_CEDIS = SQL_CEDIS & "       , ETRANSFERENCIA_TRADING TRA_ORI    " & vbCrLf
+	Línea  141: SQL_CEDIS = SQL_CEDIS & "       , ETRANSFERENCIA_TRADING TRA_ORI2    " & vbCrLf
+	Línea  147: SQL_CEDIS = SQL_CEDIS & "      , ETRANSFERENCIA_TRADING TRA_RECH    " & vbCrLf
+	Línea  306:     SQL_CEDIS = SQL_CEDIS & "        , ETRANSFERENCIA_TRADING TRA     " & vbCrLf
+	Línea  309:     SQL_CEDIS = SQL_CEDIS & "     , ETRANSFERENCIA_TRADING TRA_RECH   " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_stats_Oper_CEDIS_mod.bas (16 coincidencias)
+	Línea  128: SQL_CEDIS = SQL_CEDIS & "        , ETRANSFERENCIA_TRADING TRA      " & vbCrLf
+	Línea  139: SQL_CEDIS = SQL_CEDIS & "       , ETRANSFERENCIA_TRADING TRA_ORI    " & vbCrLf
+	Línea  141: SQL_CEDIS = SQL_CEDIS & "       , ETRANSFERENCIA_TRADING TRA_ORI2    " & vbCrLf
+	Línea  147: SQL_CEDIS = SQL_CEDIS & "      , ETRANSFERENCIA_TRADING TRA_RECH    " & vbCrLf
+	Línea  307:     SQL_CEDIS = SQL_CEDIS & "        , ETRANSFERENCIA_TRADING TRA     " & vbCrLf
+	Línea  311:     SQL_CEDIS = SQL_CEDIS & "     , ETRANSFERENCIA_TRADING TRA_RECH   " & vbCrLf
+	Línea  423:     SQL_OPERADOR = SQL_OPERADOR & "        , ETRANSFERENCIA_TRADING TRA     " & vbCrLf
+	Línea  433:     SQL_OPERADOR = SQL_OPERADOR & "        , ETRANSFERENCIA_TRADING TRA_ORI    " & vbCrLf
+	Línea  435:     SQL_OPERADOR = SQL_OPERADOR & "        , ETRANSFERENCIA_TRADING TRA_ORI2    " & vbCrLf
+	Línea  575:     SQL_OPERADOR = SQL_OPERADOR & "        , ETRANSFERENCIA_TRADING TRA     " & vbCrLf
+	Línea  659:     SQL_OPER_FACT = SQL_OPER_FACT & "       , ETRANSFERENCIA_TRADING TRA       " & vbCrLf
+	Línea  772:     SQL_OPER_FACT = SQL_OPER_FACT & "       , ETRANSFERENCIA_TRADING TRA    " & vbCrLf
+	Línea  841:     SQL_ANOMALIAS_TN = SQL_ANOMALIAS_TN & "     , ETRANSFERENCIA_TRADING TRA     " & vbCrLf
+	Línea  847:     SQL_ANOMALIAS_TN = SQL_ANOMALIAS_TN & "     , ETRANSFERENCIA_TRADING TRA_ORI  " & vbCrLf
+	Línea  848:     SQL_ANOMALIAS_TN = SQL_ANOMALIAS_TN & "     , ETRANSFERENCIA_TRADING TRA_ORI2 " & vbCrLf
+	Línea  908:     SQL_ANOMALIAS_TN = SQL_ANOMALIAS_TN & "         , ETRANSFERENCIA_TRADING TRA      " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_update_imei_temp_mod.bas (1 coincidencias)
+	Línea  80:         SQL = SQL & "   , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trad_entradas_salidas_mod.bas (2 coincidencias)
+	Línea  46: SQL = SQL & "  FROM ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea  54: SQL = SQL & "    , ETRANSFERENCIA_TRADING TRA_TPI  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trad_general_pedidos_mod.bas (1 coincidencias)
+	Línea 155: SQL = SQL & " FROM ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trad_indic_calidad_mod.bas (29 coincidencias)
+	Línea  127: SQL_DETALLE_INCIDENCIA = SQL_DETALLE_INCIDENCIA & " FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  153: SQL_DETALLE_INCIDENCIA = SQL_DETALLE_INCIDENCIA & " FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  213: SQL_DETALLE_EVIDENCIA = SQL_DETALLE_EVIDENCIA & "   FROM ETRANSFERENCIA_TRADING TRA   " & vbCrLf
+	Línea  272: SQL_DETALLE_EVIDENCIA = SQL_DETALLE_EVIDENCIA & "   FROM ETRANSFERENCIA_TRADING TRA   " & vbCrLf
+	Línea  330: SQL_DETALLE_ENTREGA = SQL_DETALLE_ENTREGA & "    FROM ETRANSFERENCIA_TRADING TRA    " & vbCrLf
+	Línea  387: SQL_DETALLE_ENTREGA = SQL_DETALLE_ENTREGA & "    FROM ETRANSFERENCIA_TRADING TRA    " & vbCrLf
+	Línea  435: SQL_DETALLE_ENTREGA_VAS = SQL_DETALLE_ENTREGA_VAS & " FROM ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea  503: SQL_DETALLE_PICKING = SQL_DETALLE_PICKING & " FROM ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea  541: SQL_INCIDENCIA_EVIDENCIAS = SQL_INCIDENCIA_EVIDENCIAS & " FROM ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea  573:     SQL_CUADRO_ERRORES = SQL_CUADRO_ERRORES & "       FROM ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea  605:     SQL_EVIDENCIAS = SQL_EVIDENCIAS & "   FROM ETRANSFERENCIA_TRADING TRA,   " & vbCrLf
+	Línea  633:     SQL_EVIDENCIAS = SQL_EVIDENCIAS & "   FROM ETRANSFERENCIA_TRADING TRA,   " & vbCrLf
+	Línea  671: SQL_EVIDENCIAS_POR_DESTINO = SQL_EVIDENCIAS_POR_DESTINO & "  FROM ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea  711: SQL_EVIDENCIAS_POR_DESTINO = SQL_EVIDENCIAS_POR_DESTINO & "  FROM ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea  752:     SQL_ENTREGAS = SQL_ENTREGAS & " FROM ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea  823:     SQL_ENTREGAS_VAS = SQL_ENTREGAS_VAS & " FROM ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea  896:     SQL_ENTREGA_POR_DESTINO = SQL_ENTREGA_POR_DESTINO & " FROM ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea  961:     SQL_ENTREGA_POR_DESTINO_VAS = SQL_ENTREGA_POR_DESTINO_VAS & " FROM ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea 1018: SQL_RESUMEN_POR_RANGO = SQL_RESUMEN_POR_RANGO & " FROM ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea 1026: SQL_RESUMEN_POR_RANGO = SQL_RESUMEN_POR_RANGO & "                              from etransferencia_trading tra, etrans_picking tpi " & vbCrLf
+	Línea 1053:     SQL_PEDIDOS_POR_RANGO = SQL_PEDIDOS_POR_RANGO & " FROM ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea 1086:     SQL_RECHAZO = SQL_RECHAZO & "    ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea 1090:     SQL_RECHAZO = SQL_RECHAZO & "    ETRANSFERENCIA_TRADING TRA_ENT, " & vbCrLf
+	Línea 1128:     SQL_VENTAS_POR_CODIGO = SQL_VENTAS_POR_CODIGO & " FROM ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea 1162:     SQL_VENTAS_POR_CODIGO_DETALLE = SQL_VENTAS_POR_CODIGO_DETALLE & " FROM ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea 1202:     SQL_VOLUMENES_RECIBIDOS = SQL_VOLUMENES_RECIBIDOS & "  FROM ETRANSFERENCIA_TRADING TRA   " & vbCrLf
+	Línea 1230:     SQL_VOLUMENES_RECIBIDOS_DETALLE = SQL_VOLUMENES_RECIBIDOS_DETALLE & "  FROM ETRANSFERENCIA_TRADING TRA   " & vbCrLf
+	Línea 1256:     SQL_VENTAS_POR_POBLACION_DETALLE = SQL_VENTAS_POR_POBLACION_DETALLE & "  FROM ETRANSFERENCIA_TRADING TRA   " & vbCrLf
+	Línea 1289:     SQL_VENTAS_POR_POBLACION = SQL_VENTAS_POR_POBLACION & "  FROM ETRANSFERENCIA_TRADING TRA   " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trad_inventario_puig_mod.bas (2 coincidencias)
+	Línea  45: SQL = SQL & "                   , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  75: SQL = SQL & "                       FROM ETRANSFERENCIA_TRADING TRAIN " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trad_pick_2dias_mod.bas (11 coincidencias)
+	Línea  38:     SQL_INVENTARIO = SQL_INVENTARIO & "       ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 145: SQL = SQL & " , ETRANSFERENCIA_TRADING tra_ori " & vbCrLf
+	Línea 156: SQL = SQL & " , ETRANSFERENCIA_TRADING tra " & vbCrLf
+	Línea 158: SQL = SQL & " , etransferencia_trading tra_tpi2 " & vbCrLf
+	Línea 266: SQL = SQL & " , ETRANSFERENCIA_TRADING tra_ori " & vbCrLf
+	Línea 277: SQL = SQL & " , ETRANSFERENCIA_TRADING tra " & vbCrLf
+	Línea 279: SQL = SQL & " , etransferencia_trading tra_tpi2 " & vbCrLf
+	Línea 444:         SQL = SQL & "       FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 454:         SQL = SQL & "           FROM ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 458:         SQL = SQL & "               FROM ETRANSFERENCIA_TRADING TRA3 " & vbCrLf
+	Línea 466:         SQL = SQL & "               FROM ETRANSFERENCIA_TRADING TRA4 " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trad_planeacion_mod.bas (11 coincidencias)
+	Línea   50:     SQL_INVENTARIO = SQL_INVENTARIO & "       ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  204: 'SQL = SQL & "     FROM ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea  330: SQL = SQL & "  FROM ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea  338: SQL = SQL & "   , ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea  589: SQL = SQL & " FROM ETRANSFERENCIA_TRADING TRA   " & vbCrLf
+	Línea  679: SQL = SQL & " FROM ETRANSFERENCIA_TRADING TRA   " & vbCrLf
+	Línea  886:     SQL = SQL & "    , ETRANSFERENCIA_TRADING TRA_ORI  " & vbCrLf
+	Línea  903:     SQL = SQL & "       , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea  933:     SQL = SQL & "          , ETRANSFERENCIA_TRADING TRA   " & vbCrLf
+	Línea 1112:             SQL = SQL & "               FROM ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 1128:             SQL = SQL & "               FROM ETRANSFERENCIA_TRADING " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\WCMS_mod.bas (4 coincidencias)
+	Línea  62:     SQL = SQL & " FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 103:     SQL = SQL & " FROM ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea 114:     SQL = SQL & "   ETRANSFERENCIA_TRADING TRA_ORI, " & vbCrLf
+	Línea 137:     SQL = SQL & "       ETRANSFERENCIA_TRADING TRA3 " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_adjust_occitane_mod.bas (9 coincidencias)
+	Línea  43: SQL = SQL & "    FROM ETRANSFERENCIA_TRADING TRA    " & vbCrLf
+	Línea  51: SQL = SQL & "    , ETRANSFERENCIA_TRADING TRA_ORI  " & vbCrLf
+	Línea  91: SQL = SQL & "    FROM ETRANSFERENCIA_TRADING TRA    " & vbCrLf
+	Línea 129: SQL = SQL & "    FROM ETRANSFERENCIA_TRADING TRA    " & vbCrLf
+	Línea 168: SQL = SQL & "    FROM ETRANSFERENCIA_TRADING TRA    " & vbCrLf
+	Línea 207: SQL = SQL & "    FROM ETRANSFERENCIA_TRADING TRA    " & vbCrLf
+	Línea 250: 'SQL = SQL & "    FROM ETRANSFERENCIA_TRADING TRA    " & VbCrlf
+	Línea 289: 'SQL = SQL & "    FROM ETRANSFERENCIA_TRADING TRA    " & vbCrLf
+	Línea 326: 'SQL = SQL & "    FROM ETRANSFERENCIA_TRADING TRA    " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_carga_archivo_mod.bas (3 coincidencias)
+	Línea 2382:                                 SQL = SQL & "                               ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea 2702:     SQL = SQL & "  , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 2712:     SQL = SQL & "    , ETRANSFERENCIA_TRADING " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_carga_generica_archivo_mod.bas (3 coincidencias)
+	Línea  820:                                 SQL = SQL & "                                                                                                                                    ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea 1102:     SQL = SQL & "               ,ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 1112:     SQL = SQL & "               ,ETRANSFERENCIA_TRADING " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_carga_ltl_austromex_mod.bas (1 coincidencias)
+	Línea  722: '                    SQL = SQL & " AND NOT EXISTS (SELECT NULL FROM ETRANS_DETALLE_CROSS_DOCK, ETRANSFERENCIA_TRADING WHERE TDCDCLAVE = WEL_TDCDCLAVE " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_carga_ltl_gsk_mod.bas (2 coincidencias)
+	Línea 1641:     SQL = SQL & "  , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 1651:     SQL = SQL & "    , ETRANSFERENCIA_TRADING " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_carga_ltl_urrea_mod.bas (3 coincidencias)
+	Línea  271:                 my_query = my_query & "        ,ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  319:                 my_query = my_query & "                             ETRANSFERENCIA_TRADING    TRA, " & vbCrLf
+	Línea  366:                 my_query = my_query & "        ,ETRANSFERENCIA_TRADING TRA " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_carga_pedidos_heidelberg2_mod.bas (8 coincidencias)
+	Línea 144: SQL = SQL & "   , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 173:     SQL = SQL & "       , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 278:     SQL = "update ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 320: SQL = SQL & "                     ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 359:     SQL = "update ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 397: SQL = SQL & "                   ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea 473: SQL = SQL & "            ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea 516: SQL = SQL & "    , ETRANSFERENCIA_TRADING TRA   " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_carga_pedidos_heidelberg3_mod.bas (8 coincidencias)
+	Línea 197: '''SQL = SQL & "   , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 226: '''    SQL = SQL & "       , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 387: '''    SQL = "update ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 440: '''SQL = SQL & "                     ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 479: '''    SQL = "update ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 529: '''SQL = SQL & "                   ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea 605: '''SQL = SQL & "            ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea 680: '''SQL = SQL & "    , ETRANSFERENCIA_TRADING TRA   " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_carga_pedidos_heidelberg_mod.bas (8 coincidencias)
+	Línea 208: SQL = SQL & "   , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 237:     SQL = SQL & "       , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 340:     SQL = "update ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 380: SQL = SQL & "                     ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 419:     SQL = "update ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 457: SQL = SQL & "                   ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea 533: SQL = SQL & "            ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea 576: SQL = SQL & "    , ETRANSFERENCIA_TRADING TRA   " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_carta_porte_mod.bas (2 coincidencias)
+	Línea  43:     SQL_CP = SQL_CP & "   , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea  98:     SQL_CP = SQL_CP & "   , ETRANSFERENCIA_TRADING " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_CD_LTL_mod.bas (24 coincidencias)
+	Línea   77:         SQL = SQL & "       , ETRANSFERENCIA_TRADING    " & vbCrLf
+	Línea  155:         SQL = SQL & "       , ETRANSFERENCIA_TRADING    " & vbCrLf
+	Línea  236:         SQL = SQL & "   , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  242:         SQL = SQL & "   , ETRANSFERENCIA_TRADING TRA_ORI " & vbCrLf
+	Línea  347:         SQL = SQL & "   , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  421:         SQL = SQL & "       , ETRANSFERENCIA_TRADING    " & vbCrLf
+	Línea  499:         SQL = SQL & "       , ETRANSFERENCIA_TRADING    " & vbCrLf
+	Línea  586:         SQL = SQL & "    , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea  590:         SQL = SQL & "    , ETRANSFERENCIA_TRADING TRA_ORI  " & vbCrLf
+	Línea  696:         SQL = SQL & "    , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea  918:     SQL = SQL & "    , ETRANSFERENCIA_TRADING     " & vbCrLf
+	Línea  966:     SQL = SQL & "    , ETRANSFERENCIA_TRADING     " & vbCrLf
+	Línea 1013:     SQL = SQL & "     , ETRANSFERENCIA_TRADING TRA     " & vbCrLf
+	Línea 1017:     SQL = SQL & "   , ETRANSFERENCIA_TRADING TRA_ORI " & vbCrLf
+	Línea 1075:     SQL = SQL & "     , ETRANSFERENCIA_TRADING TRA     " & vbCrLf
+	Línea 1078:     SQL = SQL & "   , ETRANSFERENCIA_TRADING TRA_ORI " & vbCrLf
+	Línea 1133:     SQL = SQL & "   , ETRANSFERENCIA_TRADING TRA   " & vbCrLf
+	Línea 1208:     SQL = SQL & "    , ETRANSFERENCIA_TRADING     " & vbCrLf
+	Línea 1256:     SQL = SQL & "    , ETRANSFERENCIA_TRADING     " & vbCrLf
+	Línea 1303:     SQL = SQL & "     , ETRANSFERENCIA_TRADING TRA     " & vbCrLf
+	Línea 1306:     SQL = SQL & "     , ETRANSFERENCIA_TRADING TRA_ORI " & vbCrLf
+	Línea 1363:     SQL = SQL & "     , ETRANSFERENCIA_TRADING TRA     " & vbCrLf
+	Línea 1365:     SQL = SQL & "     , ETRANSFERENCIA_TRADING TRA_ORI " & vbCrLf
+	Línea 1419:     SQL = SQL & "   , ETRANSFERENCIA_TRADING TRA   " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_CD_LTL_pick_anomalias_mod.bas (6 coincidencias)
+	Línea 101:     SQL = SQL & "              , ETRANSFERENCIA_TRADING  TRA " & vbCrLf
+	Línea 106:     SQL = SQL & "              , ETRANSFERENCIA_TRADING  TRA " & vbCrLf
+	Línea 261: SQL = SQL & "        , ETRANSFERENCIA_TRADING  TRA       " & vbCrLf
+	Línea 426: SQL = SQL & "        , ETRANSFERENCIA_TRADING  TRA       " & vbCrLf
+	Línea 562:     SQL = SQL & "        , ETRANSFERENCIA_TRADING  TRA " & vbCrLf
+	Línea 568:     SQL = SQL & "        , ETRANSFERENCIA_TRADING  TRA " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_CD_LTL_pick_mod.bas (8 coincidencias)
+	Línea  167:     SQL_RESUMEN = SQL_RESUMEN & "       , ETRANSFERENCIA_TRADING  TRA   " & vbCrLf
+	Línea  308:     SQL_RESUMEN = SQL_RESUMEN & "        , ETRANSFERENCIA_TRADING  TRA       " & vbCrLf
+	Línea  432:     SQL_RESUMEN = SQL_RESUMEN & "        , ETRANSFERENCIA_TRADING  TRA       " & vbCrLf
+	Línea  557:     SQL_RESUMEN = SQL_RESUMEN & "      , ETRANSFERENCIA_TRADING  TRA  " & vbCrLf
+	Línea  674:     SQL_ANOMALIAS_TN = SQL_ANOMALIAS_TN & "   , ETRANSFERENCIA_TRADING  TRA    " & vbCrLf
+	Línea  724:     SQL_ANOMALIAS_TN = SQL_ANOMALIAS_TN & "    , ETRANSFERENCIA_TRADING  TRA     " & vbCrLf
+	Línea  761:     SQL_ANOMALIAS_TN = SQL_ANOMALIAS_TN & "    , ETRANSFERENCIA_TRADING  TRA   " & vbCrLf
+	Línea  807:     SQL_ANOMALIAS_TN = SQL_ANOMALIAS_TN & "    , ETRANSFERENCIA_TRADING  TRA     " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_control_digit2_mod.bas (6 coincidencias)
+	Línea   63: SQL_INSERT = SQL_INSERT & "     , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  124: SQL_INSERT = SQL_INSERT & "     , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  218: SQL_DIGIT = SQL_DIGIT & "   , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  233: SQL_DIGIT = SQL_DIGIT & "   , ETRANSFERENCIA_TRADING TRA_ENT_DEST  " & vbCrLf
+	Línea  320: SQL_DIGIT = SQL_DIGIT & "   , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  330: SQL_DIGIT = SQL_DIGIT & "   , ETRANSFERENCIA_TRADING TRA_ENT_DEST  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_control_digit3_mod.bas (9 coincidencias)
+	Línea  104: SQL_INSERT = SQL_INSERT & "             ETRANSFERENCIA_TRADING TRA" & vbCrLf
+	Línea  143: '''SQL_INSERT = SQL_INSERT & "     , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  195: '''SQL_INSERT = SQL_INSERT & "     , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  302: SQL_DIGIT = SQL_DIGIT & "   , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  317: SQL_DIGIT = SQL_DIGIT & "   , ETRANSFERENCIA_TRADING TRA_ENT_DEST  " & vbCrLf
+	Línea  430: SQL_DIGIT = SQL_DIGIT & "   , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  440: SQL_DIGIT = SQL_DIGIT & "   , ETRANSFERENCIA_TRADING TRA_ENT_DEST  " & vbCrLf
+	Línea  981: SQL = SQL & " FROM ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea  998: SQL = SQL & " FROM ETRANSFERENCIA_TRADING " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_control_digit_entrada_mod.bas (1 coincidencias)
+	Línea  91: SQL = SQL & "    , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_control_digit_mod.bas (10 coincidencias)
+	Línea  45: SQL_DIGIT = SQL_DIGIT & "     , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 118: SQL_DIGIT = SQL_DIGIT & "     , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 248: SQL = SQL & " , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 261: SQL = SQL & " , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 338: 'SQL = SQL & "     , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 392: 'SQL = SQL & "     , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 447:     SQL = SQL & "   , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea 456:     SQL = SQL & "   , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea 543:         SQL = SQL & "   , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea 552:         SQL = SQL & "   , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_cp_carga_unidades_mod.bas (7 coincidencias)
+	Línea  143:     SQL_CP = SQL_CP & "    , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  161:     SQL_CP = SQL_CP & "    , ETRANSFERENCIA_TRADING TRA_ORI " & vbCrLf
+	Línea  341:     SQL_CP = SQL_CP & "    , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  508:     SQL_RES_FACT = SQL_RES_FACT & "     , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea  726:     SQL_CP_BASE = SQL_CP_BASE & "    , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  744:     SQL_CP_BASE = SQL_CP_BASE & "    , ETRANSFERENCIA_TRADING TRA_ORI " & vbCrLf
+	Línea  921:     SQL_CP_BASE = SQL_CP_BASE & "    , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_desglose_operaciones_mod.bas (5 coincidencias)
+	Línea  93:     SQL_1 = SQL_1 & "       ,ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 200:     SQL_1 = SQL_1 & "       ,ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 303:     SQL_1 = SQL_1 & "       ,ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 356:     SQL_1 = SQL_1 & "                           ,ETRANSFERENCIA_TRADING    TRA " & vbCrLf
+	Línea 412:     SQL_1 = SQL_1 & "       ,ETRANSFERENCIA_TRADING TRA " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_devoluciones_mod.bas (3 coincidencias)
+	Línea 137: SQL = SQL & "   ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea 191:         SQL = SQL & "   ETRANSFERENCIA_TRADING, " & vbCrLf
+	Línea 222:         SQL = SQL & "   ETRANSFERENCIA_TRADING, " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_digit_entrada_ftp_mod.bas (2 coincidencias)
+	Línea 305:                                                         SQL = SQL & "  SELECT NULL FROM ETRANS_DETALLE_CROSS_DOCK, ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 308:                                                         SQL = SQL & "  SELECT NULL FROM ETRANS_PICKING, ETRANSFERENCIA_TRADING " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_digit_envio_pdf_mod.bas (1 coincidencias)
+	Línea  40: SQL = SQL & "   , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_doc_interna_mod.bas (2 coincidencias)
+	Línea 191: SQL = SQL & " , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 283: SQL = SQL & " , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_doc_interna_pendientes_mod.bas (22 coincidencias)
+	Línea  121:     SQL = SQL & "    , ETRANSFERENCIA_TRADING  " & vbCrLf
+	Línea  250:     SQL = SQL & "    , ETRANSFERENCIA_TRADING  " & vbCrLf
+	Línea  369:     SQL = SQL & "     , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea  389:     SQL = SQL & "       FROM ETRANSFERENCIA_TRADING TRA2,  " & vbCrLf
+	Línea  403:     SQL = SQL & "                       ETRANSFERENCIA_TRADING TRA2  " & vbCrLf
+	Línea  423:         SQL_02 = SQL_02 & "    , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea  449:         SQL_02 = SQL_02 & "       FROM ETRANSFERENCIA_TRADING TRA2,  " & vbCrLf
+	Línea  503:         SQL_02 = SQL_02 & "   , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  520:         SQL_02 = SQL_02 & "           FROM ETRANSFERENCIA_TRADING TRA2,  " & vbCrLf
+	Línea  549:         SQL_02 = SQL_02 & "   , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea  566:         SQL_02 = SQL_02 & "           FROM ETRANSFERENCIA_TRADING TRA2,  " & vbCrLf
+	Línea 1282:     SQL = SQL & "    , ETRANSFERENCIA_TRADING  " & vbCrLf
+	Línea 1460:     SQL = SQL & "    , ETRANSFERENCIA_TRADING  " & vbCrLf
+	Línea 1712:     SQL = SQL & "   , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 2153:       SQL = SQL & "   ,ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 2183: '      SQL = SQL & "          select  null from ETRANSFERENCIA_TRADING TRA1 " & vbCrLf
+	Línea 2256:       SQL = SQL & "   ,ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 2286: '      SQL = SQL & "          select  null from ETRANSFERENCIA_TRADING TRA1 " & vbCrLf
+	Línea 2441:       SQL = SQL & "   ,ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 2476: '      SQL = SQL & "          select  null from ETRANSFERENCIA_TRADING TRA1 " & vbCrLf
+	Línea 2587:       SQL = SQL & "   ,ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 2623: '      SQL = SQL & "          select  null from ETRANSFERENCIA_TRADING TRA1 " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_entregas_fuji_mod.bas (12 coincidencias)
+	Línea  52: SQL = SQL & "           ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea  99: SQL = SQL & "                               ,ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 107: SQL = SQL & "                                   ,ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 124: SQL = SQL & "                       ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 132: SQL = SQL & "                       ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 156: SQL = SQL & "        ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 200: SQL = SQL & "           ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea 248: SQL = SQL & "                               ,ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 256: SQL = SQL & "                                   ,ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 273: SQL = SQL & "                       ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 281: SQL = SQL & "                       ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 314: SQL = SQL & "        ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_entregas_fuji_mod_especifica_no_usar.bas (12 coincidencias)
+	Línea  52: SQL = SQL & "           ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea  91: SQL = SQL & "                               ,ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea  99: SQL = SQL & "                                   ,ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 137: SQL = SQL & "                       ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 145: SQL = SQL & "                       ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 169: SQL = SQL & "        ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 199: SQL = SQL & "           ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea 261: SQL = SQL & "                               ,ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 269: SQL = SQL & "                                   ,ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 286: SQL = SQL & "                       ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 294: SQL = SQL & "                       ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 327: SQL = SQL & "        ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_entrega_urrea_mod.bas (12 coincidencias)
+	Línea  52: SQL = SQL & "           ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea  92: SQL = SQL & "                               ,ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 100: SQL = SQL & "                                   ,ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 117: SQL = SQL & "                       ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 125: SQL = SQL & "                       ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 149: SQL = SQL & "        ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 193: SQL = SQL & "           ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea 234: SQL = SQL & "                               ,ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 242: SQL = SQL & "                                   ,ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 259: SQL = SQL & "                       ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 267: SQL = SQL & "                       ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 300: SQL = SQL & "        ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_facturas_cargos_mod.bas (3 coincidencias)
+	Línea  68: SQL = SQL & " , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  95: SQL = SQL & "              , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 117:   SQL = SQL & " ,ETRANSFERENCIA_TRADING TRA " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_facturas_fuji_mod.bas (1 coincidencias)
+	Línea  79: SQL = SQL & "   , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_facturas_mod.bas (4 coincidencias)
+	Línea  73:   SQL = SQL & "             , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 140:   SQL = SQL & "  , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 180:   SQL = SQL & "             , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 234:     SQL = SQL & "    , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_ftp_digit_borrar_mod.bas (14 coincidencias)
+	Línea 135: '                SQL = SQL & "   , ETRANSFERENCIA_TRADING  " & vbCrLf
+	Línea 144: '                SQL = SQL & "   , ETRANSFERENCIA_TRADING  " & vbCrLf
+	Línea 166: '    SQL = SQL & "     , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 180: '    SQL = SQL & "     , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 205: '                SQL = SQL & "                 , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 215: '                SQL = SQL & "                 , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 260:                 SQL = SQL & "   , ETRANSFERENCIA_TRADING  " & vbCrLf
+	Línea 269:                 SQL = SQL & "   , ETRANSFERENCIA_TRADING  " & vbCrLf
+	Línea 290:             SQL = SQL & "     , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 303:             SQL = SQL & "     , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 316:             SQL = SQL & "     , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 330:             SQL = SQL & "     , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 345:         SQL = SQL & "     , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 359:         SQL = SQL & "     , ETRANSFERENCIA_TRADING " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_ftp_digit_envio_urrea_pdf.bas (1 coincidencias)
+	Línea  53: SQL = SQL & "   , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_ftp_digit_sucursale_mod.bas (6 coincidencias)
+	Línea  798:                 SQL = SQL & "   , ETRANSFERENCIA_TRADING  " & vbCrLf
+	Línea  807:                 SQL = SQL & "   , ETRANSFERENCIA_TRADING  " & vbCrLf
+	Línea  835:     SQL = SQL & "     , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea  850:     SQL = SQL & "     , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea  875:                 SQL = SQL & "                 , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea  885:                 SQL = SQL & "                 , ETRANSFERENCIA_TRADING " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_ftp_loreal2_mod.bas (4 coincidencias)
+	Línea 528:         SQL = SQL & "  , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 541:         SQL = SQL & "    , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 653:         SQL = SQL & "   , ETRANSFERENCIA_TRADING  " & vbCrLf
+	Línea 664:         SQL = SQL & "     , ETRANSFERENCIA_TRADING  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_ftp_loreal_mod.bas (6 coincidencias)
+	Línea 420:         SQL = SQL & "  , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 430:         SQL = SQL & "    , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 545: '        SQL = SQL & "  , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 554: '        SQL = SQL & "    , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 569:         SQL = SQL & "  , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 580:         SQL = SQL & "    , ETRANSFERENCIA_TRADING " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_ftp_loreal_respuesta_mod.bas (4 coincidencias)
+	Línea  65: SQL = SQL & "    , ETRANSFERENCIA_TRADING  " & vbCrLf
+	Línea  90: SQL = SQL & "                 , ETRANSFERENCIA_TRADING TRA   " & vbCrLf
+	Línea 164:         SQL = SQL & "     , ETRANSFERENCIA_TRADING   " & vbCrLf
+	Línea 188:         SQL = SQL & "                  , ETRANSFERENCIA_TRADING TRA    " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_italika_tracking_mod.bas (2 coincidencias)
+	Línea 109: SQL = SQL & "   , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 136: 'SQL = SQL & "                , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_listado_importe_x_kg_mod.bas (2 coincidencias)
+	Línea  93: SQL = SQL & "    , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea 160: SQL = SQL & "    , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_ltl_entrada.bas (1 coincidencias)
+	Línea 170:     SQL = SQL & "   , ETRANSFERENCIA_TRADING" & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_nota_carga_recol_mod.bas (1 coincidencias)
+	Línea  90: SQL = SQL & "  FROM ETRANSFERENCIA_TRADING  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_pedidos_mods.bas (4 coincidencias)
+	Línea 111: SQL = SQL & "     , ETRANSFERENCIA_TRADING TRA   " & vbCrLf
+	Línea 200: SQL = SQL & "     , ETRANSFERENCIA_TRADING TRA   " & vbCrLf
+	Línea 269: SQL = SQL & "   , ETRANSFERENCIA_TRADING TRA   " & vbCrLf
+	Línea 360: SQL = SQL & "      , ETRANSFERENCIA_TRADING TRA   " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_pedidos_tracking_mod.bas (2 coincidencias)
+	Línea  63: SQL = SQL & "   , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 109: SQL = SQL & "   , ETRANSFERENCIA_TRADING " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_PT_occitane_mod.bas (4 coincidencias)
+	Línea  57: SQL = SQL & "   FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  65: SQL = SQL & "   , ETRANSFERENCIA_TRADING TRA_ORI " & vbCrLf
+	Línea  99: SQL = SQL & "   FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 108: SQL = SQL & "   , ETRANSFERENCIA_TRADING TRA_ORI " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_puig_edi_mod.bas (16 coincidencias)
+	Línea  575: ' From ETRANSFERENCIA_TRADING
+	Línea  598: 'Update ETRANSFERENCIA_TRADING
+	Línea  619: 'SQL = SQL & " FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  642: 'SQL = SQL & "  FROM ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea  681: SQL = SQL & "  FROM ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea  702: SQL = SQL & "   FROM ETRANSFERENCIA_TRADING TRA   " & vbCrLf
+	Línea  892: ' , ETRANSFERENCIA_TRADING
+	Línea  909: SQL = SQL & "  , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 1013:         SQL = SQL & " FROM ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea 1164:         SQL = SQL & " FROM ETRANSFERENCIA_TRADING TRA, " & vbCrLf
+	Línea 1252:         SQL = SQL & "        , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 1396: SQL = SQL & "   , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 1421: SQL = SQL & "   , ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea 1649:     SQL = SQL & "      , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 1904: '             , ETRANSFERENCIA_TRADING TRA
+	Línea 1932: '                 FROM ETRANSFERENCIA_TRADING TRAIN
+  C:\pc\Spooler\ReportServer_QA\web_reporte_cd_merck_mod.bas (4 coincidencias)
+	Línea  41:     SQL_REP = SQL_REP & "        ETRANSFERENCIA_TRADING       TRA, " & vbCrLf
+	Línea  80:     SQL_REP = SQL_REP & "                             ETRANSFERENCIA_TRADING    TRA, " & vbCrLf
+	Línea 109:     SQL_REP = SQL_REP & "        ETRANSFERENCIA_TRADING       TRA, " & vbCrLf
+	Línea 161:     SQL_REP = SQL_REP & "        ETRANSFERENCIA_TRADING       TRA, " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_sony_archivos_mod.bas (3 coincidencias)
+	Línea  36:     SQL_DET = SQL_DET & "   FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea  61:     SQL_DET = SQL_DET & "       FROM ETRANSFERENCIA_TRADING TRA2 " & vbCrLf
+	Línea 102: SQL = SQL & "   , ETRANSFERENCIA_TRADING TRA " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_talones_cargos_mod.bas (3 coincidencias)
+	Línea  65: SQL = SQL & "   , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea  98: SQL = SQL & "              , ETRANSFERENCIA_TRADING TRA   " & vbCrLf
+	Línea 119:     SQL = SQL & "   , ETRANSFERENCIA_TRADING TRA   " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_talones_mod.bas (8 coincidencias)
+	Línea  81:     SQL = SQL & "             , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea 151:     SQL = SQL & "  , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea 212:     SQL = SQL & "             , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea 277:         SQL = SQL & "    , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea 567:     SQL = SQL & "             , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea 634:     SQL = SQL & "  , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea 698:     SQL = SQL & "             , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea 762:         SQL = SQL & "    , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_talones_pdf_mod.bas (3 coincidencias)
+	Línea  43:     SQL = SQL & "  , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea  96:     SQL = SQL & "                , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+	Línea 118:         SQL = SQL & "    , ETRANSFERENCIA_TRADING TRA  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_update_BTM.bas (2 coincidencias)
+	Línea  50: SQL = SQL & "       ETRANSFERENCIA_TRADING " & vbCrLf
+	Línea  63:     SQL2 = SQL2 & "from etransferencia_bultos trb, etransferencia_trading tra, mzonas_transferencias ezt " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_xml_track_mod.bas (4 coincidencias)
+	Línea  94: SQL = SQL & " FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 168: SQL = SQL & " FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 467: SQL = SQL & " FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
+	Línea 553: SQL = SQL & " FROM ETRANSFERENCIA_TRADING TRA " & vbCrLf
