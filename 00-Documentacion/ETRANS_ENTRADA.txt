@@ -1,0 +1,368 @@
+  C:\pc\Spooler\ReportServer_QA\control_imeis.bas (1 coincidencias)
+	Línea  50: SQL = SQL & "   ,ETRANS_ENTRADA TAE    " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\funciones.bas (6 coincidencias)
+	Línea  515:     SQL = SQL & "       , ETRANS_ENTRADA TAE " & vbCrLf
+	Línea  564:     SQL = SQL & "       , ETRANS_ENTRADA TAE " & vbCrLf
+	Línea  611:     SQL = SQL & "       , ETRANS_ENTRADA TAE " & vbCrLf
+	Línea  660:     SQL = SQL & "       , ETRANS_ENTRADA TAE " & vbCrLf
+	Línea  844:     SQL6 = SQL6 & "       , ETRANS_ENTRADA TAE " & vbCrLf
+	Línea  899:     SQL6 = SQL6 & " INNER JOIN ETRANS_ENTRADA TAE  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\imei_reporte_general.bas (27 coincidencias)
+	Línea  101:     SQL_EXP_TRASLADO = SQL_EXP_TRASLADO & " , ETRANS_ENTRADA TAE_DEST " & vbCrLf
+	Línea  175:     SQL_EXP_TRASLADO = SQL_EXP_TRASLADO & "   , ETRANS_ENTRADA TAE_DEST " & vbCrLf
+	Línea  337:     SQL_DESCUENTO = SQL_DESCUENTO & "   , ETRANS_ENTRADA TAE   " & vbCrLf
+	Línea  828:         SQL_REPORTE = SQL_REPORTE & "   , ETRANS_ENTRADA TAE " & vbCrLf
+	Línea 1095:         SQL_REPORTE = SQL_REPORTE & " , ETRANS_ENTRADA TAE_ORI " & vbCrLf
+	Línea 1196:         SQL_REPORTE = SQL_REPORTE & "     , ETRANS_ENTRADA TAE  " & vbCrLf
+	Línea 1275:         SQL_REPORTE = SQL_REPORTE & " , ETRANS_ENTRADA TAE_ORI " & vbCrLf
+	Línea 1637:     Filtro = Filtro & "         FROM ETRANS_ENTRADA  " & vbCrLf
+	Línea 1643:     Filtro = Filtro & "      FROM ETRANS_ENTRADA TAE_RECH  " & vbCrLf
+	Línea 1801:         Mi_Tae = Mi_Tae & "   from etrans_entrada tae, etransferencia_trading train " & vbCrLf
+	Línea 1811:     Mi_Tae = Mi_Tae & "  from etrans_entrada tae, etransferencia_trading train " & vbCrLf
+	Línea 1834:    SQL = SQL & "   , ETRANS_ENTRADA TAE " & vbCrLf
+	Línea 1844:     SQL = SQL & "  , ETRANS_ENTRADA TAE  " & vbCrLf
+	Línea 1932:             SQL = SQL & "    ETRANS_ENTRADA TAE, " & vbCrLf
+	Línea 1936:             SQL = SQL & "    ETRANS_ENTRADA TAE, " & vbCrLf
+	Línea 2106: ''        SQL = SQL & "    AND EXISTS ( SELECT NULL FROM ETRANS_ENTRADA TAE WHERE TAE.TAE_TRACLAVE = TRA_ORI.TRACLAVE " & vbCrLf
+	Línea 2173: ''                SQL = SQL & "         from etrans_entrada tae " & vbCrLf
+	Línea 2179: ''            SQL = SQL & "         from etrans_entrada tae " & vbCrLf
+	Línea 2261: ''        SQL = SQL & "    AND EXISTS ( SELECT NULL FROM ETRANS_ENTRADA TAE WHERE TAE.TAE_TRACLAVE = TRA_ORI.TRACLAVE " & vbCrLf
+	Línea 2333: ''                SQL = SQL & "         from etrans_entrada tae " & vbCrLf
+	Línea 2339: ''            SQL = SQL & "         from etrans_entrada tae " & vbCrLf
+	Línea 2416: ''        SQL = SQL & "    AND EXISTS ( SELECT NULL FROM ETRANS_ENTRADA TAE WHERE TAE.TAE_TRACLAVE = TRA_ORI.TRACLAVE " & vbCrLf
+	Línea 2480: ''                SQL = SQL & "         from etrans_entrada tae " & vbCrLf
+	Línea 2486: ''            SQL = SQL & "         from etrans_entrada tae " & vbCrLf
+	Línea 2566: ''        SQL = SQL & "    AND EXISTS ( SELECT NULL FROM ETRANS_ENTRADA TAE WHERE TAE.TAE_TRACLAVE = TRA_ORI.TRACLAVE " & vbCrLf
+	Línea 3039:     SQL_RECHAZO = SQL_RECHAZO & "               FROM ETRANS_ENTRADA  " & vbCrLf
+	Línea 3045:     SQL_RECHAZO = SQL_RECHAZO & "            FROM ETRANS_ENTRADA TAE_RECH  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_anom_captura.bas (2 coincidencias)
+	Línea  111:     SQL_DETALLE_ENTRADA = SQL_DETALLE_ENTRADA & " FROM ETRANS_ENTRADA TAE " & vbCrLf
+	Línea  314:     SQL_DETALLE_DCK = SQL_DETALLE_DCK & "    , ETRANS_ENTRADA TAE " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_backlog2_mod.bas (2 coincidencias)
+	Línea  57: SQL_PEND = SQL_PEND & "   , ETRANS_ENTRADA TAE " & vbCrLf
+	Línea 284: SQL_ENTREGA = SQL_ENTREGA & "   , ETRANS_ENTRADA TAE " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_backlog_mod.bas (3 coincidencias)
+	Línea  128:     SQL_Evidencia = SQL_Evidencia & "  , ETRANS_ENTRADA TAE" & vbCrLf
+	Línea  191:     SQL_distribucion = SQL_distribucion & "  , ETRANS_ENTRADA TAE" & vbCrLf
+	Línea  248:     SQL_almacen = SQL_almacen & "  , ETRANS_ENTRADA TAE" & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_cd_ltl_mod.bas (1 coincidencias)
+	Línea  78:     SQL_Facturas = SQL_Facturas & "  FROM ETRANS_ENTRADA TAE,  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_cd_pendientes_mod.bas (2 coincidencias)
+	Línea  209: SQL_LTL = SQL_LTL & "                     ETRANS_ENTRADA TAE, " & vbCrLf
+	Línea  593: SQL_LTL = SQL_LTL & "                     ETRANS_ENTRADA TAE, " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_evol_clientes_mod.bas (21 coincidencias)
+	Línea  146:         SQL_STAT = SQL_STAT & "   FROM ETRANS_ENTRADA     " & vbCrLf
+	Línea  231:         SQL_STAT = SQL_STAT & "   FROM ETRANS_ENTRADA      " & vbCrLf
+	Línea  595:         SQL_IMP_KM_KG = SQL_IMP_KM_KG & "    FROM ETRANS_ENTRADA      " & vbCrLf
+	Línea  653:         SQL_IMP_KM_KG = SQL_IMP_KM_KG & "    FROM ETRANS_ENTRADA       " & vbCrLf
+	Línea 1006:     SQL_CDAD = SQL_CDAD & "    FROM ETRANS_ENTRADA      " & vbCrLf
+	Línea 1077:     SQL_CDAD = SQL_CDAD & "    FROM ETRANS_ENTRADA       " & vbCrLf
+	Línea 1456:     SQL_CDAD_BASE = SQL_CDAD_BASE & "    FROM ETRANS_ENTRADA      " & vbCrLf
+	Línea 1523:     SQL_CDAD_BASE = SQL_CDAD_BASE & "    FROM ETRANS_ENTRADA       " & vbCrLf
+	Línea 1871:     SQL_CDAD_BASE_3MESES = SQL_CDAD_BASE_3MESES & "    FROM ETRANS_ENTRADA      " & vbCrLf
+	Línea 1929:     SQL_CDAD_BASE_3MESES = SQL_CDAD_BASE_3MESES & "    FROM ETRANS_ENTRADA       " & vbCrLf
+	Línea 2196:     SQL_CDAD_TRAS = SQL_CDAD_TRAS & "    FROM ETRANS_ENTRADA  TAE    " & vbCrLf
+	Línea 2305:     SQL_CDAD_LOCAL = SQL_CDAD_LOCAL & "    FROM ETRANS_ENTRADA  TAE    " & vbCrLf
+	Línea 2509:     SQL_R_C = SQL_R_C & "    FROM ETRANS_ENTRADA      " & vbCrLf
+	Línea 2724:     SQL_ACUMULADO = SQL_ACUMULADO & "     FROM ETRANS_ENTRADA       " & vbCrLf
+	Línea 2842:     SQL_ACUMULADO = SQL_ACUMULADO & "     FROM ETRANS_ENTRADA       " & vbCrLf
+	Línea 2993:     SQL_ACUM_GRUPO = SQL_ACUM_GRUPO & "     FROM ETRANS_ENTRADA       " & vbCrLf
+	Línea 3111:     SQL_ACUM_GRUPO = SQL_ACUM_GRUPO & "     FROM ETRANS_ENTRADA       " & vbCrLf
+	Línea 3274:     SQL_ACUM_GRUPO_RANGO = SQL_ACUM_GRUPO_RANGO & "     FROM ETRANS_ENTRADA       " & vbCrLf
+	Línea 3397:     SQL_ACUM_GRUPO_RANGO = SQL_ACUM_GRUPO_RANGO & "     FROM ETRANS_ENTRADA       " & vbCrLf
+	Línea 3563:     SQL_ACUMULADO_RANGO = SQL_ACUMULADO_RANGO & "     FROM ETRANS_ENTRADA       " & vbCrLf
+	Línea 3686:     SQL_ACUMULADO_RANGO = SQL_ACUMULADO_RANGO & "     FROM ETRANS_ENTRADA       " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_genera_GSK.bas (2 coincidencias)
+	Línea  51:         SQL = SQL & " WCROSS_DOCK WCD, EDIRECCIONES_ENTREGA DIE, ECLIENT_CLIENTE CCL, EDISTRIBUTEUR DIS, ECIUDADES CIU_ORI, EESTADOS EST_ORI, ECIUDADES CIU_DEST, EESTADOS EST_DEST, ETRANS_DETALLE_CROSS_DOCK TDCD, ETRANSFERENCIA_TRADING TRA, ETRANS_ENTRADA TAE   " & vbCrLf
+	Línea  80:                 SQL = SQL & "   ETRANS_ENTRADA TAE " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_genera_TLN.bas (1 coincidencias)
+	Línea  73:         sql = sql & " left join (select * from  ETRANS_ENTRADA where DATE_CREATED >= TRUNC(SYSDATE) - 360  ) TAE on (TAE_TRACLAVE) = (TRA.TRACLAVE) left join (select * from   EDET_EXPEDICIONES where DATE_CREATED >= TRUNC(SYSDATE) - 360  ) DXP on (DXP.DXP_TDCDCLAVE) = (TDCDCLAVE)  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_imei_ctl_asignacion.bas (3 coincidencias)
+	Línea  35:     SQL_REINGRESO = SQL_REINGRESO & "   , ETRANS_ENTRADA TAE " & vbCrLf
+	Línea 111: SQL = SQL & "     , ETRANS_ENTRADA TAE      " & vbCrLf
+	Línea 163: SQL = SQL & "      , ETRANS_ENTRADA TAE_IMP " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_imei_entradas_salidas_mod.bas (1 coincidencias)
+	Línea   73: SQL = SQL & "    , ETRANS_ENTRADA TAE     " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_imei_resumen_ejecutivo.bas (6 coincidencias)
+	Línea  367: SQL_GENERAL = SQL_GENERAL & "   , ETRANS_ENTRADA TAE  " & vbCrLf
+	Línea  375: SQL_GENERAL = SQL_GENERAL & "            ETRANS_ENTRADA TAE, " & vbCrLf
+	Línea  737: SQL_GENERAL = SQL_GENERAL & "              FROM ETRANS_ENTRADA " & vbCrLf
+	Línea  743: SQL_GENERAL = SQL_GENERAL & "           FROM ETRANS_ENTRADA TAE_RECH " & vbCrLf
+	Línea 2894:     SQL_RECHAZO = SQL_RECHAZO & "               FROM ETRANS_ENTRADA  " & vbCrLf
+	Línea 2900:     SQL_RECHAZO = SQL_RECHAZO & "            FROM ETRANS_ENTRADA TAE_RECH  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_imei_stat_IN_OUT_mod.bas (11 coincidencias)
+	Línea   80:     SQL_ENVIO_SL = SQL_ENVIO_SL & "     , ETRANS_ENTRADA TAE_ORI   " & vbCrLf
+	Línea  209:     SQL_RES_RECOL = SQL_RES_RECOL & "   FROM ETRANS_ENTRADA TAE    " & vbCrLf
+	Línea  239:     SQL_RES_RECOL = SQL_RES_RECOL & "             ETRANS_ENTRADA TAE,  " & vbCrLf
+	Línea  354:     SQL_TOTAL = SQL_TOTAL & "  FROM ETRANS_ENTRADA TAE   " & vbCrLf
+	Línea  442:     SQL_TOTAL = SQL_TOTAL & "  FROM ETRANS_ENTRADA TAE   " & vbCrLf
+	Línea  826: SQL = SQL & "  , ETRANS_ENTRADA TAE_ORI  " & vbCrLf
+	Línea 1096: SQL = SQL & "     , ETRANS_ENTRADA TAE_ORI   " & vbCrLf
+	Línea 1415: SQL = SQL & "     , ETRANS_ENTRADA TAE_ORI   " & vbCrLf
+	Línea 1698: SQL = SQL & "     , ETRANS_ENTRADA TAE_ORI   " & vbCrLf
+	Línea 2058: SQL = SQL & "  , ETRANS_ENTRADA TAE  " & vbCrLf
+	Línea 2305: SQL = SQL & "  , ETRANS_ENTRADA TAE " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_imei_x_ref.bas (1 coincidencias)
+	Línea  57: SQL = SQL & "  ,ETRANS_ENTRADA TAE   " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_inventario_factura_mod.bas (1 coincidencias)
+	Línea  94: SQL = SQL & "   , ETRANS_ENTRADA TAE " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_invent_insumos_transito_mod.bas (3 coincidencias)
+	Línea 533: 'SQL = SQL & "    , ETRANS_ENTRADA TAE_DEST  " & vbCrLf
+	Línea 573: SQL = SQL & "         FROM ETRANS_ENTRADA TAE2, " & vbCrLf
+	Línea 839: SQL = SQL & "          FROM ETRANS_ENTRADA TAE2,  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_invent_reab_mod.bas (1 coincidencias)
+	Línea  84: SQL = SQL & "  FROM ETRANS_ENTRADA TAE,  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_kpi_evidencias_mod.bas (1 coincidencias)
+	Línea 167: SQL_DETALLE = SQL_DETALLE & "       , ETRANS_ENTRADA TAE    " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_kpi_evidencias_resumen_mod.bas (3 coincidencias)
+	Línea 156:     SQL = SQL & "     FROM ETRANS_ENTRADA TAE    " & vbCrLf
+	Línea 336:         SQL = SQL & " FROM ETRANS_ENTRADA TAE " & vbCrLf
+	Línea 456:         SQL = SQL & "    FROM ETRANS_ENTRADA TAE " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_kpi_mod.bas (2 coincidencias)
+	Línea 111:         SQL_DETALLE = SQL_DETALLE & "     , ETRANS_ENTRADA TAE   " & vbCrLf
+	Línea 259:         SQL_DETALLE = SQL_DETALLE & "     , ETRANS_ENTRADA TAE   " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_kpi_modif_ddmm.bas (1 coincidencias)
+	Línea 107: SQL_DETALLE = SQL_DETALLE & "     , ETRANS_ENTRADA TAE   " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_kpi_modif_mod.bas (1 coincidencias)
+	Línea  91: SQL_DETALLE = SQL_DETALLE & "     , ETRANS_ENTRADA TAE   " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_kpi_rechazos_mod.bas (1 coincidencias)
+	Línea 161: SQL_DETALLE = SQL_DETALLE & "  , ETRANS_ENTRADA TAE " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_kpi_resumen_mod.bas (1 coincidencias)
+	Línea  55: SQL_RESUMEN = SQL_RESUMEN & "   FROM ETRANS_ENTRADA TAE   " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_kpi_resumen_suc_mod.bas (1 coincidencias)
+	Línea  56: SQL_RES = SQL_RES & "        , ETRANS_ENTRADA TAE   " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_lista_citas_mod.bas (3 coincidencias)
+	Línea  57: SQL_DETALLE = SQL_DETALLE & "    , ETRANS_ENTRADA TAE " & vbCrLf
+	Línea 183: SQL_DETALLE = SQL_DETALLE & "    , ETRANS_ENTRADA TAE " & vbCrLf
+	Línea 303: SQL_DETALLE = SQL_DETALLE & "    , ETRANS_ENTRADA TAE_ORI  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_ltl_pendientes_mod.bas (2 coincidencias)
+	Línea  193: SQL_LTL = SQL_LTL & "                     ETRANS_ENTRADA TAE, " & vbCrLf
+	Línea  644: SQL_LTL = SQL_LTL & "                     ETRANS_ENTRADA TAE, " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_observ_imei.bas (1 coincidencias)
+	Línea 119:                     SQL = SQL & "   , ETRANS_ENTRADA TAE  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_ped_exp_sin_NC_mod.bas (2 coincidencias)
+	Línea 196:     SQL_PICKING = SQL_PICKING & "   ETRANS_ENTRADA TAE, " & vbCrLf
+	Línea 293:     SQL_PICKING = SQL_PICKING & "   ETRANS_ENTRADA TAE, " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_pendientes_cedis_ori2_mod.bas (35 coincidencias)
+	Línea  207: SQL_1 = SQL_1 & "        FROM ETRANS_ENTRADA  " & vbCrLf
+	Línea  312: SQL_1 = SQL_1 & "    , ETRANS_ENTRADA TAE  " & vbCrLf
+	Línea  754: SQL_1 = SQL_1 & "       FROM ETRANS_ENTRADA " & vbCrLf
+	Línea  878: SQL_2 = SQL_2 & "      ETRANS_ENTRADA TAE_DEST,    " & vbCrLf
+	Línea  881: SQL_2 = SQL_2 & "      ETRANS_ENTRADA TAE_ORI,   " & vbCrLf
+	Línea 1213: SQL_3 = SQL_3 & "   , ETRANS_ENTRADA TAE_DEST " & vbCrLf
+	Línea 1262: SQL_3 = SQL_3 & "         FROM ETRANS_ENTRADA TAE2, " & vbCrLf
+	Línea 1395: SQL_3 = SQL_3 & "   , ETRANS_ENTRADA TAE_ORI " & vbCrLf
+	Línea 1408: SQL_3 = SQL_3 & "   , ETRANS_ENTRADA TAE_DEST " & vbCrLf
+	Línea 1458: SQL_3 = SQL_3 & "         FROM ETRANS_ENTRADA TAE2, " & vbCrLf
+	Línea 1592: SQL_3 = SQL_3 & "   , ETRANS_ENTRADA TAE_ORI " & vbCrLf
+	Línea 1607: SQL_3 = SQL_3 & "   , ETRANS_ENTRADA TAE_DEST " & vbCrLf
+	Línea 1658: SQL_3 = SQL_3 & "         FROM ETRANS_ENTRADA TAE2, " & vbCrLf
+	Línea 1807: SQL_4 = SQL_4 & "   , ETRANS_ENTRADA TAE_DEST " & vbCrLf
+	Línea 1857: SQL_4 = SQL_4 & "         FROM ETRANS_ENTRADA TAE2, " & vbCrLf
+	Línea 1994: SQL_4 = SQL_4 & "   , ETRANS_ENTRADA TAE_ORI " & vbCrLf
+	Línea 2007: SQL_4 = SQL_4 & "   , ETRANS_ENTRADA TAE_DEST " & vbCrLf
+	Línea 2058: SQL_4 = SQL_4 & "         FROM ETRANS_ENTRADA TAE2, " & vbCrLf
+	Línea 2188: SQL_4 = SQL_4 & "   , ETRANS_ENTRADA TAE_ORI " & vbCrLf
+	Línea 2203: SQL_4 = SQL_4 & "   , ETRANS_ENTRADA TAE_DEST " & vbCrLf
+	Línea 2255: SQL_4 = SQL_4 & "         FROM ETRANS_ENTRADA TAE2, " & vbCrLf
+	Línea 2388: SQL_5 = SQL_5 & "       ETRANS_ENTRADA TAE_DEST,     " & vbCrLf
+	Línea 2389: SQL_5 = SQL_5 & "       ETRANS_ENTRADA TAE_ORI,    " & vbCrLf
+	Línea 2556: SQL_5 = SQL_5 & "       ETRANS_ENTRADA TAE_DEST,     " & vbCrLf
+	Línea 2557: SQL_5 = SQL_5 & "       ETRANS_ENTRADA TAE_ORI,    " & vbCrLf
+	Línea 2737: SQL_6 = SQL_6 & "    , ETRANS_ENTRADA TAE_DEST  " & vbCrLf
+	Línea 2895: SQL_6 = SQL_6 & "    , ETRANS_ENTRADA TAE_ORI  " & vbCrLf
+	Línea 2909: SQL_6 = SQL_6 & "    , ETRANS_ENTRADA TAE_DEST  " & vbCrLf
+	Línea 3089: SQL_7 = SQL_7 & "   , ETRANS_ENTRADA TAE_DEST " & vbCrLf
+	Línea 3245: SQL_7 = SQL_7 & "   , ETRANS_ENTRADA TAE_ORI " & vbCrLf
+	Línea 3259: SQL_7 = SQL_7 & "   , ETRANS_ENTRADA TAE_DEST " & vbCrLf
+	Línea 3430: SQL_8 = SQL_8 & "    , ETRANS_ENTRADA TAE_ORI  " & vbCrLf
+	Línea 3435: SQL_8 = SQL_8 & "    , ETRANS_ENTRADA TAE_DEST  " & vbCrLf
+	Línea 3498: SQL_8 = SQL_8 & "            FROM ETRANS_ENTRADA TAE2,  " & vbCrLf
+	Línea 3670: SQL_8 = SQL_8 & "          FROM ETRANS_ENTRADA TAE2,  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_pend_cedis_mod.bas (37 coincidencias)
+	Línea  270: SQL_PEND_ENVIAR = SQL_PEND_ENVIAR & "   , ETRANS_ENTRADA TAE " & vbCrLf
+	Línea  679: SQL_PEND_ENVIAR = SQL_PEND_ENVIAR & "       FROM ETRANS_ENTRADA TAE, " & vbCrLf
+	Línea  804: SQL_PEND_ENVIAR = SQL_PEND_ENVIAR & "   , ETRANS_ENTRADA TAE_DEST " & vbCrLf
+	Línea  812: SQL_PEND_ENVIAR = SQL_PEND_ENVIAR & "   , ETRANS_ENTRADA TAE_ORI " & vbCrLf
+	Línea  853: SQL_PEND_ENVIAR = SQL_PEND_ENVIAR & "           FROM ETRANS_ENTRADA TAE, " & vbCrLf
+	Línea 1028: SQL_PEND_ENVIAR = SQL_PEND_ENVIAR & "         FROM ETRANS_ENTRADA TAE2, " & vbCrLf
+	Línea 1156: SQL_PEND_ENVIAR = SQL_PEND_ENVIAR & "   , ETRANS_ENTRADA TAE_ORI " & vbCrLf
+	Línea 1162: SQL_PEND_ENVIAR = SQL_PEND_ENVIAR & "   , ETRANS_ENTRADA TAE_DEST " & vbCrLf
+	Línea 1221: SQL_PEND_ENVIAR = SQL_PEND_ENVIAR & "           FROM ETRANS_ENTRADA TAE2, " & vbCrLf
+	Línea 1395: SQL_TRAS_PEND = SQL_TRAS_PEND & "         FROM ETRANS_ENTRADA TAE2, " & vbCrLf
+	Línea 1510: SQL_TRAS_PEND = SQL_TRAS_PEND & "   , ETRANS_ENTRADA TAE_ORI " & vbCrLf
+	Línea 1563: SQL_TRAS_PEND = SQL_TRAS_PEND & "         FROM ETRANS_ENTRADA TAE2, " & vbCrLf
+	Línea 1657: SQL_TRAS_PEND = SQL_TRAS_PEND & "   , ETRANS_ENTRADA TAE_ORI " & vbCrLf
+	Línea 1712: SQL_TRAS_PEND = SQL_TRAS_PEND & "         FROM ETRANS_ENTRADA TAE2, " & vbCrLf
+	Línea 1844: SQL_EXP_SIN_NC = SQL_EXP_SIN_NC & "   , ETRANS_ENTRADA TAE_DEST " & vbCrLf
+	Línea 1888: SQL_EXP_SIN_NC = SQL_EXP_SIN_NC & "         FROM ETRANS_ENTRADA TAE2, " & vbCrLf
+	Línea 2022: SQL_EXP_SIN_NC = SQL_EXP_SIN_NC & "   , ETRANS_ENTRADA TAE_ORI " & vbCrLf
+	Línea 2033: SQL_EXP_SIN_NC = SQL_EXP_SIN_NC & "   , ETRANS_ENTRADA TAE_DEST " & vbCrLf
+	Línea 2078: SQL_EXP_SIN_NC = SQL_EXP_SIN_NC & "         FROM ETRANS_ENTRADA TAE2, " & vbCrLf
+	Línea 2207: SQL_EXP_SIN_NC = SQL_EXP_SIN_NC & "   , ETRANS_ENTRADA TAE_ORI " & vbCrLf
+	Línea 2218: SQL_EXP_SIN_NC = SQL_EXP_SIN_NC & "   , ETRANS_ENTRADA TAE_DEST " & vbCrLf
+	Línea 2260: SQL_EXP_SIN_NC = SQL_EXP_SIN_NC & "         FROM ETRANS_ENTRADA TAE2, " & vbCrLf
+	Línea 2396: SQL_SIN_ENTREGA = SQL_SIN_ENTREGA & "      ETRANS_ENTRADA TAE_DEST,    " & vbCrLf
+	Línea 2399: SQL_SIN_ENTREGA = SQL_SIN_ENTREGA & "      ETRANS_ENTRADA TAE_ORI,   " & vbCrLf
+	Línea 2683: SQL_SIN_EVIDENCIA = SQL_SIN_EVIDENCIA & "    ETRANS_ENTRADA TAE_DEST,  " & vbCrLf
+	Línea 2687: SQL_SIN_EVIDENCIA = SQL_SIN_EVIDENCIA & "    ETRANS_ENTRADA TAE_ORI, " & vbCrLf
+	Línea 2744: SQL_SIN_EVIDENCIA = SQL_SIN_EVIDENCIA & "                           FROM ETRANS_ENTRADA " & vbCrLf
+	Línea 2769: SQL_SIN_EVIDENCIA = SQL_SIN_EVIDENCIA & "               FROM ETRANS_ENTRADA TAE, " & vbCrLf
+	Línea 2985: SQL_SIN_EVIDENCIA = SQL_SIN_EVIDENCIA & "                           FROM ETRANS_ENTRADA " & vbCrLf
+	Línea 3010: SQL_SIN_EVIDENCIA = SQL_SIN_EVIDENCIA & "               FROM ETRANS_ENTRADA TAE, " & vbCrLf
+	Línea 3178: SQL_SIN_ENVIO_EVID = SQL_SIN_ENVIO_EVID & "       ETRANS_ENTRADA TAE_DEST,     " & vbCrLf
+	Línea 3181: SQL_SIN_ENVIO_EVID = SQL_SIN_ENVIO_EVID & "       ETRANS_ENTRADA TAE_ORI,    " & vbCrLf
+	Línea 3355: 'SQL_SIN_EVID_CLI = SQL_SIN_EVID_CLI & "   , ETRANS_ENTRADA TAE_DEST " & vbCrLf
+	Línea 3490: 'SQL_SIN_EVID_CLI = SQL_SIN_EVID_CLI & "   , ETRANS_ENTRADA TAE_ORI " & vbCrLf
+	Línea 3504: 'SQL_SIN_EVID_CLI = SQL_SIN_EVID_CLI & "   , ETRANS_ENTRADA TAE_DEST " & vbCrLf
+	Línea 3643: SQL_SIN_EVID_CLI = SQL_SIN_EVID_CLI & "       ETRANS_ENTRADA TAE_DEST,     " & vbCrLf
+	Línea 3646: SQL_SIN_EVID_CLI = SQL_SIN_EVID_CLI & "       ETRANS_ENTRADA TAE_ORI,    " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_pend_cedis_ori_mod.bas (32 coincidencias)
+	Línea  314: SQL_1 = SQL_1 & "        FROM ETRANS_ENTRADA  " & vbCrLf
+	Línea  546: SQL_1 = SQL_1 & "    , ETRANS_ENTRADA TAE  " & vbCrLf
+	Línea 1460: SQL_1 = SQL_1 & "       FROM ETRANS_ENTRADA " & vbCrLf
+	Línea 1697: SQL_2 = SQL_2 & "      ETRANS_ENTRADA TAE_DEST,    " & vbCrLf
+	Línea 1700: SQL_2 = SQL_2 & "      ETRANS_ENTRADA TAE_ORI,   " & vbCrLf
+	Línea 2460: SQL_3 = SQL_3 & "   , ETRANS_ENTRADA TAE_DEST " & vbCrLf
+	Línea 2506: SQL_3 = SQL_3 & "         FROM ETRANS_ENTRADA TAE2, " & vbCrLf
+	Línea 2750: SQL_3 = SQL_3 & "   , ETRANS_ENTRADA TAE_ORI " & vbCrLf
+	Línea 2763: SQL_3 = SQL_3 & "   , ETRANS_ENTRADA TAE_DEST " & vbCrLf
+	Línea 2818: SQL_3 = SQL_3 & "         FROM ETRANS_ENTRADA TAE2, " & vbCrLf
+	Línea 3148: SQL_3 = SQL_3 & "   , ETRANS_ENTRADA TAE_ORI " & vbCrLf
+	Línea 3159: SQL_3 = SQL_3 & "   , ETRANS_ENTRADA TAE_DEST " & vbCrLf
+	Línea 3221: SQL_3 = SQL_3 & "         FROM ETRANS_ENTRADA TAE2, " & vbCrLf
+	Línea 3552: SQL_4 = SQL_4 & "   , ETRANS_ENTRADA TAE_DEST " & vbCrLf
+	Línea 3841: SQL_4 = SQL_4 & "   , ETRANS_ENTRADA TAE_ORI " & vbCrLf
+	Línea 3852: SQL_4 = SQL_4 & "   , ETRANS_ENTRADA TAE_DEST " & vbCrLf
+	Línea 4224: SQL_4 = SQL_4 & "   , ETRANS_ENTRADA TAE_ORI " & vbCrLf
+	Línea 4235: SQL_4 = SQL_4 & "   , ETRANS_ENTRADA TAE_DEST " & vbCrLf
+	Línea 4635: SQL_5 = SQL_5 & "       ETRANS_ENTRADA TAE_DEST,     " & vbCrLf
+	Línea 4636: SQL_5 = SQL_5 & "       ETRANS_ENTRADA TAE_ORI,    " & vbCrLf
+	Línea 5094: SQL_5 = SQL_5 & "       ETRANS_ENTRADA TAE_DEST,     " & vbCrLf
+	Línea 5095: SQL_5 = SQL_5 & "       ETRANS_ENTRADA TAE_ORI,    " & vbCrLf
+	Línea 5509: SQL_6 = SQL_6 & "    , ETRANS_ENTRADA TAE_DEST  " & vbCrLf
+	Línea 5738: SQL_6 = SQL_6 & "    , ETRANS_ENTRADA TAE_ORI  " & vbCrLf
+	Línea 5757: SQL_6 = SQL_6 & "    , ETRANS_ENTRADA TAE_DEST  " & vbCrLf
+	Línea 6081: SQL_7 = SQL_7 & "   , ETRANS_ENTRADA TAE_DEST " & vbCrLf
+	Línea 6363: SQL_7 = SQL_7 & "   , ETRANS_ENTRADA TAE_ORI " & vbCrLf
+	Línea 6381: SQL_7 = SQL_7 & "   , ETRANS_ENTRADA TAE_DEST " & vbCrLf
+	Línea 6830: SQL_8 = SQL_8 & "    , ETRANS_ENTRADA TAE_ORI  " & vbCrLf
+	Línea 6835: SQL_8 = SQL_8 & "    , ETRANS_ENTRADA TAE_DEST  " & vbCrLf
+	Línea 6979: SQL_8 = SQL_8 & "            FROM ETRANS_ENTRADA TAE2,  " & vbCrLf
+	Línea 7434: SQL_8 = SQL_8 & "          FROM ETRANS_ENTRADA TAE2,  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_rentabilidad_exp_mod.bas (1 coincidencias)
+	Línea 110: SQL = SQL & "   ETRANS_ENTRADA TAE, " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_reports_imeis_inventarios.bas (2 coincidencias)
+	Línea 176:     SQL = SQL & "  ,ETRANS_ENTRADA TAE   " & vbCrLf
+	Línea 231:     SQL = SQL & "  ,ETRANS_ENTRADA TAE   " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_stats_CEDIS_resumen_mod.bas (4 coincidencias)
+	Línea  123: SQL_CEDIS = SQL_CEDIS & "        , ETRANS_ENTRADA TAE     " & vbCrLf
+	Línea  140: SQL_CEDIS = SQL_CEDIS & "       , ETRANS_ENTRADA TAE_ORI    " & vbCrLf
+	Línea  148: SQL_CEDIS = SQL_CEDIS & "       , ETRANS_ENTRADA TAE_RECH   " & vbCrLf
+	Línea  310:     SQL_CEDIS = SQL_CEDIS & "      , ETRANS_ENTRADA TAE_RECH  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_stats_Oper_CEDIS_mod.bas (6 coincidencias)
+	Línea  123: SQL_CEDIS = SQL_CEDIS & "        , ETRANS_ENTRADA TAE     " & vbCrLf
+	Línea  140: SQL_CEDIS = SQL_CEDIS & "       , ETRANS_ENTRADA TAE_ORI    " & vbCrLf
+	Línea  148: SQL_CEDIS = SQL_CEDIS & "       , ETRANS_ENTRADA TAE_RECH   " & vbCrLf
+	Línea  312:     SQL_CEDIS = SQL_CEDIS & "      , ETRANS_ENTRADA TAE_RECH  " & vbCrLf
+	Línea  425:     SQL_OPERADOR = SQL_OPERADOR & "        , ETRANS_ENTRADA TAE       " & vbCrLf
+	Línea  434:     SQL_OPERADOR = SQL_OPERADOR & "        , ETRANS_ENTRADA TAE_ORI    " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_update_imei_temp_mod.bas (1 coincidencias)
+	Línea  81:         SQL = SQL & "   , ETRANS_ENTRADA TAE  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trad_entradas_salidas_mod.bas (1 coincidencias)
+	Línea  49: SQL = SQL & "    , ETRANS_ENTRADA  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trad_indic_calidad_mod.bas (5 coincidencias)
+	Línea  281: SQL_DETALLE_EVIDENCIA = SQL_DETALLE_EVIDENCIA & "     , ETRANS_ENTRADA TAE  " & vbCrLf
+	Línea  395: SQL_DETALLE_ENTREGA = SQL_DETALLE_ENTREGA & "      , ETRANS_ENTRADA TAE    " & vbCrLf
+	Línea  637:     SQL_EVIDENCIAS = SQL_EVIDENCIAS & "     , ETRANS_ENTRADA TAE  " & vbCrLf
+	Línea  713: SQL_EVIDENCIAS_POR_DESTINO = SQL_EVIDENCIAS_POR_DESTINO & "    , ETRANS_ENTRADA TAE  " & vbCrLf
+	Línea 1089:     SQL_RECHAZO = SQL_RECHAZO & "    ETRANS_ENTRADA TAE_ENT, " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trad_pick_2dias_mod.bas (2 coincidencias)
+	Línea 144: SQL = SQL & " from ETRANS_ENTRADA tae " & vbCrLf
+	Línea 265: SQL = SQL & " from ETRANS_ENTRADA tae " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trad_planeacion_mod.bas (3 coincidencias)
+	Línea  205: 'SQL = SQL & "       , ETRANS_ENTRADA " & vbCrLf
+	Línea  331: SQL = SQL & "   , ETRANS_ENTRADA TAE  " & vbCrLf
+	Línea  887:     SQL = SQL & "    , ETRANS_ENTRADA TAE  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\WCMS_mod.bas (1 coincidencias)
+	Línea 118:     SQL = SQL & "   ETRANS_ENTRADA TAE_ORI " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_adjust_occitane_mod.bas (1 coincidencias)
+	Línea  52: SQL = SQL & "    , ETRANS_ENTRADA  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_carga_ltl_urrea_mod.bas (2 coincidencias)
+	Línea  272:                 my_query = my_query & "        ,ETRANS_ENTRADA TAE " & vbCrLf
+	Línea  367:                 my_query = my_query & "        ,ETRANS_ENTRADA TAE " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_CD_LTL_mod.bas (4 coincidencias)
+	Línea  235:         SQL = SQL & " FROM ETRANS_ENTRADA TAE " & vbCrLf
+	Línea  587:         SQL = SQL & "    , ETRANS_ENTRADA TAE   " & vbCrLf
+	Línea 1012:     SQL = SQL & "   FROM ETRANS_ENTRADA TAE " & vbCrLf
+	Línea 1074:     SQL = SQL & "   FROM ETRANS_ENTRADA TAE " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_CD_LTL_pick_anomalias_mod.bas (4 coincidencias)
+	Línea 100:     SQL = SQL & "              , ETRANS_ENTRADA TAE " & vbCrLf
+	Línea 105:     SQL = SQL & "              , ETRANS_ENTRADA TAE " & vbCrLf
+	Línea 561:     SQL = SQL & "     FROM ETRANS_ENTRADA " & vbCrLf
+	Línea 569:     SQL = SQL & "        , ETRANS_ENTRADA " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_CD_LTL_pick_mod.bas (4 coincidencias)
+	Línea  166:     SQL_RESUMEN = SQL_RESUMEN & "     FROM ETRANS_ENTRADA     " & vbCrLf
+	Línea  556:     SQL_RESUMEN = SQL_RESUMEN & "    FROM ETRANS_ENTRADA    " & vbCrLf
+	Línea  673:     SQL_ANOMALIAS_TN = SQL_ANOMALIAS_TN & " FROM ETRANS_ENTRADA      " & vbCrLf
+	Línea  806:     SQL_ANOMALIAS_TN = SQL_ANOMALIAS_TN & "  FROM ETRANS_ENTRADA       " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_control_digit2_mod.bas (1 coincidencias)
+	Línea  219: SQL_DIGIT = SQL_DIGIT & "   , ETRANS_ENTRADA TAE " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_control_digit3_mod.bas (1 coincidencias)
+	Línea  303: SQL_DIGIT = SQL_DIGIT & "   , ETRANS_ENTRADA TAE " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_conv_sin_exp_mod.bas (3 coincidencias)
+	Línea 127: SQL_Det = SQL_Det & "   , ETRANS_ENTRADA TAE " & vbCrLf
+	Línea 263: SQL_Det = SQL_Det & "   , ETRANS_ENTRADA TAE" & vbCrLf
+	Línea 449: SQL = SQL & "   , ETRANS_ENTRADA TAE" & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_desglose_operaciones_mod.bas (4 coincidencias)
+	Línea  94:     SQL_1 = SQL_1 & "       ,ETRANS_ENTRADA TAE " & vbCrLf
+	Línea 201:     SQL_1 = SQL_1 & "       ,ETRANS_ENTRADA TAE " & vbCrLf
+	Línea 304:     SQL_1 = SQL_1 & "       ,ETRANS_ENTRADA TAE " & vbCrLf
+	Línea 413:     SQL_1 = SQL_1 & "       ,ETRANS_ENTRADA TAE " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_devoluciones_mod.bas (2 coincidencias)
+	Línea 192:         SQL = SQL & "   ETRANS_ENTRADA, " & vbCrLf
+	Línea 223:         SQL = SQL & "   ETRANS_ENTRADA, " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_doc_interna_mod.bas (2 coincidencias)
+	Línea 192: SQL = SQL & " , ETRANS_ENTRADA TAE " & vbCrLf
+	Línea 284: SQL = SQL & " , ETRANS_ENTRADA TAE " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_entregas_fuji_mod.bas (4 coincidencias)
+	Línea  98: SQL = SQL & "                       FROM ETRANS_ENTRADA " & vbCrLf
+	Línea 123: SQL = SQL & "           FROM ETRANS_ENTRADA TAE, " & vbCrLf
+	Línea 247: SQL = SQL & "                       FROM ETRANS_ENTRADA " & vbCrLf
+	Línea 272: SQL = SQL & "           FROM ETRANS_ENTRADA TAE, " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_entregas_fuji_mod_especifica_no_usar.bas (4 coincidencias)
+	Línea  90: SQL = SQL & "                       FROM ETRANS_ENTRADA " & vbCrLf
+	Línea 136: SQL = SQL & "           FROM ETRANS_ENTRADA TAE, " & vbCrLf
+	Línea 260: SQL = SQL & "                       FROM ETRANS_ENTRADA " & vbCrLf
+	Línea 285: SQL = SQL & "           FROM ETRANS_ENTRADA TAE, " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_entrega_urrea_mod.bas (4 coincidencias)
+	Línea  91: SQL = SQL & "                       FROM ETRANS_ENTRADA " & vbCrLf
+	Línea 116: SQL = SQL & "           FROM ETRANS_ENTRADA TAE, " & vbCrLf
+	Línea 233: SQL = SQL & "                       FROM ETRANS_ENTRADA " & vbCrLf
+	Línea 258: SQL = SQL & "           FROM ETRANS_ENTRADA TAE, " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_facturas_mod.bas (2 coincidencias)
+	Línea 141:   SQL = SQL & "  , ETRANS_ENTRADA TAE " & vbCrLf
+	Línea 235:     SQL = SQL & "    , ETRANS_ENTRADA TAE " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_ftp_loreal_respuesta_mod.bas (2 coincidencias)
+	Línea  66: SQL = SQL & "    , ETRANS_ENTRADA " & vbCrLf
+	Línea 165:         SQL = SQL & "     , ETRANS_ENTRADA  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_listado_importe_x_kg_mod.bas (1 coincidencias)
+	Línea  92: SQL = SQL & "  FROM ETRANS_ENTRADA TAE  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_pedidos_mods.bas (2 coincidencias)
+	Línea 268: SQL = SQL & "    from ETRANS_ENTRADA TAE   " & vbCrLf
+	Línea 359: SQL = SQL & "    from ETRANS_ENTRADA TAE   " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_pedidos_tracking_mod.bas (2 coincidencias)
+	Línea  61: SQL = SQL & " FROM ETRANS_ENTRADA " & vbCrLf
+	Línea 107: SQL = SQL & " FROM ETRANS_ENTRADA " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_reporte_cd_merck_mod.bas (3 coincidencias)
+	Línea  42:     SQL_REP = SQL_REP & "        ETRANS_ENTRADA               TAE, " & vbCrLf
+	Línea 110:     SQL_REP = SQL_REP & "        ETRANS_ENTRADA               TAE, " & vbCrLf
+	Línea 162:     SQL_REP = SQL_REP & "        ETRANS_ENTRADA               TAE, " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_talones_mod.bas (4 coincidencias)
+	Línea 152:     SQL = SQL & "  , ETRANS_ENTRADA TAE  " & vbCrLf
+	Línea 278:         SQL = SQL & "    , ETRANS_ENTRADA TAE  " & vbCrLf
+	Línea 635:     SQL = SQL & "  , ETRANS_ENTRADA TAE  " & vbCrLf
+	Línea 763:         SQL = SQL & "    , ETRANS_ENTRADA TAE  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_talones_pdf_mod.bas (2 coincidencias)
+	Línea  44:     SQL = SQL & "  , ETRANS_ENTRADA TAE  " & vbCrLf
+	Línea 119:         SQL = SQL & "    , ETRANS_ENTRADA TAE  " & vbCrLf
