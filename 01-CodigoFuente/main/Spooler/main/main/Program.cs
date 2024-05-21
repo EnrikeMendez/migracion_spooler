@@ -20,7 +20,9 @@ string mail_server = "";
 string mail_footer = "";
 string mail_From = "";
 string mail_FromName = "";
-string mail_grupo_error = "";
+string[] mail_grupo_error = new string[1];
+string[] Error_texto = new string[1];
+
 string IP_servidor1 = "";
 string IP_servidor2 = "";
 string first_path = "";
@@ -120,13 +122,19 @@ if (rep_id != 0 && sw_cron == 1)
                       "";
         Console.WriteLine("************** confirma fecha **************");
         Console.WriteLine(SQL_p2);
-        SQL_p2 = "select display_fecha_confirmacion4(('" + util.Tcampo(trep_cron, "FRECUENCIA") + "',conf.CONF_DATE,conf.CONF_DATE_2,decode(conf.CONF_DATE,null,1,0)) as next_fecha \n" +
+        //  if conf_date !=null
+        {
+            SQL_p2 = "select display_fecha_confirmacion4(('" + util.Tcampo(trep_cron, "FRECUENCIA") + "',conf.CONF_DATE,conf.CONF_DATE_2,decode(conf.CONF_DATE,null,1,0)) as next_fecha \n" +
          " from rep_confirmacion conf \n" +
          " where  conf.ID_CONF = '" + rep_id + "' \n" +
          " order by to_date(next_fecha, 'mm/dd/yyyy') desc \n";
+            //  if conf.CONF_DATE !=null
+            mail_error = "agregar valor de rs2.Fields(0).Value ";
+            //else
+            mail_error = "Ninguna confirmacion llegada.";    
+        }
         Console.WriteLine("************** confirma fecha 2**************");
         Console.WriteLine(SQL_p2);
-
     }
 
 
@@ -151,6 +159,27 @@ if (rep_id != 0 && sw_cron == 1)
         //proceso de envio de correo
         Console.WriteLine("************** SQL contactos **************");
         Console.WriteLine(util.Tdetalle(tmail_contact));
+        string tema = "Error generacion de : " + util.Tcampo(tmail_contact, "NAME");
+        string contactos = util.listTcampo(tmail_contact, "mail", ";");
+        contactos = contactos + mail_grupo_error[0];
+
+        /*PIVO*/
+        Console.WriteLine("************** SQL contactos " + mail_error+ " **************");
+        Console.WriteLine("************** SQL contactos " + mail_error.Contains("|") + " **************");     
+        if (mail_error.Contains("|") )
+        {
+            Error_texto = mail_error.Split("|");
+            mail_error = "Id_reporte : " + rep_id + "\n" +
+                "Fecha 1 : " + Error_texto[0] + "\n" +
+                "Fecha 2 : " + Error_texto[1];
+        }
+        else
+        {
+            mail_error = "Id_reporte : " + rep_id + "\n" +
+                 "Fecha : " + mail_error;
+        }
+        Console.WriteLine("************** SQL contactos " + mail_error + " **************");
+        /*PIVO*/
     }
     //////*******  Parametros *********////////////////////
 
@@ -229,9 +258,7 @@ void init_var()
     "web-master@logis.com.mx for any question or to unsubscribe.";
     mail_From = "web-reports@logis.com.mx";
     mail_FromName = "Logis report server";
-    mail_grupo_error = "desarrollo_web@logis.com.mx;christelle@logis.com.mx;desarrollo_web@logis.com.mx;desarrollo_web@logis.com.mx;";
-    //carpeta = "E:\reportes\web_reports\"
-    //second_path = "E:\reportes\web_reports\distant\"
+    mail_grupo_error[0] = "desarrollo_web@logis.com.mx ;";
     IP_servidor1 = "192.168.100.5";
     IP_servidor2 = "192.168.100.4";
     first_path = "\\\\" + IP_servidor1 + "\\reportes\\web_reports\\";
