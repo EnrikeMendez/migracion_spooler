@@ -1,4 +1,0 @@
-Buscar "WEB_LTL_VENTA_MOSTRADOR" (Hay 2 coincidencia(s) en 1 archivo(s) de 353 búsqueda(s)) [Normal]
-  C:\pc\Spooler\ReportServer_QA\web_desglose_operaciones_mod.bas (2 coincidencias)
-	Línea 100:     SQL_1 = SQL_1 & "       ,WEB_LTL_VENTA_MOSTRADOR WVM " & vbCrLf
-	Línea 207:     SQL_1 = SQL_1 & "       ,WEB_LTL_VENTA_MOSTRADOR WVM " & vbCrLf
