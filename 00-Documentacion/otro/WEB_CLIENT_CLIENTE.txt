@@ -1,0 +1,191 @@
+  C:\pc\Spooler\ReportServer_QA\funciones.bas (1 coincidencias)
+	Línea  603:     SQL = SQL & "       , WEB_CLIENT_CLIENTE WCCL " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_backlog2_mod.bas (3 coincidencias)
+	Línea  65: SQL_PEND = SQL_PEND & "   , WEB_CLIENT_CLIENTE WCCL " & vbCrLf
+	Línea 175: SQL_PEND = SQL_PEND & "   , WEB_CLIENT_CLIENTE WCCL " & vbCrLf
+	Línea 292: SQL_ENTREGA = SQL_ENTREGA & "   , WEB_CLIENT_CLIENTE WCCL " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_cd_pendientes_mod.bas (5 coincidencias)
+	Línea  199: SQL_LTL = SQL_LTL & "                     WEB_CLIENT_CLIENTE WCCL, " & vbCrLf
+	Línea  586: SQL_LTL = SQL_LTL & "                     WEB_CLIENT_CLIENTE WCCL, " & vbCrLf
+	Línea 1956:             SQL = SQL & "     WEB_CLIENT_CLIENTE WCCL, " & vbCrLf
+	Línea 2508:         SQL = SQL & "     ,WEB_CLIENT_CLIENTE WCCL " & vbCrLf
+	Línea 2523:             SQL = SQL & "     ,WEB_CLIENT_CLIENTE WCCL " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_cd_pendientes_prueba_mod.bas (5 coincidencias)
+	Línea  249:     SQL = SQL & ",WEB_CLIENT_CLIENTE" & vbCrLf
+	Línea  262:     SQL = SQL & ",WEB_CLIENT_CLIENTE" & vbCrLf
+	Línea  282:     SQL = SQL & ",WEB_CLIENT_CLIENTE" & vbCrLf
+	Línea  292:     SQL = SQL & ",WEB_CLIENT_CLIENTE" & vbCrLf
+	Línea 1349:             SQL = SQL & "     WEB_CLIENT_CLIENTE WCCL, " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_evol_clientes_mod.bas (5 coincidencias)
+	Línea  153:         SQL_STAT = SQL_STAT & "     , WEB_CLIENT_CLIENTE  WCCL  " & vbCrLf
+	Línea  602:         SQL_IMP_KM_KG = SQL_IMP_KM_KG & "      , WEB_CLIENT_CLIENTE  WCCL   " & vbCrLf
+	Línea 1013:     SQL_CDAD = SQL_CDAD & "      , WEB_CLIENT_CLIENTE  WCCL   " & vbCrLf
+	Línea 1463:     SQL_CDAD_BASE = SQL_CDAD_BASE & "      , WEB_CLIENT_CLIENTE  WCCL   " & vbCrLf
+	Línea 1878:     SQL_CDAD_BASE_3MESES = SQL_CDAD_BASE_3MESES & "      , WEB_CLIENT_CLIENTE  WCCL   " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_genera_TLN.bas (1 coincidencias)
+	Línea  75:         sql = sql & " left join WEB_CLIENT_CLIENTE WCCL on  (WCCL.WCCLCLAVE) = (WEL.WEL_WCCLCLAVE) left join ECIUDADES CIUW on (CIUW.VILCLEF) = (WCCL.WCCL_VILLE) left join EESTADOS ESTW on (ESTW.ESTESTADO) = (CIUW.VIL_ESTESTADO)  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_kpi_evidencias_mod.bas (1 coincidencias)
+	Línea 182: SQL_DETALLE = SQL_DETALLE & "       , WEB_CLIENT_CLIENTE WCCL  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_kpi_mod.bas (1 coincidencias)
+	Línea 123:         SQL_DETALLE = SQL_DETALLE & "     , WEB_CLIENT_CLIENTE WCCL   " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_kpi_modif_ddmm.bas (1 coincidencias)
+	Línea 120: SQL_DETALLE = SQL_DETALLE & "     , WEB_CLIENT_CLIENTE WCCL   " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_kpi_modif_mod.bas (1 coincidencias)
+	Línea 103: SQL_DETALLE = SQL_DETALLE & "     , WEB_CLIENT_CLIENTE WCCL   " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_kpi_resumen_mod.bas (1 coincidencias)
+	Línea  69: SQL_RESUMEN = SQL_RESUMEN & "     , WEB_CLIENT_CLIENTE WCCL   " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_kpi_resumen_suc_mod.bas (1 coincidencias)
+	Línea  63: SQL_RES = SQL_RES & "        , WEB_CLIENT_CLIENTE WCCL    " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_lista_citas_mod.bas (3 coincidencias)
+	Línea  64: SQL_DETALLE = SQL_DETALLE & "    , WEB_CLIENT_CLIENTE WCCL  " & vbCrLf
+	Línea 188: SQL_DETALLE = SQL_DETALLE & "    , WEB_CLIENT_CLIENTE WCCL  " & vbCrLf
+	Línea 309: SQL_DETALLE = SQL_DETALLE & "    , WEB_CLIENT_CLIENTE WCCL  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_ltl_pendientes_mod.bas (4 coincidencias)
+	Línea  184: SQL_LTL = SQL_LTL & "                     WEB_CLIENT_CLIENTE WCCL, " & vbCrLf
+	Línea  637: SQL_LTL = SQL_LTL & "                     WEB_CLIENT_CLIENTE WCCL, " & vbCrLf
+	Línea 1937:         SQL = SQL & "     ,WEB_CLIENT_CLIENTE WCCL " & vbCrLf
+	Línea 1951:             SQL = SQL & "     ,WEB_CLIENT_CLIENTE WCCL " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_ltl_pendientes_prueba_mod.bas (5 coincidencias)
+	Línea  255:     SQL = SQL & ",WEB_CLIENT_CLIENTE" & vbCrLf
+	Línea  268:     SQL = SQL & ",WEB_CLIENT_CLIENTE" & vbCrLf
+	Línea  337:     SQL = SQL & " WEB_LTL , WEB_CLIENT_CLIENTE, ECLIENT" & vbCrLf
+	Línea  351:     SQL = SQL & "WEB_LTL , WEB_CLIENT_CLIENTE, ECLIENT" & vbCrLf
+	Línea 1246:             SQL = SQL & "     WEB_CLIENT_CLIENTE WCCL, " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_ped_exp_sin_NC_mod.bas (2 coincidencias)
+	Línea 200:     SQL_PICKING = SQL_PICKING & "   WEB_CLIENT_CLIENTE WCCL, " & vbCrLf
+	Línea 297:     SQL_PICKING = SQL_PICKING & "   WEB_CLIENT_CLIENTE WCCL, " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_pendientes_cedis_ori2_mod.bas (10 coincidencias)
+	Línea  321: SQL_1 = SQL_1 & "    , WEB_CLIENT_CLIENTE WCCL    " & vbCrLf
+	Línea  439: SQL_1 = SQL_1 & "    , WEB_CLIENT_CLIENTE WCCL  " & vbCrLf
+	Línea  888: SQL_2 = SQL_2 & "      WEB_CLIENT_CLIENTE WCCL,    " & vbCrLf
+	Línea 1596: SQL_3 = SQL_3 & "   , WEB_CLIENT_CLIENTE WCCL " & vbCrLf
+	Línea 2192: SQL_4 = SQL_4 & "   , WEB_CLIENT_CLIENTE WCCL " & vbCrLf
+	Línea 2396: SQL_5 = SQL_5 & "       WEB_CLIENT_CLIENTE WCCL,     " & vbCrLf
+	Línea 2564: SQL_5 = SQL_5 & "       WEB_CLIENT_CLIENTE WCCL,     " & vbCrLf
+	Línea 2904: SQL_6 = SQL_6 & "    , WEB_CLIENT_CLIENTE WCCL    " & vbCrLf
+	Línea 3254: SQL_7 = SQL_7 & "   , WEB_CLIENT_CLIENTE WCCL   " & vbCrLf
+	Línea 3441: SQL_8 = SQL_8 & "    , WEB_CLIENT_CLIENTE WCCL  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_pend_cedis_mod.bas (10 coincidencias)
+	Línea  391: SQL_PEND_ENVIAR = SQL_PEND_ENVIAR & "   , WEB_CLIENT_CLIENTE WCCL " & vbCrLf
+	Línea  814: SQL_PEND_ENVIAR = SQL_PEND_ENVIAR & "   , WEB_CLIENT_CLIENTE WCCL " & vbCrLf
+	Línea 1168: SQL_PEND_ENVIAR = SQL_PEND_ENVIAR & "   , WEB_CLIENT_CLIENTE WCCL " & vbCrLf
+	Línea 1661: SQL_TRAS_PEND = SQL_TRAS_PEND & "   , WEB_CLIENT_CLIENTE WCCL " & vbCrLf
+	Línea 2211: SQL_EXP_SIN_NC = SQL_EXP_SIN_NC & "   , WEB_CLIENT_CLIENTE WCCL " & vbCrLf
+	Línea 2406: SQL_SIN_ENTREGA = SQL_SIN_ENTREGA & "      WEB_CLIENT_CLIENTE WCCL,    " & vbCrLf
+	Línea 2694: SQL_SIN_EVIDENCIA = SQL_SIN_EVIDENCIA & "    WEB_CLIENT_CLIENTE WCCL,  " & vbCrLf
+	Línea 3188: SQL_SIN_ENVIO_EVID = SQL_SIN_ENVIO_EVID & "       WEB_CLIENT_CLIENTE WCCL,     " & vbCrLf
+	Línea 3499: 'SQL_SIN_EVID_CLI = SQL_SIN_EVID_CLI & "   , WEB_CLIENT_CLIENTE WCCL   " & vbCrLf
+	Línea 3653: SQL_SIN_EVID_CLI = SQL_SIN_EVID_CLI & "       WEB_CLIENT_CLIENTE WCCL,     " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_pend_cedis_ori_mod.bas (10 coincidencias)
+	Línea  559: SQL_1 = SQL_1 & "    , WEB_CLIENT_CLIENTE WCCL    " & vbCrLf
+	Línea  893: SQL_1 = SQL_1 & "    , WEB_CLIENT_CLIENTE WCCL  " & vbCrLf
+	Línea 1711: SQL_2 = SQL_2 & "      WEB_CLIENT_CLIENTE WCCL,    " & vbCrLf
+	Línea 3152: SQL_3 = SQL_3 & "   , WEB_CLIENT_CLIENTE WCCL " & vbCrLf
+	Línea 4228: SQL_4 = SQL_4 & "   , WEB_CLIENT_CLIENTE WCCL " & vbCrLf
+	Línea 4647: SQL_5 = SQL_5 & "       WEB_CLIENT_CLIENTE WCCL,     " & vbCrLf
+	Línea 5102: SQL_5 = SQL_5 & "       WEB_CLIENT_CLIENTE WCCL,     " & vbCrLf
+	Línea 5752: SQL_6 = SQL_6 & "    , WEB_CLIENT_CLIENTE WCCL    " & vbCrLf
+	Línea 6376: SQL_7 = SQL_7 & "   , WEB_CLIENT_CLIENTE WCCL   " & vbCrLf
+	Línea 6846: SQL_8 = SQL_8 & "    , WEB_CLIENT_CLIENTE WCCL  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_rentabilidad_exp_mod.bas (1 coincidencias)
+	Línea 114: SQL = SQL & "   WEB_CLIENT_CLIENTE WCCL, " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_stats_CEDIS_resumen_mod.bas (1 coincidencias)
+	Línea  134: SQL_CEDIS = SQL_CEDIS & "       , WEB_CLIENT_CLIENTE WCCL     " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_stats_Oper_CEDIS_mod.bas (4 coincidencias)
+	Línea  134: SQL_CEDIS = SQL_CEDIS & "       , WEB_CLIENT_CLIENTE WCCL     " & vbCrLf
+	Línea  438:     SQL_OPERADOR = SQL_OPERADOR & "        , WEB_CLIENT_CLIENTE WCCL   " & vbCrLf
+	Línea  666:     SQL_OPER_FACT = SQL_OPER_FACT & "       , WEB_CLIENT_CLIENTE WCCL  " & vbCrLf
+	Línea  850:     SQL_ANOMALIAS_TN = SQL_ANOMALIAS_TN & "     , WEB_CLIENT_CLIENTE WCCL     " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_carga_archivo_mod.bas (7 coincidencias)
+	Línea  886:                                             ''' SQL = SQL & " FROM WEB_CLIENT_CLIENTE WCCL " & vbCrLf
+	Línea  912:                                             ''' SQL = SQL & " FROM WEB_CLIENT_CLIENTE WCCL " & vbCrLf
+	Línea  998:                     ''' SQL = SQL & " FROM WEB_CLIENT_CLIENTE " & vbCrLf
+	Línea 1090:                                                     ''' SQL = SQL & " FROM WEB_CLIENT_CLIENTE " & vbCrLf
+	Línea 2617:     SQL = SQL & " FROM WEB_CLIENT_CLIENTE "
+	Línea 2830: '            SQL = " SELECT WCCLCLAVE, NVL((SELECT DER_ALLCLAVE FROM EDESTINOS_POR_RUTA WHERE DER_VILCLEF = WCCL_VILLE AND DER_ALLCLAVE IS NOT NULL AND ROWNUM = 1), 1) ALLCLAVE_DEST  FROM WEB_CLIENT_CLIENTE  WHERE WCCLCLAVE = '" & get_cclclave & "'   /*AND EXISTS (" & vbCrLf
+	Línea 3042:         'SQL_VAL_CCL = SQL_VAL_CCL & " FROM WEB_CLIENT_CLIENTE WCCL " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_carga_generica_archivo_mod.bas (2 coincidencias)
+	Línea  355:                                         SQL = SQL & " FROM       WEB_CLIENT_CLIENTE " & vbCrLf
+	Línea 1017:     SQL = SQL & " FROM  WEB_CLIENT_CLIENTE "
+  C:\pc\Spooler\ReportServer_QA\web_carga_ltl_austromex_cp_mod.bas (5 coincidencias)
+	Línea  769:                                                         SQL = SQL & " WEL_ALLCLAVE_DEST = (SELECT DER_ALLCLAVE FROM WEB_CLIENT_CLIENTE, EDESTINOS_POR_RUTA WHERE WCCLCLAVE = " & mi_wcclclave & " AND DER_VILCLEF = WCCL_VILLE) " & vbCrLf
+	Línea  983:                 SQL = SQL & " FROM WEB_CLIENT_CLIENTE  " & vbCrLf
+	Línea  999:                         SQL = "SELECT SEQ_WEB_CLIENT_CLIENTE.nextval FROM DUAL "
+	Línea 1007:                         SQL = "INSERT INTO WEB_CLIENT_CLIENTE ( " & vbCrLf
+	Línea 1026:                         SQL = " UPDATE WEB_CLIENT_CLIENTE " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_carga_ltl_austromex_mod.bas (5 coincidencias)
+	Línea  821:                         SQL = SQL & " WEL_ALLCLAVE_DEST = (SELECT DER_ALLCLAVE FROM WEB_CLIENT_CLIENTE, EDESTINOS_POR_RUTA WHERE WCCLCLAVE = " & mi_wcclclave & " AND DER_VILCLEF = WCCL_VILLE) " & vbCrLf
+	Línea 1053:                 SQL = SQL & " FROM WEB_CLIENT_CLIENTE  " & vbCrLf
+	Línea 1068:                         SQL = "SELECT SEQ_WEB_CLIENT_CLIENTE.nextval FROM DUAL "
+	Línea 1076:                         SQL = "INSERT INTO WEB_CLIENT_CLIENTE ( " & vbCrLf
+	Línea 1095:                         SQL = " UPDATE WEB_CLIENT_CLIENTE " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_carga_ltl_helvex_cp_mod.bas (6 coincidencias)
+	Línea  924:                                         SQL = SQL & "    WEL_ALLCLAVE_DEST      =       (SELECT DER_ALLCLAVE FROM WEB_CLIENT_CLIENTE, EDESTINOS_POR_RUTA WHERE WCCLCLAVE = " & mi_wcclclave & " AND DER_VILCLEF = WCCL_VILLE) " & vbCrLf
+	Línea 1151:                 SQL = SQL & "FROM       WEB_CLIENT_CLIENTE " & vbCrLf
+	Línea 1177:                         SQL = "SELECT   SEQ_WEB_CLIENT_CLIENTE.nextval  FROM    DUAL " & vbCrLf
+	Línea 1183:                         SQL = SQL & "INSERT INTO WEB_CLIENT_CLIENTE ( " & vbCrLf
+	Línea 1205:                         SQL = SQL & "UPDATE     WEB_CLIENT_CLIENTE " & vbCrLf
+	Línea 1332:                                 SQL = SQL & "           ,WEB_CLIENT_CLIENTE " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_carga_ltl_helvex_mod.bas (6 coincidencias)
+	Línea  747:                                         SQL = SQL & " WEL_ALLCLAVE_DEST = (SELECT DER_ALLCLAVE FROM WEB_CLIENT_CLIENTE, EDESTINOS_POR_RUTA WHERE WCCLCLAVE = " & mi_wcclclave & " AND DER_VILCLEF = WCCL_VILLE) " & vbCrLf
+	Línea 1020:         SQL = SQL & " FROM WEB_CLIENT_CLIENTE  " & vbCrLf
+	Línea 1046:             SQL = "SELECT SEQ_WEB_CLIENT_CLIENTE.nextval FROM DUAL "
+	Línea 1051:             SQL = "INSERT INTO WEB_CLIENT_CLIENTE ( " & vbCrLf
+	Línea 1072:             SQL = " UPDATE WEB_CLIENT_CLIENTE " & vbCrLf
+	Línea 1176:                 SQL = SQL & "   , WEB_CLIENT_CLIENTE  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_carga_ltl_helvex_mod_old.bas (6 coincidencias)
+	Línea  95:         SQL = SQL & "   , WEB_CLIENT_CLIENTE " & vbCrLf
+	Línea 250:                 SQL = SQL & " SET WEL_ALLCLAVE_DEST = (SELECT DER_ALLCLAVE FROM WEB_CLIENT_CLIENTE, EDESTINOS_POR_RUTA WHERE WCCLCLAVE = " & mi_wcclclave & " AND DER_VILCLEF = WCCL_VILLE) " & vbCrLf
+	Línea 338:     SQL = SQL & " FROM WEB_CLIENT_CLIENTE  " & vbCrLf
+	Línea 364:         SQL = "SELECT SEQ_WEB_CLIENT_CLIENTE.nextval FROM DUAL "
+	Línea 369:         SQL = "INSERT INTO WEB_CLIENT_CLIENTE ( " & vbCrLf
+	Línea 390:         SQL = " UPDATE WEB_CLIENT_CLIENTE " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_carga_ltl_urrea_mod.bas (8 coincidencias)
+	Línea  278:                 my_query = my_query & "        ,WEB_CLIENT_CLIENTE WCCL " & vbCrLf
+	Línea  373:                 my_query = my_query & "        ,WEB_CLIENT_CLIENTE WCCL " & vbCrLf
+	Línea 1425:                             SQL = SQL & " WEL_ALLCLAVE_DEST = (SELECT DER_ALLCLAVE FROM WEB_CLIENT_CLIENTE, EDESTINOS_POR_RUTA WHERE WCCLCLAVE = " & mi_wcclclave & " AND DER_VILCLEF = WCCL_VILLE) " & vbCrLf
+	Línea 1619:                 SQL = SQL & " FROM WEB_CLIENT_CLIENTE  " & vbCrLf
+	Línea 1715:                         SQL = "SELECT SEQ_WEB_CLIENT_CLIENTE.nextval FROM DUAL "
+	Línea 1720:                         SQL = "INSERT INTO WEB_CLIENT_CLIENTE ( " & vbCrLf
+	Línea 1741:                         SQL = " UPDATE WEB_CLIENT_CLIENTE " & vbCrLf
+	Línea 1865:                 SQL = SQL & "   , WEB_CLIENT_CLIENTE  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_cd_ltl_email_mod.bas (1 coincidencias)
+	Línea  64:     SQL = SQL & "    , WEB_CLIENT_CLIENTE  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_CD_LTL_mod.bas (4 coincidencias)
+	Línea  158:         SQL = SQL & "     , WEB_CLIENT_CLIENTE WCCL  " & vbCrLf
+	Línea  248:         SQL = SQL & "   , WEB_CLIENT_CLIENTE WCCL " & vbCrLf
+	Línea  502:         SQL = SQL & "     , WEB_CLIENT_CLIENTE WCCL  " & vbCrLf
+	Línea  596:         SQL = SQL & "    , WEB_CLIENT_CLIENTE WCCL  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_CD_LTL_pick_anomalias_mod.bas (1 coincidencias)
+	Línea 576: SQL = SQL & "       , WEB_CLIENT_CLIENTE  WCCL  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_CD_LTL_pick_mod.bas (2 coincidencias)
+	Línea  563:     SQL_RESUMEN = SQL_RESUMEN & "      , WEB_CLIENT_CLIENTE  WCCL " & vbCrLf
+	Línea  810:     SQL_ANOMALIAS_TN = SQL_ANOMALIAS_TN & "    , WEB_CLIENT_CLIENTE     " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_control_digit2_mod.bas (1 coincidencias)
+	Línea  227: SQL_DIGIT = SQL_DIGIT & "   , WEB_CLIENT_CLIENTE WCCL  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_control_digit3_mod.bas (1 coincidencias)
+	Línea  311: SQL_DIGIT = SQL_DIGIT & "   , WEB_CLIENT_CLIENTE WCCL  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_control_digit_entrada_mod.bas (1 coincidencias)
+	Línea  96: SQL = SQL & "    , WEB_CLIENT_CLIENTE WCCL   " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_control_digit_mod.bas (2 coincidencias)
+	Línea  49: SQL_DIGIT = SQL_DIGIT & "     , WEB_CLIENT_CLIENTE " & vbCrLf
+	Línea 342: 'SQL = SQL & "     , WEB_CLIENT_CLIENTE " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_conv_sin_exp_mod.bas (1 coincidencias)
+	Línea 123: SQL_Det = SQL_Det & "   , web_client_cliente " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_cp_carga_unidades_mod.bas (2 coincidencias)
+	Línea  170:         SQL_CP = SQL_CP & "    , WEB_CLIENT_CLIENTE WCCL   " & vbCrLf
+	Línea  753:         SQL_CP_BASE = SQL_CP_BASE & "    , WEB_CLIENT_CLIENTE WCCL   " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_listado_importe_x_kg_mod.bas (1 coincidencias)
+	Línea 100: SQL = SQL & "    , WEB_CLIENT_CLIENTE WCCL  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_ltl_puertos_front_mod.bas (1 coincidencias)
+	Línea 132: SQL = SQL & " , web_client_cliente wccl " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_talones_mod.bas (6 coincidencias)
+	Línea  59:     SQL = SQL & "  , WEB_CLIENT_CLIENTE WCCL  " & vbCrLf
+	Línea 158:     SQL = SQL & "  , WEB_CLIENT_CLIENTE WCCL  " & vbCrLf
+	Línea 284:         SQL = SQL & "    , WEB_CLIENT_CLIENTE WCCL  " & vbCrLf
+	Línea 545:     SQL = SQL & "  , WEB_CLIENT_CLIENTE WCCL  " & vbCrLf
+	Línea 641:     SQL = SQL & "  , WEB_CLIENT_CLIENTE WCCL  " & vbCrLf
+	Línea 769:         SQL = SQL & "    , WEB_CLIENT_CLIENTE WCCL  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_talones_pdf_mod.bas (2 coincidencias)
+	Línea  50:     SQL = SQL & "  , WEB_CLIENT_CLIENTE WCCL  " & vbCrLf
+	Línea 125:         SQL = SQL & "    , WEB_CLIENT_CLIENTE WCCL  " & vbCrLf

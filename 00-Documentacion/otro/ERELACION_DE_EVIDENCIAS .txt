@@ -1,0 +1,105 @@
+ C:\pc\Spooler\ReportServer_QA\imei_reporte_general.bas (2 coincidencias)
+	Línea   92:     SQL_EXP_TRASLADO = SQL_EXP_TRASLADO & " , ERELACION_DE_EVIDENCIAS RDE  " & vbCrLf
+	Línea  149:     SQL_EXP_TRASLADO = SQL_EXP_TRASLADO & " , ERELACION_DE_EVIDENCIAS RDE  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_anom_captura.bas (3 coincidencias)
+	Línea  151:     SQL_DETALLE_PEDIDO = SQL_DETALLE_PEDIDO & "   , ERELACION_DE_EVIDENCIAS RDE " & vbCrLf
+	Línea  195:     SQL_DETALLE_PEDIDO_TIM = SQL_DETALLE_PEDIDO_TIM & " FROM ERELACION_DE_EVIDENCIAS RDE  " & vbCrLf
+	Línea  315:     SQL_DETALLE_DCK = SQL_DETALLE_DCK & "    , ERELACION_DE_EVIDENCIAS RDE  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_backlog_mod.bas (1 coincidencias)
+	Línea  136:     SQL_Evidencia = SQL_Evidencia & "  , ERELACION_DE_EVIDENCIAS RDE" & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_cd_pendientes_mod.bas (6 coincidencias)
+	Línea  213: SQL_LTL = SQL_LTL & "                     ERELACION_DE_EVIDENCIAS RDE, " & vbCrLf
+	Línea  225: SQL_LTL = SQL_LTL & "                    , ERELACION_DE_EVIDENCIAS RDE_DEST " & vbCrLf
+	Línea  408: 'SQL_LTL = SQL_LTL & "                 FROM ERELACION_DE_EVIDENCIAS RDE2 " & vbCrLf
+	Línea  868: SQL_LTL = SQL_LTL & "                      ERELACION_DE_EVIDENCIAS RDE,  " & vbCrLf
+	Línea  877: SQL_LTL = SQL_LTL & "                     , ERELACION_DE_EVIDENCIAS RDE_DEST  " & vbCrLf
+	Línea 1082: 'SQL_LTL = SQL_LTL & "                  FROM ERELACION_DE_EVIDENCIAS RDE2  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_imei_resumen_ejecutivo.bas (1 coincidencias)
+	Línea  151:     SQL_EXP_TRASLADO = SQL_EXP_TRASLADO & "     ,ERELACION_DE_EVIDENCIAS RDE " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_kpi_evidencias_mod.bas (2 coincidencias)
+	Línea  75: SQL_DETALLE = SQL_DETALLE & "      , ERELACION_DE_EVIDENCIAS RDE  " & vbCrLf
+	Línea 170: SQL_DETALLE = SQL_DETALLE & "       , ERELACION_DE_EVIDENCIAS RDE   " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_kpi_rechazos_mod.bas (3 coincidencias)
+	Línea  70: SQL_DETALLE = SQL_DETALLE & "     , ERELACION_DE_EVIDENCIAS RDE_DIR " & vbCrLf
+	Línea 160: SQL_DETALLE = SQL_DETALLE & "  , ERELACION_DE_EVIDENCIAS RDE " & vbCrLf
+	Línea 164: SQL_DETALLE = SQL_DETALLE & "     , ERELACION_DE_EVIDENCIAS RDE_DIR " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_ltl_pendientes_mod.bas (2 coincidencias)
+	Línea  196: SQL_LTL = SQL_LTL & "                     ERELACION_DE_EVIDENCIAS RDE, " & vbCrLf
+	Línea  207: SQL_LTL = SQL_LTL & "                    , ERELACION_DE_EVIDENCIAS RDE_DEST " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_pendientes_cedis_ori2_mod.bas (4 coincidencias)
+	Línea 2805: SQL_6 = SQL_6 & "               FROM ERELACION_DE_EVIDENCIAS RDE1 " & vbCrLf
+	Línea 2981: SQL_6 = SQL_6 & "               FROM ERELACION_DE_EVIDENCIAS RDE1 " & vbCrLf
+	Línea 3132: SQL_7 = SQL_7 & "               FROM ERELACION_DE_EVIDENCIAS RDE1 " & vbCrLf
+	Línea 3296: SQL_7 = SQL_7 & "               FROM ERELACION_DE_EVIDENCIAS RDE1 " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_pend_cedis_mod.bas (7 coincidencias)
+	Línea 2735: SQL_SIN_EVIDENCIA = SQL_SIN_EVIDENCIA & "                                    ,ERELACION_DE_EVIDENCIAS " & vbCrLf
+	Línea 3171: SQL_SIN_ENVIO_EVID = SQL_SIN_ENVIO_EVID & "     ERELACION_DE_EVIDENCIAS RDE,  " & vbCrLf
+	Línea 3257: SQL_SIN_ENVIO_EVID = SQL_SIN_ENVIO_EVID & "                FROM ERELACION_DE_EVIDENCIAS RDE1  " & vbCrLf
+	Línea 3383: 'SQL_SIN_EVID_CLI = SQL_SIN_EVID_CLI & "               FROM ERELACION_DE_EVIDENCIAS RDE1 " & vbCrLf
+	Línea 3531: 'SQL_SIN_EVID_CLI = SQL_SIN_EVID_CLI & "               FROM ERELACION_DE_EVIDENCIAS RDE1 " & vbCrLf
+	Línea 3717: SQL_SIN_EVID_CLI = SQL_SIN_EVID_CLI & "                FROM ERELACION_DE_EVIDENCIAS RDE1  " & vbCrLf
+	Línea 3848: SQL_SIN_EVID_CLI = SQL_SIN_EVID_CLI & "                FROM ERELACION_DE_EVIDENCIAS RDE1  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_stats_CEDIS_resumen_mod.bas (2 coincidencias)
+	Línea  128: SQL_CEDIS = SQL_CEDIS & "        , ERELACION_DE_EVIDENCIAS RDE     " & vbCrLf
+	Línea  305:     SQL_CEDIS = SQL_CEDIS & "        , ERELACION_DE_EVIDENCIAS RDE     " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_stats_Oper_CEDIS_mod.bas (4 coincidencias)
+	Línea  127: SQL_CEDIS = SQL_CEDIS & "        , ERELACION_DE_EVIDENCIAS RDE     " & vbCrLf
+	Línea  306:     SQL_CEDIS = SQL_CEDIS & "        , ERELACION_DE_EVIDENCIAS RDE     " & vbCrLf
+	Línea  429:     SQL_OPERADOR = SQL_OPERADOR & "        , ERELACION_DE_EVIDENCIAS RDE     " & vbCrLf
+	Línea  585:     SQL_OPERADOR = SQL_OPERADOR & "        , ERELACION_DE_EVIDENCIAS RDE     " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trad_general_pedidos_mod.bas (1 coincidencias)
+	Línea 161: SQL = SQL & "       ERELACION_DE_EVIDENCIAS RDE, " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trad_indic_calidad_mod.bas (8 coincidencias)
+	Línea  130: SQL_DETALLE_INCIDENCIA = SQL_DETALLE_INCIDENCIA & "   , ERELACION_DE_EVIDENCIAS RDE " & vbCrLf
+	Línea  156: SQL_DETALLE_INCIDENCIA = SQL_DETALLE_INCIDENCIA & "   , ERELACION_DE_EVIDENCIAS RDE " & vbCrLf
+	Línea  216: SQL_DETALLE_EVIDENCIA = SQL_DETALLE_EVIDENCIA & "     , ERELACION_DE_EVIDENCIAS RDE   " & vbCrLf
+	Línea  275: SQL_DETALLE_EVIDENCIA = SQL_DETALLE_EVIDENCIA & "     , ERELACION_DE_EVIDENCIAS RDE   " & vbCrLf
+	Línea  608:     SQL_EVIDENCIAS = SQL_EVIDENCIAS & "     ERELACION_DE_EVIDENCIAS RDE   " & vbCrLf
+	Línea  636:     SQL_EVIDENCIAS = SQL_EVIDENCIAS & "     ERELACION_DE_EVIDENCIAS RDE   " & vbCrLf
+	Línea  674: SQL_EVIDENCIAS_POR_DESTINO = SQL_EVIDENCIAS_POR_DESTINO & "    , ERELACION_DE_EVIDENCIAS RDE  " & vbCrLf
+	Línea  715: SQL_EVIDENCIAS_POR_DESTINO = SQL_EVIDENCIAS_POR_DESTINO & "    , ERELACION_DE_EVIDENCIAS RDE  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trad_planeacion_mod.bas (2 coincidencias)
+	Línea  598: SQL = SQL & "   , ERELACION_DE_EVIDENCIAS RDE   " & vbCrLf
+	Línea  688: SQL = SQL & "   , ERELACION_DE_EVIDENCIAS RDE   " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_carga_ltl_urrea_mod.bas (1 coincidencias)
+	Línea  286:                 my_query = my_query & "        ,ERELACION_DE_EVIDENCIAS RDE " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_control_digit2_mod.bas (6 coincidencias)
+	Línea  222: SQL_DIGIT = SQL_DIGIT & "   , ERELACION_DE_EVIDENCIAS RDE " & vbCrLf
+	Línea  231: SQL_DIGIT = SQL_DIGIT & "   , ERELACION_DE_EVIDENCIAS RDE_DEST  " & vbCrLf
+	Línea  254: SQL_DIGIT = SQL_DIGIT & "                FROM ERELACION_DE_EVIDENCIAS RDE2  " & vbCrLf
+	Línea  323: SQL_DIGIT = SQL_DIGIT & "   , ERELACION_DE_EVIDENCIAS RDE " & vbCrLf
+	Línea  328: SQL_DIGIT = SQL_DIGIT & "   , ERELACION_DE_EVIDENCIAS RDE_DEST  " & vbCrLf
+	Línea  351: SQL_DIGIT = SQL_DIGIT & "                FROM ERELACION_DE_EVIDENCIAS RDE2  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_control_digit3_mod.bas (6 coincidencias)
+	Línea  306: SQL_DIGIT = SQL_DIGIT & "   , ERELACION_DE_EVIDENCIAS RDE " & vbCrLf
+	Línea  315: SQL_DIGIT = SQL_DIGIT & "   , ERELACION_DE_EVIDENCIAS RDE_DEST  " & vbCrLf
+	Línea  338: SQL_DIGIT = SQL_DIGIT & "                FROM ERELACION_DE_EVIDENCIAS RDE2  " & vbCrLf
+	Línea  433: SQL_DIGIT = SQL_DIGIT & "   , ERELACION_DE_EVIDENCIAS RDE " & vbCrLf
+	Línea  438: SQL_DIGIT = SQL_DIGIT & "   , ERELACION_DE_EVIDENCIAS RDE_DEST  " & vbCrLf
+	Línea  461: SQL_DIGIT = SQL_DIGIT & "                FROM ERELACION_DE_EVIDENCIAS RDE2  " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_control_digit_mod.bas (4 coincidencias)
+	Línea  55: SQL_DIGIT = SQL_DIGIT & "     , ERELACION_DE_EVIDENCIAS " & vbCrLf
+	Línea 122: SQL_DIGIT = SQL_DIGIT & "     , ERELACION_DE_EVIDENCIAS " & vbCrLf
+	Línea 349: 'SQL = SQL & "     , ERELACION_DE_EVIDENCIAS " & vbCrLf
+	Línea 397: 'SQL = SQL & "     , ERELACION_DE_EVIDENCIAS " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_entregas_fuji_mod.bas (2 coincidencias)
+	Línea  89: SQL = SQL & "                                ,ERELACION_DE_EVIDENCIAS " & vbCrLf
+	Línea 238: SQL = SQL & "                                ,ERELACION_DE_EVIDENCIAS " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_entregas_fuji_mod_especifica_no_usar.bas (2 coincidencias)
+	Línea  81: SQL = SQL & "                                ,ERELACION_DE_EVIDENCIAS " & vbCrLf
+	Línea 251: SQL = SQL & "                                ,ERELACION_DE_EVIDENCIAS " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_entrega_urrea_mod.bas (2 coincidencias)
+	Línea  82: SQL = SQL & "                                ,ERELACION_DE_EVIDENCIAS " & vbCrLf
+	Línea 224: SQL = SQL & "                                ,ERELACION_DE_EVIDENCIAS " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_facturas_fuji_mod.bas (1 coincidencias)
+	Línea  77: SQL = SQL & "   , ERELACION_DE_EVIDENCIAS RDE " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_facturas_mod.bas (1 coincidencias)
+	Línea 143:   SQL = SQL & "  , ERELACION_DE_EVIDENCIAS RDE " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_pedidos_mods.bas (2 coincidencias)
+	Línea 126: SQL = SQL & "     , ERELACION_DE_EVIDENCIAS RDE   " & vbCrLf
+	Línea 285: SQL = SQL & "      , ERELACION_DE_EVIDENCIAS RDE   " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_talones_mod.bas (2 coincidencias)
+	Línea 166:     SQL = SQL & "  , ERELACION_DE_EVIDENCIAS RDE " & vbCrLf
+	Línea 649:     SQL = SQL & "  , ERELACION_DE_EVIDENCIAS RDE " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_talones_pdf_mod.bas (1 coincidencias)
+	Línea  56:     SQL = SQL & "  , ERELACION_DE_EVIDENCIAS RDE " & vbCrLf

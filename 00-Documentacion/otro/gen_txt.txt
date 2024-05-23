@@ -1,0 +1,1126 @@
+C:\pc\Spooler\ReportServer_QA\Anexo24.bas (4 coincidencias)
+	Línea  299:     Set File_IO = FSO.CreateTextFile(Left(Archivo, Len(Archivo) - 4) & "_00.txt")
+	Línea 3503: Debug.Print "Comienza llenado de txt con los elementos de tab_titulos --> Cabeceras"
+	Línea 3515: Debug.Print "Comienza llenado de txt con los elementos de tab_xls2 --> Informacion"
+	Línea 3535:     file_tab(0, UBound(file_tab, 2)) = Left(Archivo, Len(Archivo) - 4) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\Backlog.bas (3 coincidencias)
+	Línea 485:         file_name_temp = Left(Archivo, Len(Archivo) - 4) & "_" & i & ".txt"
+	Línea 486:         Set File_IO = FSO.CreateTextFile(Left(Archivo, Len(Archivo) - 4) & "_" & i & ".txt", True)
+	Línea 554: Set File_IO = FSO.CreateTextFile(Left(Archivo, Len(Archivo) - 4) & "_00.txt", True)
+  C:\pc\Spooler\ReportServer_QA\Backlog_mod2.bas (5 coincidencias)
+	Línea 1062:         file_name_temp = Left(Archivo, Len(Archivo) - 4) & "_" & i & ".txt"
+	Línea 1063:         Set File_IO = FSO.CreateTextFile(Left(Archivo, Len(Archivo) - 4) & "_" & i & ".txt", True)
+	Línea 1107:     Set File_IO = FSO.CreateTextFile(Left(Archivo, Len(Archivo) - 4) & "_despachados.txt", True)
+	Línea 1122:     tab_files(0, UBound(tab_files, 2)) = Left(Archivo, Len(Archivo) - 4) & "_despachados.txt"
+	Línea 1148: Set File_IO = FSO.CreateTextFile(Left(Archivo, Len(Archivo) - 4) & "_00.txt", True)
+  C:\pc\Spooler\ReportServer_QA\Backlog_mot_vin_mod.bas (5 coincidencias)
+	Línea 1142:         file_name_temp = Left(Archivo, Len(Archivo) - 4) & "_" & i & ".txt"
+	Línea 1143:         Set File_IO = FSO.CreateTextFile(Left(Archivo, Len(Archivo) - 4) & "_" & i & ".txt", True)
+	Línea 1187:     Set File_IO = FSO.CreateTextFile(Left(Archivo, Len(Archivo) - 4) & "_despachados.txt", True)
+	Línea 1202:     tab_files(0, UBound(tab_files, 2)) = Left(Archivo, Len(Archivo) - 4) & "_despachados.txt"
+	Línea 1228: Set File_IO = FSO.CreateTextFile(Left(Archivo, Len(Archivo) - 4) & "_00.txt", True)
+  C:\pc\Spooler\ReportServer_QA\Dicat_fiscal.bas (1 coincidencias)
+	Línea 1148:     file_name_temp = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\Excel_Generator.bas (1 coincidencias)
+	Línea  185:         'frm_Wait.txt_Percent = CStr(frm_Wait.bar_Progress.Value \ frm_Wait.bar_Progress.Max)
+  C:\pc\Spooler\ReportServer_QA\Excel_Gen_Simple3.bas (6 coincidencias)
+	Línea 524:     Dim Txt As String
+	Línea 549:     Txt = ""
+	Línea 630: '    While Len(Txt) < MaxLen
+	Línea 631: '        Txt = Txt & i & "-"
+	Línea 635: '    Hoja.Range("C1").Value = Txt
+  C:\pc\Spooler\ReportServer_QA\folios_recibidos_mod.bas (1 coincidencias)
+	Línea 169:       'Carga registros de encabezado en archivo txt
+  C:\pc\Spooler\ReportServer_QA\funciones.bas (15 coincidencias)
+	Línea   41: Private stClase As String, stTexto As String, sTxtCatalogo As String
+	Línea   64: Public Function ObtieneStatusTalon_txt(wTalonRastreo As String) As String
+	Línea  266:                     sTxtCatalogo = catEstatus(idStatus, 2)
+	Línea  289:                 sTxtCatalogo = catEstatus(k, 2)
+	Línea  295:         If stTexto = "" And sTxtCatalogo <> "" Then stTexto = sTxtCatalogo
+	Línea  319:         tstResult = tstResult & "|ObtieneStatusTalon_txt:" & Err.Description
+	Línea  323:     ObtieneStatusTalon_txt = stTexto
+	Línea  350:     sTxtCatalogo = "Documentado"
+	Línea 1738: Function validar_observaciones(ByVal txt_observaciones As String) As Boolean
+	Línea 1746:         If txt_observaciones <> "" Then
+	Línea 1747:                 Length = Len(txt_observaciones)
+	Línea 1757: Function obtener_condiciones_entrega(ByVal Txt As String) As String
+	Línea 1763:         If UCase(Txt) = UCase("Entrega a domicilio") Or UCase(Txt) = UCase("entrega_domicilio") Then
+  C:\pc\Spooler\ReportServer_QA\fusion_trac_disp.bas (1 coincidencias)
+	Línea 1138:     Set File_IO = FSO.CreateTextFile(Carpeta & Left(file_name, Len(file_name) - 4) & "_00.txt", True)
+  C:\pc\Spooler\ReportServer_QA\imei_reporte_general.bas (6 coincidencias)
+	Línea 3371:     file_name_temp = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_indice.txt"
+	Línea 3499:     file_name_temp = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_off.txt"
+	Línea 3609:     file_name_temp = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_00.txt"
+	Línea 4030:     file_name_temp = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_00.txt"
+	Línea 4194: 'file_name_temp = Left(Archivo, Len(Archivo) - 4) & "_resumenes.txt"
+	Línea 4269: file_name_temp = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\Ing_egr_gar_pend_fact_mod.bas (1 coincidencias)
+	Línea 118:     Set File_IO = FSO.CreateTextFile(Archivo & ".txt", True)
+  C:\pc\Spooler\ReportServer_QA\Main.bas (398 coincidencias)
+	Línea   60: Global mail_archivoAdjunto_txt As String
+	Línea   63: Global mail_adjuntarArchivoTXT As Boolean
+	Línea  284: mail_adjuntarArchivoTXT = False
+	Línea  808:         Call rep_anom_grupo(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")), False)
+	Línea  810:         Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea  827:         Call resumen_anom(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")))
+	Línea  828:         Call Excel_Gen(Carpeta & tab_archivos(0, 0) & ".txt")
+	Línea  836:         Call rep_anom_grupo(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, Month(Now) & "/" & Day(Now) & "/" & Year(Now), tab_files, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")), True)
+	Línea  838:         Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea  842:         Call backlog2(Carpeta & tab_archivos(0, 0) & ".txt", tab_files, "", NVL(rs.Fields("PARAM_1")), NVL_num(rs.Fields("PARAM_2")))
+	Línea  844:         Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea  854:         Call backlog2(Carpeta & tab_archivos(0, 0) & ".txt", tab_files, NVL(rs.Fields("PARAM_1")), , NVL(rs.Fields("PARAM_2")))
+	Línea  857:         Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea  867:         Call backlog2_mot_vin(Carpeta & tab_archivos(0, 0) & ".txt", tab_files, NVL(rs.Fields("PARAM_1")), , NVL(rs.Fields("PARAM_2")))
+	Línea  870:         Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea  874:         Call backlog_aduana(Carpeta & tab_archivos(0, 0) & ".txt", tab_files, 1, "", NVL(rs.Fields("PARAM_1")))
+	Línea  876:         Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea  880:         Call backlog_aduana(Carpeta & tab_archivos(0, 0) & ".txt", tab_files, 7, NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_1")))
+	Línea  882:         Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea  886:         Call backlog_aduana(Carpeta & tab_archivos(0, 0) & ".txt", tab_files, 4, "", NVL(rs.Fields("PARAM_1")))
+	Línea  888:         Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea  892:         Call backlog_res(Carpeta & tab_archivos(0, 0) & ".txt")
+	Línea  893:         Call Excel_Gen(Carpeta & tab_archivos(0, 0) & ".txt")
+	Línea  897:         Call Gastos_sucursal(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")))
+	Línea  898:         Call Excel_Gen(Carpeta & tab_archivos(0, 0) & ".txt")
+	Línea  902:         Call edo_result_suc(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")))
+	Línea  903:         Call Excel_Gen(Carpeta & tab_archivos(0, 0) & ".txt")
+	Línea  907:         Call Estado_resultados(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")))
+	Línea  908:         Call Excel_Gen(Carpeta & tab_archivos(0, 0) & ".txt")
+	Línea  913:         Call anom_trading(Carpeta & tab_archivos(0, 0) & ".txt", NVL(rs.Fields("PARAM_1")))
+	Línea  914:         Call Excel_Gen(Carpeta & tab_archivos(0, 0) & ".txt")
+	Línea  919:         Call trad_anom_captura(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, "", "", NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")))
+	Línea  921:         Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea  925:         Call Trading_backlog(Carpeta & tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL_num(rs.Fields("PARAM_3")), NVL_num(rs.Fields("PARAM_4")))
+	Línea  928:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea  937:         Call trading_inventario(Carpeta & tab_archivos(0, 0) & ".txt", NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")))
+	Línea  938:         Call Excel_Gen(Carpeta & tab_archivos(0, 0) & ".txt")
+	Línea  942:         Call trading_pedidos_general(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")))
+	Línea  943:         Call Excel_Gen(Carpeta & tab_archivos(0, 0) & ".txt")
+	Línea  947:         Call trading_indicadores(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")))
+	Línea  949:         Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea  974:         Call control_imeis(Carpeta & tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")))
+	Línea  984:         Call imeis_rep_general(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")), NVL(rs.Fields("PARAM_4")), rep_id)
+	Línea 1038: '            Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_resumenes.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea 1042:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea 1047:         Call imeis_inventario(Carpeta & tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")), NVL(rs.Fields("PARAM_4")))
+	Línea 1052:         Call imeis_rep_entradas_salidas(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")))
+	Línea 1054:         Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea 1058:         Call imeis_ctl_asignacion(Carpeta & tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")))
+	Línea 1064:         Call imeis_inventario(Carpeta & tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), "15", "12")
+	Línea 1066:         Call imeis_inventario(Carpeta & tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), "24", "12")
+	Línea 1071:         Call trad_inventario_SL(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")))
+	Línea 1073:         Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea 1077:         Call imeis_resumen_ejecutivo(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")))
+	Línea 1094:         Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea 1098:         Call trading_imei_relacion(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")))
+	Línea 1099:         Call Excel_Gen(Carpeta & tab_archivos(0, 0) & ".txt")
+	Línea 1103:         Call Bosch_Pedimentos(Carpeta, tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, rs.Fields("PARAM_1"), rs.Fields("PARAM_2"))
+	Línea 1104:         tab_archivos(0, 0) = tab_archivos(0, 0) & ".txt"
+	Línea 1114:         Call Bosch_Pedimentos2(Carpeta, tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, rs.Fields("PARAM_1"), rs.Fields("PARAM_2"))
+	Línea 1115:         tab_archivos(0, 0) = tab_archivos(0, 0) & ".txt"
+	Línea 1119:         'Call Bosch_Pedimentos3(carpeta, tab_archivos(0, 0) & ".txt", fecha_1, fecha_2, rs.Fields("PARAM_1"), rs.Fields("PARAM_2"))
+	Línea 1121:         'Call Bosch_Pedimentos3(Carpeta, tab_archivos(0, 0) & ".txt", Fecha_1, Fecha_2, rs.Fields("PARAM_1"), rs.Fields("PARAM_2"), NVL(rs.Fields("PARAM_3")))
+	Línea 1122:         Call Bosch_Pedimentos3(Carpeta, tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, rs.Fields("PARAM_1"), rs.Fields("PARAM_2"), NVL(rs.Fields("PARAM_3")), NVL(rs.Fields("PARAM_4")))
+	Línea 1125:         tab_archivos(0, 0) = tab_archivos(0, 0) & ".txt"
+	Línea 1128:         Call WCMS_reportes(Carpeta, tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, rs.Fields("PARAM_1"), rs.Fields("PARAM_2"))
+	Línea 1129:         tab_archivos(0, 0) = tab_archivos(0, 0) & ".txt"
+	Línea 1136:         Call imeis_invent_by_ref(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")))
+	Línea 1141:         Call web_pedimentos_SCI(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")))
+	Línea 1147:             tab_archivos(0, 0) = tab_archivos(0, 0) & ".txt"
+	Línea 1151:         Call web_pedimentos_SCI_2(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")))
+	Línea 1157:             tab_archivos(0, 0) = tab_archivos(0, 0) & ".txt"
+	Línea 1161:         Call trading_imei_picking_2_dias(Carpeta & tab_archivos(0, 0) & ".txt", NVL(rs.Fields("PARAM_1")), "")
+	Línea 1162:         Call Excel_Gen(Carpeta & tab_archivos(0, 0) & ".txt")
+	Línea 1170:         Call swap_entradas_salidas(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")))
+	Línea 1172:         Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea 1176:         Call imei_stat_IN_OUT(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")))
+	Línea 1178:         Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea 1181:     Case "talones_txt"
+	Línea 1182:         Call talones_txt(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, NVL(rs.Fields("PARAM_1")), FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")), "")
+	Línea 1184:             Call talones_cargos(Carpeta, tab_archivos(0, 0) & "_cargos.txt", tab_files, NVL(rs.Fields("PARAM_1")), FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_2")))
+	Línea 1193:             tab_archivos(0, 0) = tab_archivos(0, 0) & ".txt"
+	Línea 1197:         Call ctnr_devolucion(Carpeta, tab_archivos(0, 0) & ".txt", NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), FECHA_1, FECHA_2)
+	Línea 1198:         Call Excel_simple(Carpeta & tab_archivos(0, 0) & ".txt", 19)
+	Línea 1202:         Call Trading_backlog(Carpeta & tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, NVL(rs.Fields("PARAM_1")), "", 2)
+	Línea 1203:         Call Trading_backlog(Carpeta & tab_archivos(0, 0) & ".txt", tab_files, FECHA_2, NVL(rs.Fields("PARAM_1")), "", 2)
+	Línea 1204:         Call trading_planeacion(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")))
+	Línea 1218:         Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea 1222:         Call web_reporte_PO(Carpeta, tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")))
+	Línea 1223:         Call Excel_simple(Carpeta & tab_archivos(0, 0) & ".txt", 33)
+	Línea 1227:         Call xml_tracking(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")))
+	Línea 1240:         Call entradas_PT_Occitane(Carpeta, tab_archivos(0, 0) & ".txt", FECHA_1, NVL(rs.Fields("PARAM_1")))
+	Línea 1241:         Call Excel_Gen(Carpeta & tab_archivos(0, 0) & ".txt")
+	Línea 1249:         Call web_devoluciones(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")))
+	Línea 1250:         Call Excel_Gen(Carpeta & tab_archivos(0, 0) & ".txt")
+	Línea 1254:         Call stats_CEDIS_Oper(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")), rep_id)
+	Línea 1256:         Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea 1283:         Call stats_CEDIS_resumen(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")))
+	Línea 1284:         Call Excel_Gen(Carpeta & tab_archivos(0, 0) & ".txt")
+	Línea 1288:         Call inventario_puig(Carpeta, tab_archivos(0, 0) & ".txt", NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")))
+	Línea 1289:         tab_archivos(0, 0) = tab_archivos(0, 0) & ".txt"
+	Línea 1292:         'este reporte agrega .txt al nombre de archivo, lo quitamos
+	Línea 1294:         Call localizar_imei(Carpeta & tab_archivos(0, 0) & ".txt", "\\" & rs.Fields("PARAM_3") & Replace(rs.Fields("PARAM_2"), Split(rs.Fields("PARAM_2"), "\")(0), ""), tab_files, rs.Fields("PARAM_1"), rep_id, NVL(rs.Fields("CREATED_BY")), rs.Fields("DEST_MAIL"))
+	Línea 1299:         Call anixter_gastos(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, rs.Fields("PARAM_1"))
+	Línea 1300:         Call Excel_Gen(Carpeta & tab_archivos(0, 0) & ".txt")
+	Línea 1304:         Call cross_dock_LTL(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")))
+	Línea 1309:         Call cross_dock_LTL_pick(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")), NVL(rs.Fields("PARAM_4")))
+	Línea 1311:         Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea 1315:         Call cross_dock_LTL_pick_anomalias(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")))
+	Línea 1329:         Call trad_invent_push(Carpeta, tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")))
+	Línea 1330:         Call Excel_Gen(Carpeta & tab_archivos(0, 0) & ".txt")
+	Línea 1342:         Call trad_rentabilidad_exp(Carpeta, tab_archivos(0, 0) & ".txt", NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), FECHA_1)
+	Línea 1343:         If FSO.GetFile(Carpeta & tab_archivos(0, 0) & ".txt").size = 0 Then
+	Línea 1346:         Call Excel_Gen(Carpeta & tab_archivos(0, 0) & ".txt")
+	Línea 1362:         Call trad_invent_fact(Carpeta & tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), rep_id)
+	Línea 1434:         Call web_puig_edi(Carpeta, tab_archivos(0, 0) & ".txt", NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), rep_id)
+	Línea 1438:         Call italika_tracking(Carpeta, tab_archivos(0, 0) & ".txt", NVL(rs.Fields("PARAM_1")))
+	Línea 1473:         Call cargar_pedidos_heidelberg(Carpeta, tab_archivos(0, 0) & ".txt", NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")), NVL(rs.Fields("PARAM_4")), dest_mail)
+	Línea 1479:         Call cargar_pedidos_heidelberg2(Carpeta, tab_archivos(0, 0) & ".txt", NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")), NVL(rs.Fields("PARAM_4")), dest_mail)
+	Línea 1485:         Call cargar_pedidos_heidelberg3(Carpeta, tab_archivos(0, 0) & ".txt", NVL(rs.Fields("PARAM_1")), rep_id)
+	Línea 1500:         Call carga_entradas_heidelberg(Carpeta, tab_archivos(0, 0) & ".txt", NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")), NVL(rs.Fields("PARAM_4")), dest_mail)
+	Línea 1539:             Call ftp_cfd_con_excel(Carpeta, tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), rep_id)
+	Línea 1546:         Call trading_lista_citas(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")))
+	Línea 1571:         Call cfd_logis(Carpeta, tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")), "S", rep_id)
+	Línea 1654:         Call pedidos_tracking(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, rs.Fields("PARAM_1"), FECHA_1, FECHA_2, rep_id)
+	Línea 1655:         tab_archivos(0, 0) = tab_archivos(0, 0) & ".txt"
+	Línea 1670:         Call facturas_fuji(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, rs.Fields("PARAM_1"), FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_2")), rep_id)
+	Línea 1671:         tab_archivos(0, 0) = tab_archivos(0, 0) & ".txt"
+	Línea 1683:         Call entregas_fuji(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, rs.Fields("PARAM_1"), FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_2")), rep_id)
+	Línea 1684:         tab_archivos(0, 0) = tab_archivos(0, 0) & ".txt"
+	Línea 1724:          Call cove_consulta(Carpeta, tab_archivos(0, 0) & ".txt", NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")), NVL(rs.Fields("PARAM_4")))
+	Línea 1728:          Call cove_reprocesar(Carpeta, tab_archivos(0, 0) & ".txt")
+	Línea 1732:          Call ferroviario_consulta(Carpeta, tab_archivos(0, 0) & ".txt", NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")))
+	Línea 1921: 'Call Excel_Gen(Carpeta & file_name & ".txt")
+	Línea 2146:         If mail_adjuntarArchivoTXT = True And mail_archivoAdjunto_txt <> "" Then
+	Línea 2147:             If FSO.FileExists(mail_archivoAdjunto_txt) Then mail.AddAttachment (mail_archivoAdjunto_txt)
+	Línea 2196: If mail_archivoAdjunto_txt <> "" Then
+	Línea 2197:     If FSO.FileExists(mail_archivoAdjunto_txt) Then FSO.DeleteFile mail_archivoAdjunto_txt, True
+	Línea 2334:         Call Pend_EDI(Carpeta & tab_archivos(0, 0) & ".txt", rs.Fields("CLIENTE"), rs.Fields("PARAM_1"))
+	Línea 2335:         Call Excel_Gen(Carpeta & tab_archivos(0, 0) & ".txt")
+	Línea 2341:         '    Call anex24(carpeta & tab_archivos(0, 0) & ".txt", fecha_1, fecha_2, tab_files, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")), , , , , NVL(rs.Fields("PARAM_4")))
+	Línea 2420:             Call anex24(carpeta_scj & archivo_scj & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")), _
+	Línea 2441:             Call anex24(carpeta_scj & archivo_scj & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")), "", "N", "N", True)
+	Línea 2469: '                Call anexo_24_sony(Carpeta & tab_archivos(0, 0) & ".txt", fecha_1, fecha_2, tab_files, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")))
+	Línea 2495:             Call logis_invoices(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, rs.Fields("PARAM_1"), "2,3,6,7,10", "CAN", fecha_1_intervalo)
+	Línea 2496:             Call logis_invoices(Carpeta & tab_archivos(0, 0) & "_inv.txt", FECHA_1, FECHA_2, tab_files, rs.Fields("PARAM_1"), "2,3,6,7,10", "DL", fecha_1_intervalo)
+	Línea 2497:             Call dict_fiscal(Carpeta & tab_archivos(0, 0) & "_dict.txt", tab_files, NVL(rs.Fields("PARAM_1")), FECHA_1, FECHA_2, 1, "DL", fecha_1_intervalo)
+	Línea 2498:             Call ped_invoices(Carpeta & tab_archivos(0, 0) & "_ped-inv.txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")), "DL", fecha_1_intervalo)
+	Línea 2499:             Call anex24(Carpeta & tab_archivos(0, 0) & "_anx24.txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")), , "DL", fecha_1_intervalo)
+	Línea 2530:             tab_archivos(0, 0) = logis_catalogos(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, rs.Fields("PARAM_1"), "FRA,REF,PROV,CIU", fecha_1_intervalo)
+	Línea 2562:             Call logis_invoices(Carpeta & tab_archivos(0, 1) & ".txt", FECHA_1, FECHA_2, tab_files, rs.Fields("PARAM_1"), "2,3,6,7,10", "CAN")
+	Línea 2563:             Call logis_invoices(Carpeta & tab_archivos(0, 1) & "_inv.txt", FECHA_1, FECHA_2, tab_files, rs.Fields("PARAM_1"), "2,3,6,7,10", "DL")
+	Línea 2564:             Call dict_fiscal(Carpeta & tab_archivos(0, 1) & "_dict.txt", tab_files, NVL(rs.Fields("PARAM_1")), FECHA_1, FECHA_2, 1, "DL")
+	Línea 2565:             Call ped_invoices(Carpeta & tab_archivos(0, 1) & "_ped-inv.txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")), "DL")
+	Línea 2566:             Call anex24(Carpeta & tab_archivos(0, 1) & "_anx24.txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")), , "DL")
+	Línea 2588:             Call logis_catalogos(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, rs.Fields("PARAM_1"), "FRA,REF,PROV,CIU", fecha_1_intervalo)   'FRA,REF,PROV,CIU
+	Línea 2595:             'Call Datos_fct_pedto(Carpeta & tab_archivos(0, 0) & ".txt", rs.Fields("CLIENTE"), fecha_1, fecha_2)
+	Línea 2596:             'Call Excel_simple(Carpeta & tab_archivos(0, 0) & ".txt", 46)
+	Línea 2601:             Call logis_invoices(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, rs.Fields("PARAM_1"), rs.Fields("PARAM_2"))
+	Línea 2611:             Call logis_invoices_bosch(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, rs.Fields("PARAM_1"), rs.Fields("PARAM_2"))
+	Línea 2634:             Call track_rep(Carpeta & tab_archivos(0, 0) & ".txt", rs.Fields("PARAM_1"), "", "", 0)
+	Línea 2635:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & ".txt")
+	Línea 2639:             Call track_rep(Carpeta & tab_archivos(0, 0) & ".txt", rs.Fields("PARAM_1"), FECHA_1, FECHA_2, 1)
+	Línea 2640:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & ".txt")
+	Línea 2646:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "-9.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea 2650:             Call indice_cal(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, 1, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")))
+	Línea 2651:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & ".txt")
+	Línea 2656:             Call indice_cal_det_rojo(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2, CInt(NVL(rs.Fields("PARAM_1"))), NVL(rs.Fields("PARAM_3")), NVL(rs.Fields("PARAM_2")))
+	Línea 2657:             Call indice_cal_rojo(Carpeta & tab_archivos(0, 0) & "_00.txt", FECHA_1, FECHA_2, 0, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_3")), NVL(rs.Fields("PARAM_2")))
+	Línea 2659:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt.", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea 2664:             Call indice_cal_det(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")), NVL(rs.Fields("PARAM_4")))
+	Línea 2665:             Call indice_cal_stats(Carpeta & tab_archivos(0, 0) & "_01.txt.", FECHA_1, FECHA_2, 0, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")), NVL(rs.Fields("PARAM_4")))
+	Línea 2666:             Call indice_cal(Carpeta & tab_archivos(0, 0) & "_00.txt.", FECHA_1, FECHA_2, 0, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")), NVL(rs.Fields("PARAM_4")))
+	Línea 2668:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_01.txt.", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea 2669:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt.", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea 2674:             Call indice_cal_bosch(Carpeta & tab_archivos(0, 0) & ".txt.", FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")))
+	Línea 2675:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & ".txt")
+	Línea 2681:             Call indice_cal_det(Carpeta, tab_archivos(0, 0) & ".txt", tab_file, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")), NVL(rs.Fields("PARAM_4")))
+	Línea 2686:             Call indice_cal_ad(Carpeta & tab_archivos(0, 0) & ".txt", 0, 1, NVL(rs.Fields("PARAM_1")))
+	Línea 2687:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & ".txt")
+	Línea 2695:             Call trans_reporte(Carpeta, tab_archivos(0, 0) & ".txt", NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), FECHA_1, 2)
+	Línea 2696:             Call Excel_simple(Carpeta & tab_archivos(0, 0) & ".txt", IIf(NVL(rs.Fields("PARAM_2")) = 3299, 16, 15))
+	Línea 2700:             Call trans_reporte(Carpeta, tab_archivos(0, 0) & ".txt", rs.Fields("PARAM_1"), rs.Fields("PARAM_2"), FECHA_1, 3)
+	Línea 2701:             Call Excel_simple(Carpeta & tab_archivos(0, 0) & ".txt", 15)
+	Línea 2704:             Call dict_fiscal(Carpeta & tab_archivos(0, 0) & ".txt", tab_files, NVL(rs.Fields("PARAM_1")), FECHA_1, FECHA_2, IIf(NVL(rs.Fields("PARAM_2")) = "S", 1, 0))
+	Línea 2747:             Call dict_fiscal(Carpeta & tab_archivos(0, 0) & ".txt", tab_files, NVL(rs.Fields("PARAM_1")), FECHA_1, FECHA_2, 0, , , True)
+	Línea 2749:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt.", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea 2753:             Call supp_invoice(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")))
+	Línea 2754:             Call Excel_simple(Carpeta & tab_archivos(0, 0) & ".txt", 14)
+	Línea 2767:                 Call printpack_reports_addfees(Carpeta & tab_archivos(0, 0) & ".txt", NVL(rs.Fields("PARAM_1")), FECHA_1, FECHA_2)
+	Línea 2768:                 Call Excel_simple(Carpeta & tab_archivos(0, 0) & ".txt", 26)
+	Línea 2770:                 Call printpack_reports_pedimento(Carpeta & tab_archivos(0, 0) & ".txt", NVL(rs.Fields("PARAM_1")), FECHA_1, FECHA_2)
+	Línea 2771:                 Call Excel_simple(Carpeta & tab_archivos(0, 0) & ".txt", 20)
+	Línea 2773:                 Call printpack_reports_gastos(Carpeta & tab_archivos(0, 0) & ".txt", NVL(rs.Fields("PARAM_1")), FECHA_1, FECHA_2)
+	Línea 2774:                 Call Excel_simple(Carpeta & tab_archivos(0, 0) & ".txt", 17)
+	Línea 2776:                 Call printpack_reports_iva(Carpeta & tab_archivos(0, 0) & ".txt", NVL(rs.Fields("PARAM_1")), FECHA_1, FECHA_2)
+	Línea 2777:                 Call Excel_simple(Carpeta & tab_archivos(0, 0) & ".txt", 15)
+	Línea 2784:             Call ped_invoices(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")))
+	Línea 2786:             'Call Excel_simple(Carpeta & tab_archivos(0, 0) & ".txt", 47)
+	Línea 2799:             Call financiero_bosch(Carpeta & tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")))
+	Línea 2810:             Call facturacion_bosch(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2)
+	Línea 2811:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & ".txt")
+	Línea 2815:             Call dict_fiscal_bosch(Carpeta & tab_archivos(0, 0) & ".txt", tab_files, NVL(rs.Fields("PARAM_1")), FECHA_1, FECHA_2)
+	Línea 2820:             Call trad_invent_web(Carpeta & tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")))
+	Línea 2825:             Call trading_facturas_pendientes(Carpeta & tab_archivos(0, 0) & ".txt", tab_files, NVL(rs.Fields("PARAM_1")))
+	Línea 2827:     '        Call Excel_Gen(Carpeta & tab_archivos(0, 0) & ".txt")
+	Línea 2828:     '        Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_ltl_por_clis.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea 2832:             Call trading_ped_exp_sin_NC(Carpeta, tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")))
+	Línea 2833:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & ".txt")
+	Línea 2837:             Call trading_cd_ltl_porteo(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")))
+	Línea 2842:             Call anexo_24_aero(Carpeta, tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, rs.Fields("PARAM_1"), rs.Fields("PARAM_2"), rs.Fields("PARAM_3"))
+	Línea 2853:             Call despacho_monsanto(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")))
+	Línea 2858:             Call trading_diario_fact_det(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")))
+	Línea 2859:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & ".txt")
+	Línea 2863:             Call web_facturas_conceptos(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")))
+	Línea 2864:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & ".txt")
+	Línea 2908:                 Call web_facturas_conceptos_magnetti(Carpeta & tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")), rep_id)
+	Línea 2918: '            Call logis_invoices_firmenich(Carpeta & tab_archivos(0, 0) & ".txt", fecha_1, fecha_2, tab_files, rs.Fields("PARAM_1"))
+	Línea 2923:             Call logis_invoices_firmenich2(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, rs.Fields("PARAM_1"))
+	Línea 2945:             Call facturacion_monsanto(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, rs.Fields("PARAM_1"))
+	Línea 2950:             Call pedidos_heidelberg(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, rs.Fields("PARAM_1"))
+	Línea 2961:             Call importe_x_kg(Carpeta, tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")))
+	Línea 2966:             Call siniestros_unidades(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2)
+	Línea 2971:             Call inventario_term(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")))
+	Línea 2976:             Call terminales_logs(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2)
+	Línea 2981:             Call carta_porte(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")))
+	Línea 2983:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea 2987:             Call carta_porte_carga_unidades(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")))
+	Línea 2989:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_000.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea 2993:             Call anexo24_casadiaz(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")))
+	Línea 2998:             Call carta_porte_carga_unidades_tipo_vehiculo(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")))
+	Línea 3000:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea 3004:             Call entradas_salidas_pedim(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")))
+	Línea 3009:             Call embarques_zarpe(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")))
+	Línea 3023:             Call trading_ltl_pendientes(Carpeta & tab_archivos(0, 0) & ".txt", NVL(rs.Fields("PARAM_1")))
+	Línea 3024:             'Call trading_ltl_pendientes_plsql(carpeta & tab_archivos(0, 0) & ".txt", NVL(rs.Fields("PARAM_1")))
+	Línea 3025:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & ".txt")
+	Línea 3026:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_ltl_por_clis.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea 3030:             'Call trading_ltl_pendientes_prueba(carpeta & tab_archivos(0, 0) & ".txt", NVL(rs.Fields("PARAM_1")))
+	Línea 3031:             Call trading_ltl_pendientes_plsql(Carpeta & tab_archivos(0, 0) & ".txt", NVL(rs.Fields("PARAM_1")))
+	Línea 3032:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & ".txt")
+	Línea 3033:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_ltl_por_clis.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea 3038:             Call trading_cd_pendientes(Carpeta & tab_archivos(0, 0) & ".txt", NVL(rs.Fields("PARAM_1")))
+	Línea 3039:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & ".txt")
+	Línea 3040:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_ltl_por_clis.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea 3044:             Call trading_cd_pendientes_prueba(Carpeta & tab_archivos(0, 0) & ".txt", NVL(rs.Fields("PARAM_1")))
+	Línea 3045:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & ".txt")
+	Línea 3046:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_ltl_por_clis.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea 3050:             Call aviso_pago_pedim(Carpeta, tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")))
+	Línea 3055:             Call lista_refs(Carpeta, tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")))
+	Línea 3061:             Call trading_evol_clientes(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, tab_files2, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")), NVL(rs.Fields("PARAM_4")))
+	Línea 3067:                     Call Excel_Gen(Carpeta & tab_archivos(0, 0) & ".txt")
+	Línea 3098:                     Call Excel_Gen(Carpeta & tab_archivos(0, 0) & ".txt")
+	Línea 3112:             Call precio_global_kg(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, tab_files2, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")), NVL(rs.Fields("PARAM_4")))
+	Línea 3113:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & ".txt")
+	Línea 3130:             Call trading_evol_transp(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, tab_files2, FECHA_1, FECHA_2, "", "", "", "clientes")
+	Línea 3145:                     Call Excel_Gen(Carpeta & tab_archivos(0, 0) & ".txt")
+	Línea 3158:             Call inventario_reabastecimiento(Carpeta, tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")))
+	Línea 3163:             Call control_digit(Carpeta, tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")))
+	Línea 3168:             Call control_digit2(Carpeta, tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")))
+	Línea 3170:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea 3174:             Call control_digit3(Carpeta, tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")))
+	Línea 3176:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea 3180: '            Call control_digit_entrada(Carpeta & tab_archivos(0, 0) & ".txt", fecha_1, fecha_2, tab_files)
+	Línea 3181:             Call control_digit_entrada(Carpeta & tab_archivos(0, 0) & ".txt", NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")), tab_files)
+	Línea 3186:             Call trading_kpi(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")))
+	Línea 3188:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea 3192:             Call trading_kpi_modif(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")))
+	Línea 3194:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea 3198:             Call trading_kpi_modif_ddmmyyyy(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")))
+	Línea 3200:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea 3205:             Call trading_kpi_resumen(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")))
+	Línea 3206:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & ".txt")
+	Línea 3210:             Call trading_kpi_resumen_suc(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2)
+	Línea 3215:             Call trading_kpi_evidencias(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")))
+	Línea 3217:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea 3221:             Call anexo24_firmenich_landing(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")))
+	Línea 3226:             Call trading_rotacion(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")))
+	Línea 3227:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & ".txt")
+	Línea 3238:             Call facturas_eurocopter(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, rs.Fields("PARAM_1"))
+	Línea 3243:             Call control_invent_eurocopter(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, rs.Fields("PARAM_1"))
+	Línea 3248:             Call web_status_dinero(Carpeta, tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files)
+	Línea 3253:             Call logis_invoices_loreal(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, rs.Fields("PARAM_1"), rs.Fields("PARAM_2"))
+	Línea 3259:             Call trading_pend_cedis(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")))
+	Línea 3349:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea 3354:             Call trading_pend_cedis_ori(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")))
+	Línea 3481:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea 3485:             Call trading_pend_cedis_ori2(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")))
+	Línea 3584:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea 3588:             Call supp_invoice_fonkel(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")))
+	Línea 3600:             Call inventario_cedis(Carpeta, tab_archivos(0, 0) & ".txt", FECHA_1, tab_files, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")))
+	Línea 3605:             Call invent_insumos_transito(Carpeta, tab_archivos(0, 0) & ".txt", FECHA_1, tab_files, NVL(rs.Fields("PARAM_1")))
+	Línea 3607:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea 3624:             Call trading_kpi_evidencias_resumen(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")))
+	Línea 3626:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & ".txt")
+	Línea 3630:             Call trading_invent_sony(Carpeta & tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")))
+	Línea 3635:             Call facturas_johnson(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")))
+	Línea 3648:             'Call trading_fusion_pendientes(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, CStr(rep_id))
+	Línea 3650:             'Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea 3659:                 Call trading_fusion_pendientes(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, CStr(rep_id))
+	Línea 3661:                 Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea 3669:                     Call trading_fusion_pendientes(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, CStr(rep_id))
+	Línea 3671:                     Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea 3680:             Call trading_fusion_pendientes_prueba(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, CStr(rep_id))
+	Línea 3682:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea 3686:             Call rotacion_personal(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2)
+	Línea 3688:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea 3706:             Call pedidos_web(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, rs.Fields("PARAM_1"), FECHA_1, FECHA_2)
+	Línea 3714:             Call facturas_conceptos_bosch(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, rs.Fields("PARAM_1"), rs.Fields("PARAM_2"), rs.Fields("PARAM_3"))
+	Línea 3719:             Call facturas_conceptos_eurocopter(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, rs.Fields("PARAM_1"), rs.Fields("PARAM_2"))
+	Línea 3724:             Call ped_invoices_apasco(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")))
+	Línea 3729:             Call ped_invoices_tupperware(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")))
+	Línea 3743:             Call nota_carga_recoleccion(Carpeta, tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files)
+	Línea 3745:             tab_archivos(0, 0) = tab_archivos(0, 0) & ".txt"
+	Línea 3747:             Call reservacion_ltl(Carpeta, tab_archivos(0, 0) & ".txt", NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), CStr(rep_id))
+	Línea 3748:             tab_archivos(0, 0) = tab_archivos(0, 0) & ".txt"
+	Línea 3751:             Call reservacion_CD(Carpeta, tab_archivos(0, 0) & ".txt", NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), tab_files, CStr(rep_id))
+	Línea 3757:             Call web_cd_ltl_doc_interna(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")))
+	Línea 3766:             Call web_pedimentos_valores(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files)
+	Línea 3771:             Call web_talones_seguros(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files)
+	Línea 3776:             Call inventario_salidas_entradas(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")))
+	Línea 3781:             Call pedimentos_cove(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, rs.Fields("PARAM_1"), "", "", NVL(rs.Fields("PARAM_2")))
+	Línea 3786:             Call ltl_puertos_front(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files)
+	Línea 3791:             Call anexo24_volvo(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, rs.Fields("PARAM_1"))
+	Línea 3803:             Call operaciones_volvo(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, rs.Fields("PARAM_1"))
+	Línea 3808:             Call facturas_volvo(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, rs.Fields("PARAM_1"))
+	Línea 3813:             Call monsanto_relacion_fac(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")))
+	Línea 3818:             Call archivos_validacion(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")))
+	Línea 3823:             Call embarques_scj(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, rs.Fields("PARAM_1"))
+	Línea 3828:             Call control_digit_cp(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files)
+	Línea 3833:             Call web_cd_ltl_doc_interna_pend(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")), NVL(rs.Fields("PARAM_4")))
+	Línea 3838:             Call conv_sin_exp(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")))
+	Línea 3843:             Call trading_cp_pendientes_fact(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files)
+	Línea 3852:             Call facturas_varios_conv(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")))
+	Línea 3865:             Call anexo24_scj_R1(carpeta_scj & archivo_scj & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")))
+	Línea 3888:             Call logis_invoices_faurecia(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, rs.Fields("PARAM_1"), rs.Fields("PARAM_2"))
+	Línea 3919:             Call cfd_con_excel(Carpeta, tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), rep_id)
+	Línea 3929:             Call pedimentos_cotemar(Carpeta, tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), "N")
+	Línea 3946:                 Call pedimentos_cotemar(Carpeta, tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), "S", NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")), NVL(rs.Fields("PARAM_4")))
+	Línea 3947:                 tab_archivos(0, 0) = tab_archivos(0, 0) & ".txt"
+	Línea 3957:             Call web_fmc_reporte(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")))
+	Línea 3964:               Call cp_por_periodo_CP_Vacios(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), CStr(id_Reporte))
+	Línea 3967:               Call cp_por_periodo_CP_Llenos(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), CStr(id_Reporte))
+	Línea 3970:             Call cp_por_periodo(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")))
+	Línea 3973:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea 3992:             Call trading_scan_picking(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")))
+	Línea 3997:             Call trading_scan_recep_porteos(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")))
+	Línea 4024:             Call pedimientos_temporales(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")), NVL(rs.Fields("PARAM_4")))
+	Línea 4035:         Call anexo24_cnh(Carpeta & tab_archivos(0, 0) & ".txt", NVL(rs.Fields("PARAM_1")), FECHA_1, FECHA_2, tab_files)
+	Línea 4043:         Call desglose_operaciones(Carpeta & tab_archivos(0, 0) & ".txt", NVL(rs.Fields("PARAM_1")), FECHA_1, FECHA_2)
+	Línea 4044:         tab_archivos(0, 0) = tab_archivos(0, 0) & ".txt"
+	Línea 4132:             Call reservacion_ltl_excel(Carpeta, tab_archivos(0, 0) & ".txt", NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), tab_files, CStr(rep_id))
+	Línea 4138:             Call trading_genera_GSK(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_2")), rep_id)
+	Línea 4151:                 Call trading_genera_TLN(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_2")), rep_id)
+	Línea 4170:           Call Carga_Requisitos(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, rs.Fields("PARAM_1"), NVL(rs.Fields("PARAM_2")))
+	Línea 4175:              Call gkn_pedimentos_banco(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, rs.Fields("PARAM_1"))
+	Línea 4180:              Call gkn_cuenta_gastos_comprobados(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, rs.Fields("PARAM_1"))
+	Línea 4185:             Call trading_kpi_rechazos(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")))
+	Línea 4187:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea 4191:             Call anexo24_IK_plastic(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, rs.Fields("PARAM_1"))
+	Línea 4220:             Call fusion_trac_disponer(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")))
+	Línea 4222:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & "_00.txt.", Carpeta & tab_archivos(0, 0) & ".xls")
+	Línea 4235:              Call gkn_facturas(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, rs.Fields("PARAM_1"))
+	Línea 4241:              Call gkn_exportacion(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, rs.Fields("PARAM_1"), rs.Fields("PARAM_2"))
+	Línea 4300:              Call hbpo_anx24(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, rs.Fields("PARAM_1"), rs.Fields("PARAM_2"))
+	Línea 4351:                 Call operacion_volvo(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, rs.Fields("PARAM_1"))
+	Línea 4354:         Case "facturas_cd_txt"
+	Línea 4355:                 Call facturas_txt(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, rs.Fields("PARAM_1"), FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")), "")
+	Línea 4357:                     Call facturas_cargos(Carpeta, tab_archivos(0, 0) & "_cargos.txt", tab_files, rs.Fields("PARAM_1"), FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_2")))
+	Línea 4361:                     tab_archivos(0, 0) = tab_archivos(0, 0) & ".txt"
+	Línea 4365:                 Call factura_pedimento(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, rs.Fields("PARAM_1"))
+	Línea 4370:                 Call ftp_digit_talon(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, rs.Fields("PARAM_1"))
+	Línea 4373:             Call archivos_intier(Carpeta, tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")))
+	Línea 4378:             Call xml_puig(Carpeta, tab_archivos(0, 0) & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")))
+	Línea 4398:              Call honda_anexo24(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, rs.Fields("PARAM_1"))
+	Línea 4403:                 Call factura_de_pedimento(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, rs.Fields("PARAM_1"))
+	Línea 4408:             Call folios_recibidos(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")))
+	Línea 4418:     Call anex24(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")), , , , , NVL(rs.Fields("PARAM_4")))
+	Línea 4676:     Call anx24_int_point(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")), NVL(rs.Fields("PARAM_2")), NVL(rs.Fields("PARAM_3")), , "N", , , NVL(rs.Fields("PARAM_4")))
+	Línea 5027:             'Call Bosch_Pedimentos3_xls(Carpeta, tab_archivos(0, 0) & ".txt", Fecha_1, Fecha_2, rs.Fields("PARAM_1"), rs.Fields("PARAM_2"), NVL(rs.Fields("PARAM_3")), tab_files)
+	Línea 5029:             Call Bosch_Pedimentos3_xls(Carpeta, tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, rs.Fields("PARAM_1"), rs.Fields("PARAM_2"), NVL(rs.Fields("PARAM_3")), tab_files, NVL(rs.Fields("PARAM_4")))
+	Línea 5037:             Call Excel_Gen3(Carpeta & tab_archivos(0, 0) & ".txt")
+	Línea 5041:             Call Fondo_fijo(Carpeta & tab_archivos(0, 0) & ".txt", rs.Fields("PARAM_1"), rs.Fields("PARAM_2"))
+	Línea 5042:             Call Excel_Gen(Carpeta & tab_archivos(0, 0) & ".txt")
+	Línea 5049:             Call archivos_intier(Carpeta, tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")))
+	Línea 5050:             Call archivos_validacion(Carpeta & archivo_xls & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")))
+	Línea 5078:             Call scj_pendiente_despacho(Carpeta, file_name & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), rep_id)
+	Línea 5092:             Call scj_pedimentos_pagados(Carpeta, file_name & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), rep_id)
+	Línea 5105:             Call descarga_masiva_partes(Carpeta, file_name & ".txt", tab_files, FECHA_1, FECHA_2, NVL(rs.Fields("PARAM_1")), rep_id)
+	Línea 5240:             Call anexo24_cooper(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, rs.Fields("PARAM_1"))
+	Línea 5246:             Call anexo24_monsanto(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")))
+	Línea 5251:             Call anexo24_monsanto2(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")))
+	Línea 5256:             Call anex24_GKN_det(Carpeta & tab_archivos(0, 0) & ".txt", FECHA_1, FECHA_2, tab_files, NVL(rs.Fields("PARAM_1")))
+  C:\pc\Spooler\ReportServer_QA\ocp_generacion_xml_mod.bas (1 coincidencias)
+	Línea  223:   SQL_Cert = SQL_Cert & " , CLI.CLITYPE              tipoPersona            --+' TIPER.FI' --ENU_TIPO_PERSONA.txt " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\pedimentos_temporales.bas (1 coincidencias)
+	Línea 201:       'Carga registros de encabezado en archivo txt
+  C:\pc\Spooler\ReportServer_QA\Pend_EDI.bas (1 coincidencias)
+	Línea 2015:     ' "e:\temp\genera_xls e:\temp\EFFEM.txt"
+  C:\pc\Spooler\ReportServer_QA\rep_anomalias_y_resumen.bas (3 coincidencias)
+	Línea 2988:         file_name_temp = Left(Archivo, Len(Archivo) - 4) & "_" & i & ".txt"
+	Línea 2989:         Set File_IO = FSO.CreateTextFile(Left(Archivo, Len(Archivo) - 4) & "_" & i & ".txt", True)
+	Línea 3037: Set File_IO = FSO.CreateTextFile(Left(Archivo, Len(Archivo) - 4) & "_00.txt", True)
+  C:\pc\Spooler\ReportServer_QA\siniestros_unidades_mod.bas (4 coincidencias)
+	Línea 185:                 FileName = carpeta & Left(Archivo, Len(Archivo) - 4) & "_" & rs.fields("ANIO_SINIESTRO") & ".txt"
+	Línea 280:         FileName = carpeta & Left(Archivo, Len(Archivo) - 4) & "_2010.txt"
+	Línea 334:     Set File_IO2 = FSO.CreateTextFile(carpeta & Left(Archivo, Len(Archivo) - 4) & "_2.txt", True)
+	Línea 400:     file_tab(0, UBound(file_tab, 2)) = carpeta & Left(Archivo, Len(Archivo) - 4) & "_2.txt"
+  C:\pc\Spooler\ReportServer_QA\tracking_stats.bas (17 coincidencias)
+	Línea  595:     Set File_IO = FSO.CreateTextFile(Archivo & ".txt", True)
+	Línea  597:     file_tab(0, 0) = Archivo & ".txt"
+	Línea  607:     Set File_IO = FSO.CreateTextFile(Archivo & "-2.txt", True)
+	Línea  609:     file_tab(0, 1) = Archivo & "-2.txt"
+	Línea  619:     Set File_IO = FSO.CreateTextFile(Archivo & "-3.txt", True)
+	Línea  621:     file_tab(0, 2) = Archivo & "-3.txt"
+	Línea  631:     Set File_IO = FSO.CreateTextFile(Archivo & "-4.txt", True)
+	Línea  633:     file_tab(0, 3) = Archivo & "-4.txt"
+	Línea  643:     Set File_IO = FSO.CreateTextFile(Archivo & "-5.txt", True)
+	Línea  645:     file_tab(0, 4) = Archivo & "-5.txt"
+	Línea  655:     Set File_IO = FSO.CreateTextFile(Archivo & "-6.txt", True)
+	Línea  657:     file_tab(0, 5) = Archivo & "-6.txt"
+	Línea  667:     Set File_IO = FSO.CreateTextFile(Archivo & "-7.txt", True)
+	Línea  669:     file_tab(0, 6) = Archivo & "-7.txt"
+	Línea  682:     Set File_IO = FSO.CreateTextFile(Archivo & "-8.txt", True)
+	Línea  684:     file_tab(0, 7) = Archivo & "-8.txt"
+	Línea  691:     Set File_IO = FSO.CreateTextFile(Archivo & "-9.txt", True)
+  C:\pc\Spooler\ReportServer_QA\trading_anom_captura.bas (1 coincidencias)
+	Línea 1469: file_name_temp = Carpeta & Left(file_name, Len(file_name) - 4) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\trading_backlog2_mod.bas (2 coincidencias)
+	Línea 416:     Set File_IO = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_2.txt", True)
+	Línea 460:     file_tab(0, UBound(file_tab, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_2.txt"
+  C:\pc\Spooler\ReportServer_QA\trading_backlog_mod.bas (7 coincidencias)
+	Línea  619:         file_name_temp = Left(Archivo, Len(Archivo) - 4) & ".txt"
+	Línea  621:         file_name_temp = Left(Archivo, Len(Archivo) - 4) & "-" & UBoundCheck(tab_files, 2) & ".txt"
+	Línea  718:     file_name_temp = Left(Archivo, Len(Archivo) - 4) & ".txt"
+	Línea  744: file_name_temp = Left(Archivo, Len(Archivo) - 4) & "-evidencia.txt"
+	Línea 1012: file_name_temp = Left(Archivo, Len(Archivo) - 4) & "-distribucion.txt"
+	Línea 1295: file_name_temp = Left(Archivo, Len(Archivo) - 4) & "-almacen.txt"
+	Línea 1692: Set File_IO = FSO.CreateTextFile(Left(Archivo, Len(Archivo) - 4) & "_00.txt", True)
+  C:\pc\Spooler\ReportServer_QA\trading_cd_pendientes_mod.bas (1 coincidencias)
+	Línea 2215: Set File_IO2 = FSO.CreateTextFile(Left(Archivo, Len(Archivo) - 4) & "_ltl_por_clis.txt", True)
+  C:\pc\Spooler\ReportServer_QA\trading_cd_pendientes_plsql_mod.bas (1 coincidencias)
+	Línea  88:     Set File_IO = FSO.CreateTextFile(Left(Archivo, Len(Archivo) - 4) & "_ltl_por_clis.txt", True)
+  C:\pc\Spooler\ReportServer_QA\trading_cd_pendientes_prueba_mod.bas (1 coincidencias)
+	Línea 1596: Set File_IO2 = FSO.CreateTextFile(Left(Archivo, Len(Archivo) - 4) & "_ltl_por_clis.txt", True)
+  C:\pc\Spooler\ReportServer_QA\trading_cp_periodo_mod.bas (4 coincidencias)
+	Línea 1112: file_name_temp = Left(Archivo, Len(Archivo) - 4) & "_00.txt"
+	Línea 1333: file_name_temp = Left(Archivo, Len(Archivo) - 4) & "_tipo.txt"
+	Línea 1506: file_name_temp = Left(Archivo, Len(Archivo) - 4) & "_00.txt"
+	Línea 3196: file_name_temp = Left(Archivo, Len(Archivo) - 4) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\trading_embarques_zarpe.bas (2 coincidencias)
+	Línea 285:     Set File_IO = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_00.txt", True)
+	Línea 327:     file_tab(0, UBound(file_tab, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\trading_evol_clientes_mod.bas (80 coincidencias)
+	Línea 3839:     Set File_IO = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_importe.txt")
+	Línea 3840:     file_tab(0, UBound(file_tab, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_importe.txt"
+	Línea 3882:     Set File_IO = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_ciudades.txt")
+	Línea 3883:     file_tab(0, UBound(file_tab, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_ciudades.txt"
+	Línea 3978:     Set File_IO = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_clientes.txt")
+	Línea 3979:     file_tab(0, UBound(file_tab, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_clientes.txt"
+	Línea 4029:     Set File_IO = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_total.txt")
+	Línea 4030:     file_tab(0, UBound(file_tab, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_total.txt"
+	Línea 4079: '    Set File_IO = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_cdad-cedis.txt")
+	Línea 4080: '    file_tab2(0, UBound(file_tab2, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_cdad-cedis.txt"
+	Línea 4081:     Set File_IO = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_cdad.txt")
+	Línea 4082:     file_tab2(0, UBound(file_tab2, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_cdad.txt"
+	Línea 4086:     Set File_IO2 = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_peso-cedis_tras.txt")
+	Línea 4087:     file_tab2(0, UBound(file_tab2, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_peso-cedis_tras.txt"
+	Línea 4091:     Set File_IO3 = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_vol-cedis_tras.txt")
+	Línea 4092:     file_tab2(0, UBound(file_tab2, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_vol-cedis_tras.txt"
+	Línea 4096:     Set File_IO4 = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_importe-cedis_tras.txt")
+	Línea 4097:     file_tab2(0, UBound(file_tab2, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_importe-cedis_tras.txt"
+	Línea 4101:     Set File_IO5 = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_base-cedis_tras.txt")
+	Línea 4102:     file_tab2(0, UBound(file_tab2, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_base-cedis_tras.txt"
+	Línea 4223: '    Set File_IO = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_cdad-cedis.txt")
+	Línea 4224: '    file_tab2(0, UBound(file_tab2, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_cdad-cedis.txt"
+	Línea 4225:     Set File_IO = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_cdad-local.txt")
+	Línea 4226:     file_tab2(0, UBound(file_tab2, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_cdad-local.txt"
+	Línea 4232:     Set File_IO2 = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_peso-local.txt")
+	Línea 4233:     file_tab2(0, UBound(file_tab2, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_peso-local.txt"
+	Línea 4239:     Set File_IO3 = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_vol-local.txt")
+	Línea 4240:     file_tab2(0, UBound(file_tab2, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_vol-local.txt"
+	Línea 4246:     Set File_IO4 = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_importe-local.txt")
+	Línea 4247:     file_tab2(0, UBound(file_tab2, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_importe-local.txt"
+	Línea 4253:     Set File_IO5 = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_base-local.txt")
+	Línea 4254:     file_tab2(0, UBound(file_tab2, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_base-local.txt"
+	Línea 4381: '    Set File_IO = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_cdad-cedis.txt")
+	Línea 4382: '    file_tab2(0, UBound(file_tab2, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_cdad-cedis.txt"
+	Línea 4383:     Set File_IO = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_cdad-cedis.txt")
+	Línea 4384:     file_tab2(0, UBound(file_tab2, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_cdad-cedis.txt"
+	Línea 4390:     Set File_IO2 = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_peso-cedis.txt")
+	Línea 4391:     file_tab2(0, UBound(file_tab2, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_peso-cedis.txt"
+	Línea 4397:     Set File_IO3 = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_vol-cedis.txt")
+	Línea 4398:     file_tab2(0, UBound(file_tab2, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_vol-cedis.txt"
+	Línea 4404:     Set File_IO4 = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_importe-cedis.txt")
+	Línea 4405:     file_tab2(0, UBound(file_tab2, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_importe-cedis.txt"
+	Línea 4411:     Set File_IO5 = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_base-cedis.txt")
+	Línea 4412:     file_tab2(0, UBound(file_tab2, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_base-cedis.txt"
+	Línea 4541: '    Set File_IO = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_cdad-cedis.txt")
+	Línea 4542: '    file_tab2(0, UBound(file_tab2, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_cdad-cedis.txt"
+	Línea 4543:     Set File_IO = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_cdad-cedis_dest.txt")
+	Línea 4544:     file_tab2(0, UBound(file_tab2, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_cdad-cedis_dest.txt"
+	Línea 4550:     Set File_IO2 = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_peso-cedis_dest.txt")
+	Línea 4551:     file_tab2(0, UBound(file_tab2, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_peso-cedis_dest.txt"
+	Línea 4557:     Set File_IO3 = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_vol-cedis_dest.txt")
+	Línea 4558:     file_tab2(0, UBound(file_tab2, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_vol-cedis_dest.txt"
+	Línea 4564:     Set File_IO4 = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_importe-cedis_dest.txt")
+	Línea 4565:     file_tab2(0, UBound(file_tab2, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_importe-cedis_dest.txt"
+	Línea 4571:     Set File_IO5 = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_base-cedis_dest.txt")
+	Línea 4572:     file_tab2(0, UBound(file_tab2, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_base-cedis_dest.txt"
+	Línea 4699:     Set File_IO = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_cdad-ciudades.txt")
+	Línea 4700:     file_tab2(0, UBound(file_tab2, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_cdad-ciudades.txt"
+	Línea 4706:     Set File_IO2 = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_peso-ciudades.txt")
+	Línea 4707:     file_tab2(0, UBound(file_tab2, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_peso-ciudades.txt"
+	Línea 4713:     Set File_IO3 = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_vol-ciudades.txt")
+	Línea 4714:     file_tab2(0, UBound(file_tab2, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_vol-ciudades.txt"
+	Línea 4720:     Set File_IO4 = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_importe-ciudades.txt")
+	Línea 4721:     file_tab2(0, UBound(file_tab2, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_importe-ciudades.txt"
+	Línea 4729:     Set File_IO5 = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_base-ciudades.txt")
+	Línea 4730:     file_tab2(0, UBound(file_tab2, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_base-ciudades.txt"
+	Línea 4908:     Set File_IO = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_cdad-clientes.txt")
+	Línea 4909:     file_tab2(0, UBound(file_tab2, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_cdad-clientes.txt"
+	Línea 4915:     Set File_IO2 = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_peso-clientes.txt")
+	Línea 4916:     file_tab2(0, UBound(file_tab2, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_peso-clientes.txt"
+	Línea 4922:     Set File_IO3 = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_vol-clientes.txt")
+	Línea 4923:     file_tab2(0, UBound(file_tab2, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_vol-clientes.txt"
+	Línea 4929:     Set File_IO4 = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_importe-clientes.txt")
+	Línea 4930:     file_tab2(0, UBound(file_tab2, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_importe-clientes.txt"
+	Línea 4937:     Set File_IO5 = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_base-clientes.txt")
+	Línea 4938:     file_tab2(0, UBound(file_tab2, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_base-clientes.txt"
+	Línea 5851:     Set File_IO = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_prom-ciudades.txt")
+	Línea 5852:     file_tab2(0, UBound(file_tab2, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_prom-ciudades.txt"
+	Línea 5918:     Set File_IO = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_prom-cliente.txt")
+	Línea 5919:     file_tab2(0, UBound(file_tab2, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_prom-cliente.txt"
+  C:\pc\Spooler\ReportServer_QA\trading_factura_pendientes_mod.bas (2 coincidencias)
+	Línea 207: FileName = Left(Archivo, Len(Archivo) - 4) & "_res_cond.txt"
+	Línea 276: FileName = Left(Archivo, Len(Archivo) - 4) & "_sin-tarifas.txt"
+  C:\pc\Spooler\ReportServer_QA\trading_fusion_pendientes_mod.bas (2 coincidencias)
+	Línea  475:         file_name_temp = Carpeta & Left(file_name, Len(file_name) - 4) & "_II.txt"
+	Línea  511: file_name_temp = Carpeta & Left(file_name, Len(file_name) - 4) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\trading_fusion_pendientes_mod_bkupnajib.bas (1 coincidencias)
+	Línea  381: file_name_temp = Carpeta & Left(file_name, Len(file_name) - 4) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\trading_fusion_pendientes_prueba_mod.bas (1 coincidencias)
+	Línea  379: file_name_temp = carpeta & Left(file_name, Len(file_name) - 4) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\trading_genera_TLN.bas (1 coincidencias)
+	Línea  57:  'Call trading_genera_TLN(Carpeta,          tab_archivos(0, 0) & ".txt", tab_files,             rs.Fields("PARAM_1"), Fecha_1,           Fecha_2,           NVL(rs.Fields("PARAM_2")),  rep_id)
+  C:\pc\Spooler\ReportServer_QA\trading_imei_entradas_salidas_mod.bas (1 coincidencias)
+	Línea  627: file_name_temp = Carpeta & Left(file_name, Len(file_name) - 4) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\trading_imei_resumen_ejecutivo.bas (2 coincidencias)
+	Línea  972: 'file_name_temp = Left(archivo, Len(archivo) - 4) & "_pendiente-inv.txt"
+	Línea 1265: file_name_temp = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\trading_imei_stat_IN_OUT_mod.bas (7 coincidencias)
+	Línea  689: file_name_temp = Carpeta & Left(file_name, Len(file_name) - 4) & "_00.txt"
+	Línea 1014: file_name_temp = Carpeta & Left(file_name, Len(file_name) - 4) & "_00.txt"
+	Línea 1342: file_name_temp = Carpeta & Left(file_name, Len(file_name) - 4) & "_00.txt"
+	Línea 1631: file_name_temp = Carpeta & Left(file_name, Len(file_name) - 4) & "_00.txt"
+	Línea 1986: file_name_temp = Carpeta & Left(file_name, Len(file_name) - 4) & "_00.txt"
+	Línea 2712:     file_name_temp = Carpeta & Left(file_name, Len(file_name) - 4) & "_00.txt"
+	Línea 3066: file_name_temp = Carpeta & Left(file_name, Len(file_name) - 4) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\trading_imei_x_ref.bas (1 coincidencias)
+	Línea 299:         file_name_temp = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\trading_inventarios_ent_sal.bas (2 coincidencias)
+	Línea 246:     Set File_IO = FSO.CreateTextFile(Left(Archivo, Len(Archivo) - 4) & "_" & rs2.Fields("EIRCLEF") & ".txt", True)
+	Línea 339:     file_tab(0, UBound(file_tab, 2)) = Left(Archivo, Len(Archivo) - 4) & "_" & rs2.Fields("EIRCLEF") & ".txt"
+  C:\pc\Spooler\ReportServer_QA\trading_inventario_cedis_mod.bas (3 coincidencias)
+	Línea 134: file_name_temp = Left(Archivo, Len(Archivo) - 4) & "_todos.txt"
+	Línea 159:             file_name_temp = Left(Archivo, Len(Archivo) - 4) & "_" & rs.Fields("ALLCODIGO") & ".txt"
+	Línea 199: file_tab(0, UBound(file_tab, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_todos.txt"
+  C:\pc\Spooler\ReportServer_QA\trading_inventario_factura_mod.bas (1 coincidencias)
+	Línea 294:     file_name_temp = Left(Archivo, Len(Archivo) - 4) & ".txt"
+  C:\pc\Spooler\ReportServer_QA\trading_inventario_heidelberg_mod.bas (2 coincidencias)
+	Línea 106:     'Heidelberg-12-18-2009.txt
+	Línea 108:     filename = "Heidelberg-" & Format(Now, "mm-dd-yyyy") & ".txt"
+  C:\pc\Spooler\ReportServer_QA\trading_inventario_SL.bas (1 coincidencias)
+	Línea 270: file_name_temp = Carpeta & Left(file_name, Len(file_name) - 4) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\trading_inventario_sony_mod.bas (2 coincidencias)
+	Línea 308:         file_name_temp = Left(Archivo, Len(Archivo) - 4) & ".txt"
+	Línea 310:         file_name_temp = Left(Archivo, Len(Archivo) - 4) & "-" & UBoundCheck(tab_files, 2) & ".txt"
+  C:\pc\Spooler\ReportServer_QA\trading_inventario_web_mod.bas (1 coincidencias)
+	Línea 187:     file_name_temp = Left(Archivo, Len(Archivo) - 4) & ".txt"
+  C:\pc\Spooler\ReportServer_QA\trading_invent_insumos_transito_mod.bas (9 coincidencias)
+	Línea 265: Set File_IO2 = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_0.txt")
+	Línea 378: file_tab(0, UBound(file_tab, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_0.txt"
+	Línea 407: Set File_IO = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_2.txt")
+	Línea 410: file_tab(0, UBound(file_tab, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_2.txt"
+	Línea 659: '''Set File_IO = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_3.txt")
+	Línea 662: '''file_tab(0, UBound(file_tab, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_3.txt"
+	Línea 689: Set File_IO = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_4.txt")
+	Línea 692: file_tab(0, UBound(file_tab, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_4.txt"
+	Línea 768: Set File_IO = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_00.txt")
+  C:\pc\Spooler\ReportServer_QA\trading_invent_reab_mod.bas (2 coincidencias)
+	Línea 191: Set File_IO = FSO.CreateTextFile(carpeta & Left(Archivo, Len(Archivo) - 4) & "_00.txt", True)
+	Línea 307: file_tab(0, UBound(file_tab, 2)) = carpeta & Left(Archivo, Len(Archivo) - 4) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\trading_kpi_evidencias_mod.bas (1 coincidencias)
+	Línea 372: file_name_temp = carpeta & Left(file_name, Len(file_name) - 4) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\trading_kpi_mod.bas (1 coincidencias)
+	Línea 498: file_name_temp = Carpeta & Left(file_name, Len(file_name) - 4) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\trading_kpi_modif_ddmm.bas (1 coincidencias)
+	Línea 478: file_name_temp = Carpeta & Left(file_name, Len(file_name) - 4) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\trading_kpi_modif_mod.bas (1 coincidencias)
+	Línea 398: file_name_temp = Carpeta & Left(file_name, Len(file_name) - 4) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\trading_kpi_rechazos_mod.bas (1 coincidencias)
+	Línea 386: file_name_temp = Carpeta & Left(file_name, Len(file_name) - 4) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\trading_kpi_resumen_suc_mod.bas (2 coincidencias)
+	Línea 160:             filename_tmp = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_" & suc_tmp & ".txt"
+	Línea 197: filename_tmp = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\trading_lista_citas_mod.bas (2 coincidencias)
+	Línea 751:             file_name_temp = Carpeta & Left(file_name, Len(file_name) - 4) & "_" & rs.Fields("CEDIS_EXP") & ".txt"
+	Línea 795: file_name_temp = Carpeta & Left(file_name, Len(file_name) - 4) & "_02.txt"
+  C:\pc\Spooler\ReportServer_QA\trading_ltl_pendientes_mod.bas (1 coincidencias)
+	Línea 1550: Set File_IO2 = FSO.CreateTextFile(Left(Archivo, Len(Archivo) - 4) & "_ltl_por_clis.txt", True)
+  C:\pc\Spooler\ReportServer_QA\trading_ltl_pendientes_prueba_mod.bas (1 coincidencias)
+	Línea 1502: Set File_IO2 = FSO.CreateTextFile(Left(Archivo, Len(Archivo) - 4) & "_ltl_por_clis.txt", True)
+  C:\pc\Spooler\ReportServer_QA\trading_mvtos_Swap_BS_mod.bas (1 coincidencias)
+	Línea 450: file_name_temp = Carpeta & Left(file_name, Len(file_name) - 4) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\trading_pedidos_heidelberg_mod.bas (1 coincidencias)
+	Línea 145: file_name_temp = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\trading_pendientes_cedis_ori2_mod.bas (8 coincidencias)
+	Línea 3839:             tab_archivos(1, UBound(tab_archivos, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_2_" & rs.Fields(0) & ".txt"
+	Línea 3857:             tab_archivos(1, UBound(tab_archivos, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_" & rs.Fields(0) & ".txt"
+	Línea 3874:             tab_archivos(1, UBound(tab_archivos, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_2_" & rs.Fields(0) & ".txt"
+	Línea 3896:     Set File_IO2 = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_tot.txt", True)
+	Línea 4123:     Set File_IO2 = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_2_tot.txt", True)
+	Línea 4270:     file_tab(0, UBound(file_tab, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_tot.txt"
+	Línea 4276:     file_tab(0, UBound(file_tab, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_2_tot.txt"
+	Línea 4285:     Set File_IO = FSO.OpenTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_00.txt", ForAppending, True)
+  C:\pc\Spooler\ReportServer_QA\trading_pend_cedis_mod.bas (4 coincidencias)
+	Línea 3953:             tab_archivos(1, UBound(tab_archivos, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_2_" & rs.Fields(0) & ".txt"
+	Línea 3971:             tab_archivos(1, UBound(tab_archivos, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_" & rs.Fields(0) & ".txt"
+	Línea 3988:             tab_archivos(1, UBound(tab_archivos, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_2_" & rs.Fields(0) & ".txt"
+	Línea 4296:     Set File_IO = FSO.OpenTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_00.txt", ForAppending, True)
+  C:\pc\Spooler\ReportServer_QA\trading_pend_cedis_ori_mod.bas (8 coincidencias)
+	Línea 7739:             tab_archivos(1, UBound(tab_archivos, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_2_" & rs.Fields(0) & ".txt"
+	Línea 7757:             tab_archivos(1, UBound(tab_archivos, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_" & rs.Fields(0) & ".txt"
+	Línea 7777:             tab_archivos(1, UBound(tab_archivos, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_2_" & rs.Fields(0) & ".txt"
+	Línea 7799:     Set File_IO2 = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_tot.txt", True)
+	Línea 8106:     Set File_IO2 = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_2_tot.txt", True)
+	Línea 8297:     file_tab(0, UBound(file_tab, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_tot.txt"
+	Línea 8303:     file_tab(0, UBound(file_tab, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_2_tot.txt"
+	Línea 8313:     Set File_IO = FSO.OpenTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_00.txt", ForAppending, True)
+  C:\pc\Spooler\ReportServer_QA\trading_reports_imeis_inventarios.bas (2 coincidencias)
+	Línea  81:         Archivo = Left(Archivo, Len(Archivo) - 4) & "-00.txt"
+	Línea 371:     Archivo = Left(Archivo, Len(Archivo) - 4) & "-00.txt"
+  C:\pc\Spooler\ReportServer_QA\trading_rotacion_personal_mod.bas (1 coincidencias)
+	Línea 143: file_name_temp = carpeta & Left(file_name, Len(file_name) - 4) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\trading_scan_recep_porteos_mod.bas (3 coincidencias)
+	Línea 242:     Set File_IO = FSO.CreateTextFile(Left(Archivo, Len(Archivo) - 4) & " Convertidor.txt", True)
+	Línea 470:     file_tab(0, UBound(file_tab, 2)) = Left(Archivo, Len(Archivo) - 4) & " Convertidor.txt"
+	Línea 494:     Set File_IO = FSO.CreateTextFile(Left(Archivo, Len(Archivo) - 4) & "_00.txt", True)
+  C:\pc\Spooler\ReportServer_QA\trading_stats_Oper_CEDIS_mod.bas (2 coincidencias)
+	Línea 1551: file_name_temp = Carpeta & Left(file_name, Len(file_name) - 4) & "_00.txt"
+	Línea 2146: file_name_temp = Carpeta & Left(file_name, Len(file_name) - 4) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\trad_indic_calidad_mod.bas (1 coincidencias)
+	Línea 1840: file_name_temp = Carpeta & Left(file_name, Len(file_name) - 4) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\trad_planeacion_mod.bas (1 coincidencias)
+	Línea  760: file_name_temp = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\variables.bas (4 coincidencias)
+	Línea  529:                 Case "txt"
+	Línea  530:                     display_mail = display_mail & "    <IMG SRC=""" & servidor & "/images/notepad.gif"" align=""bottom"" alt=""txt"" border=""0""></a>" & vbCrLf
+	Línea  531:                     display_mail = display_mail & "    &nbsp;- <a href=""" & servidor & "/download.asp?id=" & Left(tab_archivos(3, i), 8) & """ class=""link"">txt</a> (" & tab_archivos(2, i) & ")" & vbCrLf
+	Línea 1069:     Set File_IO = FSO.OpenTextFile("D:\log_queries.txt", ForAppending, True)
+  C:\pc\Spooler\ReportServer_QA\web_anexo24_firmenich_landing_mod.bas (1 coincidencias)
+	Línea  80: file_name_temp = carpeta & Left(Archivo, Len(Archivo) - 4) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\web_anexo24_gkn.bas (1 coincidencias)
+	Línea 540: file_name_temp = Left(Archivo, Len(Archivo) - 4) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\web_anexo24_IK_plastic.bas (1 coincidencias)
+	Línea 706:     file_name_temp = Left(Archivo, Len(Archivo) - 4) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\web_anexo24_int_point_mod.bas (2 coincidencias)
+	Línea  274:     Set File_IO = FSO.CreateTextFile(Left(Archivo, Len(Archivo) - 4) & "_00.txt")
+	Línea 2984:     file_tab(0, UBound(file_tab, 2)) = Left(Archivo, Len(Archivo) - 4) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\web_anexo24_scj_R1_mod.bas (2 coincidencias)
+	Línea 273: Set File_IO = FSO.CreateTextFile(Left(Archivo, Len(Archivo) - 4) & "_00.txt", True)
+	Línea 431: file_tab(0, UBound(file_tab, 2)) = Left(Archivo, Len(Archivo) - 4) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\web_bultos_cliente_mod.bas (2 coincidencias)
+	Línea  59:         Set File_IO = FSO.CreateTextFile(Archivo & ".txt", True)
+	Línea  94:         file_tab(0, UBound(file_tab, 2)) = Archivo & ".txt"
+  C:\pc\Spooler\ReportServer_QA\web_carga_ltl_austromex_cp_mod.bas (2 coincidencias)
+	Línea 1104:                 Call talones_txt(mi_carpeta, "CARGA_" & Split(Mi_Archivo.Name, ".")(0) & "_REPORTE.txt", tab_files, mi_cliclef, _
+  C:\pc\Spooler\ReportServer_QA\web_carga_ltl_austromex_mod.bas (2 coincidencias)
+	Línea 1167:         Call talones_txt(mi_carpeta, "CARGA_" & Split(Mi_Archivo.Name, ".")(0) & "_REPORTE.txt", tab_files, mi_cliclef, _
+  C:\pc\Spooler\ReportServer_QA\web_carga_ltl_helvex_cp_mod.bas (7 coincidencias)
+	Línea 1290:                 On Error GoTo talones_txt
+	Línea 1292: talones_txt:
+	Línea 1299:                 Call talones_txt(mi_carpeta, "CARGA_" & Split(Mi_Archivo.Name, ".")(0) & "_REPORTE.txt", tab_files, mi_cliclef, _
+	Línea 1309:                                 Set File_IO = FSO.OpenTextFile(mi_carpeta & "CARGA_" & Split(Mi_Archivo.Name, ".")(0) & "_ETIQUETAS.txt", ForAppending, True)
+	Línea 1435:                 If FSO.FileExists(mi_carpeta & "CARGA_" & Split(Mi_Archivo.Name, ".")(0) & "_ETIQUETAS.txt") Then
+	Línea 1436:                         jmail.AddAttachment (mi_carpeta & "CARGA_" & Split(Mi_Archivo.Name, ".")(0) & "_ETIQUETAS.txt")
+  C:\pc\Spooler\ReportServer_QA\web_carga_ltl_helvex_mod.bas (5 coincidencias)
+	Línea 1146:         Call talones_txt(mi_carpeta, "CARGA_" & Split(Mi_Archivo.Name, ".")(0) & "_REPORTE.txt", tab_files, mi_cliclef, _
+	Línea 1155:                 Set File_IO = FSO.OpenTextFile(mi_carpeta & "CARGA_" & Split(Mi_Archivo.Name, ".")(0) & "_ETIQUETAS.txt", ForAppending, True)
+	Línea 1279:         If FSO.FileExists(mi_carpeta & "CARGA_" & Split(Mi_Archivo.Name, ".")(0) & "_ETIQUETAS.txt") Then
+	Línea 1280:             jmail.AddAttachment (mi_carpeta & "CARGA_" & Split(Mi_Archivo.Name, ".")(0) & "_ETIQUETAS.txt")
+  C:\pc\Spooler\ReportServer_QA\web_carga_ltl_helvex_mod_old.bas (2 coincidencias)
+	Línea 459:         Call talones_txt(mi_carpeta, "CARGA_" & Split(Mi_Archivo.Name, ".")(0) & "_REPORTE.txt", tab_files, mi_cliclef, _
+  C:\pc\Spooler\ReportServer_QA\web_carga_ltl_urrea_mod.bas (17 coincidencias)
+	Línea  144: ' txt= fromat de texto separado por punto y coma
+	Línea  145: tipo_archivo_email = "txt"
+	Línea  192:     If LCase(Left(Mi_Archivo.Name, 6)) = "salida" And LCase(Right(Mi_Archivo.Name, 4)) = ".txt" Then
+	Línea  198:         no_orden = Replace(Replace(LCase(Mi_Archivo.Name), "salida", ""), ".txt", "")
+	Línea  848:         file_xls = Replace(mi_archivo_completo, ".txt", ".xls")
+	Línea 1816:         'Call talones_txt(mi_carpeta, "CARGA_" & Split(Mi_Archivo.Name, ".")(0) & "_REPORTE.txt", tab_files, mi_cliclef, _
+	Línea 1822:         'ElseIf tipo_archivo_email = "txt" Then
+	Línea 1823:         '    jmail.AddAttachment mi_carpeta & "CARGA_" & Split(Mi_Archivo.Name, ".")(0) & "_REPORTE.txt"
+	Línea 1833:               ElseIf tipo_archivo_email = "txt" Then
+	Línea 1834:                 Call ftp.PutFile(mi_carpeta & "CARGA_" & Split(Mi_Archivo.Name, ".")(0) & "_REPORTE.txt", "entrada\" & "CARGA_" & Split(Mi_Archivo.Name, ".")(0) & "_REPORTE.txt")
+	Línea 1844:                 Set File_IO = FSO.OpenTextFile(mi_carpeta & "CARGA_" & Split(Mi_Archivo.Name, ".")(0) & "_ETIQUETAS.txt", ForAppending, True)
+	Línea 1968:         If FSO.FileExists(mi_carpeta & "CARGA_" & Split(Mi_Archivo.Name, ".")(0) & "_ETIQUETAS.txt") And 1 <> 1 Then
+	Línea 1969:             jmail.AddAttachment (mi_carpeta & "CARGA_" & Split(Mi_Archivo.Name, ".")(0) & "_ETIQUETAS.txt")
+	Línea 1974:                     Call ftp.PutFile(mi_carpeta & "CARGA_" & Split(Mi_Archivo.Name, ".")(0) & "_ETIQUETAS.txt", "entrada\" & "CARGA_" & Split(Mi_Archivo.Name, ".")(0) & "_ETIQUETAS.txt")
+  C:\pc\Spooler\ReportServer_QA\web_carga_pedidos_heidelberg2_mod.bas (4 coincidencias)
+	Línea 437: '    Set File_IO = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & ".txt", True)
+	Línea 459: '    Call Excel_Gen(Carpeta & Left(Archivo, Len(Archivo) - 4) & ".txt")
+	Línea 604: Set File_IO = FSO.CreateTextFile(carpeta & Left(Archivo, Len(Archivo) - 4) & ".txt", True)
+	Línea 633: Call Excel_Gen(carpeta & Left(Archivo, Len(Archivo) - 4) & ".txt")
+  C:\pc\Spooler\ReportServer_QA\web_carga_pedidos_heidelberg3_mod.bas (9 coincidencias)
+	Línea  36: Private archivo_txt As TextStream
+	Línea  84: '''    Set archivo_txt = FSO.OpenTextFile(Mi_Archivo.Path)
+	Línea  85: '''    Do While Not archivo_txt.AtEndOfStream
+	Línea  86: '''        Linea = archivo_txt.ReadLine
+	Línea 114: '''    archivo_txt.Close
+	Línea 569: ''''    Set File_IO = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & ".txt", True)
+	Línea 591: ''''    Call Excel_Gen(Carpeta & Left(Archivo, Len(Archivo) - 4) & ".txt")
+	Línea 768: '''Set File_IO = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & ".txt", True)
+	Línea 797: '''Call Excel_Gen(Carpeta & Left(Archivo, Len(Archivo) - 4) & ".txt")
+  C:\pc\Spooler\ReportServer_QA\web_carga_pedidos_heidelberg_mod.bas (4 coincidencias)
+	Línea 497: '    Set File_IO = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & ".txt", True)
+	Línea 519: '    Call Excel_Gen(Carpeta & Left(Archivo, Len(Archivo) - 4) & ".txt")
+	Línea 664: Set File_IO = FSO.CreateTextFile(carpeta & Left(Archivo, Len(Archivo) - 4) & ".txt", True)
+	Línea 693: Call Excel_Gen(carpeta & Left(Archivo, Len(Archivo) - 4) & ".txt")
+  C:\pc\Spooler\ReportServer_QA\web_carga_remesas_conciliacion.bas (2 coincidencias)
+	Línea  39: 'el nombre del archivo ya viene con xls asi que lo quitamos para poner txt
+	Línea  40: filename_tmp = Carpeta & Left(Archivo, Len(Archivo) - 4) & "-" & Mid(FSO.GetBaseName(FSO.GetTempName), 4, 4) & ".txt"
+  C:\pc\Spooler\ReportServer_QA\web_carga_remesas_mod.bas (3 coincidencias)
+	Línea 1118: 'el nombre del archivo ya viene con xls asi que lo quitamos para poner txt
+	Línea 1119: Set File_IO = FSO.CreateTextFile(carpeta & Left(Archivo, Len(Archivo) - 4) & ".txt", True)
+	Línea 1340:     Call Excel_Gen(carpeta & Left(Archivo, Len(Archivo) - 4) & ".txt")
+  C:\pc\Spooler\ReportServer_QA\web_carta_porte_mod.bas (2 coincidencias)
+	Línea 276: file_name_temp = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_resumen.txt"
+	Línea 328: file_name_temp = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\web_CD_LTL_mod.bas (4 coincidencias)
+	Línea  734:     Set File_IO2 = FSO.CreateTextFile(carpeta & Left(Archivo, Len(Archivo) - 4) & "_2.txt", True)
+	Línea  875:     file_tab(0, UBound(file_tab, 2)) = carpeta & Left(Archivo, Len(Archivo) - 4) & "_2.txt"
+	Línea 1459: Set File_IO2 = FSO.CreateTextFile(carpeta & Left(Archivo, Len(Archivo) - 4) & "_3.txt", True)
+	Línea 1463: file_tab(0, UBound(file_tab, 2)) = carpeta & Left(Archivo, Len(Archivo) - 4) & "_3.txt"
+  C:\pc\Spooler\ReportServer_QA\web_CD_LTL_pick_anomalias_mod.bas (4 coincidencias)
+	Línea 657:     Set File_IO2 = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_logis.txt")
+	Línea 658:     Set File_IO3 = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_otros.txt")
+	Línea 793:     file_tab(0, UBound(file_tab, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_logis.txt"
+	Línea 800:     file_tab(0, UBound(file_tab, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_otros.txt"
+  C:\pc\Spooler\ReportServer_QA\web_CD_LTL_pick_mod.bas (2 coincidencias)
+	Línea 1692:         file_name_temp = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_00.txt"
+	Línea 1874:     file_name_temp = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\web_cfd_con_excel_mod.bas (1 coincidencias)
+	Línea  52:     filename_tmp = Left(Archivo, Len(Archivo) - 4) & "_" & rs.Fields("FOLCLAVE") & ".txt"
+  C:\pc\Spooler\ReportServer_QA\web_control_digit2_mod.bas (7 coincidencias)
+	Línea  872: Set File_IO2 = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_STDBY.txt", True)
+	Línea 1024: file_tab(0, UBound(file_tab, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_STDBY.txt"
+	Línea 1033: Set File_IO = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_3.txt", True)
+	Línea 1069: file_tab(0, UBound(file_tab, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_3.txt"
+	Línea 1078: Set File_IO = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_4.txt", True)
+	Línea 1168: file_tab(0, UBound(file_tab, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_4.txt"
+	Línea 1213: Set File_IO = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_00.txt", True)
+  C:\pc\Spooler\ReportServer_QA\web_control_digit3_mod.bas (7 coincidencias)
+	Línea 1021: Set File_IO = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_4.txt", True)
+	Línea 1130: Set File_IO2 = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_STDBY.txt", True)
+	Línea 1316: file_tab(0, UBound(file_tab, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_STDBY.txt"
+	Línea 1325: Set File_IO = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_3.txt", True)
+	Línea 1366: file_tab(0, UBound(file_tab, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_3.txt"
+	Línea 1376: file_tab(0, UBound(file_tab, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_4.txt"
+	Línea 1421: Set File_IO = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_00.txt", True)
+  C:\pc\Spooler\ReportServer_QA\web_control_digit_mod.bas (4 coincidencias)
+	Línea 298: Set File_IO = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_2.txt", True)
+	Línea 497: file_tab(0, UBound(file_tab, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_2.txt"
+	Línea 506: Set File_IO = FSO.CreateTextFile(Carpeta & Left(Archivo, Len(Archivo) - 4) & "_3.txt", True)
+	Línea 597: file_tab(0, UBound(file_tab, 2)) = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_3.txt"
+  C:\pc\Spooler\ReportServer_QA\web_conv_sin_exp_mod.bas (1 coincidencias)
+	Línea 395: file_name_temp = Left(Archivo, Len(Archivo) - 4) & "_detalle.txt"
+  C:\pc\Spooler\ReportServer_QA\web_cp_carga_unidades_mod.bas (15 coincidencias)
+	Línea 1257:         file_tab(0, UBound(file_tab, 2)) = Replace(Archivo, ".txt", "") & "_0" & CStr(lNuPag) & ".txt"
+	Línea 1262:         Set File_IO = FSO.CreateTextFile(Left(Archivo, Len(Archivo) - 4) & "_0" & CStr(lNuPag) & ".txt", True)
+	Línea 1347:     file_tab(0, UBound(file_tab, 2)) = Replace(Archivo, ".txt", "") & "_0" & CStr(lNuPag) & ".txt"
+	Línea 1369: file_name_temp = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_resumen_emb.txt"
+	Línea 1409:            file_tab(0, UBound(file_tab, 2)) = Replace(file_name_temp, ".txt", "") & "_0" & CStr(lNuPag - 1) & ".txt"
+	Línea 1413:           file_name_temp = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_resumen_emb" & "_0" & CStr(lNuPag - 1) & ".txt"
+	Línea 1455:     file_tab(0, UBound(file_tab, 2)) = file_name_temp 'Replace(file_name_temp, ".txt", "") & "_0" & CStr(lNuPag - 1) & ".txt"
+	Línea 1475: file_name_temp = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_resumen_conv.txt"
+	Línea 1521: 'file_name_temp = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_0" & CStr(numeroReporte) & ".txt"
+	Línea 1522: file_name_temp = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_000.txt"
+	Línea 2103: file_name_temp = Carpeta & Left(Archivo, Len(Archivo) - 4) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\web_descarga_masiva_partes.bas (1 coincidencias)
+	Línea 369:     file_name_delete = Replace(file_name, ".txt", ".xls")
+  C:\pc\Spooler\ReportServer_QA\web_digit_entrada_ftp_mod.bas (6 coincidencias)
+	Línea 122:                                                 'no procesar los archivos ftp.txt y tmp de ftp
+	Línea 123:                                                 If Mi_Archivo.Name = "ftp.txt" Or Right(Mi_Archivo.Name, 4) = ".txt" Then
+	Línea 491:                     Set File_IO = FSO.CreateTextFile(ftp_local_directory & Replace(CurrentFolder, "/", "\") & "ftp.txt", True)
+	Línea 494:                     Shell_Sync.Shell_Sync "ftp -s:" & ftp_local_directory & Replace(CurrentFolder, "/", "\") & "ftp.txt"
+	Línea 495:         '            FSO.DeleteFile (ftp_local_directory & Replace(CurrentFolder, "/", "\") & "ftp.txt")
+  C:\pc\Spooler\ReportServer_QA\web_doc_interna_mod.bas (5 coincidencias)
+	Línea 392:         file_tab(0, UBound(file_tab, 2)) = Left(Archivo, Len(Archivo) - 4) & "_0" & CStr(lNuPag - 1) & ".txt"
+	Línea 396:       Set File_IO = FSO.CreateTextFile(Left(Archivo, Len(Archivo) - 4) & "_0" & CStr(lNuPag) & ".txt", True)
+	Línea 413:     file_tab(0, UBound(file_tab, 2)) = Left(Archivo, Len(Archivo) - 4) & "_0" & CStr(lNuPag) & ".txt"
+	Línea 429: Set File_IO = FSO.CreateTextFile(Left(Archivo, Len(Archivo) - 4) & "_00.txt", True)
+	Línea 606: file_tab(0, UBound(file_tab, 2)) = Left(Archivo, Len(Archivo) - 4) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\web_doc_interna_pendientes_mod.bas (24 coincidencias)
+	Línea  202:         file_name_temp = Left(Archivo, Len(Archivo) - 4) & "_merc_Conv_por_cerrar.txt"
+	Línea  328:         file_name_temp = Left(Archivo, Len(Archivo) - 4) & "_merc_raslados_por_recibir.txt"
+	Línea  624:         file_name_temp = Left(Archivo, Len(Archivo) - 4) & "_pend_scan_doc_transf_exp.txt"
+	Línea  741:         file_name_temp = Left(Archivo, Len(Archivo) - 4) & "_scan_doc_conv_exp.txt"
+	Línea  743:     file_name_temp2 = Left(Archivo, Len(Archivo) - 4) & "_scan_doc_conv_exp_2.txt"
+	Línea  883:         file_name_temp = Left(Archivo, Len(Archivo) - 4) & "_fact_conv_valid_sin_exp.txt"
+	Línea  885:     file_name_temp2 = Left(Archivo, Len(Archivo) - 4) & "_fact_conv_valid_sin_exp_2.txt"
+	Línea 1018:         file_name_temp = Left(Archivo, Len(Archivo) - 4) & "_pend_scan_doc_ltl_conv.txt"
+	Línea 1020:     file_name_temp2 = Left(Archivo, Len(Archivo) - 4) & "_pend_scan_doc_ltl_conv_2.txt"
+	Línea 1021:     file_name_temp3 = Left(Archivo, Len(Archivo) - 4) & "_pend_scan_doc_ltl_conv_3.txt"
+	Línea 1209:         file_name_temp = Left(Archivo, Len(Archivo) - 4) & "_fact_conv_sin_valid.txt"
+	Línea 1211: '    file_name_temp2 = Left(Archivo, Len(Archivo) - 4) & "_fact_conv_sin_valid_2.txt"
+	Línea 1212: '    file_name_temp3 = Left(Archivo, Len(Archivo) - 4) & "_fact_conv_sin_valid_3.txt"
+	Línea 1213: '    file_name_temp5 = Left(Archivo, Len(Archivo) - 4) & "_fact_conv_sin_valid_4.txt"
+	Línea 1363:         file_name_temp = Left(Archivo, Len(Archivo) - 4) & "_pend_scan_rec_doc.txt"
+	Línea 1365:     file_name_temp2 = Left(Archivo, Len(Archivo) - 4) & "_pend_scan_rec_doc_2.txt"
+	Línea 1366:     file_name_temp3 = Left(Archivo, Len(Archivo) - 4) & "_pend_scan_rec_doc_3.txt"
+	Línea 1367:     file_name_temp4 = Left(Archivo, Len(Archivo) - 4) & "_pend_scan_rec_doc_4.txt"
+	Línea 1623:         file_name_temp = Left(Archivo, Len(Archivo) - 4) & "_fact_parcial_conv.txt"
+	Línea 1625:     file_name_temp2 = Left(Archivo, Len(Archivo) - 4) & "_fact_parcial_conv_2.txt"
+	Línea 1851:         file_name_temp = Left(Archivo, Len(Archivo) - 4) & "_sin_scan_dim.txt"
+	Línea 2076:         file_name_temp = Left(Archivo, Len(Archivo) - 4) & "_sin_scan_manif_B.txt"
+	Línea 2359:         file_name_temp = Left(Archivo, Len(Archivo) - 4) & "_sin_scan_manif.txt"
+	Línea 2739: Set File_IO = FSO.CreateTextFile(Left(Archivo, Len(Archivo) - 4) & "_00.txt", True)
+  C:\pc\Spooler\ReportServer_QA\web_facturas_cargos_mod.bas (2 coincidencias)
+	Línea 172: Set File_IO = FSO.CreateTextFile(Carpeta & Left(file_name, Len(file_name) - 4) & "_00.txt", True)
+	Línea 191: file_tab(0, UBound(file_tab, 2)) = Carpeta & Left(file_name, Len(file_name) - 4) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\web_facturas_conceptos_eurocopter.bas (4 coincidencias)
+	Línea  41: Set File_IO2 = FSO.CreateTextFile(Left(Archivo, Len(Archivo) - 4) & "_imp.txt", True)
+	Línea  42: Set File_IO3 = FSO.CreateTextFile(Left(Archivo, Len(Archivo) - 4) & "_exp.txt", True)
+	Línea 320: file_tab(0, UBound(file_tab, 2)) = Left(Archivo, Len(Archivo) - 4) & "_exp.txt"
+	Línea 326: file_tab(0, UBound(file_tab, 2)) = Left(Archivo, Len(Archivo) - 4) & "_imp.txt"
+  C:\pc\Spooler\ReportServer_QA\web_facturas_mod.bas (4 coincidencias)
+	Línea  24: Sub facturas_txt(Carpeta As String, file_name As String, file_tab() As String, cliente As String, fecha_1 As String, fecha_2 As String, tipo_fecha As String, tipo_reporte As String, Optional lista_welclave As String)
+	Línea  28: 'tipo_reporte = "txt"
+	Línea  33: If tipo_reporte = "" Then tipo_reporte = "txt"
+	Línea  41: If tipo_reporte = "txt" Then
+  C:\pc\Spooler\ReportServer_QA\web_financiero_cierre_mod.bas (3 coincidencias)
+	Línea 207:     Set File_IO = FSO.OpenTextFile(carpeta & Left(Archivo, Len(Archivo) - 4) & ".txt", ForAppending, True)
+	Línea 328: If FSO.FileExists(carpeta & Left(Archivo, Len(Archivo) - 4) & ".txt") Then
+	Línea 329:     Call Excel_Gen(carpeta & Left(Archivo, Len(Archivo) - 4) & ".txt")
+  C:\pc\Spooler\ReportServer_QA\web_ftp_cfd_con_excel_mod.bas (1 coincidencias)
+	Línea 55:     filename_tmp = Left(Archivo, Len(Archivo) - 4) & "_" & rs.Fields("FOLCLAVE") & ".txt"
+  C:\pc\Spooler\ReportServer_QA\web_ftp_digit_cp_mod.bas (6 coincidencias)
+	Línea 499:            'no procesar los archivos ftp.txt y tmp de ftp
+	Línea 500:            If Mi_Archivo.Name = "ftp.txt" Or Right(Mi_Archivo.Name, 4) = ".txt" Then
+	Línea 810:                     Set File_IO = FSO.CreateTextFile(ftp_local_directory & Replace(CurrentFolder, "/", "\") & "ftp.txt", True)
+	Línea 813:                     Shell_Sync.Shell_Sync "ftp -s:" & ftp_local_directory & Replace(CurrentFolder, "/", "\") & "ftp.txt"
+	Línea 814:         '            FSO.DeleteFile (ftp_local_directory & Replace(CurrentFolder, "/", "\") & "ftp.txt")
+  C:\pc\Spooler\ReportServer_QA\web_ftp_digit_sucursale_mod.bas (6 coincidencias)
+	Línea  518:            'no procesar los archivos ftp.txt y tmp de ftp
+	Línea  519:            If Mi_Archivo.Name = "ftp.txt" Or Right(Mi_Archivo.Name, 4) = ".txt" Then
+	Línea  944:                     Set File_IO = FSO.CreateTextFile(ftp_local_directory & Replace(CurrentFolder, "/", "\") & "ftp.txt", True)
+	Línea  947:                     Shell_Sync.Shell_Sync "ftp -s:" & ftp_local_directory & Replace(CurrentFolder, "/", "\") & "ftp.txt"
+	Línea  948:         '            FSO.DeleteFile (ftp_local_directory & Replace(CurrentFolder, "/", "\") & "ftp.txt")
+  C:\pc\Spooler\ReportServer_QA\web_ftp_digit_talon_mod.bas (1 coincidencias)
+	Línea  84:     'Envio de Archivo .txt por Ftp
+  C:\pc\Spooler\ReportServer_QA\web_gkn_exportacion_mod.bas (4 coincidencias)
+	Línea 854: Set File_IO = FSO.CreateTextFile(Split(Archivo, ".txt")(0) & "_00.txt", True)
+	Línea 877: file_tab(0, UBound(file_tab, 2)) = Split(Archivo, ".txt")(0) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\web_honda_anexo24_mod.bas (1 coincidencias)
+	Línea 198: file_name_temp = Left(Archivo, Len(Archivo) - 4) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\web_imp_exp_bosch_mod.bas (2 coincidencias)
+	Línea 152:         Set File_IO = FSO.CreateTextFile(Carpeta & Archivo & IIf(i > 0, tab_impexp(2, i), "") & ".txt", True)
+	Línea 222:         file_tab(0, UBound(file_tab, 2)) = Carpeta & Archivo & IIf(i > 0, tab_impexp(2, i), "") & ".txt"
+  C:\pc\Spooler\ReportServer_QA\web_logis_catalogos.bas (1 coincidencias)
+	Línea  41:         nombre_archivo = Left(archivo, Len(archivo) - 4) & "_" & tab_reporte(i) & ".txt"
+  C:\pc\Spooler\ReportServer_QA\web_operaciones_aduanales_mod.bas (2 coincidencias)
+	Línea 137:     Set File_IO = FSO.CreateTextFile(Archivo & ".txt", True)
+	Línea 178:     file_tab(0, UBound(file_tab, 2)) = Archivo & ".txt"
+  C:\pc\Spooler\ReportServer_QA\web_pedimentos_cotemar_mod.bas (1 coincidencias)
+	Línea 155:         filename_tmp = rs.Fields("NOMBRE_ARCHIVO") & ".txt"
+  C:\pc\Spooler\ReportServer_QA\web_pedimentos_cove.bas (1 coincidencias)
+	Línea 123: file_name_temp = Left(Archivo, Len(Archivo) - 4) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\web_pedimentos_pdf_mod.bas (1 coincidencias)
+	Línea 160: Call pedimentos_cove(file_tmp & ".txt", FECHA_1, FECHA_2, files_tab, CLIENTE, hora, aduana)
+  C:\pc\Spooler\ReportServer_QA\web_pedimentos_puig_mod.bas (2 coincidencias)
+	Línea  89:     'webservice_puig = "http://puig.cimtool.com.mx/services/bin/index.php?method=putFile&apiKey=0943f9922287d2e3975bd5461417c94c%20%20&login=logismx01&password=logis3mx5&tipo=txt"
+	Línea 187:                 httpRequest.Fields("tipo") = "txt"
+  C:\pc\Spooler\ReportServer_QA\web_pedimentos_valores_mod.bas (2 coincidencias)
+	Línea 101: Set File_IO = FSO.CreateTextFile(Left(Archivo, Len(Archivo) - 4) & "_00.txt", True)
+	Línea 154: file_tab(0, UBound(file_tab, 2)) = Left(Archivo, Len(Archivo) - 4) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\web_pedim_pdf_magneti_mod.bas (4 coincidencias)
+	Línea 2359:                             Debug.Print (Now & " --- Se renombra el archivo: " & Archivo & " a " & Archivo.Path & ".txt" & " ---")
+	Línea 2361:                             FSO.MoveFile Archivo.Path, Archivo.Path & ".txt"
+	Línea 2441:                                 tipo = "txt"
+	Línea 3048:     Call web_facturas_conceptos_magnetti_fol(Carpeta & tab_archivos(0, 0) & ".txt", tab_files, mi_fctclef, mi_cliente, mi_empclave, mi_divclef, mi_rep_id)
+  C:\pc\Spooler\ReportServer_QA\web_printpack_reports.bas (4 coincidencias)
+	Línea  94:     SQL = SQL & " FROM LOGIS.TB_LOGIS_REP_BROK_ADDFEES_TXT " & vbCrLf
+	Línea 311:     SQL = SQL & " FROM LOGIS.TB_LOGIS_REP_BROK_PEDTMP_TXT " & vbCrLf
+	Línea 517:     SQL = SQL & " FROM LOGIS.TB_LOGIS_REPORTETMP_TXT " & vbCrLf
+	Línea 627:     SQL = SQL & " FROM LOGIS.TB_LOGIS_REPORTE2_IVATMP_TXT " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_puig_edi_mod.bas (115 coincidencias)
+	Línea  334: 'buscamos los archivos CABALB.TXT, EMBALB.TXT y LINALB.TXT
+	Línea  343: If FSO.FileExists(EDIRoot & "ENTRADA\EMBALB.TXT") And FSO.FileExists(EDIRoot & "ENTRADA\LINALB.TXT") And FSO.FileExists(EDIRoot & "ENTRADA\CABALB.TXT") Then
+	Línea  348:     Set archivo3 = FSO.OpenTextFile(EDIRoot & "ENTRADA\CABALB.TXT", ForReading)
+	Línea  368:         Set archivo1 = FSO.OpenTextFile(EDIRoot & "ENTRADA\EMBALB.TXT", ForReading)
+	Línea  375:                 Set archivo2 = FSO.OpenTextFile(EDIRoot & "ENTRADA\LINALB.TXT", ForReading)
+	Línea  490:     jmail.AddAttachment EDIRoot & "ENTRADA\EMBALB.TXT"
+	Línea  491:     jmail.AddAttachment EDIRoot & "ENTRADA\LINALB.TXT"
+	Línea  492:     jmail.AddAttachment EDIRoot & "ENTRADA\CABALB.TXT"
+	Línea  498:     FSO.MoveFile EDIRoot & "ENTRADA\EMBALB.TXT", BackupRoot & "DESADV\" & Year(Now) & IIf(Month(Now) < 10, "0", "") & Month(Now) & IIf(Day(Now) < 10, "0", "") & Day(Now) & "-" & IIf(Hour(Now) < 10, "0", "") & Hour(Now) & IIf(Minute(Now) < 10, "0", "") & Minute(Now) & "_EMBALB.TXT"
+	Línea  499:     FSO.MoveFile EDIRoot & "ENTRADA\LINALB.TXT", BackupRoot & "DESADV\" & Year(Now) & IIf(Month(Now) < 10, "0", "") & Month(Now) & IIf(Day(Now) < 10, "0", "") & Day(Now) & "-" & IIf(Hour(Now) < 10, "0", "") & Hour(Now) & IIf(Minute(Now) < 10, "0", "") & Minute(Now) & "_LINALB.TXT"
+	Línea  500:     FSO.MoveFile EDIRoot & "ENTRADA\CABALB.TXT", BackupRoot & "DESADV\" & Year(Now) & IIf(Month(Now) < 10, "0", "") & Month(Now) & IIf(Day(Now) < 10, "0", "") & Day(Now) & "-" & IIf(Hour(Now) < 10, "0", "") & Hour(Now) & IIf(Minute(Now) < 10, "0", "") & Minute(Now) & "_CABALB.TXT"
+	Línea  507: If FSO.FileExists(EDIRoot & "ENTRADA\CABDELF.TXT") And FSO.FileExists(EDIRoot & "ENTRADA\CONDELF.TXT") And FSO.FileExists(EDIRoot & "ENTRADA\LINDELF.TXT") Then
+	Línea  511:     Set archivo1 = FSO.OpenTextFile(EDIRoot & "ENTRADA\CABDELF.TXT", ForReading)
+	Línea  555:     jmail.AddAttachment EDIRoot & "ENTRADA\EMBDELF.TXT"
+	Línea  556:     jmail.AddAttachment EDIRoot & "ENTRADA\LINDELF.TXT"
+	Línea  557:     jmail.AddAttachment EDIRoot & "ENTRADA\CABDELF.TXT"
+	Línea  563:     FSO.MoveFile EDIRoot & "ENTRADA\EMBDELF.TXT", BackupRoot & "DELFOR\" & Year(Now) & IIf(Month(Now) < 10, "0", "") & Month(Now) & IIf(Day(Now) < 10, "0", "") & Day(Now) & "-" & IIf(Hour(Now) < 10, "0", "") & Hour(Now) & IIf(Minute(Now) < 10, "0", "") & Minute(Now) & "_EMBDELF.TXT"
+	Línea  564:     FSO.MoveFile EDIRoot & "ENTRADA\LINDELF.TXT", BackupRoot & "DELFOR\" & Year(Now) & IIf(Month(Now) < 10, "0", "") & Month(Now) & IIf(Day(Now) < 10, "0", "") & Day(Now) & "-" & IIf(Hour(Now) < 10, "0", "") & Hour(Now) & IIf(Minute(Now) < 10, "0", "") & Minute(Now) & "_LINDELF.TXT"
+	Línea  565:     FSO.MoveFile EDIRoot & "ENTRADA\CABDELF.TXT", BackupRoot & "DELFOR\" & Year(Now) & IIf(Month(Now) < 10, "0", "") & Month(Now) & IIf(Day(Now) < 10, "0", "") & Day(Now) & "-" & IIf(Hour(Now) < 10, "0", "") & Hour(Now) & IIf(Minute(Now) < 10, "0", "") & Minute(Now) & "_CABDELF.TXT"
+	Línea  728:         Set File_IO1 = FSO.OpenTextFile(EDIRoot & "SALIDA\CABCRE.TXT", ForWriting, True)
+	Línea  729:         Set File_IO2 = FSO.OpenTextFile(EDIRoot & "SALIDA\EMBCRE.TXT", ForWriting, True)
+	Línea  730:         Set File_IO3 = FSO.OpenTextFile(EDIRoot & "SALIDA\LINCRE.TXT", ForWriting, True)
+	Línea  808: If FSO.FileExists(EDIRoot & "SALIDA\CABCRE.TXT") And FSO.FileExists(EDIRoot & "SALIDA\EMBCRE.TXT") And FSO.FileExists(EDIRoot & "SALIDA\LINCRE.TXT") Then
+	Línea  811:     Set archivo1 = FSO.OpenTextFile(EDIRoot & "SALIDA\CABCRE.TXT", ForReading)
+	Línea  859:     jmail.AddAttachment EDIRoot & "SALIDA\CABCRE.TXT"
+	Línea  860:     jmail.AddAttachment EDIRoot & "SALIDA\EMBCRE.TXT"
+	Línea  861:     jmail.AddAttachment EDIRoot & "SALIDA\LINCRE.TXT"
+	Línea  869:     FSO.CopyFile EDIRoot & "SALIDA\CABCRE.TXT", BackupRoot & "RECADV\" & Year(Now) & IIf(Month(Now) < 10, "0", "") & Month(Now) & IIf(Day(Now) < 10, "0", "") & Day(Now) & "-" & IIf(Hour(Now) < 10, "0", "") & Hour(Now) & IIf(Minute(Now) < 10, "0", "") & Minute(Now) & "_CABCRE.TXT"
+	Línea  870:     FSO.CopyFile EDIRoot & "SALIDA\EMBCRE.TXT", BackupRoot & "RECADV\" & Year(Now) & IIf(Month(Now) < 10, "0", "") & Month(Now) & IIf(Day(Now) < 10, "0", "") & Day(Now) & "-" & IIf(Hour(Now) < 10, "0", "") & Hour(Now) & IIf(Minute(Now) < 10, "0", "") & Minute(Now) & "_EMBCRE.TXT"
+	Línea  871:     FSO.CopyFile EDIRoot & "SALIDA\LINCRE.TXT", BackupRoot & "RECADV\" & Year(Now) & IIf(Month(Now) < 10, "0", "") & Month(Now) & IIf(Day(Now) < 10, "0", "") & Day(Now) & "-" & IIf(Hour(Now) < 10, "0", "") & Hour(Now) & IIf(Minute(Now) < 10, "0", "") & Minute(Now) & "_LINCRE.TXT"
+	Línea  996: 'buscamos los archivos CABINS.TXT y LININS.TXT
+	Línea 1004: If FSO.FileExists(EDIRoot & "ENTRADA\CABINS.TXT") And FSO.FileExists(EDIRoot & "ENTRADA\LININS.TXT") Then
+	Línea 1005:     Set archivo1 = FSO.OpenTextFile(EDIRoot & "ENTRADA\CABINS.TXT", ForReading)
+	Línea 1053:     Set archivo2 = FSO.OpenTextFile(EDIRoot & "ENTRADA\LININS.TXT", ForReading)
+	Línea 1058:         Set archivo1 = FSO.OpenTextFile(EDIRoot & "ENTRADA\CABINS.TXT", ForReading)
+	Línea 1155:     Set archivo1 = FSO.OpenTextFile(EDIRoot & "ENTRADA\CABINS.TXT", ForReading)
+	Línea 1208:             Set archivo2 = FSO.OpenTextFile(EDIRoot & "ENTRADA\LININS.TXT", ForReading)
+	Línea 1306:             jmail.AddAttachment EDIRoot & "ENTRADA\CABINS.TXT"
+	Línea 1307:             jmail.AddAttachment EDIRoot & "ENTRADA\LININS.TXT"
+	Línea 1308:             jmail.AddAttachment EDIRoot & "ENTRADA\OBSINS.TXT"
+	Línea 1309:             jmail.AddAttachment EDIRoot & "ENTRADA\OBSLINS.TXT"
+	Línea 1315:             FSO.MoveFile EDIRoot & "ENTRADA\CABINS.TXT", BackupRoot & "INSDES\" & Year(Now) & Month(Now) & Day(Now) & "-" & Hour(Now) & Minute(Now) & "_CABINS.TXT"
+	Línea 1316:             FSO.MoveFile EDIRoot & "ENTRADA\LININS.TXT", BackupRoot & "INSDES\" & Year(Now) & Month(Now) & Day(Now) & "-" & Hour(Now) & Minute(Now) & "_LININS.TXT"
+	Línea 1317:             FSO.MoveFile EDIRoot & "ENTRADA\OBSINS.TXT", BackupRoot & "INSDES\" & Year(Now) & Month(Now) & Day(Now) & "-" & Hour(Now) & Minute(Now) & "_OBSINS.TXT"
+	Línea 1318:             FSO.MoveFile EDIRoot & "ENTRADA\OBSLINS.TXT", BackupRoot & "INSDES\" & Year(Now) & Month(Now) & Day(Now) & "-" & Hour(Now) & Minute(Now) & "_OBSLINS.TXT"
+	Línea 1441:         Set File_IO1 = FSO.OpenTextFile(EDIRoot & "SALIDA\CABSIT.TXT", ForWriting, True)
+	Línea 1442:         Set File_IO2 = FSO.OpenTextFile(EDIRoot & "SALIDA\DOCSIT.TXT", ForWriting, True)
+	Línea 1443:         Set File_IO3 = FSO.OpenTextFile(EDIRoot & "SALIDA\ESTDOCSIT.TXT", ForWriting, True)
+	Línea 1444:         Set File_IO4 = FSO.OpenTextFile(EDIRoot & "SALIDA\LINDOCSIT.TXT", ForWriting, True)
+	Línea 1517:     If FSO.FileExists(EDIRoot & "SALIDA\CABSIT.TXT") Or FSO.FileExists(EDIRoot & "SALIDA\CABCRE.TXT") Then
+	Línea 1545:         If FSO.FileExists(EDIRoot & "SALIDA\CABCRE.TXT") Then
+	Línea 1546:             Set archivo1 = FSO.OpenTextFile(EDIRoot & "SALIDA\CABCRE.TXT", ForReading)
+	Línea 1558:             jmail.AddAttachment EDIRoot & "SALIDA\CABCRE.TXT"
+	Línea 1559:             jmail.AddAttachment EDIRoot & "SALIDA\EMBCRE.TXT"
+	Línea 1560:             jmail.AddAttachment EDIRoot & "SALIDA\LINCRE.TXT"
+	Línea 1563:             FSO.CopyFile EDIRoot & "SALIDA\CABCRE.TXT", BackupRoot & "RECADV\" & Year(Now) & Month(Now) & Day(Now) & "-" & Hour(Now) & Minute(Now) & "_CABCRE.TXT"
+	Línea 1564:             FSO.CopyFile EDIRoot & "SALIDA\EMBCRE.TXT", BackupRoot & "RECADV\" & Year(Now) & Month(Now) & Day(Now) & "-" & Hour(Now) & Minute(Now) & "_EMBCRE.TXT"
+	Línea 1565:             FSO.CopyFile EDIRoot & "SALIDA\LINCRE.TXT", BackupRoot & "RECADV\" & Year(Now) & Month(Now) & Day(Now) & "-" & Hour(Now) & Minute(Now) & "_LINCRE.TXT"
+	Línea 1573:         If FSO.FileExists(EDIRoot & "SALIDA\CABSIT.TXT") Then
+	Línea 1574:             Set archivo1 = FSO.OpenTextFile(EDIRoot & "SALIDA\CABSIT.TXT", ForReading)
+	Línea 1581:             jmail.AddAttachment EDIRoot & "SALIDA\CABSIT.TXT"
+	Línea 1582:             jmail.AddAttachment EDIRoot & "SALIDA\DOCSIT.TXT"
+	Línea 1583:             jmail.AddAttachment EDIRoot & "SALIDA\ESTDOCSIT.TXT"
+	Línea 1584:             jmail.AddAttachment EDIRoot & "SALIDA\LINDOCSIT.TXT"
+	Línea 1587:             FSO.CopyFile EDIRoot & "SALIDA\CABSIT.TXT", BackupRoot & "OSTRPT\" & Year(Now) & Month(Now) & Day(Now) & "-" & Hour(Now) & Minute(Now) & "_CABSIT.TXT"
+	Línea 1588:             FSO.CopyFile EDIRoot & "SALIDA\DOCSIT.TXT", BackupRoot & "OSTRPT\" & Year(Now) & Month(Now) & Day(Now) & "-" & Hour(Now) & Minute(Now) & "_DOCSIT.TXT"
+	Línea 1589:             FSO.CopyFile EDIRoot & "SALIDA\ESTDOCSIT.TXT", BackupRoot & "OSTRPT\" & Year(Now) & Month(Now) & Day(Now) & "-" & Hour(Now) & Minute(Now) & "_ESTDOCSIT.TXT"
+	Línea 1590:             FSO.CopyFile EDIRoot & "SALIDA\LINDOCSIT.TXT", BackupRoot & "OSTRPT\" & Year(Now) & Month(Now) & Day(Now) & "-" & Hour(Now) & Minute(Now) & "_LINDOCSIT.TXT"
+	Línea 1619: If FSO.FileExists(BackupRoot & "INVRPT\" & rs.Fields(0) & "_CABINV.TXT") And _
+	Línea 1620:     FSO.FileExists(BackupRoot & "INVRPT\" & rs.Fields(0) & "_LININV.TXT") And _
+	Línea 1621:     FSO.FileExists(BackupRoot & "INVRPT\" & rs.Fields(0) & "_QTYINV.TXT") Then
+	Línea 1629:     Set File_IO1 = FSO.OpenTextFile(EDIRoot & "SALIDA\CABINV.TXT", ForWriting, True)
+	Línea 1630:     Set File_IO2 = FSO.OpenTextFile(EDIRoot & "SALIDA\LININV.TXT", ForWriting, True)
+	Línea 1631:     Set File_IO3 = FSO.OpenTextFile(EDIRoot & "SALIDA\QTYINV.TXT", ForWriting, True)
+	Línea 1729:     If FSO.FileExists(EDIRoot & "SALIDA\CABINV.TXT") Then
+	Línea 1731:         jmail.AddAttachment EDIRoot & "SALIDA\CABINV.TXT"
+	Línea 1732:         jmail.AddAttachment EDIRoot & "SALIDA\LININV.TXT"
+	Línea 1733:         jmail.AddAttachment EDIRoot & "SALIDA\QTYINV.TXT"
+	Línea 1739:         FSO.CopyFile EDIRoot & "SALIDA\CABINV.TXT", BackupRoot & "INVRPT\" & rs.Fields(0) & "_CABINV.TXT"
+	Línea 1740:         FSO.CopyFile EDIRoot & "SALIDA\LININV.TXT", BackupRoot & "INVRPT\" & rs.Fields(0) & "_LININV.TXT"
+	Línea 1741:         FSO.CopyFile EDIRoot & "SALIDA\QTYINV.TXT", BackupRoot & "INVRPT\" & rs.Fields(0) & "_QTYINV.TXT"
+  C:\pc\Spooler\ReportServer_QA\web_remesas_mod.bas (2 coincidencias)
+	Línea 395:         Set File_IO = FSO.CreateTextFile(Archivo & IIf(j = 1, "", "_" & CStr(j)) & ".txt", True)
+	Línea 463:         file_tab(0, UBound(file_tab, 2)) = Archivo & IIf(j = 1, "", "_" & CStr(j)) & ".txt"
+  C:\pc\Spooler\ReportServer_QA\web_reservacion_CD_mod.bas (23 coincidencias)
+	Línea  12: Private rsTxt As New ADODB.Recordset
+	Línea  61:     Set rsTxt = New ADODB.Recordset
+	Línea  62:     rsTxt.CursorLocation = adUseClient
+	Línea  63:     rsTxt.CursorType = adOpenForwardOnly
+	Línea  64:     rsTxt.LockType = adLockBatchOptimistic
+	Línea  65:     rsTxt.ActiveConnection = Db_link_orfeo
+	Línea 100:             mail_adjuntarArchivoTXT = True
+	Línea 102:             mail_adjuntarArchivoTXT = False
+	Línea 389: If mail_adjuntarArchivoTXT = True Then
+	Línea 391:     mail_archivoAdjunto_txt = MakeTxtFile(Carpeta, Archivo, WCD_LOTE)
+	Línea 405: 'If mail_adjuntarArchivoTXT = True Then
+	Línea 407: '    mail_archivoAdjunto_txt = backup_directory & Archivo
+	Línea 431: Private Function MakeTxtFile(ByVal Ubicacion As String, ByVal NombreArchivo As String, ByVal wLote As Long)
+	Línea 438:     rsTxt.Open SQL
+	Línea 439:         j = rsTxt.RecordCount
+	Línea 440:         NombreArchivo = Replace(NombreArchivo, ".txt", "(" & j & ").txt")
+	Línea 443:         Do While Not rsTxt.EOF
+	Línea 444:             File_IO.WriteLine rsTxt.Fields(0)
+	Línea 445:             rsTxt.MoveNext
+	Línea 447:     rsTxt.Close
+	Línea 451:     MakeTxtFile = Ubicacion & NombreArchivo
+  C:\pc\Spooler\ReportServer_QA\web_reservacion_LTL_mod.bas (25 coincidencias)
+	Línea  12: Private rsTxt As New ADODB.Recordset
+	Línea  63:     Set rsTxt = New ADODB.Recordset
+	Línea  64:     rsTxt.CursorLocation = adUseClient
+	Línea  65:     rsTxt.CursorType = adOpenForwardOnly
+	Línea  66:     rsTxt.LockType = adLockBatchOptimistic
+	Línea  67:     rsTxt.ActiveConnection = Db_link_orfeo
+	Línea  99:             mail_adjuntarArchivoTXT = True
+	Línea 101:             mail_adjuntarArchivoTXT = False
+	Línea 369:     If mail_adjuntarArchivoTXT = True Then
+	Línea 371:         mail_archivoAdjunto_txt = mail_tempFolder & Archivo
+	Línea 400:             mail_adjuntarArchivoTXT = True
+	Línea 402:             mail_adjuntarArchivoTXT = False
+	Línea 677: If mail_adjuntarArchivoTXT = True Then
+	Línea 679:     mail_archivoAdjunto_txt = MakeTxtFile(Carpeta, Archivo, WEL_LOTE)
+	Línea 712: Private Function MakeTxtFile(ByVal Ubicacion As String, ByVal NombreArchivo As String, ByVal wLote As Long)
+	Línea 718:     rsTxt.Open SQL
+	Línea 719:         j = rsTxt.RecordCount
+	Línea 720:         NombreArchivo = Replace(NombreArchivo, ".txt", "(" & j & ").txt")
+	Línea 723:         Do While Not rsTxt.EOF
+	Línea 724:             File_IO.WriteLine rsTxt.Fields(0)
+	Línea 725:             rsTxt.MoveNext
+	Línea 727:     rsTxt.Close
+	Línea 731:     MakeTxtFile = Ubicacion & NombreArchivo
+  C:\pc\Spooler\ReportServer_QA\web_scj_pedimentos_pagados.bas (1 coincidencias)
+	Línea 152:     file_name_delete = Replace(file_name, ".txt", ".xls")
+  C:\pc\Spooler\ReportServer_QA\web_scj_pendiente_despacho.bas (8 coincidencias)
+	Línea  21: Private txtFOFREFERENCIA As String
+	Línea  59:     txtFOFREFERENCIA = ""
+	Línea 179:             txtFOFREFERENCIA = GetQueryString(SQL)
+	Línea 183:             'Line_Buffer = Line_Buffer & folio & vbTab & aduana & vbTab & TIPO_OPERACION & vbTab & FECHA_ARRIBO & vbTab & PROVEEDOR & vbTab & cantidad & vbTab & txtFOFREFERENCIA & vbTab & date_created & vbTab
+	Línea 184:             Line_Buffer = Line_Buffer & FOLIO & vbTab & aduana & vbTab & TIPO_OPERACION & vbTab & FECHA_ARRIBO & vbTab & PROVEEDOR & vbTab & cantidad & vbTab & txtFOFREFERENCIA & vbTab
+	Línea 189:             txtFOFREFERENCIA = ""
+	Línea 195:         Debug.Print FOLIO & " " & aduana & " " & TIPO_OPERACION & " " & FECHA_ARRIBO & " " & PROVEEDOR & " " & cantidad & " " & FOFREFERENCIA & " " & txtFOFREFERENCIA
+	Línea 206:     file_name_delete = Replace(file_name, ".txt", ".xls")
+  C:\pc\Spooler\ReportServer_QA\web_sony_archivos_mod.bas (2 coincidencias)
+	Línea  30:     SQL_DET = SQL_DET & "          , '||'||DCD_NUM_IMEI||'||||||||'||DCD_CAJA_CONSECUTIVO_TXT||'|'||DCD_PAL_CONSECUTIVO_TXT CAMPO " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_status_dinero_mod.bas (5 coincidencias)
+	Línea  178:         filename_tmp = Carpeta & Left(Archivo, Len(Archivo) - 4) & "depo_desco" & tab_params(k, 0) & "-" & tab_params(k, 1) & ".txt"
+	Línea  307:         filename_tmp = Carpeta & Left(Archivo, Len(Archivo) - 4) & "por_aplicar" & tab_params(k, 0) & "-" & tab_params(k, 1) & ".txt"
+	Línea  390: filename_tmp = Carpeta & Left(Archivo, Len(Archivo) - 4) & "fondo_fijo.txt"
+	Línea  514: filename_tmp = Carpeta & Left(Archivo, Len(Archivo) - 4) & "anticipos_no_eje.txt"
+	Línea  904:         filename_tmp = Carpeta & Left(Archivo, Len(Archivo) - 4) & "a_favor_" & tab_params(k, 0) & "-" & tab_params(k, 1) & ".txt"
+  C:\pc\Spooler\ReportServer_QA\web_talones_cargos_mod.bas (2 coincidencias)
+	Línea 178: Set File_IO = FSO.CreateTextFile(Carpeta & Left(file_name, Len(file_name) - 4) & "_00.txt", True)
+	Línea 197: file_tab(0, UBound(file_tab, 2)) = Carpeta & Left(file_name, Len(file_name) - 4) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\web_talones_mod.bas (11 coincidencias)
+	Línea  37: Sub talones_txt(Carpeta As String, file_name As String, file_tab() As String, cliente As String, FECHA_1 As String, FECHA_2 As String, tipo_fecha As String, tipo_reporte As String, Optional lista_welclave As String, Optional tipo_separador As String = "")
+	Línea  44: If tipo_reporte = "" Then tipo_reporte = "txt"
+	Línea  50: If tipo_reporte = "txt" Then
+	Línea 342:     If tipo_reporte <> "txt" Then
+	Línea 392:     If tipo_reporte <> "txt" Then
+	Línea 435:         status = ObtieneStatusTalon_txt(rst.Fields(34))
+	Línea 524: Sub talones_txt2(Carpeta As String, file_name As String, file_tab() As String, cliente As String, FECHA_1 As String, FECHA_2 As String, tipo_fecha As String, tipo_reporte As String, Optional lista_welclave As String, Optional tipo_separador As String = "")
+	Línea 531: If tipo_reporte = "" Then tipo_reporte = "txt"
+	Línea 536: If tipo_reporte = "txt" Then
+	Línea 829:     If tipo_reporte <> "txt" Then
+	Línea 878:     If tipo_reporte <> "txt" Then
+  C:\pc\Spooler\ReportServer_QA\web_talones_seguros_mod.bas (2 coincidencias)
+	Línea 192: Set File_IO = FSO.CreateTextFile(Left(Archivo, Len(Archivo) - 4) & "_00.txt", True)
+	Línea 251: file_tab(0, UBound(file_tab, 2)) = Left(Archivo, Len(Archivo) - 4) & "_00.txt"
+  C:\pc\Spooler\ReportServer_QA\web_transmision_edocs_bosch_mod.bas (2 coincidencias)
+	Línea 146:         Set File_IO = FSO.CreateTextFile(Carpeta & Archivo & IIf(i > 0, tab_impexp(2, i), "") & ".txt", True)
+	Línea 148:         file_tab(0, UBound(file_tab, 2)) = Carpeta & Archivo & IIf(i > 0, tab_impexp(2, i), "") & ".txt"

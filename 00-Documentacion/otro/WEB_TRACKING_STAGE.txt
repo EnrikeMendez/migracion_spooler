@@ -1,0 +1,39 @@
+Buscar "web_tracking_stage" (Hay 28 coincidencia(s) en 10 archivo(s) de 353 búsqueda(s)) [Normal]
+  C:\pc\Spooler\ReportServer_QA\doc_masiva_sin_factura.bas (1 coincidencias)
+	Línea 310:         SQL = SQL & " UPDATE    WEB_TRACKING_STAGE " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\funciones.bas (1 coincidencias)
+	Línea 2338:                 SQL_monto_concept = SQL_monto_concept & "       INNER   JOIN    WEB_TRACKING_STAGE WTS " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_fusion_pendientes_mod.bas (1 coincidencias)
+	Línea  114: SQL_DETALLE = SQL_DETALLE & " LEFT JOIN WEB_TRACKING_STAGE WTS ON WEL.WELCLAVE = WTS.NUI" & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\trading_kpi_mod.bas (4 coincidencias)
+	Línea 129:         '<<< CHG-DESA-22042024 se integra la tabla WEB_TRACKING_STAGE para obtener el total de facturas
+	Línea 130:         SQL_DETALLE = SQL_DETALLE & "     , WEB_TRACKING_STAGE WTS   " & vbCrLf
+	Línea 257:                 '<<< CHG-DESA-22042024 se integra la tabla WEB_TRACKING_STAGE para obtener el total de facturas
+	Línea 258:         SQL_DETALLE = SQL_DETALLE & "     , WEB_TRACKING_STAGE WTS   " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_carga_archivo_mod.bas (2 coincidencias)
+	Línea 1455:                 SQL = " UPDATE WEB_TRACKING_STAGE     " & vbCrLf
+	Línea 2035:                                                                         SQL = " UPDATE WEB_TRACKING_STAGE     " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_carga_ltl_austromex_cp_mod.bas (1 coincidencias)
+	Línea  667:                                                 SQL = SQL & "UPDATE      WEB_TRACKING_STAGE " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_carga_ltl_gsk_mod.bas (1 coincidencias)
+	Línea 1083:         SQL = SQL & " UPDATE     WEB_TRACKING_STAGE " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_carga_ltl_helvex_cp_mod.bas (2 coincidencias)
+	Línea  841:                                         SQL = SQL & "UPDATE      WEB_TRACKING_STAGE " & vbCrLf
+	Línea  947:                                 SQL = SQL & "UPDATE      WEB_TRACKING_STAGE " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_reservacion_CD_mod.bas (6 coincidencias)
+	Línea 197:     'SQL = "SELECT NVL(MIN(WL.LOTE),0) FROM WEB_LOTS WL WHERE WL.LOTE NOT IN (SELECT DISTINCT WTS.NUMERO_LOTE FROM WEB_TRACKING_STAGE WTS)"
+	Línea 314: '<JEMV-20220427: REGISTRAR LA INFORMACIÓN EN LA TABLA [WEB_TRACKING_STAGE] POR CADA NUI PARA DAR SEGUIMIENTO A LAS GUÍAS
+	Línea 315:     SQL = "INSERT INTO WEB_TRACKING_STAGE ( " & vbCrLf
+	Línea 353:         SQL = SQL & " WHERE WCDCLAVE IN ( SELECT DISTINCT NUI FROM WEB_TRACKING_STAGE WHERE NUMERO_LOTE = '" & WCD_LOTE & "' ) " & vbCrLf
+	Línea 374: '    SQL = SQL & " WHERE WCDCLAVE IN ( SELECT DISTINCT NUI FROM WEB_TRACKING_STAGE WHERE NUMERO_LOTE = '" & WCD_LOTE & "' ) " & vbCrLf
+	Línea 436:     SQL = SQL & " WHERE WCDCLAVE IN (SELECT DISTINCT NUI FROM WEB_TRACKING_STAGE WHERE NUMERO_LOTE = '" & wLote & "') " & vbCrLf
+  C:\pc\Spooler\ReportServer_QA\web_reservacion_LTL_mod.bas (9 coincidencias)
+	Línea 286:     '<JEMV-20220427: REGISTRAR LA INFORMACIÓN EN LA TABLA [WEB_TRACKING_STAGE] POR CADA NUI PARA DAR SEGUIMIENTO A LAS GUÍAS
+	Línea 287:         SQL = "INSERT INTO WEB_TRACKING_STAGE ( " & vbCrLf
+	Línea 326: '            SQL = SQL & " WHERE WELCLAVE IN ( SELECT DISTINCT NUI FROM WEB_TRACKING_STAGE WHERE NUMERO_LOTE = '" & WEL_LOTE & "' ) " & vbCrLf
+	Línea 348:         SQL = SQL & " WHERE WELCLAVE IN ( SELECT DISTINCT NUI FROM WEB_TRACKING_STAGE WHERE NUMERO_LOTE = '" & WEL_LOTE & "' ) " & vbCrLf
+	Línea 594: '<JEMV-20220427: REGISTRAR LA INFORMACIÓN EN LA TABLA [WEB_TRACKING_STAGE] POR CADA NUI PARA DAR SEGUIMIENTO A LAS GUÍAS
+	Línea 595:     SQL = "INSERT INTO WEB_TRACKING_STAGE ( " & vbCrLf
+	Línea 636: '        SQL = SQL & " WHERE WELCLAVE IN ( SELECT DISTINCT NUI FROM WEB_TRACKING_STAGE WHERE NUMERO_LOTE = '" & WEL_LOTE & "' ) " & vbCrLf
+	Línea 656:     SQL = SQL & " WHERE WELCLAVE IN ( SELECT DISTINCT NUI FROM WEB_TRACKING_STAGE WHERE NUMERO_LOTE = '" & WEL_LOTE & "' ) " & vbCrLf
+	Línea 716:     SQL = SQL & " WHERE WELCLAVE IN ( SELECT DISTINCT NUI FROM WEB_TRACKING_STAGE WHERE NUMERO_LOTE = '" & wLote & "' ) " & vbCrLf
