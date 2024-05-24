@@ -25,3 +25,6 @@ if (rep_id != 0)
 else
     Console.WriteLine("Falta el numero del reporte.....");
 
+Console.WriteLine("Oprimar cualquier tecla para terminar");
+Console.ReadKey();
+
