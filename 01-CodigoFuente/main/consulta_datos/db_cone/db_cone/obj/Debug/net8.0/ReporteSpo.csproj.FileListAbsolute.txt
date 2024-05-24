@@ -1,0 +1,52 @@
+C:\Users\usuario\Desktop\Raul\actualizados\programas de consola\main\consulta_datos\db_cone\db_cone\bin\Debug\net8.0\ReporteSpo.exe
+C:\Users\usuario\Desktop\Raul\actualizados\programas de consola\main\consulta_datos\db_cone\db_cone\bin\Debug\net8.0\ReporteSpo.deps.json
+C:\Users\usuario\Desktop\Raul\actualizados\programas de consola\main\consulta_datos\db_cone\db_cone\bin\Debug\net8.0\ReporteSpo.runtimeconfig.json
+C:\Users\usuario\Desktop\Raul\actualizados\programas de consola\main\consulta_datos\db_cone\db_cone\bin\Debug\net8.0\ReporteSpo.dll
+C:\Users\usuario\Desktop\Raul\actualizados\programas de consola\main\consulta_datos\db_cone\db_cone\bin\Debug\net8.0\ReporteSpo.pdb
+C:\Users\usuario\Desktop\Raul\actualizados\programas de consola\main\consulta_datos\db_cone\db_cone\bin\Debug\net8.0\Microsoft.Extensions.Configuration.dll
+C:\Users\usuario\Desktop\Raul\actualizados\programas de consola\main\consulta_datos\db_cone\db_cone\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\usuario\Desktop\Raul\actualizados\programas de consola\main\consulta_datos\db_cone\db_cone\bin\Debug\net8.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+C:\Users\usuario\Desktop\Raul\actualizados\programas de consola\main\consulta_datos\db_cone\db_cone\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Json.dll
+C:\Users\usuario\Desktop\Raul\actualizados\programas de consola\main\consulta_datos\db_cone\db_cone\bin\Debug\net8.0\Microsoft.Extensions.Configuration.UserSecrets.dll
+C:\Users\usuario\Desktop\Raul\actualizados\programas de consola\main\consulta_datos\db_cone\db_cone\bin\Debug\net8.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\usuario\Desktop\Raul\actualizados\programas de consola\main\consulta_datos\db_cone\db_cone\bin\Debug\net8.0\Microsoft.Extensions.FileProviders.Physical.dll
+C:\Users\usuario\Desktop\Raul\actualizados\programas de consola\main\consulta_datos\db_cone\db_cone\bin\Debug\net8.0\Microsoft.Extensions.FileSystemGlobbing.dll
+C:\Users\usuario\Desktop\Raul\actualizados\programas de consola\main\consulta_datos\db_cone\db_cone\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll
+C:\Users\usuario\Desktop\Raul\actualizados\programas de consola\main\consulta_datos\db_cone\db_cone\bin\Debug\net8.0\System.Data.OracleClient.dll
+C:\Users\usuario\Desktop\Raul\actualizados\programas de consola\main\consulta_datos\db_cone\db_cone\obj\Debug\net8.0\ReporteSpo.csproj.AssemblyReference.cache
+C:\Users\usuario\Desktop\Raul\actualizados\programas de consola\main\consulta_datos\db_cone\db_cone\obj\Debug\net8.0\ReporteSpo.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\usuario\Desktop\Raul\actualizados\programas de consola\main\consulta_datos\db_cone\db_cone\obj\Debug\net8.0\ReporteSpo.AssemblyInfoInputs.cache
+C:\Users\usuario\Desktop\Raul\actualizados\programas de consola\main\consulta_datos\db_cone\db_cone\obj\Debug\net8.0\ReporteSpo.AssemblyInfo.cs
+C:\Users\usuario\Desktop\Raul\actualizados\programas de consola\main\consulta_datos\db_cone\db_cone\obj\Debug\net8.0\ReporteSpo.csproj.CoreCompileInputs.cache
+C:\Users\usuario\Desktop\Raul\actualizados\programas de consola\main\consulta_datos\db_cone\db_cone\obj\Debug\net8.0\ReporteSpo.csproj.Up2Date
+C:\Users\usuario\Desktop\Raul\actualizados\programas de consola\main\consulta_datos\db_cone\db_cone\obj\Debug\net8.0\ReporteSpo.dll
+C:\Users\usuario\Desktop\Raul\actualizados\programas de consola\main\consulta_datos\db_cone\db_cone\obj\Debug\net8.0\refint\ReporteSpo.dll
+C:\Users\usuario\Desktop\Raul\actualizados\programas de consola\main\consulta_datos\db_cone\db_cone\obj\Debug\net8.0\ReporteSpo.pdb
+C:\Users\usuario\Desktop\Raul\actualizados\programas de consola\main\consulta_datos\db_cone\db_cone\obj\Debug\net8.0\ReporteSpo.genruntimeconfig.cache
+C:\Users\usuario\Desktop\Raul\actualizados\programas de consola\main\consulta_datos\db_cone\db_cone\obj\Debug\net8.0\ref\ReporteSpo.dll
+C:\pc\raul\programas consola\main\consulta_datos\db_cone\db_cone\bin\Debug\net8.0\ReporteSpo.exe
+C:\pc\raul\programas consola\main\consulta_datos\db_cone\db_cone\bin\Debug\net8.0\ReporteSpo.deps.json
+C:\pc\raul\programas consola\main\consulta_datos\db_cone\db_cone\bin\Debug\net8.0\ReporteSpo.runtimeconfig.json
+C:\pc\raul\programas consola\main\consulta_datos\db_cone\db_cone\bin\Debug\net8.0\ReporteSpo.dll
+C:\pc\raul\programas consola\main\consulta_datos\db_cone\db_cone\bin\Debug\net8.0\ReporteSpo.pdb
+C:\pc\raul\programas consola\main\consulta_datos\db_cone\db_cone\bin\Debug\net8.0\Microsoft.Extensions.Configuration.dll
+C:\pc\raul\programas consola\main\consulta_datos\db_cone\db_cone\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\pc\raul\programas consola\main\consulta_datos\db_cone\db_cone\bin\Debug\net8.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+C:\pc\raul\programas consola\main\consulta_datos\db_cone\db_cone\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Json.dll
+C:\pc\raul\programas consola\main\consulta_datos\db_cone\db_cone\bin\Debug\net8.0\Microsoft.Extensions.Configuration.UserSecrets.dll
+C:\pc\raul\programas consola\main\consulta_datos\db_cone\db_cone\bin\Debug\net8.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\pc\raul\programas consola\main\consulta_datos\db_cone\db_cone\bin\Debug\net8.0\Microsoft.Extensions.FileProviders.Physical.dll
+C:\pc\raul\programas consola\main\consulta_datos\db_cone\db_cone\bin\Debug\net8.0\Microsoft.Extensions.FileSystemGlobbing.dll
+C:\pc\raul\programas consola\main\consulta_datos\db_cone\db_cone\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll
+C:\pc\raul\programas consola\main\consulta_datos\db_cone\db_cone\bin\Debug\net8.0\System.Data.OracleClient.dll
+C:\pc\raul\programas consola\main\consulta_datos\db_cone\db_cone\obj\Debug\net8.0\ReporteSpo.csproj.AssemblyReference.cache
+C:\pc\raul\programas consola\main\consulta_datos\db_cone\db_cone\obj\Debug\net8.0\ReporteSpo.GeneratedMSBuildEditorConfig.editorconfig
+C:\pc\raul\programas consola\main\consulta_datos\db_cone\db_cone\obj\Debug\net8.0\ReporteSpo.AssemblyInfoInputs.cache
+C:\pc\raul\programas consola\main\consulta_datos\db_cone\db_cone\obj\Debug\net8.0\ReporteSpo.AssemblyInfo.cs
+C:\pc\raul\programas consola\main\consulta_datos\db_cone\db_cone\obj\Debug\net8.0\ReporteSpo.csproj.CoreCompileInputs.cache
+C:\pc\raul\programas consola\main\consulta_datos\db_cone\db_cone\obj\Debug\net8.0\ReporteSpo.csproj.Up2Date
+C:\pc\raul\programas consola\main\consulta_datos\db_cone\db_cone\obj\Debug\net8.0\ReporteSpo.dll
+C:\pc\raul\programas consola\main\consulta_datos\db_cone\db_cone\obj\Debug\net8.0\refint\ReporteSpo.dll
+C:\pc\raul\programas consola\main\consulta_datos\db_cone\db_cone\obj\Debug\net8.0\ReporteSpo.pdb
+C:\pc\raul\programas consola\main\consulta_datos\db_cone\db_cone\obj\Debug\net8.0\ReporteSpo.genruntimeconfig.cache
+C:\pc\raul\programas consola\main\consulta_datos\db_cone\db_cone\obj\Debug\net8.0\ref\ReporteSpo.dll
