@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using db_cone;
 using System.Data;
+
 int rep_id = 0;
 int visible_sql = 0;
 string msg = "";
@@ -21,6 +22,9 @@ if (rep_id != 0)
     Console.WriteLine("ID_CRON =" + rep_id);
     Console.WriteLine("reporte_temporal =" + reporte_temporal);
     Console.WriteLine(util.Tdetalle(trep_cron));
+    util.closedXML( trep_cron);
+    util.CrearExcel(trep_cron);
+
 }
 else
     Console.WriteLine("Falta el numero del reporte.....");

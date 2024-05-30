@@ -73,6 +73,7 @@ namespace db_cone
             if (vs == 1) { Console.WriteLine(SQL.Replace("@sqladd", "" + addsq + "") + "\n"); }
             //dtTemp = datos(SQL.Replace("@id_cron", "" + id_cron + ""));
             return SQL.Replace("@sqladd", "" + addsq + "");
+
             /*return dtTemp*/
         }
 
