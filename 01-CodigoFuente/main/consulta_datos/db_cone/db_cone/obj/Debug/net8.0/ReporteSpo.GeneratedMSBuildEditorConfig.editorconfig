@@ -13,6 +13,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ReporteSpo
-build_property.ProjectDir = C:\pc\raul\programas consola\main\consulta_datos\db_cone\db_cone\
+build_property.ProjectDir = C:\pc\raul\Net\migracion_spooler\01-CodigoFuente\main\consulta_datos\db_cone\db_cone\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

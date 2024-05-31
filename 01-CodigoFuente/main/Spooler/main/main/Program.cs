@@ -5,9 +5,10 @@ using System.Net;
 using System.Security.Cryptography;
 using serverreports;
 using static System.Net.Mime.MediaTypeNames;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 int rep_id = 0;
 int sw_cron = 0;
-int visible_sql =0;
+int visible_sql =1;
 string msg = "";
 string sqladd = " ,case when (@param=1 and  rep.FRECUENCIA is not null) then logis.display_fecha_confirmacion4(rep.FRECUENCIA, sysdate, sysdate,1)  end fecha  ";
 int reporte_temporal = 0;
@@ -15,6 +16,7 @@ string FECHA_1 = "";
 string FECHA_2 = "";
 int num_of_param = 0;
 ///init_var()
+ string Errror = "";
 string cc_mail = "";
 string mail_server = "";
 string mail_footer = "";
@@ -34,6 +36,11 @@ bool mail_adjuntarArchivoTXT = false;
 string mail_tempFolder = "";
 bool bExit = false;
 ///
+
+string[] tab_archivos;
+string[] tab_files;
+
+
 string reporte_name = "";
 int days_deleted = 0;
 string file_name = "";
@@ -50,17 +57,30 @@ DM DM = new DM();
 init_var();
 DataTable trep_cron = new DataTable();
 DataTable tdato_repor = new DataTable();
+
+
+
 string comand = args[0];
 try { rep_id = Convert.ToInt32(args[0]); } catch (Exception) { msg = " ¡¡¡error opc de reporte¡¡"; }
 if (args.Length == 2 && args[1] == "1")
-reporte_temporal = 1;
+    reporte_temporal = 1;
 
-
-if (rep_id != 0)
+if (rep_id != 1)
 {
-trep_cron = DM.Main_rep("main_rp_cron", rep_id.ToString(), visible_sql, sqladd.Replace("@param", "" + reporte_temporal + ""));
-if (trep_cron.Rows.Count > 0)
-sw_cron = 1;
+    trep_cron = DM.Main_rep("main_rp_cron", rep_id.ToString(), visible_sql, sqladd.Replace("@param", "" + reporte_temporal + ""));
+
+
+
+    //        util.CreadorExcel("patito.xlsx");
+    //        util.CrearExcel(trep_cron, "prueba1");
+
+    //Esto ultimo solo para verificar que todo fue bien.
+    // Console.WriteLine("Se creo el archivo, presiona una tecla para terminar");
+    // Console.ReadKey();
+
+
+    if (trep_cron.Rows.Count > 0)
+        sw_cron = 1;
 }
 else
 Console.WriteLine("Falta el numero del reporte.....");
@@ -84,7 +104,7 @@ if (rep_id != 0 && sw_cron == 1)
      End If
     */
     /* DataTable tfec_conf = new DataTable(); si se habilida independientes*/
-    if (reporte_temporal == 0)
+    if (reporte_temporal == 1)
     {
         FECHA_1 = util.Tcampo(trep_cron, "fecha");
         FECHA_2 = util.Tcampo(trep_cron, "fecha");
@@ -97,6 +117,7 @@ if (rep_id != 0 && sw_cron == 1)
     Console.WriteLine("display_fecha_confirmacion4 :" + FECHA_1 + " :" + FECHA_2);
 
     //   if (FECHA_1 == FECHA_2)
+    if (1 == 0)
     {
         Console.WriteLine("************** rep_dias_libres **************");
         string SQL_p = " select 1 from rep_dias_libres \n" +
@@ -111,6 +132,7 @@ if (rep_id != 0 && sw_cron == 1)
     }
 
     //   if  ((util.nvl(util.Tcampo(trep_cron, "CONFIRMACION")) == "1") && (reporte_temporal == 0)) 
+    if (1 == 0)
     {
         string SQL_p2 = "select check_fecha_confirmacion2('" + util.Tcampo(trep_cron, "FRECUENCIA") + "',conf_date, conf_date_2) as ok \n" +
                       " , to_char(conf.conf_date, 'mm/dd/yyyy') as fecha_1 \n" +
@@ -123,6 +145,7 @@ if (rep_id != 0 && sw_cron == 1)
         Console.WriteLine("************** confirma fecha **************");
         Console.WriteLine(SQL_p2);
         //  if conf_date !=null
+        if (1 == 0)
         {
             SQL_p2 = "select display_fecha_confirmacion4(('" + util.Tcampo(trep_cron, "FRECUENCIA") + "',conf.CONF_DATE,conf.CONF_DATE_2,decode(conf.CONF_DATE,null,1,0)) as next_fecha \n" +
          " from rep_confirmacion conf \n" +
@@ -131,12 +154,11 @@ if (rep_id != 0 && sw_cron == 1)
             //  if conf.CONF_DATE !=null
             mail_error = "agregar valor de rs2.Fields(0).Value ";
             //else
-            mail_error = "Ninguna confirmacion llegada.";    
+            mail_error = "Ninguna confirmacion llegada.";
         }
         Console.WriteLine("************** confirma fecha 2**************");
         Console.WriteLine(SQL_p2);
     }
-
 
     /*
      If FECHA_1 = FECHA_2 Then
@@ -159,14 +181,11 @@ if (rep_id != 0 && sw_cron == 1)
         //proceso de envio de correo
         Console.WriteLine("************** SQL contactos **************");
         Console.WriteLine(util.Tdetalle(tmail_contact));
+
         string tema = "Error generacion de : " + util.Tcampo(tmail_contact, "NAME");
         string contactos = util.listTcampo(tmail_contact, "mail", ";");
         contactos = contactos + mail_grupo_error[0];
-
-        /*PIVO*/
-        Console.WriteLine("************** SQL contactos " + mail_error+ " **************");
-        Console.WriteLine("************** SQL contactos " + mail_error.Contains("|") + " **************");     
-        if (mail_error.Contains("|") )
+        if (mail_error.Split("/").Length > 0)
         {
             Error_texto = mail_error.Split("|");
             mail_error = "Id_reporte : " + rep_id + "\n" +
@@ -178,11 +197,19 @@ if (rep_id != 0 && sw_cron == 1)
             mail_error = "Id_reporte : " + rep_id + "\n" +
                  "Fecha : " + mail_error;
         }
-        Console.WriteLine("************** SQL contactos " + mail_error + " **************");
-        /*PIVO*/
+
+        string cuerpo = "Error en la generacion de este reporte, no se ha creado." + "\n" +
+             "Falta confirmacion : \n" +
+        mail_error +
+             mail_footer;
+        Errror = DM.ejecuta_sql("update rep_chron set in_progress=0 where id_rapport= '" + rep_id + "'");
     }
+
+
+
     //////*******  Parametros *********////////////////////
 
+    tnum_param = DM.Main_rep("main_num_param", rep_id.ToString(), visible_sql);
 
 
     try { num_of_param = Convert.ToInt32(util.Tcampo(tnum_param, "NUM_OF_PARAM")); } catch (Exception) { }
@@ -195,28 +222,28 @@ if (rep_id != 0 && sw_cron == 1)
     Console.WriteLine("************** datos repore **************");
     Console.WriteLine(util.Tdetalle(tdato_repor));
     ///////////////////////////////////////
-
-
-    //Console.WriteLine(util.Tdetalle(tdato_repor));
-    /****///
     dest_mail = util.nvl(util.Tcampo(tdato_repor, "DEST_MAIL"));
     for (int i = 1; i <= num_of_param; i++)
     {
         param_string = param_string + util.nvl(util.Tcampo(tdato_repor, "PARAM_" + i));
         if (i != num_of_param) { param_string = param_string + "|"; }
     }
-
     reporte_name = util.nvl(util.Tcampo(tdato_repor, "NAME"));
     days_deleted = Int32.Parse(util.nvl(util.Tcampo(tdato_repor, "DAYS_DELETED"), "n"));
-    file_name    = util.nvl(util.Tcampo(tdato_repor, "FILE_NAME"));
-    id_Reporte   = Int32.Parse(util.nvl(util.Tcampo(tdato_repor, "ID_REP"), "n"));
-    //Carpeta      = first_path & NVL(rs.Fields("CARPETA")) & "\" & IIf(NVL(rs.Fields("SUBCARPETA")) <> "", NVL(rs.Fields("SUBCARPETA")) & "\", "")
-    Carpeta      = first_path + util.nvl(util.Tcampo(tdato_repor, "CARPETA"));
-    if (util.nvl(util.Tcampo(tdato_repor, "SUBCARPETA")) != "")
-        Carpeta = Carpeta + util.nvl(util.Tcampo(tdato_repor, "SUBCARPETA")) + "\\";
-    else
-        Carpeta = Carpeta + "";
+    file_name = util.nvl(util.Tcampo(tdato_repor, "FILE_NAME"));
+    id_Reporte = Int32.Parse(util.nvl(util.Tcampo(tdato_repor, "ID_REP")));
+    //Carpeta = first_path & NVL(rs.Fields("CARPETA")) & "\" & IIf(NVL(rs.Fields("SUBCARPETA")) <> "", NVL(rs.Fields("SUBCARPETA")) & "\", "")
+    Carpeta = first_path + util.nvl(util.Tcampo(tdato_repor, "CARPETA")) + "\\" +
+                      util.iff(util.nvl(util.Tcampo(tdato_repor, "SUBCARPETA")), "<>", "", util.nvl(util.Tcampo(tdato_repor, "SUBCARPETA")) + "\\", "");
     MiComando = util.nvl(util.Tcampo(tdato_repor, "COMMAND"));
+
+    tab_archivos = new string[5];
+    tab_archivos[0] = file_name;
+    tab_archivos[1] = reporte_name;
+    tab_archivos[4] = "1";
+    reporte_name = util.nvl(util.Tcampo(tdato_repor, "PARAM_1"));
+    reporte_name = util.nvl(util.Tcampo(tdato_repor, "PARAM_2"));
+    reporte_name = util.nvl(util.Tcampo(tdato_repor, "PARAM_3"));
 
     Console.WriteLine("valor ''dest_mail   '':" + dest_mail);
     Console.WriteLine("valor ''param_string'':" + param_string);
@@ -226,9 +253,31 @@ if (rep_id != 0 && sw_cron == 1)
     Console.WriteLine("valor ''id_Reporte  '':" + id_Reporte);
     Console.WriteLine("valor ''Carpeta     '':" + Carpeta);
     Console.WriteLine("valor ''COMMAND     '' " + MiComando);
-    Console.WriteLine("valor ''Get_IP      '' " + Get_IP);
-    Console.WriteLine("valor ''first_path  '' " + first_path);
-    Console.WriteLine("valor ''second_path '' " + second_path);
+
+    Console.WriteLine("valor ''tab_archivos 0 '':" + tab_archivos[0]);
+    Console.WriteLine("valor ''tab_archivos 1 '':" + tab_archivos[1]);
+    Console.WriteLine("valor ''tab_archivos 4    '' " + tab_archivos[4]);
+
+    Console.WriteLine("valor ''PARAM_1 '':" + util.nvl(util.Tcampo(tdato_repor, "PARAM_1")));
+    Console.WriteLine("valor ''PARAM_2 '':" + util.nvl(util.Tcampo(tdato_repor, "PARAM_2")));
+    Console.WriteLine("valor ''PARAM_3 '': " + util.nvl(util.Tcampo(tdato_repor, "PARAM_3")));
+
+    Console.WriteLine("valor ''FECHA_1 '':" + FECHA_1);
+    Console.WriteLine("valor ''FECHA_2'':" + FECHA_2);
+
+
+    Console.WriteLine("valor ''filter_file_name     '' " + util.filter_file_name(file_name, FECHA_1, FECHA_2));
+
+
+    //servidor = "http://" & Trim(Split(Get_IP(), "-")(0))
+    servidor = "http://" + Get_IP;
+    Console.WriteLine("valor servidor:" + servidor);
+    Carpeta = "C:\\Users\\usuario\\Desktop\\Raul\\prueba";
+
+    if (!Directory.Exists(Carpeta))
+    {
+        Directory.CreateDirectory(Carpeta);
+    }
     //servidor = "http://" & Trim(Split(Get_IP(), "-")(0))
     servidor = "http://" + Get_IP;
     Console.WriteLine("valor servidor:" + servidor);
@@ -239,10 +288,16 @@ if (rep_id != 0 && sw_cron == 1)
         Console.WriteLine("carpeta creada :" + Carpeta);
     }
     else Console.WriteLine("La carpeta existe.."+Carpeta);
+    web_transmision_edocs_bosch edocs_bosch = new web_transmision_edocs_bosch();
+    edocs_bosch.transmision_edocs_bosch(Carpeta, tab_archivos[0], util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")));
+
+
+   // Console.WriteLine(DM.transmision_edocs_bosch("18975", "04/01/2024", "04/30/2024", "", "E", "1"));
 
 }
 else
     Console.WriteLine("Error es necesario dos parametros \n 1. Falta numero repor: ''{0}'' \n 2. valor numerico: {1} " + msg, rep_id, reporte_temporal);
+
 Console.WriteLine("Oprimar cualquier tecla para terminar");
 Console.ReadKey();
 

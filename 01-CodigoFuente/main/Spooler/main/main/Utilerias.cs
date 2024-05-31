@@ -107,25 +107,28 @@ namespace serverreports
         public string Get_IP()
         {
             /******IP opc 0**/
-            IPAddress[] localIPs = Dns.GetHostAddresses(Dns.GetHostName());
+            // IPAddress[] localIPs = Dns.GetHostAddresses(Dns.GetHostName());
             // Console.WriteLine("valor COMMAND " + Convert.ToString(localIPs[1]));
             // Console.WriteLine("valor COMMAND " + Convert.ToString(localIPs[0]));//mac adress
-            return Convert.ToString(localIPs[1]);
+            // return Convert.ToString(localIPs[1]);
             /******IP opc 0**/
 
             /******IP opc 2**/
-            /* string localIP = "";
-             IPHostEntry host = Dns.GetHostEntry(Dns.GetHostName());// objeto para guardar la ip
-             foreach (IPAddress ip in host.AddressList)
-             {
-                 if (ip.AddressFamily.ToString() == "InterNetwork")
-                 {
-                     localIP = ip.ToString();// esta es nuestra ip
-                 }
-             }
-             Console.WriteLine("valor IP " + localIP);//mac adress
-            */
+            string localIP = "";
+            IPHostEntry host = Dns.GetHostEntry(Dns.GetHostName());// objeto para guardar la ip
+            foreach (IPAddress ip in host.AddressList)
+            {
+                if (ip.AddressFamily.ToString() == "InterNetwork")
+                {
+                    localIP = ip.ToString();// esta es nuestra ip
+                    break;
+                }
+            }
+            return localIP;
+            // Console.WriteLine("valor IP " + localIP);//mac adress
+
             /******IP opc 2**/
+
         }
 
         public string filter_file_name(string archivo, string date_1, string date_2)
@@ -142,7 +145,7 @@ namespace serverreports
             {
                 dt = DateTime.Parse(new_date_1[1] + "-" + new_date_1[0] + "-" + new_date_1[2]).ToString("mmm-dd-yyyy") +
                              DateTime.Parse(new_date_2[1] + "-" + new_date_2[0] + "-" + new_date_2[2]).ToString("mmm-dd-yyyy");
-                arc_nom.Replace("%P", dt);
+                arc_nom = arc_nom.Replace("%p", dt);
             }
             else
             {

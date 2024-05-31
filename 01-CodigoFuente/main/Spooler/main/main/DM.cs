@@ -67,8 +67,12 @@ internal class DM
         string SQL = " select rep.id_rep, rep.ID_CRON, rep.NAME, rep.CONFIRMACION, rep.FRECUENCIA,\n " +
                      " rep.cliente, cli.clistatus, cli.cliclef || ' - ' || InitCap(cli.clinom) cli_nom  @sqladd            \n " +
                      " , to_char(LAST_CONF_DATE_1, 'mm/dd/yyyy')  as fecha_1, to_char(LAST_CONF_DATE_2, 'mm/dd/yyyy') as fecha_2      \n " +
+                     " , cli.CLICLEF || ' - ' || InitCap(cli.CLINOM) nomcli_err, rep.IP_ADDRESS IP_ADDRESS_err, rep.IP_NAME IP_NAME_err     \n " +
                      " from rep_detalle_reporte rep inner join eclient cli on cli.cliclef= rep.CLIENTE   \n " +
                      " Where rep.ID_CRON =  {0} ";
+
+
+
         //DataTable dtTemp = new DataTable();
         //SQL = SQL.Replace("@id_cron", "" + id_cron + "");
         SQL = string.Format(SQL, id_cron);
@@ -200,6 +204,105 @@ internal class DM
                    + " ,\n USER, SYSDATE) ";
             ejecuta_sql(SQL, vs);
 
+    }
+
+
+    public string transmision_edocs_bosch(string Cliente, string Fecha_1, string Fecha_2, string impexp, string tipo_doc, string tp, int? vs = 0)
+    {
+        string SQL = " SELECT /*+ORDERED INDEX(PED IDX_PEDDATE) USE_NL(SGE PED)*/ FOL.FOLFOLIO  \n"
+             + "       , SGE.SGEDOUCLEF PEDTO_ADUANA  \n"
+             + "       , SUBSTR(SGE.SGEPEDNUMERO, 1, 4) PEDTO_PATENTE   \n"
+             + "       , SUBSTR(SGE.SGEPEDNUMERO, 6, 7) PEDTO_PEDIMENTO  \n"
+             + "       , SGE.SGE_YCXCLEF PEDTO_YCXCLEF   \n"
+             + "       , SGE.SGE_REDCLEF PEDTO_RED   \n"
+             + "       , TO_CHAR(SGE.SGEFECHA_PAGO, 'dd/mm/yyyy') PEDTO_FECHA_PAGO  \n"
+             + "       , COUNT(*) CDAD  \n"
+             + "     FROM EPEDIMENTO PED    \n"
+             + "       , ESAAI_M3_GENERAL SGE      \n"
+             + "       , EFOLIOS FOL  \n"
+             + "       , EDOCUMENTOS_SAT DSA  \n"
+             //CONDICION
+                 + "       , EDOCUMENTO_ANEXO DAX   \n"
+                    + "       , ECATALOGO_ANEXOS CAX  \n"
+  //
+
+             + "  WHERE PED.PEDDATE BETWEEN TO_DATE('" + Fecha_1 + "', 'mm/dd/yyyy') AND TO_DATE('" + Fecha_2 + "','mm/dd/yyyy')+1   \n"
+             + "    AND SGE.SGEFIRMA_ELECTRONICA IS NOT NULL    \n"
+             + "    AND SGE.SGE_CLICLEF IN (" + Cliente + ")   \n"
+
+             + "    AND SGE.SGE_YCXCLEF = " + tp + "   \n"
+             + "    AND PED.PEDNUMERO = SGE.SGEPEDNUMERO    \n"
+             + "    AND PED.PEDDOUANE = SGE.SGEDOUCLEF    \n"
+             + "    AND PED.PEDANIO = SGE.SGEANIO    \n"
+             + "    AND FOL.FOLCLAVE = PED.PEDFOLIO    \n"
+             //CONDICION
+             + "    AND SGE.SGE_YCXCLEF = '" + impexp + "'  \n"
+             //CONDICION         
+
+             + "    AND DSA.DSA_SGECLAVE = SGE.SGECLAVE   \n"
+             + "    AND DSA.DSA_EDOCUMENT IS NOT NULL  \n"
+             //CONDICION
+             +  "    AND DSA_DAXCLAVE = DAX.DAXCLAVE  \n"
+                      + "    AND DAX.DAX_CAXCLAVE = CAX.CAXCLAVE  \n"
+                      + "    AND NVL(CAX.CAX_ENVIO_ELEC,'S') <> 'N'  \n"
+                
+            //CONDICION
+
+            + " GROUP BY SGE.SGEDOUCLEF  \n"
+            + "         ,SUBSTR(SGE.SGEPEDNUMERO, 1, 4)  \n"
+            + "         ,SUBSTR(SGE.SGEPEDNUMERO, 6, 7)  \n"
+            + "         ,SGE.SGE_YCXCLEF  \n"
+            + "         ,SGE.SGE_REDCLEF  \n"
+            + "         ,TO_CHAR(SGE.SGEFECHA_PAGO, 'dd/mm/yyyy')  \n"
+            + "         ,FOLFOLIO  \n"
+            + " UNION ALL  \n"
+            + "  SELECT /*+ORDERED INDEX(PED IDX_PEDDATE) USE_NL(SGE PED)*/ FOL.FOLFOLIO   \n"
+            + "       , SGE.SGEDOUCLEF PEDTO_ADUANA   \n"
+            + "       , SUBSTR(SGE.SGEPEDNUMERO, 1, 4) PEDTO_PATENTE    \n"
+            + "       , SUBSTR(SGE.SGEPEDNUMERO, 6, 7) PEDTO_PEDIMENTO   \n"
+            + "       , SGE.SGE_YCXCLEF PEDTO_YCXCLEF    \n"
+            + "       , SGE.SGE_REDCLEF PEDTO_RED    \n"
+            + "       , TO_CHAR(SGE.SGEFECHA_PAGO, 'dd/mm/yyyy') PEDTO_FECHA_PAGO   \n"
+            + "       , 0 CDAD   \n"
+            + "     FROM EPEDIMENTO PED     \n"
+            + "       , ESAAI_M3_GENERAL SGE       \n"
+            + "       , EFOLIOS FOL   \n"
+            + "  WHERE PED.PEDDATE BETWEEN TO_DATE('" + Fecha_1 + "', 'mm/dd/yyyy') AND TO_DATE('" + Fecha_2 + "', 'mm/dd/yyyy')+1   \n"
+            + "    AND SGE.SGEFIRMA_ELECTRONICA IS NOT NULL     \n"
+            + "    AND SGE.SGE_CLICLEF IN (" + Cliente + ")   \n"
+             + "    AND SGE.SGE_YCXCLEF = " + tp + "   \n"
+            + "    AND PED.PEDNUMERO = SGE.SGEPEDNUMERO     \n"
+            + "    AND PED.PEDDOUANE = SGE.SGEDOUCLEF     \n"
+            + "    AND PED.PEDANIO = SGE.SGEANIO     \n"
+            + "    AND FOL.FOLCLAVE = PED.PEDFOLIO     \n"
+            //CONDICION
+            +  "    AND SGE.SGE_YCXCLEF = '" + impexp + "'  \n"
+
+            //CONDICION
+            //CONDICION
+            +  "    AND NOT EXISTS (SELECT NULL   \n"
+                  + "                      FROM EDOCUMENTOS_SAT DSA   \n"
+                  + "                         , EDOCUMENTO_ANEXO DAX   \n"
+                  + "                         , ECATALOGO_ANEXOS CAX   \n"
+                  + "                     WHERE DSA.DSA_SGECLAVE = SGE.SGECLAVE  \n"
+                  + "                       AND DSA_DAXCLAVE = DAX.DAXCLAVE  \n"
+                  + "                       AND DAX.DAX_CAXCLAVE = CAX.CAXCLAVE  \n"
+                  + "                       AND NVL(CAX.CAX_ENVIO_ELEC,'S') <> 'N')  \n"
+               
+
+             //CONDICION
+             + " GROUP BY SGE.SGEDOUCLEF   \n"
+             + "         ,SUBSTR(SGE.SGEPEDNUMERO, 1, 4)   \n"
+            + "         ,SUBSTR(SGE.SGEPEDNUMERO, 6, 7)   \n"
+            + "         ,SGE.SGE_YCXCLEF   \n"
+            + "         ,SGE.SGE_REDCLEF   \n"
+            + "         ,TO_CHAR(SGE.SGEFECHA_PAGO, 'dd/mm/yyyy')   \n"
+            + "         ,FOLFOLIO  \n"
+            + " ORDER BY 1  \n";
+
+        //DataTable dtTemp = new DataTable();
+        if (vs == 1) { Console.WriteLine(SQL + "\n"); }
+        return SQL;
     }
 
 }

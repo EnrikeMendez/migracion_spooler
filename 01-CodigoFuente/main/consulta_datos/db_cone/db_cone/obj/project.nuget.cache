@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jll5PC93P3+s1iboJI0u0ylpPJlxqtFs8fv8Nx4czn9mAbn1ubw3Zcl/17EwViMQyQrNbQ8ajdV8ESxw3LM07w==",
+  "dgSpecHash": "rkt7M4gkl2wwQR0RuESSmDzauNXpPApEyoA7v2nHhvirppj8Vmhc/xD7UU8sRJfV6/SoogYN/oi8Do1pbSs7jA==",
   "success": true,
-  "projectFilePath": "C:\\pc\\raul\\programas consola\\main\\consulta_datos\\db_cone\\db_cone\\ReporteSpo.csproj",
+  "projectFilePath": "C:\\pc\\raul\\Net\\migracion_spooler\\01-CodigoFuente\\main\\consulta_datos\\db_cone\\db_cone\\ReporteSpo.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\usuario\\.nuget\\packages\\avalonia\\11.0.0\\avalonia.11.0.0.nupkg.sha512",
     "C:\\Users\\usuario\\.nuget\\packages\\avalonia.buildservices\\0.0.28\\avalonia.buildservices.0.0.28.nupkg.sha512",

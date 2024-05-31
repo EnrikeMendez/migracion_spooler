@@ -6046,11 +6046,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\pc\\raul\\programas consola\\main\\consulta_datos\\db_cone\\db_cone\\ReporteSpo.csproj",
+      "projectUniqueName": "C:\\pc\\raul\\Net\\migracion_spooler\\01-CodigoFuente\\main\\consulta_datos\\db_cone\\db_cone\\ReporteSpo.csproj",
       "projectName": "ReporteSpo",
-      "projectPath": "C:\\pc\\raul\\programas consola\\main\\consulta_datos\\db_cone\\db_cone\\ReporteSpo.csproj",
+      "projectPath": "C:\\pc\\raul\\Net\\migracion_spooler\\01-CodigoFuente\\main\\consulta_datos\\db_cone\\db_cone\\ReporteSpo.csproj",
       "packagesPath": "C:\\Users\\usuario\\.nuget\\packages\\",
-      "outputPath": "C:\\pc\\raul\\programas consola\\main\\consulta_datos\\db_cone\\db_cone\\obj\\",
+      "outputPath": "C:\\pc\\raul\\Net\\migracion_spooler\\01-CodigoFuente\\main\\consulta_datos\\db_cone\\db_cone\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
