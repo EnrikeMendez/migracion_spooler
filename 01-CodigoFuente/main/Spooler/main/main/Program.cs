@@ -289,7 +289,7 @@ if (rep_id != 0 && sw_cron == 1)
     }
     else Console.WriteLine("La carpeta existe.."+Carpeta);
     web_transmision_edocs_bosch edocs_bosch = new web_transmision_edocs_bosch();
-    edocs_bosch.transmision_edocs_bosch(Carpeta, tab_archivos[0], util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")));
+    edocs_bosch.transmision_edocs_bosch(Carpeta, tab_archivos[0], util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")));
 
 
    // Console.WriteLine(DM.transmision_edocs_bosch("18975", "04/01/2024", "04/30/2024", "", "E", "1"));

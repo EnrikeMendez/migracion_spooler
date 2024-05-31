@@ -24,3 +24,16 @@ C:\pc\raul\programas consola\main\Spooler\main\main\bin\Debug\net8.0\Microsoft.E
 C:\pc\raul\programas consola\main\Spooler\main\main\bin\Debug\net8.0\Microsoft.Extensions.FileProviders.Physical.dll
 C:\pc\raul\programas consola\main\Spooler\main\main\bin\Debug\net8.0\Microsoft.Extensions.FileSystemGlobbing.dll
 C:\pc\raul\programas consola\main\Spooler\main\main\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\bin\Debug\net8.0\ClosedXML.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\bin\Debug\net8.0\DocumentFormat.OpenXml.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\bin\Debug\net8.0\ExcelNumberFormat.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\bin\Debug\net8.0\Irony.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\bin\Debug\net8.0\SixLabors.Fonts.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\bin\Debug\net8.0\SpreadsheetLight.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\bin\Debug\net8.0\System.Drawing.Common.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\bin\Debug\net8.0\System.IO.Packaging.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\bin\Debug\net8.0\XLParser.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\bin\Debug\net8.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\bin\Debug\net8.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\bin\Debug\net8.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll

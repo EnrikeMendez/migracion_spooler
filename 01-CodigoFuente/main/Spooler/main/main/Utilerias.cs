@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ClosedXML.Excel;
+using SpreadsheetLight;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
@@ -162,6 +164,50 @@ namespace serverreports
             }
             return arc_nom;
         }
+
+
+        public void closedXML(DataTable dtTemp)
+        {
+
+            using (var workbook = new XLWorkbook())
+            {
+                try
+                {
+                    var hoja = workbook.Worksheets.Add();
+                    var table = hoja.Cell("a1").InsertTable(dtTemp);
+                    table.ShowAutoFilter = false;
+                    table.Theme = XLTableTheme.None;
+                    workbook.SaveAs("boschclosedXML.xlsx");
+                    Console.WriteLine("Se genero Archivo " + "boschclosedXML.xlsx");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Ocurrio una Excepción: " + ex.Message);
+                }
+            }
+
+        }
+
+
+        public void CrearExcel(DataTable dtTemp)
+        {
+            using (SLDocument sl = new SLDocument())
+            {
+                try
+                {
+
+                    sl.ImportDataTable(1, 1, dtTemp, true);
+                    sl.SaveAs("boschspreadsheetlight.xlsx");
+                    Console.WriteLine("Se genero Archivo " + "boschspreadsheetlight.xlsx");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Ocurrio una Excepción: " + ex.Message);
+                }
+            }
+        }
+
+
 
     }
 
