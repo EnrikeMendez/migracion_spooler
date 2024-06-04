@@ -72,8 +72,6 @@ internal class DM
                      " from rep_detalle_reporte rep inner join eclient cli on cli.cliclef= rep.CLIENTE   \n " +
                      " Where rep.ID_CRON =  {0} ";
 
-
-
         //DataTable dtTemp = new DataTable();
         //SQL = SQL.Replace("@id_cron", "" + id_cron + "");
         SQL = string.Format(SQL, id_cron);
@@ -238,7 +236,7 @@ internal class DM
       + "    AND SGE.SGEFIRMA_ELECTRONICA IS NOT NULL    \n"
       + "    AND SGE.SGE_CLICLEF IN (" + Cliente + ")   \n"
 
-
+      + "    AND SGE.SGE_YCXCLEF = " + tp + "   \n"
       + "    AND PED.PEDNUMERO = SGE.SGEPEDNUMERO    \n"
       + "    AND PED.PEDDOUANE = SGE.SGEDOUCLEF    \n"
       + "    AND PED.PEDANIO = SGE.SGEANIO    \n"
@@ -291,6 +289,7 @@ internal class DM
      + "  WHERE PED.PEDDATE BETWEEN TO_DATE('" + Fecha_1 + "', 'mm/dd/yyyy') AND TO_DATE('" + Fecha_2 + "', 'mm/dd/yyyy')+1   \n"
      + "    AND SGE.SGEFIRMA_ELECTRONICA IS NOT NULL     \n"
      + "    AND SGE.SGE_CLICLEF IN (" + Cliente + ")   \n"
+     + "    AND SGE.SGE_YCXCLEF = " + tp + "   \n"
     + "    AND PED.PEDNUMERO = SGE.SGEPEDNUMERO     \n"
      + "    AND PED.PEDDOUANE = SGE.SGEDOUCLEF     \n"
      + "    AND PED.PEDANIO = SGE.SGEANIO     \n"

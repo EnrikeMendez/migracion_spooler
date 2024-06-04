@@ -3,6 +3,10 @@ C:\pc\raul\programas consola\main\Spooler\main\main\public\serverreports.dll
 C:\pc\raul\programas consola\main\Spooler\main\main\public\serverreports.deps.json
 C:\pc\raul\programas consola\main\Spooler\main\main\public\serverreports.runtimeconfig.json
 C:\pc\raul\programas consola\main\Spooler\main\main\public\serverreports.pdb
+C:\pc\raul\programas consola\main\Spooler\main\main\public\ClosedXML.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\public\DocumentFormat.OpenXml.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\public\ExcelNumberFormat.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\public\Irony.dll
 C:\pc\raul\programas consola\main\Spooler\main\main\public\Microsoft.Extensions.Configuration.dll
 C:\pc\raul\programas consola\main\Spooler\main\main\public\Microsoft.Extensions.Configuration.Abstractions.dll
 C:\pc\raul\programas consola\main\Spooler\main\main\public\Microsoft.Extensions.Configuration.FileExtensions.dll
@@ -12,4 +16,13 @@ C:\pc\raul\programas consola\main\Spooler\main\main\public\Microsoft.Extensions.
 C:\pc\raul\programas consola\main\Spooler\main\main\public\Microsoft.Extensions.FileProviders.Physical.dll
 C:\pc\raul\programas consola\main\Spooler\main\main\public\Microsoft.Extensions.FileSystemGlobbing.dll
 C:\pc\raul\programas consola\main\Spooler\main\main\public\Microsoft.Extensions.Primitives.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\public\Microsoft.Win32.SystemEvents.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\public\SixLabors.Fonts.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\public\SpreadsheetLight.dll
 C:\pc\raul\programas consola\main\Spooler\main\main\public\System.Data.OracleClient.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\public\System.Drawing.Common.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\public\System.IO.Packaging.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\public\XLParser.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\public\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\public\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\public\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll

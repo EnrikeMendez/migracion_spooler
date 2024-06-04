@@ -168,7 +168,6 @@ namespace serverreports
 
         public void closedXML(DataTable dtTemp)
         {
-
             using (var workbook = new XLWorkbook())
             {
                 try
@@ -195,7 +194,6 @@ namespace serverreports
             {
                 try
                 {
-
                     sl.ImportDataTable(1, 1, dtTemp, true);
                     sl.SaveAs("boschspreadsheetlight.xlsx");
                     Console.WriteLine("Se genero Archivo " + "boschspreadsheetlight.xlsx");
@@ -206,6 +204,7 @@ namespace serverreports
                 }
             }
         }
+
 
 
 
