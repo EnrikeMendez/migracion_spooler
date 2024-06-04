@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ReporteSpo")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b985888908f495b5dd4cf4cae021498897558e1b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fb0a1400d34bcf43277006983dcc2ef38f048752")]
 [assembly: System.Reflection.AssemblyProductAttribute("ReporteSpo")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ReporteSpo")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

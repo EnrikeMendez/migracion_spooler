@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\pc\\raul\\programas consola\\utilerias\\bd\\oracle\\bdoracle\\bdoracle\\bdoracle.csproj": {}
+    "C:\\pc\\raul\\Net\\migracion_spooler\\00-Documentacion\\db\\bdoracle\\bdoracle\\bdoracle.csproj": {}
   },
   "projects": {
-    "C:\\pc\\raul\\programas consola\\utilerias\\bd\\oracle\\bdoracle\\bdoracle\\bdoracle.csproj": {
+    "C:\\pc\\raul\\Net\\migracion_spooler\\00-Documentacion\\db\\bdoracle\\bdoracle\\bdoracle.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\pc\\raul\\programas consola\\utilerias\\bd\\oracle\\bdoracle\\bdoracle\\bdoracle.csproj",
+        "projectUniqueName": "C:\\pc\\raul\\Net\\migracion_spooler\\00-Documentacion\\db\\bdoracle\\bdoracle\\bdoracle.csproj",
         "projectName": "bdoracle",
-        "projectPath": "C:\\pc\\raul\\programas consola\\utilerias\\bd\\oracle\\bdoracle\\bdoracle\\bdoracle.csproj",
+        "projectPath": "C:\\pc\\raul\\Net\\migracion_spooler\\00-Documentacion\\db\\bdoracle\\bdoracle\\bdoracle.csproj",
         "packagesPath": "C:\\Users\\usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\pc\\raul\\programas consola\\utilerias\\bd\\oracle\\bdoracle\\bdoracle\\obj\\",
+        "outputPath": "C:\\pc\\raul\\Net\\migracion_spooler\\00-Documentacion\\db\\bdoracle\\bdoracle\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

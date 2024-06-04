@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Fq7sNZhrTEgpzG9A2dre6e1zP8zYsMJvApaPwpI2/fQcxZCvPl33qB9Fc5edOcdDIfwFuISyWRSZLWDc5ahF0A==",
+  "dgSpecHash": "uQXlNe/fgxoK6Ug6ND2eAPxcy6cuWx1cF0qJFYpK1LOE9fmd1hsphNrVK0Xs20A2FJixWtFazY1YlKf8C/M6CQ==",
   "success": true,
-  "projectFilePath": "C:\\pc\\raul\\programas consola\\utilerias\\bd\\oracle\\bdoracle\\bdoracle\\bdoracle.csproj",
+  "projectFilePath": "C:\\pc\\raul\\Net\\migracion_spooler\\00-Documentacion\\db\\bdoracle\\bdoracle\\bdoracle.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\usuario\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\usuario\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",

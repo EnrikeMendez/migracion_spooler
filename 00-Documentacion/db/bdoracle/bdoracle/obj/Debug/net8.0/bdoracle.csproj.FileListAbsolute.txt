@@ -32,3 +32,21 @@ C:\Users\usuario\Desktop\Raul\programas consola\bd\bd\oracle\bdoracle\bdoracle\o
 C:\Users\usuario\Desktop\Raul\programas consola\bd\bd\oracle\bdoracle\bdoracle\obj\Debug\net8.0\ref\bdoracle.dll
 C:\Users\usuario\Desktop\Raul\programas consola\bd\bd\oracle\bdoracle\bdoracle\bin\Debug\net8.0\System.Data.OracleClient.dll
 C:\pc\raul\programas consola\utilerias\bd\oracle\bdoracle\bdoracle\bin\Debug\net8.0\System.Data.OracleClient.dll
+C:\pc\raul\Net\migracion_spooler\00-Documentacion\db\bdoracle\bdoracle\bin\Debug\net8.0\bdoracle.exe
+C:\pc\raul\Net\migracion_spooler\00-Documentacion\db\bdoracle\bdoracle\bin\Debug\net8.0\bdoracle.deps.json
+C:\pc\raul\Net\migracion_spooler\00-Documentacion\db\bdoracle\bdoracle\bin\Debug\net8.0\bdoracle.runtimeconfig.json
+C:\pc\raul\Net\migracion_spooler\00-Documentacion\db\bdoracle\bdoracle\bin\Debug\net8.0\bdoracle.dll
+C:\pc\raul\Net\migracion_spooler\00-Documentacion\db\bdoracle\bdoracle\bin\Debug\net8.0\bdoracle.pdb
+C:\pc\raul\Net\migracion_spooler\00-Documentacion\db\bdoracle\bdoracle\bin\Debug\net8.0\System.Data.OracleClient.dll
+C:\pc\raul\Net\migracion_spooler\00-Documentacion\db\bdoracle\bdoracle\obj\Debug\net8.0\bdoracle.csproj.AssemblyReference.cache
+C:\pc\raul\Net\migracion_spooler\00-Documentacion\db\bdoracle\bdoracle\obj\Debug\net8.0\bdoracle.GeneratedMSBuildEditorConfig.editorconfig
+C:\pc\raul\Net\migracion_spooler\00-Documentacion\db\bdoracle\bdoracle\obj\Debug\net8.0\bdoracle.AssemblyInfoInputs.cache
+C:\pc\raul\Net\migracion_spooler\00-Documentacion\db\bdoracle\bdoracle\obj\Debug\net8.0\bdoracle.AssemblyInfo.cs
+C:\pc\raul\Net\migracion_spooler\00-Documentacion\db\bdoracle\bdoracle\obj\Debug\net8.0\bdoracle.csproj.CoreCompileInputs.cache
+C:\pc\raul\Net\migracion_spooler\00-Documentacion\db\bdoracle\bdoracle\obj\Debug\net8.0\bdoracle.sourcelink.json
+C:\pc\raul\Net\migracion_spooler\00-Documentacion\db\bdoracle\bdoracle\obj\Debug\net8.0\bdoracle.csproj.Up2Date
+C:\pc\raul\Net\migracion_spooler\00-Documentacion\db\bdoracle\bdoracle\obj\Debug\net8.0\bdoracle.dll
+C:\pc\raul\Net\migracion_spooler\00-Documentacion\db\bdoracle\bdoracle\obj\Debug\net8.0\refint\bdoracle.dll
+C:\pc\raul\Net\migracion_spooler\00-Documentacion\db\bdoracle\bdoracle\obj\Debug\net8.0\bdoracle.pdb
+C:\pc\raul\Net\migracion_spooler\00-Documentacion\db\bdoracle\bdoracle\obj\Debug\net8.0\bdoracle.genruntimeconfig.cache
+C:\pc\raul\Net\migracion_spooler\00-Documentacion\db\bdoracle\bdoracle\obj\Debug\net8.0\ref\bdoracle.dll

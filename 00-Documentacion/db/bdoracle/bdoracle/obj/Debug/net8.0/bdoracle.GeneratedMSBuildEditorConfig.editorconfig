@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = bdoracle
-build_property.ProjectDir = C:\pc\raul\programas consola\utilerias\bd\oracle\bdoracle\bdoracle\
+build_property.ProjectDir = C:\pc\raul\Net\migracion_spooler\00-Documentacion\db\bdoracle\bdoracle\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("bdoracle")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fb0a1400d34bcf43277006983dcc2ef38f048752")]
 [assembly: System.Reflection.AssemblyProductAttribute("bdoracle")]
 [assembly: System.Reflection.AssemblyTitleAttribute("bdoracle")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

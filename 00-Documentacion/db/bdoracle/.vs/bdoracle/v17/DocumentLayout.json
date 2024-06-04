@@ -1,13 +1,13 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\pc\\raul\\programas consola\\utilerias\\bd\\oracle\\bdoracle\\",
+  "WorkspaceRootPath": "C:\\pc\\raul\\Net\\migracion_spooler\\00-Documentacion\\db\\bdoracle\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{85DB848A-AE64-4714-AA62-6BD1B66D23B9}|bdoracle\\bdoracle.csproj|c:\\pc\\raul\\programas consola\\utilerias\\bd\\oracle\\bdoracle\\bdoracle\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{85DB848A-AE64-4714-AA62-6BD1B66D23B9}|bdoracle\\bdoracle.csproj|c:\\pc\\raul\\net\\migracion_spooler\\00-documentacion\\db\\bdoracle\\bdoracle\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{85DB848A-AE64-4714-AA62-6BD1B66D23B9}|bdoracle\\bdoracle.csproj|solutionrelative:bdoracle\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{85DB848A-AE64-4714-AA62-6BD1B66D23B9}|bdoracle\\bdoracle.csproj|C:\\pc\\raul\\programas consola\\utilerias\\bd\\oracle\\bdoracle\\bdoracle\\bdoracle.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "AbsoluteMoniker": "D:0:0:{85DB848A-AE64-4714-AA62-6BD1B66D23B9}|bdoracle\\bdoracle.csproj|C:\\pc\\raul\\Net\\migracion_spooler\\00-Documentacion\\db\\bdoracle\\bdoracle\\bdoracle.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{85DB848A-AE64-4714-AA62-6BD1B66D23B9}|bdoracle\\bdoracle.csproj|solutionrelative:bdoracle\\bdoracle.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
@@ -24,11 +24,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\pc\\raul\\programas consola\\utilerias\\bd\\oracle\\bdoracle\\bdoracle\\Program.cs",
+              "DocumentMoniker": "C:\\pc\\raul\\Net\\migracion_spooler\\00-Documentacion\\db\\bdoracle\\bdoracle\\Program.cs",
               "RelativeDocumentMoniker": "bdoracle\\Program.cs",
-              "ToolTip": "C:\\pc\\raul\\programas consola\\utilerias\\bd\\oracle\\bdoracle\\bdoracle\\Program.cs",
+              "ToolTip": "C:\\pc\\raul\\Net\\migracion_spooler\\00-Documentacion\\db\\bdoracle\\bdoracle\\Program.cs",
               "RelativeToolTip": "bdoracle\\Program.cs",
-              "ViewState": "AQIAAD4AAAAAAAAAAAAkwEoAAAASAAAA",
+              "ViewState": "AQIAACoAAAAAAAAAAAAAADQAAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-30T21:57:38.655Z",
               "EditorCaption": ""
@@ -37,13 +37,23 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "bdoracle.csproj",
-              "DocumentMoniker": "C:\\pc\\raul\\programas consola\\utilerias\\bd\\oracle\\bdoracle\\bdoracle\\bdoracle.csproj",
+              "DocumentMoniker": "C:\\pc\\raul\\Net\\migracion_spooler\\00-Documentacion\\db\\bdoracle\\bdoracle\\bdoracle.csproj",
               "RelativeDocumentMoniker": "bdoracle\\bdoracle.csproj",
-              "ToolTip": "C:\\pc\\raul\\programas consola\\utilerias\\bd\\oracle\\bdoracle\\bdoracle\\bdoracle.csproj",
+              "ToolTip": "C:\\pc\\raul\\Net\\migracion_spooler\\00-Documentacion\\db\\bdoracle\\bdoracle\\bdoracle.csproj",
               "RelativeToolTip": "bdoracle\\bdoracle.csproj",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
               "WhenOpened": "2024-04-30T22:03:17.427Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
             }
           ]
         }
