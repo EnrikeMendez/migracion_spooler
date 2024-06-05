@@ -63,9 +63,12 @@ namespace serverreports
                 Console.WriteLine(util.Tdetalle(LisDT[1]));
                 xlsx.CrearExcel_file(LisDT, LisDT_tit, "bosch_spread");
                 xlsx.CreadorExcel_2F(LisDT, LisDT_tit, "bosch_closedxm");
-            }
 
-           return "0";
+
+            }
+            for (int i = 0; i < LisDT.Length; i++)
+                LisDT[i].Clear();
+            return "0";
 
         }
 

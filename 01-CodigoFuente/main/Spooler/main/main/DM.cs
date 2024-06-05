@@ -348,6 +348,12 @@ internal class DM
         if (vs == 1) { Console.WriteLine(SQL + "\n"); }
         return SQL;
     }
+    public string trading_genera_GSK(string[] tab_file, string Fecha_1, string Fecha_2, string empresa, Int32 idCron, int vs)
+    {
+        string SQL = "";
+        if (vs == 1) { Console.WriteLine(SQL + "\n"); }
+        return SQL;
+    }
 
 }
 

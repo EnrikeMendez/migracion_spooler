@@ -57,9 +57,8 @@ DM DM = new DM();
 init_var();
 DataTable trep_cron = new DataTable();
 DataTable tdato_repor = new DataTable();
-
-
-
+DataTable tnum_param = new DataTable();
+DataTable tmail_contact = new DataTable();
 string comand = args[0];
 try { rep_id = Convert.ToInt32(args[0]); } catch (Exception) { msg = " ¡¡¡error opc de reporte¡¡"; }
 if (args.Length == 2 && args[1] == "1")
@@ -92,8 +91,7 @@ if (rep_id != 0 && sw_cron == 1)
     Console.WriteLine("ID_CRON =" + rep_id);
     Console.WriteLine("reporte_temporal =" + reporte_temporal);
     Console.WriteLine(util.Tdetalle(trep_cron));
-    DataTable tnum_param = new DataTable();
-    DataTable tmail_contact = new DataTable();
+
     //trep_cron = DM.main_rp_cron(id_cron.ToString(),0);
     /* por definir
      If rs.EOF Then
@@ -290,15 +288,18 @@ if (rep_id != 0 && sw_cron == 1)
     else Console.WriteLine("La carpeta existe.."+Carpeta);
     web_transmision_edocs_bosch edocs_bosch = new web_transmision_edocs_bosch();
     edocs_bosch.transmision_edocs_bosch(Carpeta, tab_archivos[0], util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), visible_sql);
-
-
    // Console.WriteLine(DM.transmision_edocs_bosch("18975", "04/01/2024", "04/30/2024", "", "E", "1"));
+
 
 }
 else
     Console.WriteLine("Error es necesario dos parametros \n 1. Falta numero repor: ''{0}'' \n 2. valor numerico: {1} " + msg, rep_id, reporte_temporal);
 
 Console.WriteLine("Oprimar cualquier tecla para terminar");
+trep_cron.Clear();
+tdato_repor.Clear();
+tnum_param.Clear();
+tmail_contact.Clear();
 Console.ReadKey();
 
 void init_var()

@@ -27,7 +27,6 @@ namespace serverreports
                 }
             }
             return valor;
-
         }
 
         public string listTcampo(DataTable dtTemp, string campo, string? comodin = ",")
@@ -42,7 +41,6 @@ namespace serverreports
                 }
             }
             return valor;
-
         }
 
         public string Tdetalle(DataTable dtTemp)
@@ -97,6 +95,7 @@ namespace serverreports
             }
             return rcad;
         }
+        
         public string arma_param(string cad, int num)
         {
             string valor = "";
@@ -106,6 +105,7 @@ namespace serverreports
             }
             return valor;
         }
+
         public string Get_IP()
         {
             /******IP opc 0**/
@@ -114,7 +114,6 @@ namespace serverreports
             // Console.WriteLine("valor COMMAND " + Convert.ToString(localIPs[0]));//mac adress
             // return Convert.ToString(localIPs[1]);
             /******IP opc 0**/
-
             /******IP opc 2**/
             string localIP = "";
             IPHostEntry host = Dns.GetHostEntry(Dns.GetHostName());// objeto para guardar la ip
@@ -128,9 +127,7 @@ namespace serverreports
             }
             return localIP;
             // Console.WriteLine("valor IP " + localIP);//mac adress
-
             /******IP opc 2**/
-
         }
 
         public string filter_file_name(string archivo, string date_1, string date_2)
@@ -164,7 +161,6 @@ namespace serverreports
             }
             return arc_nom;
         }
-
 
         public void closedXML(DataTable dtTemp)
         {

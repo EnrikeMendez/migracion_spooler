@@ -18,29 +18,31 @@ namespace serverreports
             {
                 SLDocument sl = new SLDocument();
                 for (int i = 0; i < LisDT.Length; i++) 
-                {
-                    
+                {                    
                     if (i == 0) sl.RenameWorksheet("Sheet1", tit[i]);
                     else sl.AddWorksheet(tit[i]);
                     sl.ImportDataTable(1, 1, LisDT[i], true);
                     sl.AutoFitColumn(1, LisDT[i].Columns.Count);
-
-                    SLStyle style_d = sl.CreateStyle();
-                    style_d.SetFont("Arial", 8);
-                    style_d.SetFontBold(true);
-                    style_d.SetVerticalAlignment(VerticalAlignmentValues.Center);
-                    style_d.SetHorizontalAlignment(HorizontalAlignmentValues.Center);
-
-                    
+                    /*
+                      SLStyle style_d = sl.CreateStyle();
+                      style_d.SetFont("Arial", 8);
+                      style_d.SetFontBold(true);
+                      style_d.SetVerticalAlignment(VerticalAlignmentValues.Center);
+                      style_d.SetHorizontalAlignment(HorizontalAlignmentValues.Center);
+                      sl.SetCellStyle(1, 1, LisDT[i].Rows.Count+1, LisDT[i].Columns.Count, style_d);
+                    */
+                    sl.SetCellStyle(2, 1, LisDT[i].Rows.Count + 1, LisDT[i].Columns.Count, estilo_bosch(sl, "d"));
+                    /*
                     SLStyle style_e = sl.CreateStyle();
                     style_e.SetFont("Arial", 8);
                     style_e.SetFontBold(true);
                     style_e.Fill.SetPattern(PatternValues.Solid, System.Drawing.Color.Black, System.Drawing.Color.White);
                     style_e.SetFontColor(System.Drawing.Color.White);
-                    style_e.Alignment.ShrinkToFit = true;                  
-
-                    sl.SetCellStyle(1, 1, LisDT[i].Rows.Count+1, LisDT[i].Columns.Count, style_d);
+                    style_e.Alignment.ShrinkToFit = true;
                     sl.SetCellStyle(1, 1, 1, LisDT[i].Columns.Count, style_e);
+                     */
+                    sl.SetCellStyle(1, 1, 1, LisDT[i].Columns.Count, estilo_bosch(sl, "e")); 
+                    
                     sl.DeleteColumn(1, 1);
                     sl.FreezePanes(1, 0);
                 }
@@ -54,7 +56,6 @@ namespace serverreports
                 Console.WriteLine("Ocurrio una Excepción: " + ex.Message);
             }
         }
-
         public void CreadorExcel_2F(DataTable[] LisDT, string[] tit, string name)
         {
             using (var workbook = new XLWorkbook())
@@ -67,15 +68,21 @@ namespace serverreports
                         var table = hoja.Cell("A1").InsertTable(LisDT[i]);
                         table.Theme = XLTableTheme.None;
                         table.ShowAutoFilter = false;
+                        /*
                         table.Column(1).Delete();
                         table.Style.Font.SetBold(true);
                         table.Style.Font.FontSize = 8;
                         table.Style.Font.FontName = "Arial";
                         table.Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
                         table.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
-                        var rango = table.Row(1);                                            
+                        */
+                        table.Style = estilo_bosch1(hoja.Style,"d");                        
+                        var rango = table.Row(1);
+                        /*
                         rango.Style.Fill.BackgroundColor = XLColor.Black;
                         rango.Style.Font.FontColor = XLColor.White;
+                        */
+                        rango.Style = estilo_bosch1(rango.Style, "e");
                         hoja.Columns().AdjustToContents();
                         hoja.SheetView.FreezeRows(1);
                     }
@@ -88,6 +95,39 @@ namespace serverreports
                 }
             }
 
+        }
+        public SLStyle estilo_bosch(SLDocument sl, string tp)
+        {
+            SLStyle style_d = sl.CreateStyle();
+            style_d.SetFont("Arial", 8);
+            style_d.SetFontBold(true);
+            style_d.SetVerticalAlignment(VerticalAlignmentValues.Center);
+            style_d.SetHorizontalAlignment(HorizontalAlignmentValues.Center);
+            style_d.Fill.SetPattern(PatternValues.Solid, System.Drawing.Color.White, System.Drawing.Color.Black);
+            style_d.SetFontColor(System.Drawing.Color.Black);
+            if (tp.ToUpper() == "E")
+            {
+                style_d.Fill.SetPattern(PatternValues.Solid, System.Drawing.Color.Black, System.Drawing.Color.White);
+                style_d.SetFontColor(System.Drawing.Color.White);
+                //  style_d.Alignment.ShrinkToFit = true;
+            }
+            return style_d;
+        }
+        public IXLStyle estilo_bosch1(IXLStyle hoja, string tp)
+        {
+            hoja.Font.SetBold(true);
+            hoja.Font.FontSize = 8;
+            hoja.Font.FontName = "Arial";
+            hoja.Alignment.Horizontal = XLAlignmentHorizontalValues.Center; //Alineamos horizontalmente
+            hoja.Alignment.Vertical = XLAlignmentVerticalValues.Center;
+            hoja.Fill.BackgroundColor = XLColor.White;
+            hoja.Font.FontColor = XLColor.Black;
+            if (tp.ToUpper() == "E")
+            {
+                hoja.Fill.BackgroundColor = XLColor.Black;
+                hoja.Font.FontColor = XLColor.White;
+            }
+            return hoja;
         }
 
     }
