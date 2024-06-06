@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\serverreports.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\serverreports.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\trading_genera_gsk_mod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\trading_genera_gsk_mod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|c:\\pc\\raul\\programas consola\\main\\spooler\\main\\main\\trading_genera_gsk_mod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\trading_genera_gsk_mod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|c:\\pc\\raul\\programas consola\\main\\spooler\\main\\main\\web_transmision_edocs_bosch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\web_transmision_edocs_bosch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\dm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -19,8 +19,8 @@
       "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\web_transmision_edocs_bosch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\web_transmision_edocs_bosch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\utilerias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\utilerias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\excel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -31,8 +31,8 @@
       "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|c:\\pc\\raul\\programas consola\\main\\spooler\\main\\main\\utilerias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\utilerias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\serverreports.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\serverreports.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
@@ -52,73 +52,20 @@
               "RelativeDocumentMoniker": "main\\DM.cs",
               "ToolTip": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\DM.cs",
               "RelativeToolTip": "main\\DM.cs",
-              "ViewState": "AQIAAGkAAAAAAAAAAAAowHsAAAAyAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwBUAAAA/AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-06T15:42:25.043Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "trading_genera_GSK_mod.cs",
-              "DocumentMoniker": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\trading_genera_GSK_mod.cs",
-              "RelativeDocumentMoniker": "main\\trading_genera_GSK_mod.cs",
-              "ToolTip": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\trading_genera_GSK_mod.cs",
-              "RelativeToolTip": "main\\trading_genera_GSK_mod.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAqwA8AAAAlAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-05T22:27:18.522Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "launchSettings.json",
-              "DocumentMoniker": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\Properties\\launchSettings.json",
-              "RelativeDocumentMoniker": "main\\Properties\\launchSettings.json",
-              "ToolTip": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\Properties\\launchSettings.json",
-              "RelativeToolTip": "main\\Properties\\launchSettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-05-06T23:26:36.382Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "serverreports.csproj",
-              "DocumentMoniker": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\serverreports.csproj",
-              "RelativeDocumentMoniker": "main\\serverreports.csproj",
-              "ToolTip": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\serverreports.csproj",
-              "RelativeToolTip": "main\\serverreports.csproj",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAASAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-05-03T14:19:40.324Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Excel.cs",
-              "DocumentMoniker": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\Excel.cs",
-              "RelativeDocumentMoniker": "main\\Excel.cs",
-              "ToolTip": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\Excel.cs",
-              "RelativeToolTip": "main\\Excel.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAAAAB8AAABUAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-03T15:31:10.154Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
               "Title": "web_transmision_edocs_bosch.cs",
               "DocumentMoniker": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\web_transmision_edocs_bosch.cs",
               "RelativeDocumentMoniker": "main\\web_transmision_edocs_bosch.cs",
               "ToolTip": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\web_transmision_edocs_bosch.cs",
               "RelativeToolTip": "main\\web_transmision_edocs_bosch.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAMAAAAAAAAA",
+              "ViewState": "AQIAABAAAAAAAAAAAAAgwBcAAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-30T23:56:03.707Z",
               "EditorCaption": ""
@@ -131,23 +78,70 @@
               "RelativeDocumentMoniker": "main\\Program.cs",
               "ToolTip": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\Program.cs",
               "RelativeToolTip": "main\\Program.cs",
-              "ViewState": "AQIAAEIAAAAAAAAAAAAAANQAAABXAAAA",
+              "ViewState": "AQIAABQBAAAAAAAAAAAqwNEAAAAwAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-30T16:55:35.323Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-30T16:55:35.323Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 4,
               "Title": "Utilerias.cs",
               "DocumentMoniker": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\Utilerias.cs",
               "RelativeDocumentMoniker": "main\\Utilerias.cs",
               "ToolTip": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\Utilerias.cs",
               "RelativeToolTip": "main\\Utilerias.cs",
-              "ViewState": "AQIAAKUAAAAAAAAAAAAYwKkAAAARAAAA",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABgAAAAUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-07T15:22:57.016Z",
+              "WhenOpened": "2024-05-07T15:22:57.016Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "trading_genera_GSK_mod.cs",
+              "DocumentMoniker": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\trading_genera_GSK_mod.cs",
+              "RelativeDocumentMoniker": "main\\trading_genera_GSK_mod.cs",
+              "ToolTip": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\trading_genera_GSK_mod.cs",
+              "RelativeToolTip": "main\\trading_genera_GSK_mod.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-05T22:27:18.522Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Excel.cs",
+              "DocumentMoniker": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\Excel.cs",
+              "RelativeDocumentMoniker": "main\\Excel.cs",
+              "ToolTip": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\Excel.cs",
+              "RelativeToolTip": "main\\Excel.cs",
+              "ViewState": "AQIAADAAAAAAAAAAAAAowBcAAAA9AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-03T15:31:10.154Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "serverreports.csproj",
+              "DocumentMoniker": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\serverreports.csproj",
+              "RelativeDocumentMoniker": "main\\serverreports.csproj",
+              "ToolTip": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\serverreports.csproj",
+              "RelativeToolTip": "main\\serverreports.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-05-03T14:19:40.324Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "main\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\Properties\\launchSettings.json",
+              "RelativeToolTip": "main\\Properties\\launchSettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-05-06T23:26:36.382Z"
             }
           ]
         },

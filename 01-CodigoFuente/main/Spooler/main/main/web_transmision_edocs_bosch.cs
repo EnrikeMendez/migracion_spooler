@@ -10,7 +10,7 @@ namespace serverreports
 {
     internal class web_transmision_edocs_bosch
     {
-        public string transmision_edocs_bosch(string Carpeta, string Archivo, string Clientes, string Fecha_1, string Fecha_2, string imp_exp, string tipo_doc,int visible_sql)
+        public string transmision_edocs_bosch(string Carpeta, string file_name, string Clientes, string Fecha_1, string Fecha_2, string imp_exp, string tipo_doc,int visible_sql)
         {
             DataTable temp;
             DataTable[] LisDT;
@@ -30,11 +30,11 @@ namespace serverreports
                 tab_impexp[2, 0] = util.iff(imp_exp, "=", "1", "_imp", "_exp");             
                 */
                 Console.WriteLine(DM.transmision_edocs_bosch(Clientes, Fecha_1, Fecha_2, "", tipo_doc, imp_exp));
-                LisDT[0]=    DM.datos(DM.transmision_edocs_bosch(Clientes, Fecha_1, Fecha_2, "", tipo_doc, imp_exp));
+                LisDT[0]     = DM.datos(DM.transmision_edocs_bosch(Clientes, Fecha_1, Fecha_2, "", tipo_doc, imp_exp));
                 LisDT_tit[0] = util.iff(imp_exp, "=", "1", "Importación", "Exportación");
                 Console.WriteLine(util.Tdetalle(LisDT[0]));
-                xlsx.CrearExcel_file(LisDT, LisDT_tit, "bosch_spread");
-                xlsx.CreadorExcel_2F(LisDT, LisDT_tit, "bosch_closedxm");
+                xlsx.CrearExcel_file(LisDT, LisDT_tit, "spread_"+ file_name);
+                xlsx.CreadorExcel_2F(LisDT, LisDT_tit, "closedxm_"+file_name);
             }
             else
             {
@@ -61,10 +61,8 @@ namespace serverreports
                 LisDT[1] = DM.datos(DM.transmision_edocs_bosch(Clientes, Fecha_1, Fecha_2, "", tipo_doc, "1", visible_sql));
                 LisDT_tit[1] = "Importación";
                 Console.WriteLine(util.Tdetalle(LisDT[1]));
-                xlsx.CrearExcel_file(LisDT, LisDT_tit, "bosch_spread");
-                xlsx.CreadorExcel_2F(LisDT, LisDT_tit, "bosch_closedxm");
-
-
+                xlsx.CrearExcel_file(LisDT, LisDT_tit, "spread_" + file_name);
+                xlsx.CreadorExcel_2F(LisDT, LisDT_tit, "closedxm_" + file_name  );
             }
             for (int i = 0; i < LisDT.Length; i++)
                 LisDT[i].Clear();
