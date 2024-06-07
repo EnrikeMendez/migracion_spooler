@@ -233,7 +233,7 @@ if (rep_id != 0 && sw_cron == 1)
     tab_archivos = new string[5];
     tab_archivos[0] = file_name;
     tab_archivos[1] = reporte_name;
-    tab_archivos[4] = "1";
+     tab_archivos[4] = "1";
   //  reporte_name = util.nvl(util.Tcampo(tdato_repor, "PARAM_1"));
   //  reporte_name = util.nvl(util.Tcampo(tdato_repor, "PARAM_2"));
 //    reporte_name = util.nvl(util.Tcampo(tdato_repor, "PARAM_3"));
@@ -258,7 +258,7 @@ if (rep_id != 0 && sw_cron == 1)
     Console.WriteLine("valor ''FECHA_1 '':" + FECHA_1);
     Console.WriteLine("valor ''FECHA_2'':" + FECHA_2);
 
-    Console.WriteLine("valor ''filter_file_name     '' " + util.filter_file_name(reporte_name, FECHA_1, FECHA_2));
+    Console.WriteLine("valor ''filter_file_name     '' " + util.filter_file_name(file_name, FECHA_1, FECHA_2));
 
     //servidor = "http://" & Trim(Split(Get_IP(), "-")(0))
     servidor = "http://" + Get_IP;
@@ -279,16 +279,18 @@ if (rep_id != 0 && sw_cron == 1)
         Console.WriteLine("carpeta creada :" + Carpeta);
     }
     else Console.WriteLine("La carpeta existe.."+Carpeta);
-    /*
+  
     web_transmision_edocs_bosch edocs_bosch = new web_transmision_edocs_bosch();
-    edocs_bosch.transmision_edocs_bosch(Carpeta, tab_archivos[0], util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), visible_sql);
+    edocs_bosch.transmision_edocs_bosch(Carpeta, util.filter_file_name(file_name, FECHA_1, FECHA_2), util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), visible_sql);
    // Console.WriteLine(DM.transmision_edocs_bosch("18975", "04/01/2024", "04/30/2024", "", "E", "1"));
-    */
+    
 
     //Console.WriteLine(DM.trading_genera_GSK(tab_archivos[0], FECHA_1, FECHA_2, "", rep_id, 1));
     trading_genera_GSK_mod trading_genera_GSK = new trading_genera_GSK_mod();
-    Console.WriteLine(trading_genera_GSK.trading_genera_GSK(Carpeta, tab_archivos[0], util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id,visible_sql));
+    //Console.WriteLine(trading_genera_GSK.trading_genera_GSK(Carpeta, tab_archivos[0], util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id,visible_sql));
+    Console.WriteLine(trading_genera_GSK.trading_genera_GSK(Carpeta, "gsk_pedimientos", "20501,20502"                                , FECHA_1, FECHA_2, ""                                           , 3723307, visible_sql));
 }
+
 else
     Console.WriteLine("Error es necesario dos parametros \n 1. Falta numero repor: ''{0}'' \n 2. valor numerico: {1} " + msg, rep_id, reporte_temporal);
 

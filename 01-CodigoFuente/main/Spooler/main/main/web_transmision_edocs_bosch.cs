@@ -34,7 +34,7 @@ namespace serverreports
                 LisDT_tit[0] = util.iff(imp_exp, "=", "1", "Importación", "Exportación");
                 Console.WriteLine(util.Tdetalle(LisDT[0]));
                 xlsx.CrearExcel_file(LisDT, LisDT_tit, "spread_"+ file_name);
-                xlsx.CreadorExcel_2F(LisDT, LisDT_tit, "closedxm_"+file_name);
+                //xlsx.CreadorExcel_2F(LisDT, LisDT_tit, "closedxm_"+file_name);
             }
             else
             {
@@ -61,8 +61,8 @@ namespace serverreports
                 LisDT[1] = DM.datos(DM.transmision_edocs_bosch(Clientes, Fecha_1, Fecha_2, "", tipo_doc, "1", visible_sql));
                 LisDT_tit[1] = "Importación";
                 Console.WriteLine(util.Tdetalle(LisDT[1]));
-                xlsx.CrearExcel_file(LisDT, LisDT_tit, "spread_" + file_name);
-                xlsx.CreadorExcel_2F(LisDT, LisDT_tit, "closedxm_" + file_name  );
+                xlsx.CrearExcel_file(LisDT, LisDT_tit, "spread_" + file_name,1);
+              //  xlsx.CreadorExcel_2F(LisDT, LisDT_tit, "closedxm_" + file_name,1  );
             }
             for (int i = 0; i < LisDT.Length; i++)
                 LisDT[i].Clear();

@@ -12,7 +12,7 @@ namespace serverreports
 {
     internal class Excel
     {
-        public void CrearExcel_file(DataTable[] LisDT, string[] tit, string name)
+        public void CrearExcel_file(DataTable[] LisDT, string[] tit, string name, int? del_col = null)
         {
             try
             {
@@ -24,8 +24,11 @@ namespace serverreports
                     sl.ImportDataTable(1, 1, LisDT[i], true);
                     sl.AutoFitColumn(1, LisDT[i].Columns.Count);
                     sl.SetCellStyle(2, 1, LisDT[i].Rows.Count + 1, LisDT[i].Columns.Count, estilo_bosch(sl, "d"));
-                    sl.SetCellStyle(1, 1, 1, LisDT[i].Columns.Count, estilo_bosch(sl, "e")); 
-                    sl.DeleteColumn(1, 1);
+                    sl.SetCellStyle(1, 1, 1, LisDT[i].Columns.Count, estilo_bosch(sl, "e"));
+                    if (del_col != null)
+                    {
+                        sl.DeleteColumn(1, (int)del_col);
+                    }
                     sl.FreezePanes(1, 0);
                 }
 
@@ -38,7 +41,7 @@ namespace serverreports
                 Console.WriteLine("Ocurrio una Excepción: " + ex.Message);
             }
         }
-        public void CreadorExcel_2F(DataTable[] LisDT, string[] tit, string name)
+        public void CreadorExcel_2F(DataTable[] LisDT, string[] tit, string name, int? del_col = null)
         {
             using (var workbook = new XLWorkbook())
             {
@@ -53,7 +56,10 @@ namespace serverreports
                         table.Style = estilo_bosch1(hoja.Style,"d");                        
                         var rango = table.Row(1);
                         rango.Style = estilo_bosch1(rango.Style, "e");
-                        table.Column(1).Delete();
+                        if (del_col != null)
+                        {
+                            table.Column((int)del_col).Delete();
+                        }
                         hoja.Columns().AdjustToContents();
                         hoja.SheetView.FreezeRows(1);
                     }

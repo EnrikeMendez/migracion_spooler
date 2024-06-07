@@ -132,8 +132,8 @@ namespace serverreports
 
         public string filter_file_name(string archivo, string date_1, string date_2)
         {
-            string arc_nom = "";
-            string dt = "";
+            string arc_nom;
+            string dt;
             arc_nom = archivo;
             arc_nom = arc_nom.Replace("%M", DateTime.Now.ToString("MMMM", CultureInfo.CreateSpecificCulture(idioma)));
             arc_nom = arc_nom.Replace("%D", DateTime.Now.ToString("dd", CultureInfo.CreateSpecificCulture(idioma)));
@@ -142,22 +142,23 @@ namespace serverreports
             string[] new_date_2 = date_2.Split("/");
             if (date_2 != "" && date_2 != date_1)
             {
-                dt = DateTime.Parse(new_date_1[1] + "-" + new_date_1[0] + "-" + new_date_1[2]).ToString("mmm-dd-yyyy") +
-                             DateTime.Parse(new_date_2[1] + "-" + new_date_2[0] + "-" + new_date_2[2]).ToString("mmm-dd-yyyy");
-                arc_nom = arc_nom.Replace("%p", dt);
+                dt = DateTime.Parse(new_date_1[1] + "-" + new_date_1[0] + "-" + new_date_1[2]).ToString("MMM-dd-yyyy") +
+                             DateTime.Parse(new_date_2[1] + "-" + new_date_2[0] + "-" + new_date_2[2]).ToString("MMM-dd-yyyy");
+                arc_nom = arc_nom.Replace("%p", dt.Replace(".", ""));
+
             }
             else
             {
                 if (date_1 != "")
                 {
-                    dt = DateTime.Parse(new_date_1[1] + "-" + new_date_1[0] + "-" + new_date_1[2]).ToString("mmm-dd-yyyy");
-                    arc_nom.Replace("%P", dt);
+                    dt = DateTime.Parse(new_date_1[1] + "-" + new_date_1[0] + "-" + new_date_1[2]).ToString("MMM-dd-yyyy");
+                    arc_nom.Replace("%P", dt.Replace(".", ""));
                 }
             }
             if (date_1 != "")
             {
-                dt = DateTime.Parse(new_date_1[1] + "-" + new_date_1[0] + "-" + new_date_1[2]).ToString("mmm-dd-yyyy");
-                arc_nom.Replace("%p", dt);
+                dt = DateTime.Parse(new_date_1[1] + "-" + new_date_1[0] + "-" + new_date_1[2]).ToString("MMM-dd-yyyy");
+                arc_nom.Replace("%p", dt.Replace(".",""));
             }
             return arc_nom;
         }
