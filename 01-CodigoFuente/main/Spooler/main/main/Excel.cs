@@ -41,37 +41,7 @@ namespace serverreports
                 Console.WriteLine("Ocurrio una Excepción: " + ex.Message);
             }
         }
-        public void CreadorExcel_2F(DataTable[] LisDT, string[] tit, string name, int? del_col = null)
-        {
-            using (var workbook = new XLWorkbook())
-            {
-                try
-                {
-                    for (int i = 0; i < LisDT.Length; i++)
-                    {
-                        var hoja = workbook.Worksheets.Add(tit[i]);
-                        var table = hoja.Cell("A1").InsertTable(LisDT[i]);
-                        table.Theme = XLTableTheme.None;
-                        table.ShowAutoFilter = false;
-                        table.Style = estilo_bosch1(hoja.Style,"d");                        
-                        var rango = table.Row(1);
-                        rango.Style = estilo_bosch1(rango.Style, "e");
-                        if (del_col != null)
-                        {
-                            table.Column((int)del_col).Delete();
-                        }
-                        hoja.Columns().AdjustToContents();
-                        hoja.SheetView.FreezeRows(1);
-                    }
-                    workbook.SaveAs(name + ".xlsx");
-                    Console.WriteLine("Se genero Archivo " + name + ".xlsx");
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Ocurrio una Excepción: " + ex.Message);
-                }
-            }
-        }
+       
         public SLStyle estilo_bosch(SLDocument sl, string tp)
         {
             SLStyle style_d = sl.CreateStyle();
@@ -89,22 +59,7 @@ namespace serverreports
             }
             return style_d;
         }
-        public IXLStyle estilo_bosch1(IXLStyle hoja, string tp)
-        {
-            hoja.Font.SetBold(true);
-            hoja.Font.FontSize = 8;
-            hoja.Font.FontName = "Arial";
-            hoja.Alignment.Horizontal = XLAlignmentHorizontalValues.Center; //Alineamos horizontalmente
-            hoja.Alignment.Vertical = XLAlignmentVerticalValues.Center;
-            hoja.Fill.BackgroundColor = XLColor.White;
-            hoja.Font.FontColor = XLColor.Black;
-            if (tp.ToUpper() == "E")
-            {
-                hoja.Fill.BackgroundColor = XLColor.Black;
-                hoja.Font.FontColor = XLColor.White;
-            }
-            return hoja;
-        }
+
 
     }
 }

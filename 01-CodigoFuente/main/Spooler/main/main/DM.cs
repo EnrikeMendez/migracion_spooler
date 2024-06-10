@@ -42,7 +42,7 @@ internal class DM
 
         return orfeo;
     }
-    public DataTable Main_rep(string nom_proc, string? id_cron, int? vs=0, string? addsq = "")
+    public DataTable Main_rep(string nom_proc, string id_cron, int? vs=0, string? addsq = "")
     {
         DataTable dtTemp = new DataTable();
         switch (nom_proc)
@@ -387,7 +387,7 @@ internal class DM
                       + "    ETRANS_ENTRADA TAE\n"
                       + "  WHERE 1=1\n"
                       + "    AND TRUNC(WEL.DATE_CREATED) BETWEEN TRUNC(SYSDATE -1) AND TRUNC(SYSDATE -1)\n"
-                      //                     + "    AND WEL_CLICLEF IN(20501,20502,23488,23489)\n"
+                      + "    --AND WEL_CLICLEF IN(20501,20502,23488,23489)\n"
                       + "    AND WEL_CLICLEF IN(" + cliente + ",23488,23489)\n"
                       + "    AND NOT NVL(TDCD.TDCDFACTURA, WEL.WELFACTURA) LIKE '%PRUEBA%'\n"
                       + "    AND NOT NVL(TDCD.TDCDFACTURA, WEL.WELFACTURA) LIKE '%SENSORES%'\n"

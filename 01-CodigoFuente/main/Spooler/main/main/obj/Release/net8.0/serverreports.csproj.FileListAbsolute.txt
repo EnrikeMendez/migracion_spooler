@@ -37,3 +37,5 @@ C:\pc\raul\programas consola\main\Spooler\main\main\bin\Release\net8.0\XLParser.
 C:\pc\raul\programas consola\main\Spooler\main\main\bin\Release\net8.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
 C:\pc\raul\programas consola\main\Spooler\main\main\bin\Release\net8.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
 C:\pc\raul\programas consola\main\Spooler\main\main\bin\Release\net8.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\obj\Release\net8.0\serverreports.Properties.Resources.resources
+C:\pc\raul\programas consola\main\Spooler\main\main\obj\Release\net8.0\serverreports.csproj.GenerateResource.cache

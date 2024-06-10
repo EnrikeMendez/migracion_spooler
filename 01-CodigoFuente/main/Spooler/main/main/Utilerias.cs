@@ -152,56 +152,18 @@ namespace serverreports
                 if (date_1 != "")
                 {
                     dt = DateTime.Parse(new_date_1[1] + "-" + new_date_1[0] + "-" + new_date_1[2]).ToString("MMM-dd-yyyy");
-                    arc_nom.Replace("%P", dt.Replace(".", ""));
+                    arc_nom = arc_nom.Replace("%p", dt.Replace(".", ""));
                 }
             }
             if (date_1 != "")
             {
                 dt = DateTime.Parse(new_date_1[1] + "-" + new_date_1[0] + "-" + new_date_1[2]).ToString("MMM-dd-yyyy");
-                arc_nom.Replace("%p", dt.Replace(".",""));
+                arc_nom = arc_nom.Replace("%p", dt.Replace(".", ""));
             }
             return arc_nom;
         }
 
-        public void closedXML(DataTable dtTemp)
-        {
-            using (var workbook = new XLWorkbook())
-            {
-                try
-                {
-                    var hoja = workbook.Worksheets.Add();
-                    var table = hoja.Cell("a1").InsertTable(dtTemp);
-                    table.ShowAutoFilter = false;
-                    table.Theme = XLTableTheme.None;
-                    workbook.SaveAs("boschclosedXML.xlsx");
-                    Console.WriteLine("Se genero Archivo " + "boschclosedXML.xlsx");
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Ocurrio una Excepción: " + ex.Message);
-                }
-            }
-
-        }
-
-
-        public void CrearExcel(DataTable dtTemp)
-        {
-            using (SLDocument sl = new SLDocument())
-            {
-                try
-                {
-                    sl.ImportDataTable(1, 1, dtTemp, true);
-                    sl.SaveAs("boschspreadsheetlight.xlsx");
-                    Console.WriteLine("Se genero Archivo " + "boschspreadsheetlight.xlsx");
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Ocurrio una Excepción: " + ex.Message);
-                }
-            }
-        }
-
+      
 
 
 

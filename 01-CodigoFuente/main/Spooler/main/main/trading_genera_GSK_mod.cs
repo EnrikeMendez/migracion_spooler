@@ -19,12 +19,14 @@ namespace serverreports
             string msg = "Deberia enviar correo";
             LisDT[0] = DM.datos(DM.trading_genera_GSK(param1, Fecha_1, Fecha_2, empresa, idCron, vs));
             LisDT_tit[0] = "Shipments";
-            if (LisDT[0].Rows.Count>0) { 
-               xlsx.CrearExcel_file(LisDT, LisDT_tit, "spread_"+ file_name);
-              // xlsx.CreadorExcel_2F(LisDT, LisDT_tit, "closedxm_"+ file_name);
-               msg= DM.trading_genera_GSK(param1, Fecha_1, Fecha_2, empresa, idCron, 1);
-               LisDT[0].Clear();
+            if (LisDT[0].Rows.Count > 0)
+            {
+                xlsx.CrearExcel_file(LisDT, LisDT_tit, "spread_" + file_name);
+                msg = DM.trading_genera_GSK(param1, Fecha_1, Fecha_2, empresa, idCron, 1);
+                LisDT[0].Clear();
             }
+            else
+                Console.WriteLine("No hay registros ... "+msg);
             return msg;
         }
     }
