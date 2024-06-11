@@ -296,7 +296,9 @@ try
         case "transmision_edocs_bosch":
             web_transmision_edocs_bosch edocs_bosch = new web_transmision_edocs_bosch();
             edocs_bosch.transmision_edocs_bosch(Carpeta, tab_archivos[0], util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), visible_sql);
-            break;
+
+
+                break;
           
         case "gsk_pedimientos":
             trading_genera_GSK_mod trading_genera_GSK = new trading_genera_GSK_mod();
