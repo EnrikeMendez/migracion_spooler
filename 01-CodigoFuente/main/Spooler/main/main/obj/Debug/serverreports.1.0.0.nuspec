@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>serverreports</id>
+    <version>1.0.0</version>
+    <authors>serverreports</authors>
+    <description>Package Description</description>
+    <repository type="git" commit="16ea9a3cdbb8daef624e44eaf8ef4dc352b4fa41" />
+    <dependencies>
+      <group targetFramework="net8.0">
+        <dependency id="ClosedXML" version="0.102.2" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Configuration.UserSecrets" version="8.0.0" exclude="Build,Analyzers" />
+        <dependency id="SpreadsheetLight" version="3.5.0" exclude="Build,Analyzers" />
+        <dependency id="System.Data.OracleClient" version="1.0.8" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Users\usuario\source\repos\migracion_spooler\01-CodigoFuente\main\Spooler\main\main\bin\Debug\net8.0\serverreports.runtimeconfig.json" target="lib\net8.0\serverreports.runtimeconfig.json" />
+    <file src="C:\Users\usuario\source\repos\migracion_spooler\01-CodigoFuente\main\Spooler\main\main\bin\Debug\net8.0\serverreports.dll" target="lib\net8.0\serverreports.dll" />
+  </files>
+</package>
