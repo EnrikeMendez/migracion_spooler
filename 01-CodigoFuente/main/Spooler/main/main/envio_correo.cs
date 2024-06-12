@@ -14,7 +14,7 @@ namespace serverreports
     internal class envio_correo
     {
         //string [] mail_grupo_error = ["desarrollo_web@logis.com.mx"];
-        string[] mail_grupo_error = ["rlgranados2@yahoo.com.mx"];
+        string[] mail_grupo_error = ["joseemv@logis.com.mx", "raulrgg@logis.com.mx"];
         private string email_usuario()
         {
             var configuration = new ConfigurationBuilder()

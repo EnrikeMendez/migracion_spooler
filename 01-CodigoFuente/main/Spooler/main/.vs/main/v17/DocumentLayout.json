@@ -18,7 +18,7 @@
       "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\web_transmision_edocs_bosch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|c:\\pc\\raul\\programas consola\\main\\spooler\\main\\main\\trading_genera_gsk_mod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\trading_genera_gsk_mod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\trading_genera_gsk_mod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -54,8 +54,7 @@
               "ViewState": "AQIAAHwBAAAAAAAAAAAAAIsBAAAxAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-06T15:42:25.043Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -67,8 +66,7 @@
               "RelativeToolTip": "..\\..\\..\\..\\..\\..\\Users\\usuario\\AppData\\Roaming\\Microsoft\\UserSecrets\\850e964a-5cbf-45ca-9534-537ca3f4fa8f\\secrets.json",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-06-11T21:49:48.889Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-11T21:49:48.889Z"
             },
             {
               "$type": "Document",
@@ -78,7 +76,7 @@
               "RelativeDocumentMoniker": "main\\envio_correo.cs",
               "ToolTip": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\envio_correo.cs",
               "RelativeToolTip": "main\\envio_correo.cs",
-              "ViewState": "AQIAABkAAAAAAAAAAAAgwCMAAAAoAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-11T15:38:19.059Z",
               "EditorCaption": ""
@@ -93,8 +91,7 @@
               "RelativeToolTip": "main\\Program.cs",
               "ViewState": "AQIAAFIBAAAAAAAAAAAQwF0BAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-30T16:55:35.323Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-30T16:55:35.323Z"
             },
             {
               "$type": "Document",
@@ -106,8 +103,7 @@
               "RelativeToolTip": "main\\Excel.cs",
               "ViewState": "AQIAAAwAAAAAAAAAAAAxwCkAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-03T15:31:10.154Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-03T15:31:10.154Z"
             },
             {
               "$type": "Document",
@@ -119,8 +115,7 @@
               "RelativeToolTip": "main\\trading_genera_GSK_mod.cs",
               "ViewState": "AQIAAAkAAAAAAAAAAAAqwAkAAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-05T22:27:18.522Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-05T22:27:18.522Z"
             },
             {
               "$type": "Document",
@@ -132,8 +127,7 @@
               "RelativeToolTip": "main\\web_transmision_edocs_bosch.cs",
               "ViewState": "AQIAAAMAAAAAAAAAAAAAAC4AAAAnAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-30T23:56:03.707Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-30T23:56:03.707Z"
             },
             {
               "$type": "Document",
