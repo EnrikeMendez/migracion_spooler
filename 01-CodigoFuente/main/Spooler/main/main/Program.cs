@@ -71,6 +71,7 @@ try
 
  if (rep_id != 1)
  {
+        Console.WriteLine(DM.conexionprueba("string SQL"));
     trep_cron = DM.Main_rep("main_rp_cron", rep_id.ToString(), visible_sql, sqladd.Replace("@param", "" + reporte_temporal + ""));
     //        util.CreadorExcel("patito.xlsx");
     //        util.CrearExcel(trep_cron, "prueba1");
