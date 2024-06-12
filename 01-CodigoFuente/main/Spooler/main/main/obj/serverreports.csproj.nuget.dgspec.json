@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\serverreports.csproj": {}
+    "C:\\Users\\usuario\\source\\repos\\migracion_spooler\\01-CodigoFuente\\main\\Spooler\\main\\main\\serverreports.csproj": {}
   },
   "projects": {
-    "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\serverreports.csproj": {
+    "C:\\Users\\usuario\\source\\repos\\migracion_spooler\\01-CodigoFuente\\main\\Spooler\\main\\main\\serverreports.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\serverreports.csproj",
+        "projectUniqueName": "C:\\Users\\usuario\\source\\repos\\migracion_spooler\\01-CodigoFuente\\main\\Spooler\\main\\main\\serverreports.csproj",
         "projectName": "serverreports",
-        "projectPath": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\serverreports.csproj",
+        "projectPath": "C:\\Users\\usuario\\source\\repos\\migracion_spooler\\01-CodigoFuente\\main\\Spooler\\main\\main\\serverreports.csproj",
         "packagesPath": "C:\\Users\\usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\obj\\",
+        "outputPath": "C:\\Users\\usuario\\source\\repos\\migracion_spooler\\01-CodigoFuente\\main\\Spooler\\main\\main\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
           "C:\\Users\\usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -83,7 +85,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
