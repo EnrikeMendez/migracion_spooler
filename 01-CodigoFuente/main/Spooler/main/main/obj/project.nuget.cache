@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NdpFZaQwSNvSieyL58vroZ2N6RSNtXfinziSM4rSszfjKQHDv0Nosi8OyzL/5O3f8NCVnJ/UvJXSdRAsGbnLYw==",
+  "dgSpecHash": "3kcCAPfn0eo=",
   "success": true,
-  "projectFilePath": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\serverreports.csproj",
+  "projectFilePath": "C:\\Users\\usuario\\source\\repos\\migracion_spooler\\01-CodigoFuente\\main\\Spooler\\main\\main\\serverreports.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\usuario\\.nuget\\packages\\closedxml\\0.102.2\\closedxml.0.102.2.nupkg.sha512",
     "C:\\Users\\usuario\\.nuget\\packages\\documentformat.openxml\\2.16.0\\documentformat.openxml.2.16.0.nupkg.sha512",

@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = serverreports
-build_property.ProjectDir = C:\pc\raul\programas consola\main\Spooler\main\main\
+build_property.ProjectDir = C:\Users\usuario\source\repos\migracion_spooler\01-CodigoFuente\main\Spooler\main\main\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
