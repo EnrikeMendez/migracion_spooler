@@ -22,8 +22,9 @@ namespace serverreports
             LisDT_tit[0] = "Shipments";
             if (LisDT[0].Rows.Count > 0)
             {
-                xlsx.CrearExcel_file(LisDT, LisDT_tit, "spread_" + file_name);
+                xlsx.CrearExcel_file(LisDT, LisDT_tit, Carpeta + "\\" +  file_name);
                 msg = DM.trading_genera_GSK(cliente, Fecha_1, Fecha_2, empresa, idCron, 1);
+
             }
             else
             {

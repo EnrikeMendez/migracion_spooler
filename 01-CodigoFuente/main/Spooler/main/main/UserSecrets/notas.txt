@@ -1,0 +1,3 @@
+la carpeta "850e964a-5cbf-45ca-9534-537ca3f4fa8f" de debe colocar en la siguiente ruta
+C:\Users\usuario\AppData\Roaming\Microsoft\UserSecrets
+

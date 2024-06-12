@@ -9,12 +9,9 @@ using System.Linq.Expressions;
 using System.Data.OracleClient;
 using Microsoft.Extensions.Configuration;
 using System.Reflection;
-using System.Data.Odbc;
 using System.Xml.Linq;
 using System.Data.SqlTypes;
-using DocumentFormat.OpenXml.Wordprocessing;
-using System.Data.OleDb;
-
+using System.Data.Common;
 namespace serverreports;
 
 internal class DM
@@ -22,30 +19,6 @@ internal class DM
     Utilerias util = new Utilerias();
     public DataTable datos(string SQL)
     {
-        /*
-        OdbcConnection xz = new ("DSN=logis;UID=USR_CONSULTA26;PWD=S4v2Th#6p;");
-        using (xz)
-        {
-            xz.Open();
-            if ((xz.State) > 0)
-            {
-                Console.WriteLine("conexion odbc");
-            }
-
-        }
-
-        OleDbConnection CON = new OleDbConnection("Provider=OraOLEDB.Oracle;Data Source=192.168.0.4/Orfeo2;user id=USR_CONSULTA26;password=S4v2Th#6p;PLSQLRSet=1;");
-        
-        using (CON)
-        {
-            CON.Open();
-            if ((CON.State ) > 0)
-            {
-                Console.WriteLine("conexion OLE");
-            }
-
-        }
-        */
         DataTable dtTemp = new DataTable();
         OracleConnection cnn = new OracleConnection(conecBD());
         using (cnn)
@@ -61,7 +34,6 @@ internal class DM
         }
         return dtTemp;
     }
-
     private string conecBD()
     {
         var configuration = new ConfigurationBuilder()
@@ -441,54 +413,5 @@ internal class DM
 
     }
 
-    public string conexionprueba(string SQL)
-    {
-        string sql_msg = "";
-        try { 
-        OdbcConnection xz = new("DSN=logis;UID=USR_CONSULTA26;PWD=S4v2Th#6p;");
-        using (xz)
-        {
-            xz.Open();
-            if ((xz.State) > 0)
-            {
-                sql_msg="conexion odbc";
-            }
-
-        }
-
-        OleDbConnection CON = new OleDbConnection("Provider=OraOLEDB.Oracle;Data Source=192.168.0.4/Orfeo2;user id=USR_CONSULTA26;password=S4v2Th#6p;PLSQLRSet=1;");
-
-        using (CON)
-        {
-            CON.Open();
-            if ((CON.State) > 0)
-            {
-                sql_msg= sql_msg+"\n"+"conexion OLE";
-            }
-
-        }
-
-    
-        OracleConnection cnn = new OracleConnection(conecBD());
-        using (cnn)
-        {
-            cnn.Open();
-            if ((cnn.State) > 0)
-            {
-                sql_msg = sql_msg + "\n" + "conexion oracle";
-            
-            }
-
-        }
-
-        }
-        catch (Exception ex)
-        {
-            sql_msg = ex.Message;
-        }
-        return sql_msg;
-
-    }
-
 }
-cambio
+

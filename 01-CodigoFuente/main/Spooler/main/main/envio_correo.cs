@@ -14,7 +14,7 @@ namespace serverreports
     internal class envio_correo
     {
         //string [] mail_grupo_error = ["desarrollo_web@logis.com.mx"];
-        string[] mail_grupo_error = ["rlgranados2@yahoo.com.mx"];
+        string[] mail_grupo_error = ["raulrgg@logis.com.mx"];
         private string email_usuario()
         {
             var configuration = new ConfigurationBuilder()
@@ -42,7 +42,8 @@ namespace serverreports
                     for (int i = 0; i < mail_grupo_error.Length; i++)
                          correo.To.Add(mail_grupo_error[i]);
 
-                using (SmtpClient servidor = new SmtpClient("smtp.gmail.com", 587)) 
+                //using (SmtpClient servidor = new SmtpClient("smtp.gmail.com", 587)) 
+                using (SmtpClient servidor = new SmtpClient("smtp.office365.com", 587)) 
                 {
                     servidor.EnableSsl = true;
                     servidor.Credentials = new System.Net.NetworkCredential(dat_mail[0], dat_mail[1]);

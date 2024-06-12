@@ -62,14 +62,6 @@
               "target": "Package",
               "version": "[3.5.0, )"
             },
-            "System.Data.Odbc": {
-              "target": "Package",
-              "version": "[8.0.0, )"
-            },
-            "System.Data.OleDb": {
-              "target": "Package",
-              "version": "[8.0.0, )"
-            },
             "System.Data.OracleClient": {
               "target": "Package",
               "version": "[1.0.8, )"
