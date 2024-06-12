@@ -1,0 +1,1 @@
+ERROR [IM014] [Microsoft][Administrador de controladores ODBC] La arquitectura del DSN especificado no coincide entre el controlador y la aplicación.The 'OraOLEDB.Oracle' provider is not registered on the local machine.Se ha intentado cargar un programa con un formato incorrecto. (0x8007000B)
