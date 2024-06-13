@@ -58,7 +58,7 @@ namespace serverreports
                 LisDT_tit[1] = "Importación";
                 Console.WriteLine(util.Tdetalle(LisDT[1]));
                 xlsx.CrearExcel_file(LisDT, LisDT_tit, Carpeta + file_name,1);
-                 }
+            }
             for (int i = 0; i < LisDT.Length; i++)
                 LisDT[i].Clear();
             return "0";

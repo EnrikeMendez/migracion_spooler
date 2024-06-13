@@ -8,10 +8,17 @@ using System.Reflection.PortableExecutable;
 using System.Linq.Expressions;
 using System.Data.OracleClient;
 using Microsoft.Extensions.Configuration;
+using System.Configuration;
 using System.Reflection;
+using System.Data.Odbc;
+using System.Data.OleDb;
 using System.Xml.Linq;
-using System.Data.SqlTypes;
-using System.Data.Common;
+using DocumentFormat.OpenXml.Vml;
+using DocumentFormat.OpenXml.Wordprocessing;
+using System.IO.Compression;
+using DocumentFormat.OpenXml.Spreadsheet;
+using ConfigurationManager = System.Configuration.ConfigurationManager;
+
 namespace serverreports;
 
 internal class DM
@@ -21,26 +28,51 @@ internal class DM
     {
         DataTable dtTemp = new DataTable();
         OracleConnection cnn = new OracleConnection(conecBD());
-        using (cnn)
+        
+        try
         {
-            cnn.Open();
-            if ((cnn.State) > 0)
+            using (cnn)
             {
-                OracleCommand cmd = new OracleCommand(SQL, cnn);
-                OracleDataAdapter da = new OracleDataAdapter(cmd);
-                da.Fill(dtTemp);
-                cnn.Close();
+                cnn.Open();
+                if ((cnn.State) > 0)
+                {
+                    OracleCommand cmd = new OracleCommand(SQL, cnn);
+                    OracleDataAdapter da = new OracleDataAdapter(cmd);
+                    da.Fill(dtTemp);
+                    cnn.Close();
+                }
             }
         }
+        catch (Exception ex)
+        {
+
+            if (ex.HResult == -2147467261)
+                Console.WriteLine("No Existe la carpeta UserScrets " + ex.HResult);
+            else
+                Console.WriteLine(ex.Message + " -var conex *" + conecBD() + "* " + ex.HResult);
+        }
+   
         return dtTemp;
     }
     private string conecBD()
     {
-        var configuration = new ConfigurationBuilder()
-                                          .AddUserSecrets(Assembly.GetExecutingAssembly())
-                                          .Build();
-        var orfeo = configuration["Orfeo2"];
+        var orfeo = "Error";
+        try
+        {
+            var configuration = new ConfigurationBuilder()
+                                              .AddUserSecrets(Assembly.GetExecutingAssembly())
+                                              .Build();
+            //orfeo = configuration["Orfeo2"];
+            orfeo = configuration["ORFEODES"];
+            // toma el valor de app.config
+            //  orfeo = ConfigurationManager.ConnectionStrings["Orfeo2"].ToString();
+            //  orfeo = ConfigurationManager.ConnectionStrings["ORFEODES"].ToString();
 
+        }
+        catch (Exception ex)
+        {
+            orfeo = orfeo + ex.Message;
+        }
         return orfeo;
     }
     public DataTable Main_rep(string nom_proc, string id_cron, int? vs=0, string? addsq = "")

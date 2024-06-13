@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using DocumentFormat.OpenXml.Wordprocessing;
 using Microsoft.Extensions.Configuration;
 using System.Reflection;
+using ConfigurationManager = System.Configuration.ConfigurationManager;
 
 namespace serverreports
 {
@@ -17,10 +18,14 @@ namespace serverreports
         string[] mail_grupo_error = ["raulrgg@logis.com.mx"];
         private string email_usuario()
         {
+            string correo_p;
             var configuration = new ConfigurationBuilder()
                                               .AddUserSecrets(Assembly.GetExecutingAssembly())
                                               .Build();
-            return configuration["us_mail"] + "|" + configuration["pwd_mail"];
+            correo_p = configuration["us_mail"] + "|" + configuration["pwd_mail"];
+            // toma el valor de app.config
+            //correo_p = ConfigurationManager.AppSettings["us_mail"]+ "|"+ ConfigurationManager.AppSettings["pwd_mail"];
+            return correo_p;
         }
 
         public string send_error_mail(string asunto, string[] contact, string mensaje)
