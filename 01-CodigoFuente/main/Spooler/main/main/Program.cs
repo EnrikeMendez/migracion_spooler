@@ -8,7 +8,7 @@ using static System.Net.Mime.MediaTypeNames;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 int rep_id = 0;
 int sw_cron = 0;
-int visible_sql =0;
+int visible_sql =1;
 string msg = "";
 string sqladd = " ,case when (@param=0 and  rep.FRECUENCIA is not null) then logis.display_fecha_confirmacion4(rep.FRECUENCIA, sysdate, sysdate,1)  end fecha  ";
 int reporte_temporal = 0;
@@ -145,9 +145,9 @@ try
         Console.WriteLine("************** confirma fecha **************");
         Console.WriteLine(SQL_p2);
         //  if conf_date !=null
-        if (1 == 0)
+        if (1 ==0)
         {
-            SQL_p2 = "select display_fecha_confirmacion4(('" + util.Tcampo(trep_cron, "FRECUENCIA") + "',conf.CONF_DATE,conf.CONF_DATE_2,decode(conf.CONF_DATE,null,1,0)) as next_fecha \n" +
+            SQL_p2 = "select display_fecha_confirmacion4('" + util.Tcampo(trep_cron, "FRECUENCIA") + "',conf.CONF_DATE,conf.CONF_DATE_2,decode(conf.CONF_DATE,null,1,0)) as next_fecha \n" +
          " from rep_confirmacion conf \n" +
          " where  conf.ID_CONF = '" + rep_id + "' \n" +
          " order by to_date(next_fecha, 'mm/dd/yyyy') desc \n";
@@ -294,20 +294,17 @@ try
     switch (MiComando)
     {
         case "transmision_edocs_bosch":
-            web_transmision_edocs_bosch edocs_bosch = new web_transmision_edocs_bosch();
-            edocs_bosch.transmision_edocs_bosch(Carpeta, tab_archivos[0], util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), visible_sql);
-
-
-                break;
+             web_transmision_edocs_bosch edocs_bosch = new web_transmision_edocs_bosch();
+             edocs_bosch.transmision_edocs_bosch(Carpeta, tab_archivos[0], util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), visible_sql);
+             break;
           
         case "gsk_pedimientos":
-            trading_genera_GSK_mod trading_genera_GSK = new trading_genera_GSK_mod();
-            trading_genera_GSK.trading_genera_GSK(Carpeta, tab_archivos[0], util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id, visible_sql);
-            break;
-
-            case "porteos_tln":
-                DM.porteos_tln(util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, "", rep_id, visible_sql); ;
-                break;
+             trading_genera_GSK_mod trading_genera_GSK = new trading_genera_GSK_mod();
+             trading_genera_GSK.trading_genera_GSK(Carpeta, tab_archivos[0], util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id, visible_sql);
+             break;
+        case "porteos_tln":
+             DM.porteos_tln(util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, "", rep_id, 1); ;
+             break;
 
         }
 
