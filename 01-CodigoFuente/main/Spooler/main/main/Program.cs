@@ -303,8 +303,13 @@ try
         case "gsk_pedimientos":
             trading_genera_GSK_mod trading_genera_GSK = new trading_genera_GSK_mod();
             trading_genera_GSK.trading_genera_GSK(Carpeta, tab_archivos[0], util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id, visible_sql);
-            break;   
-    }
+            break;
+
+            case "porteos_tln":
+                DM.porteos_tln(util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, "", rep_id, visible_sql); ;
+                break;
+
+        }
 
 }
  else
