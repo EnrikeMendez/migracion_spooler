@@ -18,7 +18,8 @@ namespace serverreports
             DataTable[] LisDT = new DataTable[1];
             string[] LisDT_tit = new string[1]; ;
             string msg = "Deberia enviar correo";
-            LisDT[0] = DM.datos(DM.trading_genera_GSK(cliente, Fecha_1, Fecha_2, empresa, idCron, vs));
+            LisDT[0] = DM.datos_sp1(DM.trading_genera_GSK(cliente, Fecha_1, Fecha_2, empresa, idCron, vs));
+            
             LisDT_tit[0] = "Shipments";
             if (LisDT[0].Rows.Count > 0)
             {

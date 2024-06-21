@@ -54,9 +54,9 @@
               "target": "Package",
               "version": "[23.4.0, )"
             },
-            "System.Data.OracleClient": {
+            "Oracle.ManagedDataAccess.Core": {
               "target": "Package",
-              "version": "[1.0.8, )"
+              "version": "[23.4.0, )"
             }
           },
           "imports": [

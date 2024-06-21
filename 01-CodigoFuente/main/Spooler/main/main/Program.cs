@@ -158,6 +158,7 @@ try
         }
         Console.WriteLine("************** confirma fecha 2**************");
         Console.WriteLine(SQL_p2);
+
     }
 
     /*

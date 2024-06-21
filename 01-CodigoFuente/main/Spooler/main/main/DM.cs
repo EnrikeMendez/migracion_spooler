@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Reflection.PortableExecutable;
 using System.Linq.Expressions;
-using System.Data.OracleClient;
+using Oracle.ManagedDataAccess.Client;
 using Microsoft.Extensions.Configuration;
 using System.Configuration;
 using System.Reflection;
@@ -54,6 +54,39 @@ internal class DM
    
         return dtTemp;
     }
+
+    public DataTable datos_sp1(string SQL)
+    {
+        DataTable dtTemp = new DataTable();
+        OracleConnection cnn = new OracleConnection(conecBD());
+        try
+        {
+            using (cnn)
+        {
+            cnn.Open();
+            if ((cnn.State) > 0)
+            {
+                OracleCommand cmd = new OracleCommand(SQL, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new OracleParameter("p_Cur_GSK", OracleDbType.RefCursor)).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add(new OracleParameter("v_Mensaje", OracleDbType.NVarchar2, 4000)).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add(new OracleParameter("v_Codigo_Error", OracleDbType.Int64)).Direction = ParameterDirection.Output;
+                OracleDataAdapter da1 = new OracleDataAdapter(cmd);
+                da1.Fill(dtTemp);
+            }
+        }
+        }
+        catch (Exception ex)
+        {
+
+            if (ex.HResult == -2147467261)
+                Console.WriteLine("No Existe la carpeta UserScrets " + ex.HResult);
+            else
+                Console.WriteLine(ex.Message + " -var conex *" + conecBD() + "* " + ex.HResult);
+        }
+        return dtTemp;
+    }
+
     private string conecBD()
     {
         var orfeo = "Error";
@@ -444,7 +477,7 @@ internal class DM
     }
     public string porteos_tln(string cliente, string? Fecha_1, string? Fecha_2, string? empresa, Int32? idCron, int? vs = 0)
     {
-        string SQL = "  SELECT  \n"
+      string SQL = "  SELECT  \n"
                 + "  DISTINCT  \n"
                 + "  TRA.TRACONS_GENERAL, TRA.TRACLAVE, TRA.TRA_CLICLEF CLICLEF, TDCD_PEDIDO_CLIENTE, TDCD.TDCDFACTURA, NVL(CCL.CCL_NOMBRE, WCCL.WCCL_NOMBRE) CLIENTE_FINAL, NVL(DIE.DIE_A_ATENCION_DE, WCCL.WCCLABREVIACION) SUCURSAL,  \n"
                 + "  NVL(DIE.DIENOMBRE, WCCL.WCCL_NOMBRE) NOMBRE, NVL(CIU.VILNOM, CIUW.VILNOM) || ' (' || NVL(EST.ESTNOMBRE, ESTW.ESTNOMBRE) || ')' CIUDAD, TDCD_ORDEN_COMPRA, TAEFECHALLEGADA,  \n"

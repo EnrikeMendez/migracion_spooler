@@ -1,4 +1,4 @@
-﻿using System.Data.OracleClient;
+﻿using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Configuration;
 using System.Data;
@@ -8,7 +8,7 @@ using System.Data.Common;
 using System.Reflection.Metadata;
 using System.Security.Cryptography;
 using System.Windows.Input;
-using Oracle.ManagedDataAccess.Types;
+
 
 
 //OracleConnection cnn = new OracleConnection("DATA SOURCE=192.168.0.4/Orfeo2; USER ID=USR_CONSULTA26; PASSWORD=S4v2Th#6p");
@@ -59,134 +59,41 @@ using (cnn)
 
             OracleCommand cmd = new OracleCommand(sp, cnn);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add("PARAMETRO_1", OracleType.Int32).Value = 2;
-            cmd.Parameters.Add("PARAMETRO_2", OracleType.VarChar, 5).Value = "valor";
-            cmd.Parameters.Add("PARAMETRO_4", OracleType.Int32).Direction = ParameterDirection.Output;
-            cmd.Parameters.Add("PARAMETRO_5", OracleType.VarChar, 10).Direction = ParameterDirection.Output;
+            cmd.Parameters.Add("PARAMETRO_1", OracleDbType.Int64).Value = 2;
+            cmd.Parameters.Add("PARAMETRO_2", OracleDbType.Varchar2, 5).Value = "valor";
+            cmd.Parameters.Add("PARAMETRO_4", OracleDbType.Int32).Direction = ParameterDirection.Output;
+            cmd.Parameters.Add("PARAMETRO_5", OracleDbType.Varchar2, 10).Direction = ParameterDirection.Output;
             Console.WriteLine("*********** " + sp + " ***************");
             OracleDataReader reader = cmd.ExecuteReader();
-            int PARAMETRO_4 = (int)cmd.Parameters["PARAMETRO_4"].Value;
-            string PARAMETRO_5 = (string)cmd.Parameters["PARAMETRO_5"].Value;
+            string PARAMETRO_4 = cmd.Parameters["PARAMETRO_4"].Value.ToString();
+            string PARAMETRO_5 = cmd.Parameters["PARAMETRO_5"].Value.ToString();
             Console.WriteLine("valor es PARAMETRO_4 = " + PARAMETRO_4);
             Console.WriteLine("valor es PARAMETRO_5= " + PARAMETRO_5);
+
         }
-        catch { }
+        catch
+        {
+
+        }
+
         /*
-               try
-               {
-                   //sp = "select SC_REPORTES.GEN_REP_CLAVE name  from dual";
-                   sp = "select SC_REPORTES.GEN_REP_CLAVE name  from dual";
-
-
-                   OracleCommand cmd = new OracleCommand(sp, cnn);
-                   //cmd.CommandType = CommandType.StoredProcedure;
-                   //cmd.Parameters.Add("Return_Value", OracleType.VarChar, 100).Direction = ParameterDirection.Output;
-                   //cmd.Parameters.Add("RETURN", OracleType.VarChar, 10).Direction = ParameterDirection.ReturnValue;
-                  // cmd.Parameters.Add("RETURN", OracleType.VarChar, 4000).Direction = ParameterDirection.ReturnValue;
-                   Console.WriteLine("****************************");
-                   // cmd.ExecuteNonQuery();
-                   OracleDataReader reader = cmd.ExecuteReader();
-                   OracleDataAdapter da1 = new OracleDataAdapter(cmd);
-                   DataTable dtTemp1 = new DataTable();
-
-                   da1.Fill(dtTemp1);
-                   Console.WriteLine("*********** " + sp + " *****************");
-
-                   for (i = 0; i < dtTemp1.Columns.Count; i++)
-                   {
-                       Console.WriteLine(" GEN_REP_CLAVE valor  es " + dtTemp1.Columns[i].ColumnName);
-                   }
-                   for (int j = 0; j < dtTemp1.Rows.Count; j++)
-                   {
-
-                       // Console.WriteLine(" valor  es " + dtTemp.Rows[j]["name"].ToString());
-                       Console.WriteLine(" GEN_REP_CLAVE valor  es " + dtTemp1.Rows[j]["name"].ToString());
-                   }
-
-               }
-               catch { }
-
-
-
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("RETURN", OracleType.VarChar, 10).Direction = ParameterDirection.ReturnValue;
-                    cmd.Parameters.Add("PARAMETRO_1", OracleType.Int32).Value = 2;
-                    cmd.Parameters.Add("PARAMETRO_2", OracleType.VarChar, b.Length).Value = "valor";
-                    cmd.Parameters.Add("PARAMETRO_4", OracleType.Int32).Direction = ParameterDirection.Output;
-                    cmd.Parameters.Add("PARAMETRO_5", OracleType.VarChar, 10).Direction = ParameterDirection.Output;           
-                    // string job_no = (string)cmd.Parameters["PARAMETRO_4"].Value;
-                    // Console.WriteLine("valor es = " +  job_no);
-                    Console.WriteLine("****************************");
-                    OracleDataAdapter da = new OracleDataAdapter(cmd);
-                    OracleDataReader reader= cmd.ExecuteReader(); 
-
-                    OracleDataAdapter da = new OracleDataAdapter(cmd);
-                    OracleDataReader reader = cmd.ExecuteReader();
-
-
-                    while (reader.Read())
-                    {
-                        if (i == 0)
-                        {
-                            Console.WriteLine("{0}\t ", reader.GetName(0));
-                            Console.WriteLine("****************************");
-                        }
-                        Console.WriteLine("{0}\t ", reader.GetInt32(0));
-                        i++;
-                    }
-               */
         try
         {
-            OracleParameter op = null;
-            OracleDataReader dr = null;
+            //sp = "select SC_REPORTES.GEN_REP_CLAVE name  from dual";
+            sp = "select SC_REPORTES.GEN_REP_CLAVE name  from dual";
 
-            sp = "SC_DIST.SPG_RS_COEX.P_RS_GSK_PEDIMENTOS";
-      
+
             OracleCommand cmd = new OracleCommand(sp, cnn);
-            cmd.CommandType = CommandType.StoredProcedure;
-            /*
-             op = new OracleParameter("p_Cur_GSK", OracleType.Cursor);
-            op.Direction =  ParameterDirection.Output;
-            op.ParameterName = "p_Cur_GSK";
-            cmd.Parameters.Add(op);
+            //cmd.CommandType = CommandType.StoredProcedure;
+            //cmd.Parameters.Add("Return_Value", OracleType.VarChar, 100).Direction = ParameterDirection.Output;
+            //cmd.Parameters.Add("RETURN", OracleType.VarChar, 10).Direction = ParameterDirection.ReturnValue;
+            // cmd.Parameters.Add("RETURN", OracleType.VarChar, 4000).Direction = ParameterDirection.ReturnValue;
 
-            op = new OracleParameter("v_Mensaje", OracleType.VarChar);
-            op.Direction = ParameterDirection.Output;
-            op.Size = 4000;
-            op.ParameterName = "v_Mensaje";
-            cmd.Parameters.Add(op);
-
-            op = new OracleParameter("v_Codigo_Error", OracleType.Int32);
-            op.Direction = ParameterDirection.Output;
-            op.Size = 5;
-            op.ParameterName = "v_Codigo_Error";
-            cmd.Parameters.Add(op);
-            */
-
-            cmd.Parameters.Add(new OracleParameter("p_Cur_GSK"     , OracleType.Cursor)).Direction = ParameterDirection.Output;
-            cmd.Parameters.Add(new OracleParameter("v_Mensaje"     , OracleType.VarChar,4000)).Direction = ParameterDirection.Output;
-            cmd.Parameters.Add(new OracleParameter("v_Codigo_Error", OracleType.Number)).Direction = ParameterDirection.Output;
-
-            
-
-            //cmd.Parameters.Add("p_Cur_GSK").Direction =  ParameterDirection.Output;
-            //cmd.Parameters.Add("v_Mensaje", OracleType.VarChar,4000).Direction = ParameterDirection.Output;
-            //cmd.Parameters.Add("v_Codigo_Error", OracleType.Number).Direction = ParameterDirection.Output; 
-            /*
-
-            cmd.Parameters.Add("v_Mensaje", OracleType.LongVarChar, 4000).Direction = ParameterDirection.Output;
-            cmd.Parameters.Add("v_Codigo_Error", OracleType.Number).Direction = ParameterDirection.Output;
-            */
-
-
-
-            Console.WriteLine("****************************");
-            //   cmd.ExecuteNonQuery();
-            // OracleDataReader reader = cmd.ExecuteReader();
-            cmd.ExecuteReader(CommandBehavior.CloseConnection);
+            // cmd.ExecuteNonQuery();
+            OracleDataReader reader = cmd.ExecuteReader();
             OracleDataAdapter da1 = new OracleDataAdapter(cmd);
             DataTable dtTemp1 = new DataTable();
-
+            Console.WriteLine("****************************");
             da1.Fill(dtTemp1);
             Console.WriteLine("*********** " + sp + " *****************");
 
@@ -203,25 +110,119 @@ using (cnn)
 
         }
         catch (Exception e) { Console.WriteLine(e.Message); }
+        */
+
         try
         {
 
             sp = "logis.SPG_PRUEBA_INVOCACIONES.F_PRUEBA_NUMBER_P_S";
-//            sp = "BEGIN v_salida:= logis.SPG_PRUEBA_INVOCACIONES.F_PRUEBA_NUMBER_P_S(PARAMETRO_1, PARAMETRO_2, PARAMETRO_4, PARAMETRO_5); END";
             OracleCommand cmd = new OracleCommand(sp, cnn);
             cmd.CommandType = CommandType.StoredProcedure;
-     
+            cmd.Parameters.Add("RETURN", OracleDbType.Varchar2, 10).Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add("PARAMETRO_1", OracleDbType.Int32).Value = 2;
+            cmd.Parameters.Add("PARAMETRO_2", OracleDbType.Varchar2, 10).Value = "valor";
+            cmd.Parameters.Add("PARAMETRO_4", OracleDbType.Int32).Direction = ParameterDirection.Output;
+            cmd.Parameters.Add("PARAMETRO_5", OracleDbType.Varchar2, 10).Direction = ParameterDirection.Output;
+            // string job_no = (string)cmd.Parameters["PARAMETRO_4"].Value;
+            // Console.WriteLine("valor es = " +  job_no);
+            Console.WriteLine("*********** " + sp + " ***************");
 
-            cmd.Parameters.Add("v_salida", OracleType.LongVarChar, 10).Direction = ParameterDirection.ReturnValue;
-            //cmd.Parameters.Add("retval", OracleType.Int16, 10, ParameterDirection.ReturnValue);
-            cmd.Parameters.Add("PARAMETRO_1", OracleType.Int32).Value = 2;
-            cmd.Parameters.Add("PARAMETRO_2", OracleType.VarChar, 10).Value = "valor";
-            cmd.Parameters.Add("PARAMETRO_4", OracleType.Int32).Direction = ParameterDirection.Output;
-            cmd.Parameters.Add("PARAMETRO_5", OracleType.VarChar, 10).Direction = ParameterDirection.Output;
-        
+            OracleDataReader reader = cmd.ExecuteReader();
+            string PARAMETRO_4 = cmd.Parameters["PARAMETRO_4"].Value.ToString();
+            string PARAMETRO_5 = cmd.Parameters["PARAMETRO_5"].Value.ToString();
+            string RETURN = cmd.Parameters["RETURN"].Value.ToString();
+            Console.WriteLine("valor es PARAMETRO_4 = " + PARAMETRO_4);
+            Console.WriteLine("valor es PARAMETRO_5= " + PARAMETRO_5);
+            Console.WriteLine("valor es RETURN= " + RETURN);
+        }
+        catch (Exception e) { Console.WriteLine(e.Message); }
+
+        try
+        {
+            OracleParameter op = null;
+
+
+            sp = "SC_DIST.SPG_RS_COEX.P_RS_GSK_PEDIMENTOS";
+
+            OracleCommand cmd = new OracleCommand(sp, cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            op = new OracleParameter("p_Cur_GSK", OracleDbType.RefCursor);
+            op.Direction = ParameterDirection.Output;
+            op.ParameterName = "p_Cur_GSK";
+            cmd.Parameters.Add(op);
+
+            op = new OracleParameter("v_Mensaje", OracleDbType.Varchar2);
+            op.Direction = ParameterDirection.Output;
+            op.Size = 4000;
+            op.ParameterName = "v_Mensaje";
+            cmd.Parameters.Add(op);
+
+            op = new OracleParameter("v_Codigo_Error", OracleDbType.Int32);
+            op.Direction = ParameterDirection.Output;
+            op.Size = 5;
+            op.ParameterName = "v_Codigo_Error";
+            cmd.Parameters.Add(op);
+
+
+            /*
+            cmd.Parameters.Add(new OracleParameter("p_Cur_GSK"     , OracleType.Cursor)).Direction = ParameterDirection.Output;
+            cmd.Parameters.Add(new OracleParameter("v_Mensaje"     , OracleType.VarChar,4000)).Direction = ParameterDirection.Output;
+            cmd.Parameters.Add(new OracleParameter("v_Codigo_Error", OracleType.Number)).Direction = ParameterDirection.Output;
+            */
+            //cmd.Parameters.Add("p_Cur_GSK").Direction =  ParameterDirection.Output;
+            //cmd.Parameters.Add("v_Mensaje", OracleType.VarChar,4000).Direction = ParameterDirection.Output;
+            //cmd.Parameters.Add("v_Codigo_Error", OracleType.Number).Direction = ParameterDirection.Output; 
+            /*
+
+            cmd.Parameters.Add("v_Mensaje", OracleType.LongVarChar, 4000).Direction = ParameterDirection.Output;
+            cmd.Parameters.Add("v_Codigo_Error", OracleType.Number).Direction = ParameterDirection.Output;
+            */
+
+
 
             Console.WriteLine("****************************");
-           //  cmd.ExecuteNonQuery();
+            //   cmd.ExecuteNonQuery();
+            // OracleDataReader reader = cmd.ExecuteReader();
+            OracleDataAdapter da1 = new OracleDataAdapter(cmd);
+            DataTable dtTemp1 = new DataTable();
+
+            da1.Fill(dtTemp1);
+            Console.WriteLine("*********** " + sp + " *****************");
+
+            for (i = 0; i < dtTemp1.Columns.Count - 1; i++)
+            {
+                Console.WriteLine(" Titulo " + dtTemp1.Columns[i].ColumnName);
+                for (int j = 0; j < dtTemp1.Rows.Count; j++)
+                {
+
+                    // Console.WriteLine(" valor  es " + dtTemp.Rows[j]["name"].ToString());
+                    Console.WriteLine(" Detalle " + dtTemp1.Rows[j][i].ToString());
+                }
+            }
+
+
+        }
+        catch (Exception e) { Console.WriteLine(e.Message); }
+        try
+        {
+
+            sp = "logis.SPG_PRUEBA_INVOCACIONES.F_PRUEBA_NUMBER_P_S";
+            //            sp = "BEGIN v_salida:= logis.SPG_PRUEBA_INVOCACIONES.F_PRUEBA_NUMBER_P_S(PARAMETRO_1, PARAMETRO_2, PARAMETRO_4, PARAMETRO_5); END";
+            OracleCommand cmd = new OracleCommand(sp, cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+
+            cmd.Parameters.Add("v_salida", OracleDbType.NVarchar2, 10).Direction = ParameterDirection.ReturnValue;
+            //cmd.Parameters.Add("retval", OracleType.Int16, 10, ParameterDirection.ReturnValue);
+            cmd.Parameters.Add("PARAMETRO_1", OracleDbType.Int32).Value = 2;
+            cmd.Parameters.Add("PARAMETRO_2", OracleDbType.NVarchar2, 10).Value = "valor";
+            cmd.Parameters.Add("PARAMETRO_4", OracleDbType.Int32).Direction = ParameterDirection.Output;
+            cmd.Parameters.Add("PARAMETRO_5", OracleDbType.NVarchar2, 10).Direction = ParameterDirection.Output;
+
+            cmd.Parameters.Add("PARAMETRO_1", OracleDbType.Int32).Value = 2;
+
+            Console.WriteLine("****************************");
+            //  cmd.ExecuteNonQuery();
             OracleDataReader reader = cmd.ExecuteReader();
             OracleDataAdapter da1 = new OracleDataAdapter(cmd);
             DataTable dtTemp1 = new DataTable();
@@ -233,7 +234,7 @@ using (cnn)
             {
                 Console.WriteLine(" GEN_REP_CLAVE valor  es " + dtTemp1.Columns[i].ColumnName);
             }
-            for (int j = 0; j < dtTemp1.Rows.Count; j++)
+            for (int j = 0; j < dtTemp1.Rows.Count - 1; j++)
             {
 
                 // Console.WriteLine(" valor  es " + dtTemp.Rows[j]["name"].ToString());
@@ -243,7 +244,30 @@ using (cnn)
         }
         catch { }
 
-        
+        try
+        {
+            OracleParameter op = null;
+            // OracleDataReader dr = null;
+            sp = "LOGIS.SPG_PRUEBA_INVOCACIONES.F_PRUEBA_BOOLEAN";
+
+            OracleCommand cmd = new OracleCommand(sp, cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            // cmd.Parameters.Add("v_salida", OracleDbType.NVarchar2, 10).Direction = ParameterDirection.ReturnValue;
+
+            //  cmd.Parameters.Add(new OracleParameter("v_salida", OracleDbType.Boolean)).Direction = ParameterDirection.Output;
+            //  cmd.CommandType = CommandType.StoredProcedure;
+            op = new OracleParameter("v_salida", OracleDbType.Int16);
+            op.Direction = ParameterDirection.ReturnValue;
+            op.ParameterName = "v_salida";
+            cmd.Parameters.Add(op);
+            Console.WriteLine("****************************");
+            //cmd.ExecuteNonQuery();
+            OracleDataReader reader = cmd.ExecuteReader();
+
+
+        }
+        catch (Exception e) { Console.WriteLine(e.Message); }
+
         DataTable dtTemp = new DataTable();
         OracleDataAdapter da;
         try
@@ -251,26 +275,25 @@ using (cnn)
             //sp = "select LOGIS.SPG_PRUEBA_CARGA_MASIVA.F_PRUEBA_VARCHAR name from dual";
             sp = "select LOGIS.SPG_PRUEBA_INVOCACIONES.F_PRUEBA_VARCHAR name from dual";
 
-        OracleCommand cmd1 = new OracleCommand(sp, cnn);
-         da = new OracleDataAdapter(cmd1);
+            OracleCommand cmd1 = new OracleCommand(sp, cnn);
+            da = new OracleDataAdapter(cmd1);
 
-        
-        da.Fill(dtTemp);
-        Console.WriteLine("*********** "+sp+" *****************");
 
-        for (i= 0; i < dtTemp.Columns.Count; i++)
-        {
-            Console.WriteLine(" valor  es " + dtTemp.Columns[i].ColumnName);
-        }
-        for (int j = 0; j < dtTemp.Rows.Count; j++)
-        {
+            da.Fill(dtTemp);
+            Console.WriteLine("*********** " + sp + " *****************");
 
-            // Console.WriteLine(" valor  es " + dtTemp.Rows[j]["name"].ToString());
-            Console.WriteLine(" valor  es " + dtTemp.Rows[j]["name"].ToString());
-        }
+            for (i = 0; i < dtTemp.Columns.Count; i++)
+            {
+                Console.WriteLine(" valor  es " + dtTemp.Columns[i].ColumnName);
+            }
+            for (int j = 0; j < dtTemp.Rows.Count; j++)
+            {
+                // Console.WriteLine(" valor  es " + dtTemp.Rows[j]["name"].ToString());
+                Console.WriteLine(" valor  es " + dtTemp.Rows[j]["name"].ToString());
+            }
 
-        da = null;
-        dtTemp=null;
+            da = null;
+            dtTemp = null;
         }
         catch { }
         try
@@ -278,25 +301,25 @@ using (cnn)
             //sp = "select LOGIS.SPG_PRUEBA_CARGA_MASIVA.F_PRUEBA_NUMBER name from dual ";
             sp = "select LOGIS.SPG_PRUEBA_INVOCACIONES.F_PRUEBA_NUMBER name from dual ";
 
-        OracleCommand cmd3 = new OracleCommand(sp, cnn);
-         da = new OracleDataAdapter(cmd3);
-         dtTemp = new DataTable();
-        da.Fill(dtTemp);
-        Console.WriteLine("*********** "+sp+" *****************");
+            OracleCommand cmd3 = new OracleCommand(sp, cnn);
+            da = new OracleDataAdapter(cmd3);
+            dtTemp = new DataTable();
+            da.Fill(dtTemp);
+            Console.WriteLine("*********** " + sp + " *****************");
 
-        for (i = 0; i < dtTemp.Columns.Count; i++)
-        {
-            Console.WriteLine(" valor  es " + dtTemp.Columns[i].ColumnName);
-        }
-        for (int j = 0; j < dtTemp.Rows.Count; j++)
-        {
+            for (i = 0; i < dtTemp.Columns.Count; i++)
+            {
+                Console.WriteLine(" valor  es " + dtTemp.Columns[i].ColumnName);
+            }
+            for (int j = 0; j < dtTemp.Rows.Count; j++)
+            {
 
-            // Console.WriteLine(" valor  es " + dtTemp.Rows[j]["name"].ToString());
-            Console.WriteLine(" valor  es " + dtTemp.Rows[j]["name"].ToString());
-        }
+                // Console.WriteLine(" valor  es " + dtTemp.Rows[j]["name"].ToString());
+                Console.WriteLine(" valor  es " + dtTemp.Rows[j]["name"].ToString());
+            }
 
-        da = null;
-        dtTemp = null;
+            da = null;
+            dtTemp = null;
         }
         catch { }
 
@@ -307,21 +330,21 @@ using (cnn)
         try
         {
             OracleCommand cmd4 = new OracleCommand(sp, cnn);
-        da = new OracleDataAdapter(cmd4);
-        dtTemp = new DataTable();
-        da.Fill(dtTemp);
-        Console.WriteLine("*********** "+ sp + " *****************");
+            da = new OracleDataAdapter(cmd4);
+            dtTemp = new DataTable();
+            da.Fill(dtTemp);
+            Console.WriteLine("*********** " + sp + " *****************");
 
-        for (i = 0; i < dtTemp.Columns.Count; i++)
-        {
-            Console.WriteLine(" valor  es " + dtTemp.Columns[i].ColumnName);
-        }
-        for (int j = 0; j < dtTemp.Rows.Count; j++)
-        {
+            for (i = 0; i < dtTemp.Columns.Count; i++)
+            {
+                Console.WriteLine(" valor  es " + dtTemp.Columns[i].ColumnName);
+            }
+            for (int j = 0; j < dtTemp.Rows.Count; j++)
+            {
 
-            // Console.WriteLine(" valor  es " + dtTemp.Rows[j]["name"].ToString());
-            Console.WriteLine(" valor  es " + dtTemp.Rows[j]["name"].ToString());
-        }
+                // Console.WriteLine(" valor  es " + dtTemp.Rows[j]["name"].ToString());
+                Console.WriteLine(" valor  es " + dtTemp.Rows[j]["name"].ToString());
+            }
         }
         catch { }
 
