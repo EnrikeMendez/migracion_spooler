@@ -50,8 +50,7 @@ internal class DM
                 Console.WriteLine("No Existe la carpeta UserScrets " + ex.HResult);
             else
                 Console.WriteLine(ex.Message + " -var conex *" + conecBD() + "* " + ex.HResult);
-        }
-   
+        }   
         return dtTemp;
     }
 
@@ -268,7 +267,6 @@ internal class DM
                    " VALUES ('" + modulo.Substring(1, 100).Replace("'", "''") + "',\n '" + modulo.Substring(1, 200).Replace("'", "''") + "',\n '" + modulo.Substring(1, 50).Replace("'", "''") + "' "
                    + " ,\n USER, SYSDATE) ";
             ejecuta_sql(SQL, vs);
-
     }
 
 
