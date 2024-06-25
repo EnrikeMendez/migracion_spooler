@@ -86,6 +86,46 @@ internal class DM
         return dtTemp;
     }
 
+    public (string?, string?, DataTable?) trading_genera_GSK_nv(int? vs = 0)//to_char(WCD.DATE_CREATED, 'dd/mm/yy')
+    {
+        string SQL_GSK = "SC_DIST.SPG_RS_COEX.P_RS_GSK_PEDIMENTOS";
+        //DataTable dtTemp = new DataTable();
+        (string?, string?, DataTable?) info;
+        DataTable dtTemp = new DataTable();
+        OracleConnection cnn = new OracleConnection(conecBD());
+        info.Item1 = "999";
+        info.Item2 = "error conexion";
+        info.Item3 = dtTemp;
+        try
+        {
+            using (cnn)
+            {
+                cnn.Open();
+                if ((cnn.State) > 0)
+                {
+                    OracleCommand cmd = new OracleCommand(SQL_GSK, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new OracleParameter("p_Cur_GSK", OracleDbType.RefCursor)).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(new OracleParameter("v_Mensaje", OracleDbType.NVarchar2, 4000)).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(new OracleParameter("v_Codigo_Error", OracleDbType.Int64)).Direction = ParameterDirection.Output;
+                    OracleDataAdapter da1 = new OracleDataAdapter(cmd);
+                    da1.Fill(dtTemp);
+                    info.Item1 = cmd.Parameters["v_Codigo_Error"].Value.ToString();
+                    info.Item2 = cmd.Parameters["v_Mensaje"].Value.ToString();
+                    info.Item3 = dtTemp;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            info.Item1 = ex.HResult.ToString();
+            info.Item2 = ex.Message;
+            info.Item3 = dtTemp;
+        }
+        if (vs == 1) { Console.WriteLine(SQL_GSK + "\n"); }
+        return info;
+    }
+
     private string conecBD()
     {
         var orfeo = "Error";
@@ -95,7 +135,7 @@ internal class DM
                                               .AddUserSecrets(Assembly.GetExecutingAssembly())
                                               .Build();
             //orfeo = configuration["Orfeo2"];
-            orfeo = configuration["ORFEODES"];
+            orfeo = configuration["ORFEODES2"];
             // toma el valor de app.config
             //  orfeo = ConfigurationManager.ConnectionStrings["Orfeo2"].ToString();
             //  orfeo = ConfigurationManager.ConnectionStrings["ORFEODES"].ToString();
@@ -408,6 +448,7 @@ internal class DM
              + "         ,FOLFOLIO  \n"
              + " ORDER BY 1  \n";
 
+
         //DataTable dtTemp = new DataTable();
         if (vs == 1) { Console.WriteLine(SQL + "\n"); }
         return SQL;
@@ -450,10 +491,11 @@ internal class DM
                       + "    ETRANSFERENCIA_TRADING TRA,\n"
                       + "    ETRANS_ENTRADA TAE\n"
                       + "  WHERE 1=1\n"
-                      + "    AND TRUNC(WEL.DATE_CREATED) BETWEEN TRUNC(SYSDATE -1) AND TRUNC(SYSDATE -1)\n"
+                      + "    AND TRUNC(WEL.DATE_CREATED) BETWEEN TRUNC(SYSDATE -30) AND TRUNC(SYSDATE -1)\n"
                       + "    --AND WEL_CLICLEF IN(20501,20502,23488,23489)\n"
                       + "    AND WEL_CLICLEF IN(" + cliente + ",23488,23489)\n"
-                      + "    AND NOT NVL(TDCD.TDCDFACTURA, WEL.WELFACTURA) LIKE '%PRUEBA%'\n"
+                      + "    AND NOT NVL(TDCD.TDCDFACTURA, WEL.WELFACTURA) LIKE '%PRU" +
+                      "EBA%'\n"
                       + "    AND NOT NVL(TDCD.TDCDFACTURA, WEL.WELFACTURA) LIKE '%SENSORES%'\n"
                       + "    AND NOT NVL(TDCD.TDCDFACTURA, WEL.WELFACTURA) LIKE '%TARIMAS%'\n"
                       + "    AND DISCLEF = WEL.WEL_DISCLEF\n"
@@ -470,6 +512,7 @@ internal class DM
                       + "    AND TAE_TRACLAVE(+) = WEL.WEL_TRACLAVE\n";
 
         //DataTable dtTemp = new DataTable();
+         SQL_GSK = "SC_DIST.SPG_RS_COEX.P_RS_GSK_PEDIMENTOS";
         if (vs == 1) { Console.WriteLine(SQL_GSK + "\n"); }
         return SQL_GSK;
     }

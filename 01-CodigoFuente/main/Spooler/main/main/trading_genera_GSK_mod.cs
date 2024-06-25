@@ -18,10 +18,12 @@ namespace serverreports
             DataTable[] LisDT = new DataTable[1];
             string[] LisDT_tit = new string[1]; ;
             string msg = "Deberia enviar correo";
-            LisDT[0] = DM.datos_sp1(DM.trading_genera_GSK(cliente, Fecha_1, Fecha_2, empresa, idCron, vs));
-            
+           
+            (string? codigo, string? msg, DataTable? tab) datos_sp = DM.trading_genera_GSK_nv(vs);
+            //LisDT[0] = DM.datos_sp1(DM.trading_genera_GSK(cliente, Fecha_1, Fecha_2, empresa, idCron, vs));
+
             LisDT_tit[0] = "Shipments";
-            if (LisDT[0].Rows.Count > 0)
+            if ((LisDT[0].Rows.Count > 0) && (datos_sp.codigo == "1"))
             {
                 xlsx.CrearExcel_file(LisDT, LisDT_tit, Carpeta + "\\" +  file_name);
                 msg = DM.trading_genera_GSK(cliente, Fecha_1, Fecha_2, empresa, idCron, 1);
