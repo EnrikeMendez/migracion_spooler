@@ -1,4 +1,5 @@
 ﻿using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Math;
 using SpreadsheetLight;
 using System;
 using System.Collections.Generic;
@@ -162,10 +163,6 @@ namespace serverreports
             }
             return arc_nom;
         }
-
-      
-
-
 
     }
 

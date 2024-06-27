@@ -1,0 +1,119 @@
+  Parametros (string Cliente, string Fecha_1, string Fecha_2, string impexp, string tipo_doc, string tp)	
+    
+                 SELECT /*+ORDERED INDEX(PED IDX_PEDDATE) USE_NL(SGE PED)*/ FOL.FOLFOLIO Folio 
+                    , SGE.SGEDOUCLEF "Aduana"  
+                     , SUBSTR(SGE.SGEPEDNUMERO, 1, 4) "Patente"   
+                     , SUBSTR(SGE.SGEPEDNUMERO, 6, 7) "Pedimento"  
+                     , SGE.SGE_YCXCLEF "Tipo Operación"   
+                     , SGE.SGE_REDCLEF "Clave"   
+                     , TO_CHAR(SGE.SGEFECHA_PAGO, 'dd/mm/yyyy') "Fecha Pago" 
+					 
+					 If tipo_doc= "C" Then
+					    + ", COUNT(*) "Total Coves" "
+                     Else
+                        + ", COUNT(*) "Total Edocs" "
+                     End If					 
+                     
+
+                   FROM EPEDIMENTO PED    
+                     , ESAAI_M3_GENERAL SGE      
+                     , EFOLIOS FOL  
+                     , EDOCUMENTOS_SAT DSA  
+ 
+                    If tipo_doc <> "C" Then
+                        + "       , EDOCUMENTO_ANEXO DAX   "
+                       + "       , ECATALOGO_ANEXOS CAX  "
+                    End If      
+
+               
+
+                WHERE PED.PEDDATE BETWEEN TO_DATE('" + Fecha_1 + "', 'mm/dd/yyyy') AND TO_DATE('" + Fecha_2 + "','mm/dd/yyyy')+1   
+                  AND SGE.SGEFIRMA_ELECTRONICA IS NOT NULL    
+                  AND SGE.SGE_CLICLEF IN (" + Cliente + ")   
+
+                  AND SGE.SGE_YCXCLEF = " + tp + "   
+                  AND PED.PEDNUMERO = SGE.SGEPEDNUMERO    
+                  AND PED.PEDDOUANE = SGE.SGEDOUCLEF    
+                  AND PED.PEDANIO = SGE.SGEANIO    
+                  AND FOL.FOLCLAVE = PED.PEDFOLIO  
+
+          
+                  If impexp <> "" Then
+                    + "    AND SGE.SGE_YCXCLEF = '" & impexp & "'  "
+                  End If            
+
+			   
+                  AND DSA.DSA_SGECLAVE = SGE.SGECLAVE   
+                  AND DSA.DSA_EDOCUMENT IS NOT NULL  
+
+ 
+                  If tipo_doc<> "C" Then
+                      + "    AND DSA_DAXCLAVE = DAX.DAXCLAVE  "
+                      + "    AND DAX.DAX_CAXCLAVE = CAX.CAXCLAVE  "
+                      + "    AND NVL(CAX.CAX_ENVIO_ELEC,'S') <> 'N'  "
+                   Else
+                      + "    AND DSA_DAXCLAVE IS NULL  "
+                    End If
+             
+              GROUP BY SGE.SGEDOUCLEF  
+                      ,SUBSTR(SGE.SGEPEDNUMERO, 1, 4)  
+                      ,SUBSTR(SGE.SGEPEDNUMERO, 6, 7)  
+                      ,SGE.SGE_YCXCLEF  
+                      ,SGE.SGE_REDCLEF  
+                      ,TO_CHAR(SGE.SGEFECHA_PAGO, 'dd/mm/yyyy')  
+                      ,FOLFOLIO  
+              UNION ALL  
+               SELECT /*+ORDERED INDEX(PED IDX_PEDDATE) USE_NL(SGE PED)*/ FOL.FOLFOLIO  Folio 
+                    , SGE.SGEDOUCLEF "Aduana"  
+                    , SUBSTR(SGE.SGEPEDNUMERO, 1, 4) "Patente"    
+                    , SUBSTR(SGE.SGEPEDNUMERO, 6, 7) "Pedimento"   
+                    , SGE.SGE_YCXCLEF "Tipo Operación"    
+                    , SGE.SGE_REDCLEF "Clave"    
+                    , TO_CHAR(SGE.SGEFECHA_PAGO, 'dd/mm/yyyy') "Fecha Pago"   
+
+		    If tipo_doc= "C" Then
+			+ ", 0 "Total Coves" "
+                    Else
+                        + ", 0 "Total Edocs" "
+                    End If						
+
+                  FROM EPEDIMENTO PED     
+                    , ESAAI_M3_GENERAL SGE       
+                    , EFOLIOS FOL   
+               WHERE PED.PEDDATE BETWEEN TO_DATE('" + Fecha_1 + "', 'mm/dd/yyyy') AND TO_DATE('" + Fecha_2 + "', 'mm/dd/yyyy')+1   
+                 AND SGE.SGEFIRMA_ELECTRONICA IS NOT NULL     
+                 AND SGE.SGE_CLICLEF IN (" + Cliente + ")   
+                 AND SGE.SGE_YCXCLEF = " + tp + "   
+                 AND PED.PEDNUMERO = SGE.SGEPEDNUMERO     
+                 AND PED.PEDDOUANE = SGE.SGEDOUCLEF     
+                 AND PED.PEDANIO = SGE.SGEANIO     
+                 AND FOL.FOLCLAVE = PED.PEDFOLIO   
+  
+                 If impexp <> "" Then
+                     + "    AND SGE.SGE_YCXCLEF = '" + impexp + "'  "
+                 End If
+                      
+                 If tipo_doc <> "C" Then
+                         + "    AND NOT EXISTS (SELECT NULL   "
+                         + "                      FROM EDOCUMENTOS_SAT DSA   "
+                         + "                         , EDOCUMENTO_ANEXO DAX   "
+                         + "                         , ECATALOGO_ANEXOS CAX   "
+                         + "                     WHERE DSA.DSA_SGECLAVE = SGE.SGECLAVE  "
+                         + "                       AND DSA_DAXCLAVE = DAX.DAXCLAVE  "
+                         + "                       AND DAX.DAX_CAXCLAVE = CAX.CAXCLAVE "
+                         + "                       AND NVL(CAX.CAX_ENVIO_ELEC,'S') <> 'N')  "
+                  Else
+                         + "    AND NOT EXISTS (SELECT NULL   "
+                         + "                      FROM EDOCUMENTOS_SAT DSA  "
+                         + "                     WHERE DSA.DSA_SGECLAVE = SGE.SGECLAVE "
+                         + "                       AND DSA.DSA_DAXCLAVE IS NULL) "
+                  End If
+          
+               GROUP BY SGE.SGEDOUCLEF   
+                       ,SUBSTR(SGE.SGEPEDNUMERO, 1, 4)  
+                      ,SUBSTR(SGE.SGEPEDNUMERO, 6, 7)   
+                      ,SGE.SGE_YCXCLEF   
+                      ,SGE.SGE_REDCLEF   
+                      ,TO_CHAR(SGE.SGEFECHA_PAGO, 'dd/mm/yyyy')   
+                      ,FOLFOLIO  
+              ORDER BY 1  

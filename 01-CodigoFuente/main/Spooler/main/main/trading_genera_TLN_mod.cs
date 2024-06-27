@@ -17,13 +17,13 @@ namespace serverreports
             DM DM = new DM();
             Excel xlsx = new Excel();
             DataTable[] LisDT = new DataTable[1];
-            string[] LisDT_tit = new string[1];             
+            string[] LisDT_tit = new string[1];
             LisDT[0] = DM.datos(DM.porteos_tln(cliente, Fecha_1, Fecha_2, empresa, idCron, 1));
             LisDT_tit[0] = "Shipments";
             if (LisDT[0].Rows.Count > 0)
             {
-                xlsx.CrearExcel_file(LisDT, LisDT_tit, Carpeta + "\\" + file_name);
-                correo.send_mail("Report: < Logis GSK > Envio ok", [], "proceso correcto");
+                xlsx.CrearExcel_file(LisDT, LisDT_tit, Carpeta + "\\" + file_name + ".xlsx");
+                //msg = DM.porteos_tln(cliente, Fecha_1, Fecha_2, empresa, idCron, 1);
             }
             else
             {
@@ -34,7 +34,10 @@ namespace serverreports
                               + " \n"
                               + " \n\n" + " Saludos."
                               + " \n\n" + "Logis Reports Server.";
+
+                // correo.send_error_mail( "Report: < Logis GSK > Error", ["raulrgg@logis.com.mx"], mensaje);
                 correo.send_mail("Report: < Logis GSK > Error", [], mensaje);
+                //correo.send_error_mail("prueba","Prueba");
             }
             LisDT[0].Clear();
             return sw_error.ToString();

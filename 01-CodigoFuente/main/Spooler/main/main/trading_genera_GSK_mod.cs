@@ -49,7 +49,7 @@ namespace serverreports
             if (sw_error == 1)
             {
                 string mensaje = "Hola,  \n"
-                + "Ocurrió un error al intentar generar este reporte.  \n"
+                + "Ocurrió un error al intentar generar este reporte.\n"
                 + "Consulta ejecutada:  \n"
                 + datos_sp.codigo + " \n"
                 + datos_sp.msg + " \n"
