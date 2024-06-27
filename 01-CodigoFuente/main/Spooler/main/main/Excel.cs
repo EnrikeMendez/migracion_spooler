@@ -32,8 +32,8 @@ namespace serverreports
                     sl.FreezePanes(1, 0);
                 }
                 //Guardar como, y aqui ponemos la ruta de nuestro archivo
-                sl.SaveAs(name+".xlsx");
-                Console.WriteLine("Se genero Archivo " + name + ".xlsx");
+                sl.SaveAs(name);
+                Console.WriteLine("Se genero Archivo " + name );
             }
             catch (Exception ex)
             {

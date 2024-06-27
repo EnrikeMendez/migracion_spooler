@@ -86,16 +86,15 @@ internal class DM
         return dtTemp;
     }
 
-    public (string?, string?, DataTable?) trading_genera_GSK_nv(int? vs = 0)//to_char(WCD.DATE_CREATED, 'dd/mm/yy')
+    public (string, string, string, DataTable) datos_sp(string SQL, int? vs = 0)
     {
-        string SQL_GSK = "SC_DIST.SPG_RS_COEX.P_RS_GSK_PEDIMENTOS";
-        //DataTable dtTemp = new DataTable();
-        (string?, string?, DataTable?) info;
+        (string?, string?, string?, DataTable?) info;
         DataTable dtTemp = new DataTable();
         OracleConnection cnn = new OracleConnection(conecBD());
         info.Item1 = "999";
         info.Item2 = "error conexion";
-        info.Item3 = dtTemp;
+        info.Item3 = SQL;
+        info.Item4 = dtTemp;
         try
         {
             using (cnn)
@@ -103,16 +102,16 @@ internal class DM
                 cnn.Open();
                 if ((cnn.State) > 0)
                 {
-                    OracleCommand cmd = new OracleCommand(SQL_GSK, cnn);
+                    OracleCommand cmd = new OracleCommand(SQL, cnn);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new OracleParameter("p_Cur_GSK", OracleDbType.RefCursor)).Direction = ParameterDirection.Output;
-                    cmd.Parameters.Add(new OracleParameter("v_Mensaje", OracleDbType.NVarchar2, 4000)).Direction = ParameterDirection.Output;
-                    cmd.Parameters.Add(new OracleParameter("v_Codigo_Error", OracleDbType.Int64)).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(new OracleParameter("cursor", OracleDbType.RefCursor)).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(new OracleParameter("msg", OracleDbType.NVarchar2, 4000)).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(new OracleParameter("codigo", OracleDbType.Int64)).Direction = ParameterDirection.Output;
                     OracleDataAdapter da1 = new OracleDataAdapter(cmd);
                     da1.Fill(dtTemp);
-                    info.Item1 = cmd.Parameters["v_Codigo_Error"].Value.ToString();
-                    info.Item2 = cmd.Parameters["v_Mensaje"].Value.ToString();
-                    info.Item3 = dtTemp;
+                    info.Item1 = cmd.Parameters["codigo"].Value.ToString();
+                    info.Item2 = cmd.Parameters["msg"].Value.ToString();
+                    info.Item4 = dtTemp;
                 }
             }
         }
@@ -120,11 +119,12 @@ internal class DM
         {
             info.Item1 = ex.HResult.ToString();
             info.Item2 = ex.Message;
-            info.Item3 = dtTemp;
+            info.Item4 = dtTemp;
         }
-        if (vs == 1) { Console.WriteLine(SQL_GSK + "\n"); }
+        if (vs == 1) { Console.WriteLine(SQL + "\n"); }
         return info;
     }
+
 
     private string conecBD()
     {
@@ -139,7 +139,6 @@ internal class DM
             // toma el valor de app.config
             //  orfeo = ConfigurationManager.ConnectionStrings["Orfeo2"].ToString();
             //  orfeo = ConfigurationManager.ConnectionStrings["ORFEODES"].ToString();
-
         }
         catch (Exception ex)
         {
@@ -200,7 +199,7 @@ internal class DM
 
     public string main_num_param(string id_cron, int? vs = 0)
     {
-        string SQL = " SELECT REPORT.NUM_OF_PARAM  \n "
+        string SQL =   " SELECT REPORT.NUM_OF_PARAM  \n "
                      + " FROM REP_REPORTE REPORT inner join REP_DETALLE_REPORTE REP on REPORT.ID_REP = REP.ID_REP \n "
                      + " WHERE REP.ID_CRON = {0}";
         /*
@@ -308,7 +307,6 @@ internal class DM
                    + " ,\n USER, SYSDATE) ";
             ejecuta_sql(SQL, vs);
     }
-
 
     public string transmision_edocs_bosch(string Cliente, string Fecha_1, string Fecha_2, string impexp, string tipo_doc, string tp, int? vs = 0)
     {
@@ -518,11 +516,11 @@ internal class DM
     }
     public string porteos_tln(string cliente, string? Fecha_1, string? Fecha_2, string? empresa, Int32? idCron, int? vs = 0)
     {
-      string SQL = "  SELECT  \n"
+        string SQL = "  SELECT  \n"
                 + "  DISTINCT  \n"
                 + "  TRA.TRACONS_GENERAL, TRA.TRACLAVE, TRA.TRA_CLICLEF CLICLEF, TDCD_PEDIDO_CLIENTE, TDCD.TDCDFACTURA, NVL(CCL.CCL_NOMBRE, WCCL.WCCL_NOMBRE) CLIENTE_FINAL, NVL(DIE.DIE_A_ATENCION_DE, WCCL.WCCLABREVIACION) SUCURSAL,  \n"
-                + "  NVL(DIE.DIENOMBRE, WCCL.WCCL_NOMBRE) NOMBRE, NVL(CIU.VILNOM, CIUW.VILNOM) || ' (' || NVL(EST.ESTNOMBRE, ESTW.ESTNOMBRE) || ')' CIUDAD, TDCD_ORDEN_COMPRA, TAEFECHALLEGADA,  \n"
-                + "  TDCD_FEC_CITA_PROGRAMADA, TCDC_CDAD_BULTOS, TDCDVOLUMEN, EAL.ALLCODIGO CEDIS, 'CROSS DOCK' CROSS_DOCK, TDCD.TDCDCLAVE, EXP.EXP_NUM_EXPEDICION, DXP.DXP_TIPO_ENTREGA, DIE.DIEVILLE, TDCDCOLLECT_PREPAID,  \n"
+                + "  NVL(DIE.DIENOMBRE, WCCL.WCCL_NOMBRE) NOMBRE, NVL(CIU.VILNOM, CIUW.VILNOM) || ' (' || NVL(EST.ESTNOMBRE, ESTW.ESTNOMBRE) || ')' CIUDAD, TDCD_ORDEN_COMPRA, lower(to_char(TAEFECHALLEGADA, 'mm/dd/yyyy hh:mi:ss am')) TAEFECHALLEGADA,  \n"
+                + "  lower(to_char(TDCD_FEC_CITA_PROGRAMADA, 'mm/dd/yyyy hh:mi:ss am')) TDCD_FEC_CITA_PROGRAMADA, TCDC_CDAD_BULTOS, TDCDVOLUMEN, EAL.ALLCODIGO CEDIS, 'CROSS DOCK' CROSS_DOCK, TDCD.TDCDCLAVE, EXP.EXP_NUM_EXPEDICION, DXP.DXP_TIPO_ENTREGA, DIE.DIEVILLE, TDCDCOLLECT_PREPAID,  \n"
                 + "  TRA.TRA_MEZTCLAVE_ORI, TRA.TRA_MEZTCLAVE_DEST, EALINFL.ALLCODIGO CED_DEST, TDCD_DXPCLAVE_ORI DXPCLAVE_ORI, TRA.TRA_ALLCLAVE, DXP.DXPCLAVE DXPCLAVE, CLINOM, TRA.CREATED_BY, TO_CHAR( (DXP_REC.DXP_FECHA_ENTREGA) , 'DD/MM/YYYY') F_ENTREGA, DXP_REC.DXP_AUTORIZA_RECHAZO AUTORIZA  \n"
                 + "  FROM  (select * from ETRANSFERENCIA_TRADING where DATE_CREATED >= TRUNC(SYSDATE) - 360 ) TRA left join ( select * from ETRANS_DETALLE_CROSS_DOCK where DATE_CREATED >= TRUNC(SYSDATE) - 360  ) TDCD on (TDCD_TRACLAVE) = (TRA.TRACLAVE)  \n"
                 + "  left join ECLIENT CLI on (CLICLEF) = (TRA_CLICLEF) left join (select * from EALMACENES_LOGIS ) EAL on (TRA.TRA_ALLCLAVE) = (eal.allclave) left join ECLIENT_CLIENTE CCL on (CCL.CCLCLAVE) = (TDCD_CCLCLAVE)  \n"
@@ -548,6 +546,7 @@ internal class DM
         if (vs == 1) { Console.WriteLine(SQL + "\n"); }
         return SQL;
     }
+
 
 }
 

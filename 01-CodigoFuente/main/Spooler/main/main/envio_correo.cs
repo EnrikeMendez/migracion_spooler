@@ -28,7 +28,7 @@ namespace serverreports
             return correo_p;
         }
 
-        public string send_error_mail(string asunto, string[] contact, string mensaje)
+        public string send_mail(string asunto, string[] contact, string mensaje)
         {
             string[] dat_mail = new string[1];
             dat_mail = email_usuario().Split("|");

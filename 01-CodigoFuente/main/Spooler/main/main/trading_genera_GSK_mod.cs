@@ -4,6 +4,7 @@ using System.Linq;
 using System.Data;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace serverreports
 {
@@ -11,40 +12,54 @@ namespace serverreports
     {
         public string trading_genera_GSK(string Carpeta, string file_name, string cliente, string Fecha_1, string Fecha_2, string empresa, Int32 idCron, int vs)
         {
+            int sw_error = 0;
             Utilerias util = new Utilerias();
             envio_correo correo = new envio_correo();
             DM DM = new DM();
             Excel xlsx = new Excel();
             DataTable[] LisDT = new DataTable[1];
             string[] LisDT_tit = new string[1]; ;
-            string msg = "Deberia enviar correo";
-           
-            (string? codigo, string? msg, DataTable? tab) datos_sp = DM.trading_genera_GSK_nv(vs);
-            //LisDT[0] = DM.datos_sp1(DM.trading_genera_GSK(cliente, Fecha_1, Fecha_2, empresa, idCron, vs));
-
+             (string? codigo, string? msg, string? sql, DataTable? tb) datos_sp;
+            datos_sp.sql = "SC_DIST.SPG_RS_COEX.P_RS_GSK_PEDIMENTOS";
+            datos_sp = DM.datos_sp(datos_sp.sql , vs);
+            Console.WriteLine(" Mensaje store :" + datos_sp.msg);
+            Console.WriteLine(" Codigo store :" + datos_sp.codigo);
             LisDT_tit[0] = "Shipments";
-            if ((LisDT[0].Rows.Count > 0) && (datos_sp.codigo == "1"))
+            LisDT[0] = datos_sp.tb;
+            try
             {
-                xlsx.CrearExcel_file(LisDT, LisDT_tit, Carpeta + "\\" +  file_name);
-                msg = DM.trading_genera_GSK(cliente, Fecha_1, Fecha_2, empresa, idCron, 1);
-
+                if ((LisDT[0].Rows.Count > 0) && (datos_sp.codigo == "1"))
+                 {
+                    xlsx.CrearExcel_file(LisDT, LisDT_tit, Carpeta + "\\" +  file_name + ".xlsx");                    
+                    correo.send_mail("Report: < Logis GSK > Envio ok", [], "proceso correcto");
+                }
+                else
+                {
+                  if (datos_sp.codigo == "1")
+                     datos_sp.msg = "No hay registros en la consulta :" + datos_sp.sql;
+                  sw_error = 1;
+                }
             }
-            else
+            catch (Exception ex1)
             {
-              string mensaje = "Hola,  \n"
-                            + "Ocurrió un error al intentar generar este reporte.  \n"
-                            + "Consulta ejecutada:  \n"
-                            + DM.trading_genera_GSK(cliente, Fecha_1, Fecha_2, empresa, idCron, vs)  + " \n"
-                            + " \n"
-                            + " \n\n" + " Saludos."
-                            + " \n\n" + "Logis Reports Server.";
-                
-               // correo.send_error_mail( "Report: < Logis GSK > Error", ["raulrgg@logis.com.mx"], mensaje);
-                correo.send_error_mail("Report: < Logis GSK > Error", [], mensaje);
-                //correo.send_error_mail("prueba","Prueba");
+                datos_sp.codigo = ex1.HResult.ToString();
+                datos_sp.msg = ex1.Message;
+                sw_error = 1;
+            }
+            if (sw_error == 1)
+            {
+                string mensaje = "Hola,  \n"
+                + "Ocurrió un error al intentar generar este reporte.  \n"
+                + "Consulta ejecutada:  \n"
+                + datos_sp.codigo + " \n"
+                + datos_sp.msg + " \n"
+                + " \n"
+                + " \n\n" + " Saludos."
+                + " \n\n" + "Logis Reports Server.";
+                correo.send_mail("Report: < Logis GSK > Error", [], mensaje);
             }
             LisDT[0].Clear();
-            return msg;
+            return sw_error.ToString();
         }
     }
 }

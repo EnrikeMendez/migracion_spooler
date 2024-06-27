@@ -304,7 +304,9 @@ try
              trading_genera_GSK.trading_genera_GSK(Carpeta, tab_archivos[0], util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id, visible_sql);
              break;
         case "porteos_tln":
-             DM.porteos_tln(util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, "", rep_id, 1); ;
+             // 6651805
+             trading_genera_TLN_mod trading_genera_TLN = new trading_genera_TLN_mod();
+             trading_genera_TLN.trading_genera_TLN(Carpeta, tab_archivos[0], util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id, visible_sql);
              break;
 
         }
