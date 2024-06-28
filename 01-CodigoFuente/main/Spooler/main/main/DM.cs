@@ -1,23 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
-using System.Reflection.PortableExecutable;
-using System.Linq.Expressions;
+﻿using Microsoft.Extensions.Configuration;
 using Oracle.ManagedDataAccess.Client;
-using Microsoft.Extensions.Configuration;
-using System.Configuration;
+using System.Data;
 using System.Reflection;
-using System.Data.Odbc;
-using System.Data.OleDb;
-using System.Xml.Linq;
-using DocumentFormat.OpenXml.Vml;
-using DocumentFormat.OpenXml.Wordprocessing;
-using System.IO.Compression;
-using DocumentFormat.OpenXml.Spreadsheet;
-using ConfigurationManager = System.Configuration.ConfigurationManager;
 
 namespace serverreports;
 
@@ -28,7 +12,6 @@ internal class DM
     {
         DataTable dtTemp = new DataTable();
         OracleConnection cnn = new OracleConnection(conecBD());
-        
         try
         {
             using (cnn)
@@ -45,12 +28,11 @@ internal class DM
         }
         catch (Exception ex)
         {
-
             if (ex.HResult == -2147467261)
                 Console.WriteLine("No Existe la carpeta UserScrets " + ex.HResult);
             else
                 Console.WriteLine(ex.Message + " -var conex *" + conecBD() + "* " + ex.HResult);
-        }   
+        }
         return dtTemp;
     }
 
@@ -61,19 +43,19 @@ internal class DM
         try
         {
             using (cnn)
-        {
-            cnn.Open();
-            if ((cnn.State) > 0)
             {
-                OracleCommand cmd = new OracleCommand(SQL, cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new OracleParameter("p_Cur_GSK", OracleDbType.RefCursor)).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add(new OracleParameter("v_Mensaje", OracleDbType.NVarchar2, 4000)).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add(new OracleParameter("v_Codigo_Error", OracleDbType.Int64)).Direction = ParameterDirection.Output;
-                OracleDataAdapter da1 = new OracleDataAdapter(cmd);
-                da1.Fill(dtTemp);
+                cnn.Open();
+                if ((cnn.State) > 0)
+                {
+                    OracleCommand cmd = new OracleCommand(SQL, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new OracleParameter("p_Cur_GSK", OracleDbType.RefCursor)).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(new OracleParameter("v_Mensaje", OracleDbType.NVarchar2, 4000)).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(new OracleParameter("v_Codigo_Error", OracleDbType.Int64)).Direction = ParameterDirection.Output;
+                    OracleDataAdapter da1 = new OracleDataAdapter(cmd);
+                    da1.Fill(dtTemp);
+                }
             }
-        }
         }
         catch (Exception ex)
         {
@@ -112,6 +94,7 @@ internal class DM
                     info.Item1 = cmd.Parameters["codigo"].Value.ToString();
                     info.Item2 = cmd.Parameters["msg"].Value.ToString();
                     info.Item4 = dtTemp;
+
                 }
             }
         }
@@ -124,6 +107,7 @@ internal class DM
         if (vs == 1) { Console.WriteLine(SQL + "\n"); }
         return info;
     }
+
 
 
     private string conecBD()
@@ -146,7 +130,7 @@ internal class DM
         }
         return orfeo;
     }
-    public DataTable Main_rep(string nom_proc, string id_cron, int? vs=0, string? addsq = "")
+    public DataTable Main_rep(string nom_proc, string id_cron, int? vs = 0, string? addsq = "")
     {
         DataTable dtTemp = new DataTable();
         switch (nom_proc)
@@ -158,7 +142,7 @@ internal class DM
                 dtTemp = datos(main_mail_contact(id_cron.ToString(), vs));
                 break;
             case "main_num_param":
-                dtTemp = datos(main_num_param(id_cron.ToString(), vs));                
+                dtTemp = datos(main_num_param(id_cron.ToString(), vs));
                 break;
             case "main_datos_rep":
                 dtTemp = datos(main_datos_rep(id_cron.ToString(), vs, addsq));
@@ -199,15 +183,15 @@ internal class DM
 
     public string main_num_param(string id_cron, int? vs = 0)
     {
-        string SQL =   " SELECT REPORT.NUM_OF_PARAM  \n "
+        string SQL = " SELECT REPORT.NUM_OF_PARAM  \n "
                      + " FROM REP_REPORTE REPORT inner join REP_DETALLE_REPORTE REP on REPORT.ID_REP = REP.ID_REP \n "
                      + " WHERE REP.ID_CRON = {0}";
         /*
         string SQL1 = " update rep_chron set in_progress=0  \n "
                       + " where id_rapport= @id_cron ";
-        */     
-        if (vs == 1) { Console.WriteLine(string.Format(SQL, id_cron) + "\n"); }       
-        return string.Format(SQL, id_cron);        
+        */
+        if (vs == 1) { Console.WriteLine(string.Format(SQL, id_cron) + "\n"); }
+        return string.Format(SQL, id_cron);
     }
 
     public string main_datos_rep(string id_cron, int? vs = 0, string? addsq = "")
@@ -274,7 +258,7 @@ internal class DM
         return SQL.Replace("@sqladd", "" + addsq + "");
         /*return dtTemp*/
     }
-   
+
     public string ejecuta_sql(string sql, int? vs = 1)
     {
         string result = "Error conexion";
@@ -305,7 +289,7 @@ internal class DM
         string SQL = "INSERT INTO EMODULOS_USADOS (MODULO, ACCION, INSTANCIA, USUARIO, FECHA) \n" +
                    " VALUES ('" + modulo.Substring(1, 100).Replace("'", "''") + "',\n '" + modulo.Substring(1, 200).Replace("'", "''") + "',\n '" + modulo.Substring(1, 50).Replace("'", "''") + "' "
                    + " ,\n USER, SYSDATE) ";
-            ejecuta_sql(SQL, vs);
+        ejecuta_sql(SQL, vs);
     }
 
     public string transmision_edocs_bosch(string Cliente, string Fecha_1, string Fecha_2, string impexp, string tipo_doc, string tp, int? vs = 0)
@@ -317,7 +301,7 @@ internal class DM
               + "       , SGE.SGE_YCXCLEF \"Tipo Operación\"   \n"
               + "       , SGE.SGE_REDCLEF \"Clave\"   \n"
               + "       , TO_CHAR(SGE.SGEFECHA_PAGO, 'dd/mm/yyyy') \"Fecha Pago\" \n"
-              + "       , COUNT(*) \"Total "+ util.iff(tipo_doc, "=", "C", "Coves", "Edocs") + "\"  \n"
+              + "       , COUNT(*) \"Total " + util.iff(tipo_doc, "=", "C", "Coves", "Edocs") + "\"  \n"
               + "     FROM EPEDIMENTO PED    \n"
               + "       , ESAAI_M3_GENERAL SGE      \n"
               + "       , EFOLIOS FOL  \n"
@@ -384,7 +368,7 @@ internal class DM
              + "       , SGE.SGE_YCXCLEF \"Tipo Operación\"    \n"
              + "       , SGE.SGE_REDCLEF \"Clave\"    \n"
              + "       , TO_CHAR(SGE.SGEFECHA_PAGO, 'dd/mm/yyyy') \"Fecha Pago\"   \n"
-             + "       , 0 \"Total "+ util.iff(tipo_doc, "=", "C", "Coves", "Edocs") + "\" \n"
+             + "       , 0 \"Total " + util.iff(tipo_doc, "=", "C", "Coves", "Edocs") + "\" \n"
              + "     FROM EPEDIMENTO PED     \n"
              + "       , ESAAI_M3_GENERAL SGE       \n"
              + "       , EFOLIOS FOL   \n"
@@ -510,7 +494,7 @@ internal class DM
                       + "    AND TAE_TRACLAVE(+) = WEL.WEL_TRACLAVE\n";
 
         //DataTable dtTemp = new DataTable();
-         SQL_GSK = "SC_DIST.SPG_RS_COEX.P_RS_GSK_PEDIMENTOS";
+        SQL_GSK = "SC_DIST.SPG_RS_COEX.P_RS_GSK_PEDIMENTOS";
         if (vs == 1) { Console.WriteLine(SQL_GSK + "\n"); }
         return SQL_GSK;
     }

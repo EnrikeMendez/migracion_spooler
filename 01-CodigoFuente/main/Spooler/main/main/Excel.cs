@@ -14,49 +14,54 @@ namespace serverreports
     {
         public void CrearExcel_file(DataTable[] LisDT, string[] tit, string name, int? del_col = null)
         {
-            try
+            using (var workbook = new XLWorkbook())
             {
-                SLDocument sl = new SLDocument();
-                for (int i = 0; i < LisDT.Length; i++) 
-                {                    
-                    if (i == 0) sl.RenameWorksheet("Sheet1", tit[i]);
-                    else sl.AddWorksheet(tit[i]);
-                    sl.ImportDataTable(1, 1, LisDT[i], true);
-                    sl.AutoFitColumn(1, LisDT[i].Columns.Count);
-                    sl.SetCellStyle(2, 1, LisDT[i].Rows.Count + 1, LisDT[i].Columns.Count, estilo_bosch(sl, "d"));
-                    sl.SetCellStyle(1, 1, 1, LisDT[i].Columns.Count, estilo_bosch(sl, "e"));
-                    if (del_col != null)
+                try
+                {
+                    for (int i = 0; i < LisDT.Length; i++)
                     {
-                        sl.DeleteColumn(1, (int)del_col);
+                        var hoja = workbook.Worksheets.Add(tit[i]);
+                        var table = hoja.Cell("A1").InsertTable(LisDT[i]);
+
+                        table.ShowAutoFilter = false;
+                        table.Theme = XLTableTheme.None;
+
+                        if (del_col != null)
+                        {
+                            table.Column((int)del_col).Delete();
+                        }
+                        table.Style = estilo_bosch(hoja.Style, "d");
+
+                        var rango = table.Row(1);
+                        rango.Style = estilo_bosch(rango.Style, "e");
+                        hoja.Columns().AdjustToContents();
                     }
-                    sl.FreezePanes(1, 0);
+
+                    workbook.SaveAs(name);
+                    Console.WriteLine("Se genero Archivo " + name);
                 }
-                //Guardar como, y aqui ponemos la ruta de nuestro archivo
-                sl.SaveAs(name);
-                Console.WriteLine("Se genero Archivo " + name );
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Ocurrio una Excepción: " + ex.Message);
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Ocurrio una Excepción: " + ex.Message);
+                }
             }
         }
-       
-        public SLStyle estilo_bosch(SLDocument sl, string tp)
+
+        public IXLStyle estilo_bosch(IXLStyle hoja, string tp)
         {
-            SLStyle style_d = sl.CreateStyle();
-            style_d.SetFont("Arial", 8);
-            style_d.SetFontBold(true);
-            style_d.SetVerticalAlignment(VerticalAlignmentValues.Center);
-            style_d.SetHorizontalAlignment(HorizontalAlignmentValues.Center);
-            style_d.Fill.SetPattern(PatternValues.Solid, System.Drawing.Color.White, System.Drawing.Color.Black);
-            style_d.SetFontColor(System.Drawing.Color.Black);
+            hoja.Font.SetBold(true);
+            hoja.Font.FontSize = 8;
+            hoja.Font.FontName = "Arial";
+            hoja.Alignment.Horizontal = XLAlignmentHorizontalValues.Center; //Alineamos horizontalmente
+            hoja.Alignment.Vertical = XLAlignmentVerticalValues.Center;
+            hoja.Fill.BackgroundColor = XLColor.White;
+            hoja.Font.FontColor = XLColor.Black;
             if (tp.ToUpper() == "E")
             {
-                style_d.Fill.SetPattern(PatternValues.Solid, System.Drawing.Color.Black, System.Drawing.Color.White);
-                style_d.SetFontColor(System.Drawing.Color.White);
-                //  style_d.Alignment.ShrinkToFit = true;
+                hoja.Fill.BackgroundColor = XLColor.Black;
+                hoja.Font.FontColor = XLColor.White;
             }
-            return style_d;
+            return hoja;
         }
 
 

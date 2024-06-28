@@ -4,6 +4,7 @@ using System.Linq;
 using System.Data;
 using System.Text;
 using System.Threading.Tasks;
+using DocumentFormat.OpenXml.Drawing;
 
 namespace serverreports
 {
@@ -18,27 +19,38 @@ namespace serverreports
             Excel xlsx = new Excel();
             DataTable[] LisDT = new DataTable[1];
             string[] LisDT_tit = new string[1];
-            LisDT[0] = DM.datos(DM.porteos_tln(cliente, Fecha_1, Fecha_2, empresa, idCron, 1));
+            //LisDT[0] = DM.datos(DM.porteos_tln(cliente, Fecha_1, Fecha_2, empresa, idCron, 1));
+            (string? codigo, string? msg, string? sql, DataTable? tb) datos_sp;
+            datos_sp.sql = "SC_DIST.SPG_RS_COEX.P_RS_PORTEOS_TLN";
+            datos_sp = DM.datos_sp(datos_sp.sql, vs);
+            Console.WriteLine(" Mensaje store :" + datos_sp.msg);
+            Console.WriteLine(" Codigo store :" + datos_sp.codigo);
             LisDT_tit[0] = "Shipments";
-            if (LisDT[0].Rows.Count > 0)
+            LisDT[0] = datos_sp.tb;
+            try
             {
-                xlsx.CrearExcel_file(LisDT, LisDT_tit, Carpeta + "\\" + file_name + ".xlsx");
-                //msg = DM.porteos_tln(cliente, Fecha_1, Fecha_2, empresa, idCron, 1);
+                if (LisDT[0].Rows.Count > 0 && datos_sp.codigo == "1")
+                {
+                    xlsx.CrearExcel_file(LisDT, LisDT_tit, Carpeta + "\\" + file_name + ".xlsx");
+                    //msg = DM.porteos_tln(cliente, Fecha_1, Fecha_2, empresa, idCron, 1);
+                    correo.send_mail("Report: < Logis PORTEO TLN> Envio ok", [], "proceso correcto");
+                }
+                else
+                {
+                    if (datos_sp.codigo == "1")
+                        datos_sp.msg = "No hay registros en la consulta :" + datos_sp.sql;
+                    sw_error = 1;
+                }
             }
-            else
+            catch (Exception ex1)
             {
-                string mensaje = "Hola,  \n"
-                              + "Ocurrió un error al intentar generar este reporte.  \n"
-                              + "Consulta ejecutada:  \n"
-                              + DM.porteos_tln(cliente, Fecha_1, Fecha_2, empresa, idCron, 1) + " \n"
-                              + " \n"
-                              + " \n\n" + " Saludos."
-                              + " \n\n" + "Logis Reports Server.";
+                datos_sp.codigo = ex1.HResult.ToString();
+                datos_sp.msg = ex1.Message;
+                sw_error = 1;
+            }
+            if (sw_error==1)
+               correo.msg_error("PORTEOS_TLN",datos_sp.codigo, datos_sp.msg);
 
-                // correo.send_error_mail( "Report: < Logis GSK > Error", ["raulrgg@logis.com.mx"], mensaje);
-                correo.send_mail("Report: < Logis GSK > Error", [], mensaje);
-                //correo.send_error_mail("prueba","Prueba");
-            }
             LisDT[0].Clear();
             return sw_error.ToString();
         }
