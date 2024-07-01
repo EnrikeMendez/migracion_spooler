@@ -34,7 +34,7 @@ namespace serverreports
             send_mail("Report: < Logis "+rep+" > Error", [], mensaje);
         }
 
-        public string send_mail(string asunto, string[] contact, string mensaje)
+        public string send_mail(string asunto, string[] contact, string mensaje, string? arh = null, string? cc = "")
         {
             string[] dat_mail = new string[1];
             dat_mail = email_usuario().Split("|");
@@ -52,7 +52,15 @@ namespace serverreports
                 else
                     for (int i = 0; i < mail_grupo_error.Length; i++)
                         correo.To.Add(mail_grupo_error[i]);
-
+               
+                if (cc != "")
+                {
+                    MailAddress ccm = new MailAddress(cc);
+                    correo.CC.Add(ccm);
+                }
+              //  if (arh !=null)
+               //     correo.Attachments.Add(System.Net.Mail.Attachment(arh));
+                
                 //using (SmtpClient servidor = new SmtpClient("smtp.gmail.com", 587)) 
                 using (SmtpClient servidor = new SmtpClient("smtp.office365.com", 587))
                 {
