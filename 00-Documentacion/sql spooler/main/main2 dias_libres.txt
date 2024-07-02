@@ -1,0 +1,5 @@
+ Parametros (string Cliente, string Fecha_1)
+
+ select 1 from rep_dias_libres
+ where dia_libre = to_date('" & FECHA_1 & "', 'mm/dd/yyyy')
+ and cliente in ('" & Cliente & "', 0)

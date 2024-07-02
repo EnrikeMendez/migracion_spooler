@@ -25,7 +25,8 @@ namespace serverreports
                 if ((LisDT[0].Rows.Count > 0) && (datos_sp.codigo == "1"))
                 {
                     xlsx.CrearExcel_file(LisDT, LisDT_tit, Carpeta + "\\" + file_name + ".xlsx");
-                    correo.send_mail("Report: < Logis GSK > Envio ok", [], "proceso correcto");
+                  //  correo.send_mail("Report: < Logis GSK > Envio ok", [], "proceso correcto");
+                    correo.send_mail("Report: < Logis GSK> Envio ok", [], "proceso correcto", [Carpeta + "\\" + file_name + ".xlsx"]);
                 }
                 else
                 {

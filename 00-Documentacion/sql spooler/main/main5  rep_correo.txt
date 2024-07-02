@@ -1,0 +1,8 @@
+Parametros (string rep_id)
+
+ SELECT REP.NAME, DEST.NOMBRE, DEST.MAIL
+  FROM REP_DETALLE_REPORTE REP
+  inner join  REP_DEST_MAIL DEST_M on REP.MAIL_ERROR = DEST_M.ID_DEST_MAIL
+  inner join  REP_MAIL DEST   on DEST_M.ID_DEST = DEST.ID_MAIL
+  WHERE status = 1
+  AND REP.ID_CRON = '" & rep_id & "'

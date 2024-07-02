@@ -21,7 +21,7 @@ namespace serverreports
             return correo_p;
         }
 
-        public void msg_error(string rep,string? codigo = "NA", string? msg = "NA" )
+        public void msg_error(string rep, string? codigo = "NA", string? msg = "NA")
         {
             string mensaje = "Hola,  \n"
             + "Ocurrió un error al intentar generar este reporte.\n"
@@ -31,10 +31,10 @@ namespace serverreports
             + " \n"
             + " \n\n" + " Saludos."
             + " \n\n" + "Logis Reports Server.";
-            send_mail("Report: < Logis "+rep+" > Error", [], mensaje);
+            send_mail("Report: < Logis " + rep + " > Error", [], mensaje);
         }
 
-        public string send_mail(string asunto, string[] contact, string mensaje, string? arh = null, string? cc = "")
+        public string send_mail(string asunto, string[] contact, string mensaje, string[]? arh = null, string?[] cc = null)
         {
             string[] dat_mail = new string[1];
             dat_mail = email_usuario().Split("|");
@@ -51,21 +51,34 @@ namespace serverreports
                         correo.To.Add(contact[i]);
                 else
                     for (int i = 0; i < mail_grupo_error.Length; i++)
-                        correo.To.Add(mail_grupo_error[i]);
-               
-                if (cc != "")
+                        correo.To.Add(mail_grupo_error[i]);               
+                if (cc != null)
                 {
-                    MailAddress ccm = new MailAddress(cc);
-                    correo.CC.Add(ccm);
+                    for (int i = 0; i < cc.Length; i++) 
+                    {
+                        correo.CC.Add(cc[i]);
+                    }
+                        //MailAddress ccm = new MailAddress(cc);
+                    //correo.To.Add(contact[i]);
+
+                    //MailAddress ccm = new MailAddress(cc[i]);
+                    //correo.CC.Add(cc[i]);
                 }
-              //  if (arh !=null)
-               //     correo.Attachments.Add(System.Net.Mail.Attachment(arh));
                 
                 //using (SmtpClient servidor = new SmtpClient("smtp.gmail.com", 587)) 
                 using (SmtpClient servidor = new SmtpClient("smtp.office365.com", 587))
                 {
                     servidor.EnableSsl = true;
                     servidor.Credentials = new System.Net.NetworkCredential(dat_mail[0], dat_mail[1]);
+                    if (arh != null)
+                    {
+                        System.Net.Mail.Attachment attachment;
+                        for (int i = 0; i < arh.Length; i++)
+                        {
+                            attachment = new System.Net.Mail.Attachment(arh[i]);
+                            correo.Attachments.Add(attachment);
+                        }
+                    }
                     try
                     {
                         servidor.Send(correo);
@@ -97,14 +110,12 @@ namespace serverreports
                 for (int i = 0; i < mail_grupo_error.Length; i++)
                     correo.To.Add(mail_grupo_error[i]);
             SmtpClient servidor = new SmtpClient("smtp.gmail.com", 587);
-            //****NetworkCredential credenciales = new NetworkCredential("rlgranados2@gmail.com", "fvtv rtop otjx ggux");
             NetworkCredential credenciales = new NetworkCredential(dat_mail[0], dat_mail[1]);
             servidor.Credentials = credenciales;
             servidor.EnableSsl = true;
             //– 465 y 578
             try
             {
-
                 //  servidor.Send(correo);
                 correo.Dispose();
                 return "OK";
@@ -114,7 +125,6 @@ namespace serverreports
                 Console.WriteLine(ex.Message);
                 return (ex.Message);
             }
-
 
         }
 

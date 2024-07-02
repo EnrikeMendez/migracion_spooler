@@ -1,0 +1,6 @@
+Parametros (string FRECUENCIA , string rep_id)
+
+select display_fecha_confirmacion4(('" & FRECUENCIA & "',conf.CONF_DATE,conf.CONF_DATE_2,decode(conf.CONF_DATE,null,1,0)) as next_fecha
+ from rep_confirmacion conf
+ where  conf.ID_CONF =  '" & rep_id & "' 
+ order by to_date(next_fecha, 'mm/dd/yyyy') desc

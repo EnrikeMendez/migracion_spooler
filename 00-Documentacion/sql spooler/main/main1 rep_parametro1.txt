@@ -1,0 +1,10 @@
+6651805
+
+Parametros (string par1 , string rep_id)
+
+select rep.id_rep, rep.ID_CRON, rep.NAME, rep.CONFIRMACION, rep.FRECUENCIA,
+  rep.cliente, cli.clistatus, cli.cliclef || ' - ' || InitCap(cli.clinom) cli_nom   ,case when (0=" & par1 & " and  rep.FRECUENCIA is not null) then logis.display_fecha_confirmacion4(rep.FRECUENCIA, sysdate, sysdate,1)  end fecha
+  , to_char(LAST_CONF_DATE_1, 'mm/dd/yyyy')  as fecha_1, to_char(LAST_CONF_DATE_2, 'mm/dd/yyyy') as fecha_2
+  , cli.CLICLEF || ' - ' || InitCap(cli.CLINOM) nomcli_err, rep.IP_ADDRESS IP_ADDRESS_err, rep.IP_NAME IP_NAME_err
+  from rep_detalle_reporte rep inner join eclient cli on cli.cliclef= rep.CLIENTE
+  Where rep.ID_CRON =   '" & rep_id & "'

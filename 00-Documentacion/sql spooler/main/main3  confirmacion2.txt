@@ -1,0 +1,9 @@
+Parametros (string FRECUENCIA , string rep_id)
+
+select check_fecha_confirmacion2('" &FRECUENCIA & "',conf_date, conf_date_2) as ok
+ , to_char(conf.conf_date, 'mm/dd/yyyy') as fecha_1
+ , to_char(conf.conf_date_2, 'mm/dd/yyyy') as fecha_2, conf.param
+ from rep_confirmacion conf
+ where conf.ID_CONF = '" & rep_id & "' 
+ and check_fecha_confirmacion2('" & FRECUENCIA & "',conf_date, conf_date_2) = 'ok'
+ and trunc(conf_date) +decode(  " & FRECUENCIA & ", 1, 1, 0) <= trunc(sysdate)

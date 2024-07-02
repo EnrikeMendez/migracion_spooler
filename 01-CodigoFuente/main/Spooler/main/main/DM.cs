@@ -68,7 +68,8 @@ internal class DM
         return dtTemp;
     }
 
-    public (string, string, string, DataTable) datos_sp(string SQL, int? vs = 0)
+    public (string, string, string, DataTable) datos_sp(string SQL, int? vs = 0, string? Cliente = null, string? Fecha_1 = null, string? Fecha_2 = null, string? impexp = null, string? tipo_doc = null, string? tp = null)
+  //public (string, string, string, DataTable) datos_sp(string SQL, int? vs = 0)
     {
         (string?, string?, string?, DataTable?) info;
         DataTable dtTemp = new DataTable();
@@ -86,22 +87,30 @@ internal class DM
                 {
                     OracleCommand cmd = new OracleCommand(SQL, cnn);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new OracleParameter("cursor", OracleDbType.RefCursor)).Direction = ParameterDirection.Output;
-                    cmd.Parameters.Add(new OracleParameter("msg", OracleDbType.NVarchar2, 4000)).Direction = ParameterDirection.Output;
-                    cmd.Parameters.Add(new OracleParameter("codigo", OracleDbType.Int64)).Direction = ParameterDirection.Output;
+                    if (Cliente  != null) cmd.Parameters.Add("p_Num_Cliente" , OracleDbType.Int32)   .Value = Convert.ToInt32(Cliente);
+                    if (Fecha_1  != null) cmd.Parameters.Add("p_Fecha_Inicio", OracleDbType.Varchar2).Value = Fecha_1;
+                    if (Fecha_2  != null) cmd.Parameters.Add("p_Fecha_Fin"   , OracleDbType.Varchar2).Value = Fecha_2;
+                    if (impexp   != null) cmd.Parameters.Add("p_Impexp"      , OracleDbType.Varchar2).Value = impexp;
+                    if (tipo_doc != null) cmd.Parameters.Add("p_Tipo_Doc"    , OracleDbType.Varchar2).Value = tipo_doc;
+                    if (tp       != null) cmd.Parameters.Add("p_Tipo_Op"     , OracleDbType.Varchar2).Value = tp;
+                    cmd.Parameters.Add(new OracleParameter("cursor", OracleDbType.RefCursor      )).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(new OracleParameter("msg",    OracleDbType.NVarchar2, 4000)).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(new OracleParameter("codigo", OracleDbType.Int64          )).Direction = ParameterDirection.Output;
                     OracleDataAdapter da1 = new OracleDataAdapter(cmd);
                     da1.Fill(dtTemp);
                     info.Item1 = cmd.Parameters["codigo"].Value.ToString();
                     info.Item2 = cmd.Parameters["msg"].Value.ToString();
                     info.Item4 = dtTemp;
-
                 }
             }
         }
         catch (Exception ex)
         {
+           if (ex.HResult == -2147467261)
+                info.Item2 = "No Existe la carpeta UserScrets " + ex.HResult;
+
             info.Item1 = ex.HResult.ToString();
-            info.Item2 = ex.Message;
+            info.Item2 = info.Item2 + " " + ex.Message + " : " + info.Item3;
             info.Item4 = dtTemp;
         }
         if (vs == 1) { Console.WriteLine(SQL + "\n"); }
@@ -197,7 +206,7 @@ internal class DM
     public string main_datos_rep(string id_cron, int? vs = 0, string? addsq = "")
     {
         string SQL = " SELECT REP.NAME, REP.CLIENTE \n"
-                    + " , REP.FILE_NAME, REP.CARPETA \n"
+                     + " , REP.FILE_NAME, REP.CARPETA \n"
                      + " , CLI.CLINOM \n"
                      + " , mail.NOMBRE, mail.MAIL \n"
                      + " , REPORT.COMMAND \n"
@@ -430,10 +439,9 @@ internal class DM
              + "         ,FOLFOLIO  \n"
              + " ORDER BY 1  \n";
 
-
         //DataTable dtTemp = new DataTable();
         if (vs == 1) { Console.WriteLine(SQL + "\n"); }
-        return SQL;
+        return SQL; 
     }
     public string trading_genera_GSK(string cliente, string? Fecha_1, string? Fecha_2, string? empresa, Int32? idCron, int? vs)//to_char(WCD.DATE_CREATED, 'dd/mm/yy')
     {

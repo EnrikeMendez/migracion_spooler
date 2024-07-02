@@ -1,9 +1,13 @@
+  Parametros (string Cliente, string Fecha_1, string Fecha_2, string impexp, string tipo_doc, string tp)
+
 /************** detalle_reporte **************
 Recibe 1 parametro sql_detalle del reporte
 /************** detalle_reporte **************/
  
-select rep.id_rep, rep.ID_CRON, rep.NAME, rep.CONFIRMACION, rep.FRECUENCIA,
-  rep.cliente, cli.clistatus, cli.cliclef || ' - ' || InitCap(cli.clinom) cli_nom   ,case when (1=1 and rep.FRECUENCIA is not null) then logis.display_fecha_confirmacion4(rep.FRECUENCIA, sysdate, sysdate,1)  end fecha
+  Parametros (string par1 , string rep_id)
+
+  select rep.id_rep, rep.ID_CRON, rep.NAME, rep.CONFIRMACION, rep.FRECUENCIA,
+  rep.cliente, cli.clistatus, cli.cliclef || ' - ' || InitCap(cli.clinom) cli_nom   ,case when (1=" & par1 & " and rep.FRECUENCIA is not null) then logis.display_fecha_confirmacion4(rep.FRECUENCIA, sysdate, sysdate,1)  end fecha
   , to_char(LAST_CONF_DATE_1, 'mm/dd/yyyy')  as fecha_1, to_char(LAST_CONF_DATE_2, 'mm/dd/yyyy') as fecha_2
   , cli.CLICLEF || ' - ' || InitCap(cli.CLINOM) nomcli_err, rep.IP_ADDRESS IP_ADDRESS_err, rep.IP_NAME IP_NAME_err
   from rep_detalle_reporte rep inner join eclient cli on cli.cliclef= rep.CLIENTE
@@ -14,29 +18,34 @@ select rep.id_rep, rep.ID_CRON, rep.NAME, rep.CONFIRMACION, rep.FRECUENCIA,
 recibe 2 parametros fecha y cliente
 ************** rep_dias_libres **************/
 
+ Parametros (string Cliente, string Fecha_1)
  select 1 from rep_dias_libres
  where dia_libre = to_date('" & FECHA_1 & "', 'mm/dd/yyyy')
- and cliente in ('" & rep_id & "', 0)
+ and cliente in ('" & Cliente & "', 0)
 
 
 /************** confirma fecha **************
-recibe dos parametros rep_idm y FRECUENCIA(dentro del sql lo maneja como string y en ocaciones como entero)
+recibe dos parametros rep_id y FRECUENCIA(dentro del sql lo maneja como string y en ocaciones como entero)
 ************** confirma fecha **************/
 
-select check_fecha_confirmacion2('" & rs.Fields("FRECUENCIA") & "',conf_date, conf_date_2) as ok
+Parametros (string FRECUENCIA , string rep_id)
+
+select check_fecha_confirmacion2('" &FRECUENCIA & "',conf_date, conf_date_2) as ok
  , to_char(conf.conf_date, 'mm/dd/yyyy') as fecha_1
  , to_char(conf.conf_date_2, 'mm/dd/yyyy') as fecha_2, conf.param
  from rep_confirmacion conf
  where conf.ID_CONF = '" & rep_id & "' 
- and check_fecha_confirmacion2('" & rs.Fields("FRECUENCIA") & "',conf_date, conf_date_2) = 'ok'
- and trunc(conf_date) +decode(" & rs.Fields("FRECUENCIA") & ", 1, 1, 0) <= trunc(sysdate)
+ and check_fecha_confirmacion2('" & FRECUENCIA & "',conf_date, conf_date_2) = 'ok'
+ and trunc(conf_date) +decode(  " & FRECUENCIA & ", 1, 1, 0) <= trunc(sysdate)
 
 
 /************** confirma fecha 2**************
-recibe dos parametros rep_idm y FRECUENCIA
+recibe dos parametros rep_id y FRECUENCIA
 ************** confirma fecha 2**************/
 
-select display_fecha_confirmacion4(('" & rs.Fields("FRECUENCIA") & "',conf.CONF_DATE,conf.CONF_DATE_2,decode(conf.CONF_DATE,null,1,0)) as next_fecha
+Parametros (string FRECUENCIA , string rep_id)
+
+select display_fecha_confirmacion4(('" & FRECUENCIA & "',conf.CONF_DATE,conf.CONF_DATE_2,decode(conf.CONF_DATE,null,1,0)) as next_fecha
  from rep_confirmacion conf
  where  conf.ID_CONF =  '" & rep_id & "' 
  order by to_date(next_fecha, 'mm/dd/yyyy') desc
@@ -45,7 +54,7 @@ select display_fecha_confirmacion4(('" & rs.Fields("FRECUENCIA") & "',conf.CONF_
 /************** num_param **************
 recibe un parametro rep_id ,
 ************** num_param **************/
-
+ rep_id string
  SELECT REPORT.NUM_OF_PARAM
   FROM REP_REPORTE REPORT inner join REP_DETALLE_REPORTE REP on REPORT.ID_REP = REP.ID_REP
   WHERE REP.ID_CRON = '" & rep_id & "' 
@@ -55,6 +64,8 @@ recibe un parametro rep_id ,
 recibe un parametro rep_id
 Recibe 1 parametro  lista de contactos corereo -err
 ************** correo aviso de error**************/
+rep_id string
+Parametros (string rep_id)
 
  SELECT REP.NAME, DEST.NOMBRE, DEST.MAIL
   FROM REP_DETALLE_REPORTE REP
@@ -67,7 +78,7 @@ Recibe 1 parametro  lista de contactos corereo -err
 /************** Instancias de repore **************
 Recibe 1 parametro   recuperar todos los datos para generar el reporte
 ************** Instancias de repore **************/
-
+Parametros (string rep_id)
 SELECT REP.NAME, REP.CLIENTE
  , REP.FILE_NAME, REP.CARPETA
  , CLI.CLINOM

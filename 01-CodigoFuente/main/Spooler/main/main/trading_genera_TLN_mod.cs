@@ -33,7 +33,8 @@ namespace serverreports
                 {
                     xlsx.CrearExcel_file(LisDT, LisDT_tit, Carpeta + "\\" + file_name + ".xlsx");
                     //msg = DM.porteos_tln(cliente, Fecha_1, Fecha_2, empresa, idCron, 1);
-                    correo.send_mail("Report: < Logis PORTEO TLN> Envio ok", [], "proceso correcto");
+                    //correo.send_mail("Report: < Logis PORTEO TLN> Envio ok", [], "proceso correcto", ["C:\\pc\\prueba_adj.txt"], ["logis04prog@hotmail.com"]);
+                    correo.send_mail("Report: < Logis PORTEO TLN> Envio ok", [], "proceso correcto", [Carpeta + "\\" + file_name + ".xlsx"] );
                 }
                 else
                 {
@@ -50,7 +51,6 @@ namespace serverreports
             }
             if (sw_error==1)
                correo.msg_error("PORTEOS_TLN",datos_sp.codigo, datos_sp.msg);
-
             LisDT[0].Clear();
             return sw_error.ToString();
         }
