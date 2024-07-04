@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
+using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -163,6 +164,39 @@ namespace serverreports
             }
             return arc_nom;
         }
+
+        public void CrearZip(string? fileToAdd= "C:\\pc\\file.xlsx", string? path= "C:\\pc")
+        {
+            var outFileName = Path.GetFileNameWithoutExtension(fileToAdd) + ".zip";
+            var fileNameToAdd = Path.Combine(path,"" , fileToAdd);
+            var zipFileName = Path.Combine(path, "", outFileName);
+            using (ZipArchive archive = ZipFile.Open(zipFileName, ZipArchiveMode.Create))
+            {
+                archive.CreateEntryFromFile(fileNameToAdd, Path.GetFileName(fileNameToAdd));
+            }
+            Console.WriteLine(" zip creado");
+        }
+
+        public void CrearZip2(string fileToAdd , string[] fileAdd_s, string path)
+        {
+            var outFileName   = Path.GetFileNameWithoutExtension(fileToAdd) + ".zip";
+            var fileNameToAdd = Path.Combine(path, "", fileToAdd);
+            var zipFileName   = Path.Combine(path, "", outFileName);
+            using (ZipArchive archive = ZipFile.Open(zipFileName, ZipArchiveMode.Create))
+            {
+                for (int i = 0; i < fileAdd_s.Length; i++)
+                {
+                  //  using (ZipArchive archive = ZipFile.Open(zipFileName, ZipArchiveMode.update))
+                   // {
+                        archive.CreateEntryFromFile(fileAdd_s[i], Path.GetFileName(fileNameToAdd));
+                    //archive.CreateEntryFromFile(fileNameToAdd, Path.GetFileName(fileAdd_s[i]));
+                    //}
+                }
+            }
+            Console.WriteLine(" zip creado");
+        }
+
+
 
     }
 

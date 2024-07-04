@@ -72,12 +72,7 @@ try
  if (rep_id != 1)
  {
     trep_cron = DM.Main_rep("main_rp_cron", rep_id.ToString(), visible_sql, sqladd.Replace("@param", "" + reporte_temporal + ""));
-    //        util.CreadorExcel("patito.xlsx");
-    //        util.CrearExcel(trep_cron, "prueba1");
 
-    //Esto ultimo solo para verificar que todo fue bien.
-    // Console.WriteLine("Se creo el archivo, presiona una tecla para terminar");
-    // Console.ReadKey();
     if (trep_cron.Rows.Count > 0)
         sw_cron = 1;
        
@@ -92,18 +87,23 @@ try
     Console.WriteLine("ID_CRON =" + rep_id);
     Console.WriteLine("reporte_temporal =" + reporte_temporal);
     Console.WriteLine(util.Tdetalle(trep_cron));
+        //   util.CrearZip();
+        // util.CrearZip2("C:\\pc\\file2.xlsx", ["C:\\pc\\file.xlsx", "C:\\pc\\prueba_adj.txt"], "C:\\pc");
+       // Excel xlsx = new Excel();
+        //xlsx.grafica();
+        //Environment.Exit(0);
 
-    //trep_cron = DM.main_rp_cron(id_cron.ToString(),0);
-    /* por definir
-     If rs.EOF Then
-     GoTo Errman
-       ElseIf rs.Fields("id_rep") <> "317" And rs.Fields("clistatus") = "1" And reporte_temporal<> 1 And rs.Fields("cliente") <> "0" And(CLng(rs.Fields("cliente")) < 9900 Or CLng(rs.Fields("cliente")) > 9999) Then
-     Call send_error_mail("Error - Cliente inactivo - Report : < " & rs.Fields("NAME") & " >", mail_grupo_error, "El reporte tiene como cliente : " & rs.Fields("cli_nom") & " - " & " que es inactivo." & vbCrLf & "Favor de verificar lo y de quitar la programacion de este reporte.")
-     GoTo Errman
-     End If
-    */
-    /* DataTable tfec_conf = new DataTable(); si se habilida independientes*/
-    if (reporte_temporal == 0)
+        //trep_cron = DM.main_rp_cron(id_cron.ToString(),0);
+        /* por definir
+         If rs.EOF Then
+         GoTo Errman
+           ElseIf rs.Fields("id_rep") <> "317" And rs.Fields("clistatus") = "1" And reporte_temporal<> 1 And rs.Fields("cliente") <> "0" And(CLng(rs.Fields("cliente")) < 9900 Or CLng(rs.Fields("cliente")) > 9999) Then
+         Call send_error_mail("Error - Cliente inactivo - Report : < " & rs.Fields("NAME") & " >", mail_grupo_error, "El reporte tiene como cliente : " & rs.Fields("cli_nom") & " - " & " que es inactivo." & vbCrLf & "Favor de verificar lo y de quitar la programacion de este reporte.")
+         GoTo Errman
+         End If
+        */
+        /* DataTable tfec_conf = new DataTable(); si se habilida independientes*/
+        if (reporte_temporal == 0)
     {
         string tm_fec = util.Tcampo(trep_cron, "fecha");
         FECHA_1 = tm_fec.Substring(0, 10);

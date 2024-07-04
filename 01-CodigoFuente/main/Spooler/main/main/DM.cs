@@ -87,15 +87,22 @@ internal class DM
                 {
                     OracleCommand cmd = new OracleCommand(SQL, cnn);
                     cmd.CommandType = CommandType.StoredProcedure;
+                    /*parametros de entrada*/
                     if (Cliente  != null) cmd.Parameters.Add("p_Num_Cliente" , OracleDbType.Int32)   .Value = Convert.ToInt32(Cliente);
                     if (Fecha_1  != null) cmd.Parameters.Add("p_Fecha_Inicio", OracleDbType.Varchar2).Value = Fecha_1;
                     if (Fecha_2  != null) cmd.Parameters.Add("p_Fecha_Fin"   , OracleDbType.Varchar2).Value = Fecha_2;
-                    if (impexp   != null) cmd.Parameters.Add("p_Impexp"      , OracleDbType.Varchar2).Value = impexp;
+                    if (impexp != null)
+                        if (impexp == "null")
+                            cmd.Parameters.Add("p_Impexp", OracleDbType.Varchar2).Value = null;
+                        else
+                            cmd.Parameters.Add("p_Impexp", OracleDbType.Varchar2).Value = impexp;
                     if (tipo_doc != null) cmd.Parameters.Add("p_Tipo_Doc"    , OracleDbType.Varchar2).Value = tipo_doc;
                     if (tp       != null) cmd.Parameters.Add("p_Tipo_Op"     , OracleDbType.Varchar2).Value = tp;
+                    /*parametros de salidad*/
                     cmd.Parameters.Add(new OracleParameter("cursor", OracleDbType.RefCursor      )).Direction = ParameterDirection.Output;
                     cmd.Parameters.Add(new OracleParameter("msg",    OracleDbType.NVarchar2, 4000)).Direction = ParameterDirection.Output;
                     cmd.Parameters.Add(new OracleParameter("codigo", OracleDbType.Int64          )).Direction = ParameterDirection.Output;
+
                     OracleDataAdapter da1 = new OracleDataAdapter(cmd);
                     da1.Fill(dtTemp);
                     info.Item1 = cmd.Parameters["codigo"].Value.ToString();
