@@ -62,8 +62,10 @@ try
  DataTable tdato_repor = new DataTable();
  DataTable tnum_param = new DataTable();
  DataTable tmail_contact = new DataTable();
- try
- { string comand = args[0];
+ DataTable tconfirmacion2 = new DataTable();
+    try
+ 
+    { string comand = args[0];
    rep_id = Convert.ToInt32(args[0]); } 
    catch (Exception e) { msg = " ¡¡¡error opc de reporte¡¡ No.error" + e.HResult; }
  if (args.Length == 2 && args[1] == "1")
@@ -71,7 +73,7 @@ try
 
  if (rep_id != 1)
  {
-    trep_cron = DM.Main_rep("main_rp_cron", rep_id.ToString(), visible_sql, sqladd.Replace("@param", "" + reporte_temporal + ""));
+    trep_cron = DM.Main_rep("main_rp_cron", rep_id.ToString(), visible_sql,  reporte_temporal.ToString()).tb;
 
     if (trep_cron.Rows.Count > 0)
         sw_cron = 1;
@@ -116,69 +118,83 @@ try
     }
     Console.WriteLine("display_fecha_confirmacion4 :" + FECHA_1 + " :" + FECHA_2);
 
-    //   if (FECHA_1 == FECHA_2)
-    if (1 == 0)
-    {
-        Console.WriteLine("************** rep_dias_libres **************");
-        string SQL_p = " select 1 from rep_dias_libres \n" +
-        " where dia_libre = to_date('" + FECHA_1 + "', 'mm/dd/yyyy') \n" +
-        " and cliente in ('" + rep_id.ToString() + "', 0) \n";
-        // DM.datos(SQL_p);
-        Console.WriteLine(SQL_p);
-        Console.WriteLine("************** actializa **************");
-        SQL_p = "update rep_chron set in_progress=0 \n" +
-            "where id_rapport= '" + rep_id + "' ";
-        DM.ejecuta_sql(SQL_p, 1);
-    }
-
-    //   if  ((util.nvl(util.Tcampo(trep_cron, "CONFIRMACION")) == "1") && (reporte_temporal == 0)) 
-    if (1 == 0)
-    {
-        string SQL_p2 = "select check_fecha_confirmacion2('" + util.Tcampo(trep_cron, "FRECUENCIA") + "',conf_date, conf_date_2) as ok \n" +
-                      " , to_char(conf.conf_date, 'mm/dd/yyyy') as fecha_1 \n" +
-                      " , to_char(conf.conf_date_2, 'mm/dd/yyyy') as fecha_2, conf.param \n" +
-                      " from rep_confirmacion conf \n" +
-                      " where conf.ID_CONF = '" + rep_id + "' \n" +
-                      " and check_fecha_confirmacion2('" + util.Tcampo(trep_cron, "FRECUENCIA") + "',conf_date, conf_date_2) = 'ok' \n" +
-                      " and trunc(conf_date) +decode(" + util.Tcampo(trep_cron, "FRECUENCIA") + ", 1, 1, 0) <= trunc(sysdate) \n" +
-                      "";
-        Console.WriteLine("************** confirma fecha **************");
-        Console.WriteLine(SQL_p2);
-        //  if conf_date !=null
-        if (1 ==0)
+        if (FECHA_1 == FECHA_2)
         {
-            SQL_p2 = "select display_fecha_confirmacion4('" + util.Tcampo(trep_cron, "FRECUENCIA") + "',conf.CONF_DATE,conf.CONF_DATE_2,decode(conf.CONF_DATE,null,1,0)) as next_fecha \n" +
-         " from rep_confirmacion conf \n" +
-         " where  conf.ID_CONF = '" + rep_id + "' \n" +
-         " order by to_date(next_fecha, 'mm/dd/yyyy') desc \n";
-            //  if conf.CONF_DATE !=null
-            mail_error = "agregar valor de rs2.Fields(0).Value ";
-            //else
-            mail_error = "Ninguna confirmacion llegada.";
+
+            Console.WriteLine("************** rep_dias_libres **************");
+            string dialib = DM.Main_rep("rep_dias_libres", rep_id.ToString(), visible_sql, reporte_temporal.ToString(), util.Tcampo(trep_cron, "cliente"), FECHA_1).val;
+            /*
+            string SQL_p = " select 1 from rep_dias_libres \n" +
+            " where dia_libre = to_date('" + FECHA_1 + "', 'mm/dd/yyyy') \n" +
+            " and cliente in ('" + rep_id.ToString() + "', 0) \n";
+            // DM.datos(SQL_p);
+            Console.WriteLine(SQL_p);
+            */
+            Console.WriteLine(" valor dia libre =" + dialib);
+            //Por aplicar
+            if (dialib != "")
+            {
+                Console.WriteLine("************** actializa **************");
+                string SQL_p = "update rep_chron set in_progress=0 \n" +
+                 "where id_rapport= '" + rep_id + "' ";
+                DM.ejecuta_sql(SQL_p, 1);
+                Environment.Exit(0);
+            }
         }
-        Console.WriteLine("************** confirma fecha 2**************");
-        Console.WriteLine(SQL_p2);
-
-    }
-
-    /*
-     If FECHA_1 = FECHA_2 Then
-    valida 
-        sql 4 y 4.1
-
-    */
-
-    //////*******  Parametros *********////////////////////
-
-    /*
-    valida confirmacion
-    sql 5 y 5.1
-    */
 
 
-    if (mail_error != "")
+        if ((util.nvl(util.Tcampo(trep_cron, "CONFIRMACION")) == "1") && (reporte_temporal == 0))
+        {
+            string SQL_p2 = "select check_fecha_confirmacion2('" + util.Tcampo(trep_cron, "FRECUENCIA") + "',conf_date, conf_date_2) as ok \n" +
+                          " , to_char(conf.conf_date, 'mm/dd/yyyy') as fecha_1 \n" +
+                          " , to_char(conf.conf_date_2, 'mm/dd/yyyy') as fecha_2, conf.param \n" +
+                          " from rep_confirmacion conf \n" +
+                          " where conf.ID_CONF = '" + rep_id + "' \n" +
+                          " and check_fecha_confirmacion2('" + util.Tcampo(trep_cron, "FRECUENCIA") + "',conf_date, conf_date_2) = 'ok' \n" +
+                          " and trunc(conf_date) +decode(" + util.Tcampo(trep_cron, "FRECUENCIA") + ", 1, 1, 0) <= trunc(sysdate) \n" +
+                          "";
+            Console.WriteLine("************** confirma fecha **************");
+            Console.WriteLine(SQL_p2);
+
+            tconfirmacion2 = DM.Main_rep("confirmacion2", rep_id.ToString(), visible_sql, reporte_temporal.ToString(), null, util.Tcampo(trep_cron, "FRECUENCIA")).tb;
+
+            if (util.Tcampo(tconfirmacion2, "CONFIRMACION") != "")
+            //if (1 == 1)
+            {
+                SQL_p2 = "select display_fecha_confirmacion4(('" + util.Tcampo(trep_cron, "FRECUENCIA") + "',conf.CONF_DATE,conf.CONF_DATE_2,decode(conf.CONF_DATE,null,1,0)) as next_fecha \n" +
+             " from rep_confirmacion conf \n" +
+             " where  conf.ID_CONF = '" + rep_id + "' \n" +
+             " order by to_date(next_fecha, 'mm/dd/yyyy') desc \n";
+                string confirma4 = DM.Main_rep("confirmacion4", rep_id.ToString(), visible_sql, reporte_temporal.ToString(), null, util.Tcampo(trep_cron, "FRECUENCIA")).val;
+                Console.WriteLine(" valor confirma4 =" + confirma4);
+
+                if (confirma4 != null)
+                    mail_error = "agregar valor de " + confirma4;
+                else
+                    mail_error = "Ninguna confirmacion llegada.";
+            }
+            Console.WriteLine("************** confirma fecha 2**************");
+            Console.WriteLine(SQL_p2);
+        }
+
+        /*
+         If FECHA_1 = FECHA_2 Then
+        valida 
+            sql 4 y 4.1
+
+        */
+
+        //////*******  Parametros *********////////////////////
+
+        /*
+        valida confirmacion
+        sql 5 y 5.1
+        */
+
+
+        if (mail_error != "")
     {
-        tmail_contact = DM.Main_rep("main_mail_contact", rep_id.ToString(), visible_sql);
+        tmail_contact = DM.Main_rep("main_mail_contact", rep_id.ToString(), visible_sql).tb;
         //proceso de envio de correo
         Console.WriteLine("************** SQL contactos **************");
         Console.WriteLine(util.Tdetalle(tmail_contact));
@@ -210,14 +226,14 @@ try
 
     //////*******  Parametros *********////////////////////
 
-    tnum_param = DM.Main_rep("main_num_param", rep_id.ToString(), visible_sql);
+    tnum_param = DM.Main_rep("main_num_param", rep_id.ToString(), visible_sql).tb;
 
     try { num_of_param = Convert.ToInt32(util.Tcampo(tnum_param, "NUM_OF_PARAM")); } catch (Exception) { }
     Console.WriteLine("Numero Parametros : " + num_of_param);
     util.arma_param("REP.PARAM_", num_of_param);
     Console.WriteLine("Parametros : " + util.arma_param("REP.PARAM_", num_of_param));
 
-    tdato_repor = DM.Main_rep("main_datos_rep", rep_id.ToString(), visible_sql, util.arma_param("REP.PARAM_", num_of_param));
+    tdato_repor = DM.Main_rep("main_datos_rep", rep_id.ToString(), visible_sql, util.arma_param("REP.PARAM_", num_of_param)).tb;
     Console.WriteLine("************** datos repore **************");
     Console.WriteLine(util.Tdetalle(tdato_repor));
     ///////////////////////////////////////

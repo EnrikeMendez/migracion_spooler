@@ -177,26 +177,35 @@ namespace serverreports
             Console.WriteLine(" zip creado");
         }
 
-        public void CrearZip2(string fileToAdd , string[] fileAdd_s, string path)
+        public void CrearZip2(string fileToAdd ,  string ruta,int contador)
         {
-            var outFileName   = Path.GetFileNameWithoutExtension(fileToAdd) + ".zip";
-            var fileNameToAdd = Path.Combine(path, "", fileToAdd);
-            var zipFileName   = Path.Combine(path, "", outFileName);
-            using (ZipArchive archive = ZipFile.Open(zipFileName, ZipArchiveMode.Create))
+            var zip   = Path.GetFileNameWithoutExtension(fileToAdd) + ".zip";
+            var add_arch = Path.Combine(ruta, "", fileToAdd);
+            var arch_zip   = Path.Combine(ruta, "", zip);
+            using (ZipArchive archive = ZipFile.Open(arch_zip, ZipArchiveMode.Create))
             {
-                for (int i = 0; i < fileAdd_s.Length; i++)
-                {
-                  //  using (ZipArchive archive = ZipFile.Open(zipFileName, ZipArchiveMode.update))
-                   // {
-                        archive.CreateEntryFromFile(fileAdd_s[i], Path.GetFileName(fileNameToAdd));
-                    //archive.CreateEntryFromFile(fileNameToAdd, Path.GetFileName(fileAdd_s[i]));
-                    //}
-                }
+                        archive.CreateEntryFromFile(fileToAdd, Path.GetFileName(add_arch));
             }
             Console.WriteLine(" zip creado");
         }
 
 
+        public void agregar_zip(string fileToAdd, string[] fileAdd_s, string ruta)
+        {
+            var outFileName = Path.GetFileNameWithoutExtension(fileToAdd) + ".zip";
+            var fileNameToAdd = Path.Combine(ruta, "", fileToAdd);
+            var zipFileName = Path.Combine(ruta, "", outFileName);
+            using (ZipArchive archive = ZipFile.Open(zipFileName, ZipArchiveMode.Create))
+            {
+                for (int i = 0; i < fileAdd_s.Length; i++)
+                {
+                    //  using (ZipArchive archive = ZipFile.Open(zipFileName, ZipArchiveMode.update))
+                    // {
+                  //  CrearZip2(fileToAdd, ruta);       
+                }
+            }
+            Console.WriteLine("zip creado");
+        }
 
     }
 

@@ -14,6 +14,7 @@ namespace serverreports
 
         public string transmision_edocs_bosch(string Carpeta, string file_name, string Clientes, string Fecha_1, string Fecha_2, string imp_exp, string tipo_doc, int visible_sql)
         {
+            int sw_error = 0;
             Utilerias util = new Utilerias();
             envio_correo correo = new envio_correo();
             DM DM = new DM();
@@ -23,12 +24,14 @@ namespace serverreports
             string[] tab_impexp;
 
             (string? codigo, string? msg, string? sql, DataTable? tb) datos_sp;
-            datos_sp.sql = "SC_DIST.SPG_RS_COEX.P_RS_TRANSMISION_COVE";
+            try
+            {
+                datos_sp.sql = "SC_DIST.SPG_RS_COEX.P_RS_TRANSMISION_COVE";
             if (imp_exp.Trim() == "1" || imp_exp.Trim() == "2")
             {
                 LisDT = new DataTable[1];
                 LisDT_tit = new string[1];
-                datos_sp = DM.datos_sp(datos_sp.sql, visible_sql, Clientes, Fecha_1, Fecha_2, imp_exp, tipo_doc, imp_exp);
+                datos_sp = DM.datos_sp([datos_sp.sql], visible_sql, Clientes, Fecha_1, Fecha_2, imp_exp, tipo_doc, imp_exp);
                 Console.WriteLine(" Mensaje store :" + datos_sp.msg);
                 Console.WriteLine(" Codigo store :" + datos_sp.codigo);
                 LisDT[0] = datos_sp.tb;
@@ -39,12 +42,12 @@ namespace serverreports
             {
                 LisDT = new DataTable[2];
                 LisDT_tit = new string[2];
-                datos_sp = DM.datos_sp(datos_sp.sql, visible_sql, Clientes, Fecha_1, Fecha_2, "null", tipo_doc, "2");
+                datos_sp = DM.datos_sp([datos_sp.sql], visible_sql, Clientes, Fecha_1, Fecha_2, "null", tipo_doc, "2");
                 LisDT[0] = datos_sp.tb;
                 LisDT_tit[0] = "Exportación";
                 Console.WriteLine(" Mensaje store :" + datos_sp.msg);
                 Console.WriteLine(" Codigo store :" + datos_sp.codigo);
-                datos_sp = DM.datos_sp(datos_sp.sql, visible_sql, Clientes, Fecha_1, Fecha_2, "null", tipo_doc, "1");
+                datos_sp = DM.datos_sp([datos_sp.sql], visible_sql, Clientes, Fecha_1, Fecha_2, "null", tipo_doc, "1");
                 LisDT[1] = datos_sp.tb;
                 LisDT_tit[1] = "Importación";
                 Console.WriteLine(" Mensaje store :" + datos_sp.msg);
@@ -53,7 +56,17 @@ namespace serverreports
                 
                 xlsx.CrearExcel_file(LisDT, LisDT_tit, Carpeta + file_name, 1);
             }
-            return "0";
+        }
+            catch (Exception ex1)
+            {
+                datos_sp.codigo = ex1.HResult.ToString();
+                datos_sp.msg = ex1.Message;
+                sw_error = 1;
+            }
+            if (sw_error == 1)
+                correo.msg_error("PORTEOS_TLN", datos_sp.codigo, datos_sp.msg);
+            LisDT[0].Clear();
+            return sw_error.ToString();
         }
 
         public string transmision_edocs_bosch2(string Carpeta, string file_name, string Clientes, string Fecha_1, string Fecha_2, string imp_exp, string tipo_doc, int visible_sql)

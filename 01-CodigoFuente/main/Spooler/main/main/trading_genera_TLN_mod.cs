@@ -22,7 +22,7 @@ namespace serverreports
             //LisDT[0] = DM.datos(DM.porteos_tln(cliente, Fecha_1, Fecha_2, empresa, idCron, 1));
             (string? codigo, string? msg, string? sql, DataTable? tb) datos_sp;
             datos_sp.sql = "SC_DIST.SPG_RS_COEX.P_RS_PORTEOS_TLN";
-            datos_sp = DM.datos_sp(datos_sp.sql, vs);
+            datos_sp = DM.datos_sp([datos_sp.sql], vs);
             Console.WriteLine(" Mensaje store :" + datos_sp.msg);
             Console.WriteLine(" Codigo store :" + datos_sp.codigo);
             LisDT_tit[0] = "Shipments";

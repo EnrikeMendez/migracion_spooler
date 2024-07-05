@@ -68,15 +68,18 @@ internal class DM
         return dtTemp;
     }
 
-    public (string, string, string, DataTable) datos_sp(string SQL, int? vs = 0, string? Cliente = null, string? Fecha_1 = null, string? Fecha_2 = null, string? impexp = null, string? tipo_doc = null, string? tp = null)
-  //public (string, string, string, DataTable) datos_sp(string SQL, int? vs = 0)
+    
+  
+   public (string, string, string, DataTable) datos_sp(string[] SQL, int? vs = 0, string? Cliente = null, string? Fecha_1 = null, string? Fecha_2 = null, string? impexp = null, string? tipo_doc = null, string? tp = null, string? id_cron = null, string? param_1 = null, string? Fecha = null, string? frecuencia = null)
+   //public (string, string, string, DataTable) datos_sp(string SQL, int? vs = 0, string? Cliente = null, string? Fecha_1 = null, string? Fecha_2 = null, string? impexp = null, string? tipo_doc = null, string? tp = null)
+    //public (string, string, string, DataTable) datos_sp(string SQL, int? vs = 0)
     {
         (string?, string?, string?, DataTable?) info;
         DataTable dtTemp = new DataTable();
         OracleConnection cnn = new OracleConnection(conecBD());
         info.Item1 = "999";
         info.Item2 = "error conexion";
-        info.Item3 = SQL;
+        info.Item3 = SQL[0];
         info.Item4 = dtTemp;
         try
         {
@@ -85,26 +88,46 @@ internal class DM
                 cnn.Open();
                 if ((cnn.State) > 0)
                 {
-                    OracleCommand cmd = new OracleCommand(SQL, cnn);
+                    OracleCommand cmd = new OracleCommand(SQL[0], cnn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     /*parametros de entrada*/
-                    if (Cliente  != null) cmd.Parameters.Add("p_Num_Cliente" , OracleDbType.Int32)   .Value = Convert.ToInt32(Cliente);
-                    if (Fecha_1  != null) cmd.Parameters.Add("p_Fecha_Inicio", OracleDbType.Varchar2).Value = Fecha_1;
-                    if (Fecha_2  != null) cmd.Parameters.Add("p_Fecha_Fin"   , OracleDbType.Varchar2).Value = Fecha_2;
+                    if (Cliente != null) cmd.Parameters.Add("p_Num_Cliente", OracleDbType.Int32).Value = Convert.ToInt32(Cliente);
+                    if (Fecha_1 != null) cmd.Parameters.Add("p_Fecha_Inicio", OracleDbType.Varchar2).Value = Fecha_1;
+                    if (Fecha_2 != null) cmd.Parameters.Add("p_Fecha_Fin", OracleDbType.Varchar2).Value = Fecha_2;
                     if (impexp != null)
                         if (impexp == "null")
                             cmd.Parameters.Add("p_Impexp", OracleDbType.Varchar2).Value = null;
                         else
                             cmd.Parameters.Add("p_Impexp", OracleDbType.Varchar2).Value = impexp;
-                    if (tipo_doc != null) cmd.Parameters.Add("p_Tipo_Doc"    , OracleDbType.Varchar2).Value = tipo_doc;
-                    if (tp       != null) cmd.Parameters.Add("p_Tipo_Op"     , OracleDbType.Varchar2).Value = tp;
+                    if (tipo_doc != null) cmd.Parameters.Add("p_Tipo_Doc", OracleDbType.Varchar2).Value = tipo_doc;
+                    if (tp != null) cmd.Parameters.Add("p_Tipo_Op", OracleDbType.Varchar2).Value = tp;
+                    if (frecuencia != null) cmd.Parameters.Add("p_Frecuencia", OracleDbType.Int32).Value = Convert.ToInt32(frecuencia);
+                    if (id_cron != null) cmd.Parameters.Add("p_Reporte_Id", OracleDbType.Int32).Value = Convert.ToInt32(id_cron);
+                    if (param_1 != null) cmd.Parameters.Add("p_Parametro1", OracleDbType.Varchar2).Value = param_1;
+                    if (Fecha != null) cmd.Parameters.Add("p_Fecha", OracleDbType.Varchar2).Value = Fecha;
                     /*parametros de salidad*/
-                    cmd.Parameters.Add(new OracleParameter("cursor", OracleDbType.RefCursor      )).Direction = ParameterDirection.Output;
-                    cmd.Parameters.Add(new OracleParameter("msg",    OracleDbType.NVarchar2, 4000)).Direction = ParameterDirection.Output;
-                    cmd.Parameters.Add(new OracleParameter("codigo", OracleDbType.Int64          )).Direction = ParameterDirection.Output;
-
-                    OracleDataAdapter da1 = new OracleDataAdapter(cmd);
-                    da1.Fill(dtTemp);
+                    if (SQL.Length > 1)                    {
+                        string campo_out = "p_Dia_Libre";
+                        if (frecuencia != null)
+                            cmd.Parameters.Add("p_Dia_Libre", OracleDbType.Int32).Direction = ParameterDirection.Output;
+                        else
+                        {
+                            cmd.Parameters.Add("p_Next_Fecha", OracleDbType.Varchar2).Direction = ParameterDirection.Output;
+                            campo_out = "p_Next_Fecha";
+                        }
+                        cmd.Parameters.Add(new OracleParameter("msg", OracleDbType.NVarchar2, 4000)).Direction = ParameterDirection.Output;
+                        cmd.Parameters.Add(new OracleParameter("codigo", OracleDbType.Int64)).Direction = ParameterDirection.Output;
+                        OracleDataReader reader = cmd.ExecuteReader();
+                        info.Item3 = cmd.Parameters[campo_out].Value.ToString();
+                    }
+                    else
+                    {
+                        cmd.Parameters.Add(new OracleParameter("cursor", OracleDbType.RefCursor)).Direction = ParameterDirection.Output;
+                        cmd.Parameters.Add(new OracleParameter("msg", OracleDbType.NVarchar2, 4000)).Direction = ParameterDirection.Output;
+                        cmd.Parameters.Add(new OracleParameter("codigo", OracleDbType.Int64)).Direction = ParameterDirection.Output;
+                        OracleDataAdapter da1 = new OracleDataAdapter(cmd);
+                        da1.Fill(dtTemp);
+                    }
                     info.Item1 = cmd.Parameters["codigo"].Value.ToString();
                     info.Item2 = cmd.Parameters["msg"].Value.ToString();
                     info.Item4 = dtTemp;
@@ -113,7 +136,7 @@ internal class DM
         }
         catch (Exception ex)
         {
-           if (ex.HResult == -2147467261)
+            if (ex.HResult == -2147467261)
                 info.Item2 = "No Existe la carpeta UserScrets " + ex.HResult;
 
             info.Item1 = ex.HResult.ToString();
@@ -146,7 +169,78 @@ internal class DM
         }
         return orfeo;
     }
-    public DataTable Main_rep(string nom_proc, string id_cron, int? vs = 0, string? addsq = "")
+    public (DataTable tb, string val) Main_rep(string nom_proc, string id_cron, int? vs, string? addsq = "", string? cliente = null, string? fecha = null)
+    {
+        DataTable dtTemp1 = new DataTable();
+        (DataTable tb, string val) dtTemp;
+        dtTemp.tb = dtTemp1;
+        dtTemp.val = "";
+        int sw_error = 0;
+        (string? codigo, string? msg, string? sql, DataTable? tb) datos_spr;
+        datos_spr.codigo = "";
+        datos_spr.msg = "";
+        datos_spr.sql = "NA";
+        try
+        {
+            switch (nom_proc)
+            {
+                case "main_rp_cron":
+                    datos_spr.sql = "SC_DIST.SPG_RS_COEX.P_OBTEN_DATOS_REPORTE_1 ";
+                    datos_spr = datos_sp([datos_spr.sql], vs, null, null, null, null, null, null, id_cron.ToString(), addsq);
+                    dtTemp.tb = datos_spr.tb;
+                    break;
+                case "main_mail_contact":
+                    datos_spr.sql = "SC_DIST.SPG_RS_COEX.P_OBTEN_DATOS_CORREO ";
+                    datos_spr = datos_sp([datos_spr.sql], vs, null, null, null, null, null, null, id_cron.ToString());
+                    dtTemp.tb = datos_spr.tb;
+                    break;
+                case "main_num_param":
+                    dtTemp.Item1 = datos(main_num_param(id_cron.ToString(), vs));
+                    break;
+                case "confirmacion2":
+                    datos_spr.sql = " SC_DIST.SPG_RS_COEX.P_VALIDA_CONFIRMACION_2";
+                    datos_spr = datos_sp([datos_spr.sql], vs, null, null, null, null, null, null, id_cron, null, null, fecha);
+                    dtTemp.tb = datos_spr.tb;
+                    break;
+                case "main_datos_rep":
+                    datos_spr.sql = "SC_DIST.SPG_RS_COEX.P_OBTEN_DATOS_REPORTE_2";
+                    datos_spr = datos_sp([datos_spr.sql], vs, null, null, null, null, null, null, id_cron.ToString());
+                    dtTemp.tb = datos_spr.tb;
+                    break;
+                case "rep_dias_libres":
+                    datos_spr.sql = "SC_DIST.SPG_RS_COEX.P_VALIDA_DIA_LIBRE";
+                    datos_spr = datos_sp([datos_spr.sql, "1"], vs, cliente, null, null, null, null, null, null, null, fecha);
+                    dtTemp.val = datos_spr.sql;
+
+                    break;
+                case "confirmacion4":
+                    datos_spr.sql = "SC_DIST.SPG_RS_COEX.P_VALIDA_CONFIRMACION_4";
+                    datos_spr = datos_sp([datos_spr.sql, "1"], vs, null, null, null, null, null, null, id_cron, null, null, fecha);
+                    dtTemp.val = datos_spr.sql;
+                    break;
+            }
+
+            if ((dtTemp.tb.Rows.Count <= 0) || (datos_spr.codigo != "1"))
+            {
+                if (datos_spr.codigo == "1")
+                    datos_spr.msg = "No hay registros en la consulta :" + datos_spr.sql;
+                sw_error = 1;
+            }
+        }
+        catch (Exception ex1)
+        {
+            datos_spr.codigo = ex1.HResult.ToString();
+            datos_spr.msg = ex1.Message;
+            sw_error = 1;
+        }
+
+        if (sw_error == 1)
+            Console.WriteLine("main " + datos_spr.codigo + " " + datos_spr.msg + " " + datos_spr.sql);
+        return dtTemp;
+    }
+
+
+    public DataTable Main_rep_ant(string nom_proc, string id_cron, int? vs = 0, string? addsq = "")
     {
         DataTable dtTemp = new DataTable();
         switch (nom_proc)
