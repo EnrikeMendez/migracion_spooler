@@ -55,7 +55,8 @@ namespace serverreports
                 string[] arh = new string[2];
                 
                 xlsx.CrearExcel_file(LisDT, LisDT_tit, Carpeta + file_name, 1);
-            }
+               correo.send_mail("Report: < Logis transmision_edocs_bosch > Envio ok", [], "proceso correcto", [Carpeta + "\\" + file_name + ".xlsx"]);
+                }
         }
             catch (Exception ex1)
             {
@@ -64,7 +65,7 @@ namespace serverreports
                 sw_error = 1;
             }
             if (sw_error == 1)
-                correo.msg_error("PORTEOS_TLN", datos_sp.codigo, datos_sp.msg);
+                correo.msg_error("edocs_bosch", datos_sp.codigo, datos_sp.msg);
             LisDT[0].Clear();
             return sw_error.ToString();
         }

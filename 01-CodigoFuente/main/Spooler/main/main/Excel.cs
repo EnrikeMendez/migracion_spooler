@@ -78,6 +78,16 @@ namespace serverreports
             sl.SetCellValue("B4", "South");
             sl.SetCellValue("B5", "East");
             sl.SetCellValue("B6", "West");
+
+            sl.SetCellValue("C7", "Enero");
+            sl.SetCellValue("D7", "Febrero");
+            sl.SetCellValue("E7", "Marzo");
+            sl.SetCellValue("F7", "Abril");
+            sl.SetCellValue("C8", 10);
+            sl.SetCellValue("D8", 43);
+            sl.SetCellValue("E8", 23);
+            sl.SetCellValue("F8", 98);
+
             Random rand = new Random();
             for (int i = 3; i <= 6; ++i)
             {
@@ -127,6 +137,36 @@ namespace serverreports
             chart.SetChartPosition(16, 9, 16 + fChartHeight, 9 + fChartWidth);
             sl.InsertChart(chart);
             */
+
+
+            /*
+            chart = sl.CreateChart("B2", "G6");
+            chart.SetChartType(SLPieChartType.Pie);
+            chart.SetChartPosition(1, 9, 1 + fChartHeight, 9 + fChartWidth);
+            sl.InsertChart(chart);
+
+            chart = sl.CreateChart("B2", "G6");
+            chart.SetChartType(SLPieChartType.PieOfPie);
+            chart.SetChartStyle(SLChartStyle.Style24);
+            chart.SetChartPosition(7, 1, 7 + fChartHeight, 1 + fChartWidth);
+            sl.InsertChart(chart);
+            */
+            chart = sl.CreateChart("B7", "F8");
+            //chart = sl.CreateChart(2, 3, 3, 6);
+            chart.SetChartType(SLPieChartType.ExplodedPie3D);
+            chart.SetChartStyle(SLChartStyle.Style10);
+            chart.SetChartPosition(16, 9, 16 + fChartHeight, 9 + fChartWidth);
+     
+            sl.InsertChart(chart);
+
+
+
+
+
+
+
+
+
             sl.SaveAs("Grafica.xlsx");           
             Console.WriteLine("Grafica");
         }

@@ -165,16 +165,21 @@ namespace serverreports
             return arc_nom;
         }
 
-        public void CrearZip(string? fileToAdd= "C:\\pc\\file.xlsx", string? path= "C:\\pc")
+        public void CrearZip(string fileToAdd, string nombre, string ruta, int add)
         {
-            var outFileName = Path.GetFileNameWithoutExtension(fileToAdd) + ".zip";
-            var fileNameToAdd = Path.Combine(path,"" , fileToAdd);
-            var zipFileName = Path.Combine(path, "", outFileName);
-            using (ZipArchive archive = ZipFile.Open(zipFileName, ZipArchiveMode.Create))
+            var outFileName = Path.GetFileNameWithoutExtension(nombre) + ".zip";
+            var fileNameToAdd = Path.Combine(ruta, "data", fileToAdd);
+            var zipFileName = Path.Combine(ruta, "", outFileName);
+            if (add == 0)
             {
-                archive.CreateEntryFromFile(fileNameToAdd, Path.GetFileName(fileNameToAdd));
+                using (ZipArchive archive = ZipFile.Open(zipFileName, ZipArchiveMode.Create))
+                      archive.CreateEntryFromFile(fileNameToAdd, Path.GetFileName(fileNameToAdd));
             }
-            Console.WriteLine(" zip creado");
+            if (add > 0)
+            {
+                using (ZipArchive archive = ZipFile.Open(zipFileName, ZipArchiveMode.Update))
+                       archive.CreateEntryFromFile(fileNameToAdd, Path.GetFileName(fileNameToAdd));           
+            }
         }
 
         public void CrearZip2(string fileToAdd ,  string ruta,int contador)
@@ -184,28 +189,28 @@ namespace serverreports
             var arch_zip   = Path.Combine(ruta, "", zip);
             using (ZipArchive archive = ZipFile.Open(arch_zip, ZipArchiveMode.Create))
             {
-                        archive.CreateEntryFromFile(fileToAdd, Path.GetFileName(add_arch));
+               archive.CreateEntryFromFile(fileToAdd, Path.GetFileName(add_arch));
             }
             Console.WriteLine(" zip creado");
         }
 
 
-        public void agregar_zip(string fileToAdd, string[] fileAdd_s, string ruta)
+        public void agregar_zip(string[] arch, string nombre, string ruta)
         {
-            var outFileName = Path.GetFileNameWithoutExtension(fileToAdd) + ".zip";
-            var fileNameToAdd = Path.Combine(ruta, "", fileToAdd);
-            var zipFileName = Path.Combine(ruta, "", outFileName);
-            using (ZipArchive archive = ZipFile.Open(zipFileName, ZipArchiveMode.Create))
+            try
             {
-                for (int i = 0; i < fileAdd_s.Length; i++)
+                for (int i = 0; i < arch.Length; i++)
                 {
-                    //  using (ZipArchive archive = ZipFile.Open(zipFileName, ZipArchiveMode.update))
-                    // {
-                  //  CrearZip2(fileToAdd, ruta);       
+                    CrearZip(arch[i], nombre, ruta, i);
                 }
             }
-            Console.WriteLine("zip creado");
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message + " error No. " + e.HResult);
+                //Console.WriteLine("Error archivo " + nombre + ".zip existe en ruta " + ruta + " error No. " + e.HResult);
+            }
         }
+
 
     }
 

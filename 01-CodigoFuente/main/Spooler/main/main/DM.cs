@@ -68,9 +68,83 @@ internal class DM
         return dtTemp;
     }
 
-    
-  
-   public (string, string, string, DataTable) datos_sp(string[] SQL, int? vs = 0, string? Cliente = null, string? Fecha_1 = null, string? Fecha_2 = null, string? impexp = null, string? tipo_doc = null, string? tp = null, string? id_cron = null, string? param_1 = null, string? Fecha = null, string? frecuencia = null)
+
+    public (string, string, string, DataTable) datos_spArray(string[] SQL, string[,] rstore, int? vs = 0)
+    //public (string, string, string, DataTable) datos_sp(string SQL, int? vs = 0, string? Cliente = null, string? Fecha_1 = null, string? Fecha_2 = null, string? impexp = null, string? tipo_doc = null, string? tp = null)
+    //public (string, string, string, DataTable) datos_sp(string SQL, int? vs = 0)
+    {
+        (string?, string?, string?, DataTable?) info;
+        DataTable dtTemp = new DataTable();
+        OracleConnection cnn = new OracleConnection(conecBD());
+        info.Item1 = "999";
+        info.Item2 = "error conexion";
+        info.Item3 = SQL[0];
+        info.Item4 = dtTemp;
+        int sw_cur = 0;
+        string campo_out = "";       
+        try
+        {
+            using (cnn)
+            {
+                cnn.Open();
+                if ((cnn.State) > 0)
+                {
+                    OracleCommand cmd = new OracleCommand(SQL[0], cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    for (int a = 0; a <= rstore.Rank; a++)
+                    {
+                        for (int x = 0; x <= rstore.GetLength(a); x++)
+                        {
+                            Console.WriteLine(" array"+ rstore[a, x] + "valor a "+ a.ToString() + "  valor x"+ x.ToString());
+                            if (rstore[a, x] == "i")
+                            {
+
+                                switch (rstore[a, x])
+                                {
+       
+                                    case "i":
+                                            cmd.Parameters.Add(rstore[a, x], OracleDbType.Int32).Value = Convert.ToInt32(rstore[a, x]);
+                                        break;
+                                    case "v":
+
+                                            cmd.Parameters.Add(rstore[a, x], OracleDbType.Varchar2).Value = rstore[a, x];
+                                        break;
+                                }
+                            }
+                            
+                        }
+                        if (sw_cur == 0)
+                        {
+                            OracleDataReader reader = cmd.ExecuteReader();
+                            info.Item3 = cmd.Parameters[campo_out].Value.ToString();
+                        }
+                        else
+                        {
+                            OracleDataAdapter da1 = new OracleDataAdapter(cmd);
+                            da1.Fill(dtTemp);
+                        }
+                        //info.Item1 = cmd.Parameters["codigo"].Value.ToString();
+                        //info.Item2 = cmd.Parameters["msg"].Value.ToString();
+                        info.Item4 = dtTemp;
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            if (ex.HResult == -2147467261)
+                info.Item2 = "No Existe la carpeta UserScrets " + ex.HResult;
+
+            info.Item1 = ex.HResult.ToString();
+            info.Item2 = info.Item2 + " " + ex.Message + " : " + info.Item3;
+            info.Item4 = dtTemp;
+        }
+        if (vs == 1) { Console.WriteLine(SQL + "\n"); }
+        return info;
+    }
+
+
+    public (string, string, string, DataTable) datos_sp(string[] SQL, int? vs = 0, string? Cliente = null, string? Fecha_1 = null, string? Fecha_2 = null, string? impexp = null, string? tipo_doc = null, string? tp = null, string? id_cron = null, string? param_1 = null, string? Fecha = null, string? frecuencia = null)
    //public (string, string, string, DataTable) datos_sp(string SQL, int? vs = 0, string? Cliente = null, string? Fecha_1 = null, string? Fecha_2 = null, string? impexp = null, string? tipo_doc = null, string? tp = null)
     //public (string, string, string, DataTable) datos_sp(string SQL, int? vs = 0)
     {

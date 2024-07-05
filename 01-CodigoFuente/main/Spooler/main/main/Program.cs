@@ -92,8 +92,8 @@ try
         //   util.CrearZip();
         // util.CrearZip2("C:\\pc\\file2.xlsx", ["C:\\pc\\file.xlsx", "C:\\pc\\prueba_adj.txt"], "C:\\pc");
        // Excel xlsx = new Excel();
-        //xlsx.grafica();
-        //Environment.Exit(0);
+       // xlsx.grafica();
+       // Environment.Exit(0);
 
         //trep_cron = DM.main_rp_cron(id_cron.ToString(),0);
         /* por definir
