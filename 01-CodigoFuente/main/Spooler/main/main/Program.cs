@@ -330,7 +330,8 @@ try
 }
  else
     Console.WriteLine("Error es necesario especifica los parametros \n 1. Falta numero reporte: ''{0}'' \n 2. valor tipo de reporte: {1} " + msg, rep_id, reporte_temporal);
-
+    envio_correo correo = new envio_correo();
+    Console.WriteLine(correo.display_mail1(servidor, "reporte_prueba"));
  Console.WriteLine("Oprimar cualquier tecla para terminar");
  trep_cron.Clear();
  tdato_repor.Clear();

@@ -81,7 +81,8 @@ internal class DM
         info.Item3 = SQL[0];
         info.Item4 = dtTemp;
         int sw_cur = 0;
-        string campo_out = "";       
+        //string campo_out = "";
+
         try
         {
             using (cnn)
@@ -93,40 +94,42 @@ internal class DM
                     cmd.CommandType = CommandType.StoredProcedure;
                     for (int a = 0; a <= rstore.Rank; a++)
                     {
-                        for (int x = 0; x <= rstore.GetLength(a); x++)
+                        if (rstore[a, 0] == "i")
                         {
-                            Console.WriteLine(" array"+ rstore[a, x] + "valor a "+ a.ToString() + "  valor x"+ x.ToString());
-                            if (rstore[a, x] == "i")
+                            switch (rstore[a, 1])
                             {
-
-                                switch (rstore[a, x])
-                                {
-       
-                                    case "i":
-                                            cmd.Parameters.Add(rstore[a, x], OracleDbType.Int32).Value = Convert.ToInt32(rstore[a, x]);
-                                        break;
-                                    case "v":
-
-                                            cmd.Parameters.Add(rstore[a, x], OracleDbType.Varchar2).Value = rstore[a, x];
-                                        break;
-                                }
+                                case "i":
+                                        cmd.Parameters.Add(rstore[a, 2], OracleDbType.Int32).Value = Convert.ToInt32(rstore[a, 3]);
+                                    break;
+                                case "v":
+                                        cmd.Parameters.Add(rstore[a, 2], OracleDbType.Varchar2).Value = rstore[a, 3];
+                                    break;
                             }
-                            
-                        }
-                        if (sw_cur == 0)
-                        {
-                            OracleDataReader reader = cmd.ExecuteReader();
-                            info.Item3 = cmd.Parameters[campo_out].Value.ToString();
                         }
                         else
                         {
-                            OracleDataAdapter da1 = new OracleDataAdapter(cmd);
-                            da1.Fill(dtTemp);
+                            switch (rstore[a, 1])
+                            {
+                                case "c":
+                                    cmd.Parameters.Add(new OracleParameter(rstore[a, 2], OracleDbType.RefCursor)).Direction = ParameterDirection.Output;
+                                    sw_cur = 1;
+                                    break;
+                                case "v":
+                                    cmd.Parameters.Add(new OracleParameter(rstore[a, 2], OracleDbType.NVarchar2, 4000)).Direction = ParameterDirection.Output;
+                                    break;
+                                case "i":
+                                    cmd.Parameters.Add(new OracleParameter(rstore[a, 2], OracleDbType.Int64)).Direction = ParameterDirection.Output;
+                                    break;
+                            }
                         }
-                        //info.Item1 = cmd.Parameters["codigo"].Value.ToString();
-                        //info.Item2 = cmd.Parameters["msg"].Value.ToString();
-                        info.Item4 = dtTemp;
-                    }
+
+                    }      
+                    OracleDataAdapter da1 = new OracleDataAdapter(cmd);
+                    da1.Fill(dtTemp);
+                    info.Item1 = cmd.Parameters["p_Codigo_Error"].Value.ToString();
+                    info.Item2 = cmd.Parameters["p_Mensaje"].Value.ToString();
+                    info.Item4 = dtTemp;
+
                 }
             }
         }
