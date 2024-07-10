@@ -50,6 +50,8 @@ string servidor = "";
 string param_string = "";
 string dest_mail = "";
 string MiComando = "";
+string fecha_1_intervalo = "";
+string[,] parins = new string[9, 2];
 try
 {
 
@@ -283,6 +285,7 @@ try
 
     //servidor = "http://" & Trim(Split(Get_IP(), "-")(0))
     servidor = "http://" + Get_IP;
+ 
     Console.WriteLine("valor servidor:" + servidor);
   //  Carpeta = "C:\\Users\\usuario\\Desktop\\Raul\\prueba";
 
@@ -292,7 +295,8 @@ try
     }
     //servidor = "http://" & Trim(Split(Get_IP(), "-")(0))
     servidor = "http://" + Get_IP;
-    Console.WriteLine("valor servidor:" + servidor);
+        servidor = "http://www.logiscomercioexterior.com.mx";
+        Console.WriteLine("valor servidor:" + servidor);
    // Carpeta = "C:\\Users\\usuario\\Desktop\\Raul\\prueba1";
     if (!Directory.Exists(Carpeta))
     {
@@ -300,17 +304,35 @@ try
         Console.WriteLine("carpeta creada :" + Carpeta);
     }
     else Console.WriteLine("La carpeta existe.."+Carpeta);
-  
-    //web_transmision_edocs_bosch edocs_bosch = new web_transmision_edocs_bosch();
-    //edocs_bosch.transmision_edocs_bosch(Carpeta, tab_archivos[0], util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), visible_sql);
-    // Console.WriteLine(DM.transmision_edocs_bosch("18975", "04/01/2024", "04/30/2024", "", "E", "1"));
-    
-    //Console.WriteLine(DM.trading_genera_GSK(tab_archivos[0], FECHA_1, FECHA_2, "", rep_id, 1));
-    //trading_genera_GSK_mod trading_genera_GSK = new trading_genera_GSK_mod();
-    //Console.WriteLine(trading_genera_GSK.trading_genera_GSK(Carpeta, tab_archivos[0], util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id,visible_sql));
-    //Console.WriteLine(trading_genera_GSK.trading_genera_GSK(Carpeta, "gsk_pedimientos", "20501,20502"                                , FECHA_1, FECHA_2, ""                                           , 3723307, visible_sql));
 
-    switch (MiComando)
+        parins[0, 0] = "DEST_MAIL";
+        parins[0, 1] = dest_mail;
+        parins[1, 0] = "Carpeta";
+        parins[1, 1] = util.nvl(util.Tcampo(tdato_repor, "CARPETA"));
+        parins[2, 0] = "param_string";
+        parins[2, 1] = param_string;
+        parins[3, 0] = "days_deleted";
+        parins[3, 1] = days_deleted.ToString();
+        parins[4, 0] = "SUBCARPETA";
+        parins[4, 1] = util.nvl(util.Tcampo(tdato_repor, "SUBCARPETA"));
+        parins[5, 0] = "id_Reporte";
+        parins[5, 1] = id_Reporte.ToString();
+        parins[6, 0] = "FECHA_1";
+        parins[6, 1] = FECHA_1;
+        parins[7, 0] = "FECHA_2";
+        parins[7, 1] = FECHA_2;
+        parins[8, 0] = "fecha_1_intervalo";
+        parins[8, 1] = fecha_1_intervalo;
+        //web_transmision_edocs_bosch edocs_bosch = new web_transmision_edocs_bosch();
+        //edocs_bosch.transmision_edocs_bosch(Carpeta, tab_archivos[0], util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), visible_sql);
+        // Console.WriteLine(DM.transmision_edocs_bosch("18975", "04/01/2024", "04/30/2024", "", "E", "1"));
+
+        //Console.WriteLine(DM.trading_genera_GSK(tab_archivos[0], FECHA_1, FECHA_2, "", rep_id, 1));
+        //trading_genera_GSK_mod trading_genera_GSK = new trading_genera_GSK_mod();
+        //Console.WriteLine(trading_genera_GSK.trading_genera_GSK(Carpeta, tab_archivos[0], util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id,visible_sql));
+        //Console.WriteLine(trading_genera_GSK.trading_genera_GSK(Carpeta, "gsk_pedimientos", "20501,20502"                                , FECHA_1, FECHA_2, ""                                           , 3723307, visible_sql));
+
+        switch (MiComando)
     {
         case "transmision_edocs_bosch":
              web_transmision_edocs_bosch edocs_bosch = new web_transmision_edocs_bosch();
@@ -324,9 +346,8 @@ try
         case "porteos_tln":
              // 6651805
              trading_genera_TLN_mod trading_genera_TLN = new trading_genera_TLN_mod();
-             trading_genera_TLN.trading_genera_TLN(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id,servidor, visible_sql);
+             trading_genera_TLN.trading_genera_TLN(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id, servidor, visible_sql, parins);
              break;
-
         }
 
 }

@@ -97,15 +97,14 @@ internal class DM
                     {
                         if (rstore[a, 0] == "i")
                         {
-                            string para = rstore[a, 3];
                             switch (rstore[a, 1])
                             {
                                 case "i":
-                                    
-                                        cmd.Parameters.Add(rstore[a, 2], OracleDbType.Int32).Value = Convert.ToInt32(para);
+
+                                        cmd.Parameters.Add(rstore[a, 2], OracleDbType.Int32).Value = Convert.ToInt32(rstore[a, 3]);
                                     break;
                                 case "v":
-                                        cmd.Parameters.Add(rstore[a, 2], OracleDbType.Varchar2).Value = para;
+                                        cmd.Parameters.Add(rstore[a, 2], OracleDbType.Varchar2).Value = rstore[a, 3];
                                     break;
                             }
                         }
@@ -126,9 +125,9 @@ internal class DM
                                     if (rstore[a, 3] == "cod") campo_err = rstore[a, 2];
                                     break;
                             }
+                            if ((SQL.Length > 1) && (rstore[a, 3] == "o"))
+                                campo_out = rstore[a, 2];
                         }
-                        if ((SQL.Length > 1) && (rstore[a, 3] == "o"))
-                            campo_out = rstore[a, 2];
                     }
                     if (sw_cur == 0)
                     {

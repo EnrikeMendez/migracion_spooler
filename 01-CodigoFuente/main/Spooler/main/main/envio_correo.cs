@@ -47,6 +47,7 @@ namespace serverreports
             {
                 correo.From = new MailAddress(dat_mail[0]);
                 correo.Subject = asunto;
+                correo.IsBodyHtml = true;
                 correo.Body = mensaje;
                 if (contact.Length > 0)
                     for (int i = 0; i < contact.Length; i++)
@@ -133,6 +134,9 @@ namespace serverreports
 
         public string display_mail(string servidor, string warning_message, string nombre_reporte, string[,] tab_archivos, int days_deleted, string? adittional_info = "")
         {
+            int Zip = 0;
+            int Pdf = 0;
+            int Excel = 0;
             string display_mail = "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n"
             + "<html>\n"
             + "<head>\n"
@@ -190,7 +194,7 @@ namespace serverreports
             + "    <FONT SIZE=\"2\" FACE=\"Arial,Helvetica\" COLOR=\"#000000\">\n"
             + "    <IMG SRC=\"" + servidor + "/images/pixel.gif\" WIDTH=\"1\" HEIGHT=\"5\" alt=\"\">\n"
             + "    <br>\n"
-            + "    <IMG SRC=\"" + servidor + "/images/pixel.gif\" WIDTH=\"20\" HEIGHT=\"20\" alt=\"\"><IMG SRC=\"" + servidor + "/images/pointeurgris.gif\" alt=\"\">&nbsp;<B>Report Name :</B> " + nombre_reporte + "\n"
+            + "    <IMG SRC=\"" + servidor + "/images/pixel.gif\" WIDTH=\"20\" HEIGHT=\"20\" alt=\"\"><IMG SRC=\"" + servidor + "/images/pointeurgris.gif\" alt=\"\">&nbsp;<B>Report Name :</B> " + tab_archivos[1, 0] + "\n"
             + "    <br>\n"
             + "    <IMG SRC=\"" + servidor + "/images/pixel.gif\" WIDTH=\"20\" HEIGHT=\"20\" alt=\"\"><IMG SRC=\"" + servidor + "/images/pointeurgris.gif\" alt=\"\">&nbsp;<B>Date :</B> " + DateTime.Now.ToString("dd/MM/yyyy H: mm") + "\n"
             + "    <br>\n";
@@ -198,7 +202,7 @@ namespace serverreports
             for (int i = 0; i < tab_archivos.Rank - 1; i++)
 
             {
-                display_mail = display_mail + "    <IMG SRC=\"" + servidor + " /images/pixel.gif\" WIDTH =\"20\" HEIGHT =\"20\" alt =\"\" ><IMG SRC=\"" + servidor + " /images/pointeurgris.gif\" alt =\"\" > &nbsp;<B>Reporte :</B> " + tab_archivos[2, i] + "\n"
+                display_mail = display_mail + "    <IMG SRC=\"" + servidor + " /images/pixel.gif\" WIDTH =\"20\" HEIGHT =\"20\" alt =\"\" ><IMG SRC=\"" + servidor + " /images/pointeurgris.gif\" alt =\"\" > &nbsp;<B>Reporte :</B> " + tab_archivos[1, 0] + "\n"
                                                + " <br>\n";
                 if (tab_archivos[0, i] != "")
                 {
@@ -207,11 +211,12 @@ namespace serverreports
                     string ext = tab_archivos[0, i].Substring(tab_archivos[0, i].Length - 3, 3);
                     string ext1 = tab_archivos[4, i];
                     string ext2 = tab_archivos[2, i];
-                    if ((util.nvl(tab_archivos[4, i]) != "1") || (tab_archivos[2, i].IndexOf("MB") == 0))
+                    string ext5 = tab_archivos[5, i];
+                    if ((util.nvl(ext1) != "1") || (ext2.IndexOf("MB") == 0))
                     {
                         display_mail = display_mail + "    <IMG SRC=\"" + servidor + " /images/pixel.gif\" WIDTH =\"40\" HEIGHT =\"1\" alt =\"\" > " + "\n"
                                                     + "    <a href=\"" + servidor + " /download.asp?id=" + cve + "\" > " + "\n";
-                        int Excel = 0;
+
                         switch (ext)
                         {
                             case "lsx":
@@ -227,6 +232,7 @@ namespace serverreports
                                 break;
                             case "pdf":
                                 img = "pdf.gif pdf";
+                                Pdf = 1;
                                 //       display_mail = display_mail + "    <IMG SRC=\"" + servidor + " /images/pdf.gif\" align =\"bottom\" alt =\"excel\" border =\"0\" ></a>" + "\n"
                                 //             + "    &nbsp;- <a href=\"" + servidor + " /download.asp?id=" + cve + "\" class=\"link\" > pdf</a> (" + tab_archivos[2, i] + ")" + "\n";
                                 break;
@@ -242,6 +248,7 @@ namespace serverreports
                                 break;
                             case "zip":
                                 img = "winzip2.gif zip";
+                                Zip = 1;
                                 //       display_mail = display_mail + "    <IMG SRC=\"" + servidor + " /images/winzip2.gif\" align =\"bottom\" alt =\"excel\" border =\"0\" ></a>" + "\n"
                                 //            + "    &nbsp;- <a href=\"" + servidor + " /download.asp?id=" + cve + "\" class=\"link\" > zip</a> (" + tab_archivos[2, i] + ")" + "\n";
                                 break;
@@ -253,22 +260,25 @@ namespace serverreports
 
                     }
                     string[] par1 = img.Split(" ");
-                    if (par1.Length > 0)
+                    if (par1.Length > 1)
                         display_mail = display_mail + "    <IMG SRC=\"" + servidor + " /images/" + par1[0] + "\" align =\"bottom\" alt =\"" + par1[1] + "\" border =\"0\" ></a>" + "\n"
-                             + "    &nbsp;- <a href=\"" + servidor + " /download.asp?id=" + cve + "\" class=\"link\" > " + par1[1] + "</a> (" + tab_archivos[2, i] + ")" + "\n";
+                             //+ "    &nbsp;- <a href=\"" + servidor + " /download.asp?id=" + cve + "\" class=\"link\" > " + par1[1] + "</a> (" + tab_archivos[2, i] + ")" + "\n";
+                             + "    &nbsp;- <a href=\"" + servidor + " /download.asp?id=" + cve + "\" class=\"link\" > " + par1[1] + "</a> (" + ext2 + ")" + "\n";
                     else
-                        display_mail = display_mail + "    <a href=\"" + servidor + " /download.asp?id=" + cve + "\" class=\"link\" > download</a> (" + tab_archivos[2, i] + ")" + "\n";
+                        //display_mail = display_mail + "    <a href=\"" + servidor + " /download.asp?id=" + cve + "\" class=\"link\" > download</a> (" + tab_archivos[2, i] + ")" + "\n";
+                        display_mail = display_mail + "    <a href=\"" + servidor + " /download.asp?id=" + cve + "\" class=\"link\" > download</a> (" + ext2 + ")" + "\n";
 
-                    if ((util.nvl(tab_archivos[4, i])) == "1")
+                    if ((util.nvl(ext1)) == "1")
                     {
                         display_mail = display_mail + "    <IMG SRC=\"" + servidor + " /images/pixel.gif\" WIDTH =\"40\" HEIGHT =\"1\" alt =\"\" > " + "\n"
                           + "  <a href=\"" + servidor + " /download.asp?id=" + cve + "&zip=1" + "\" > " + "\n"
                           + "  <IMG SRC=\"" + servidor + " /images/winzip2.gif\" align =\"bottom\" alt =\"zip\" border =\"0\" ></a>" + "\n"
-                          + "   &nbsp;- <a href=\"" + servidor + " /download.asp?id=" + cve + "&zip=1" + "\" class=\"link\" > Zip</a> (" + tab_archivos[5, i] + ")" + "\n";
+                          + "   &nbsp;- <a href=\"" + servidor + " /download.asp?id=" + cve + "&zip=1" + "\" class=\"link\" > Zip</a> (" + ext5 + ")" + "\n";
                     }
                     display_mail = display_mail + "    <br><IMG SRC=\"" + servidor + "/images/pixel.gif\" WIDTH=\"40\" HEIGHT=\"10\" alt=\"\"><IMG SRC=\"" + servidor + "/images/pointeurgris.gif\" alt=\"\">&nbsp;Direct Link :" + "\n"
                                   + "    <br>" + "\n";
-                    if ((util.nvl(tab_archivos[4, i]) != "1") || (tab_archivos[2, i].IndexOf("MB") == 0))
+                    if ((util.nvl(ext1) != "1") || (ext2.IndexOf("MB") == 0))
+                        //if ((util.nvl(tab_archivos[4, i]) != "1") || (tab_archivos[2, i].IndexOf("MB") == 0))
                         display_mail = display_mail + "    <IMG SRC=\"" + servidor + "/images/pixel.gif\" WIDTH=\"40\" HEIGHT=\"1\" alt=\"\"><a href=\"" + servidor + "/download.asp?id=" + cve + "\">" + servidor + "/download.asp?id=" + cve + "</a>" + "\n";
                     else
                         display_mail = display_mail + "    <IMG SRC=\"" + servidor + " /images/pixel.gif\" WIDTH =\"40\" HEIGHT =\"1\" alt =\"\" ><a href=\"" + servidor + " /download.asp?id=" + cve + "&zip=1\" > " + servidor + "/download.asp?id=" + cve + "&zip=1</a>" + "\n";
@@ -308,19 +318,29 @@ namespace serverreports
                  + "</tr>\n"
                  + "<tr>\n"
                  + "    <td align=\"left\" >\n";
-            if ("Pdf" == "")
+
+            if (Excel == 1)
+            {
+                display_mail = display_mail + "    <FONT SIZE=\"2\" FACE =\"Arial,Helvetica\" COLOR =\"#000000\" >\n"
+                + "    <IMG SRC=\"" + servidor + " /images/pixel.gif\" WIDTH =\"5\" HEIGHT =\"1\" alt =\"\" >\n"
+                + "    <IMG SRC=\"" + servidor + "/images/excel.gif\" align =\"bottom\" alt =\"\" > &nbsp;- <b>Excel</b> : you will need office 2000 (and superior) or <a href=\"http://office.microsoft.com/downloads/2000/xlviewer.aspx\" class=\"link\" > XLViewer</a>.\n";
+            }
+
+            if (Pdf == 1)
             {
                 display_mail = display_mail + "    <FONT SIZE=\"2\" FACE =\"Arial,Helvetica\" COLOR =\"#000000\" >\n"
                 + "    <IMG SRC=\"" + servidor + " /images/pixel.gif\" WIDTH =\"5\" HEIGHT =\"1\" alt =\"\" >\n"
                 + "    <IMG SRC=\"" + servidor + "/images/pdf.gif\" align =\"bottom\" alt =\"\" > &nbsp;- <b>Pdf</b> : this file can be viewed with <a href=\"http://www.adobe.com/products/acrobat/readstep2.html\" class=\"link\" > Acrobat Reader</a>.\n";
             }
-            if ("Pdf" == "")
+            if (Zip == 1)
             {
                 display_mail = display_mail + "    <br>\n"
                  + "    <IMG SRC=\"" + servidor + " /images/pixel.gif\" WIDTH =\"5\" HEIGHT =\"20\" align =\"bottom\" alt =\"\" >\n"
                  + "    <IMG SRC=\"" + servidor + " /images/winzip2.gif\" align =\"bottom\" alt =\"\" > &nbsp;- <b>Zip</b> : In order to reduce your download time, we compressed your report.\n"
                  + "    <br>To open it, you will need Winzip (<a href=\"http://www.winzip.com\" class=\"link\" > free trial</a>) or equivalent : 7-zip (<a href=\"http://www.7-zip.org\" class=\"link\" > free</a>).\n";
             }
+
+
 
             display_mail = display_mail + "    </FONT>\n"
          + "    </td>\n"
@@ -357,6 +377,7 @@ namespace serverreports
 
             return display_mail;
         }
+
 
     }
 }

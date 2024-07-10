@@ -11,6 +11,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using MD5Hash;
 
 namespace serverreports
 {
@@ -240,8 +241,97 @@ namespace serverreports
             }
             return sb.ToString();
         }
+        public string[,] hexafile_nv(string[,] file_name, string Carpeta, int id_rep, string file_n, string[,] parins)
+        {
+            string[,] html = file_name;
+            //string[,] html = array;
+            //  var stream =File.OpenRead(null);
+            // string actualHash;
 
-        public string[,] hexafile(string[,] array, string[,] file_name, string Carpeta, int id_rep)
+            for (int i = 0; i < file_name.Rank - 1; i++)
+            {
+                string arch1 = file_name[0, i];
+
+                long sizeInBytes = new FileInfo(Carpeta + "\\" + arch1).Length;
+                html[2, i] = sizeInBytes.ToString();
+                if (sizeInBytes >= 104857600 || sizeInBytes <= 0)
+                {
+                    var stream = File.CreateText(Carpeta + "\\" + file_n + System.IO.Path.GetTempFileName());
+                    //html[3, i] = StringToHex(Carpeta + "\\" + arch + System.IO.Path.GetTempFileName());
+                    html[3, i] = stream.GetMD5().ToString();
+                }
+                else
+                {
+                    var stream = File.OpenRead(Carpeta + "\\" + arch1);
+                    html[3, i] = stream.GetMD5();
+                }
+                /*
+                If FSO.GetFile(Carpeta & tab_archivos(0, i)).size >= 104857600 Then
+                   tab_archivos(3, i) = md5_hash.DigestStrToHexStr(Carpeta & file_name & FSO.GetTempName)
+                Else
+                   tab_archivos(3, i) = md5_hash.DigestFileToHexStr(Carpeta & tab_archivos(0, i))
+                 End If
+                If FSO.GetFile(Carpeta & tab_archivos(0, i)).size <= 0 Then
+                  tab_archivos(3, i) = md5_hash.DigestStrToHexStr(Carpeta & file_name & FSO.GetTempName)
+                End If
+                */
+                string file_name2;
+
+                if (System.IO.File.Exists(Carpeta + "\\" + arch1))
+                    file_name2 = left(arch1, arch1.Length - 5) +
+                           mid(Path.GetFileName(System.IO.Path.GetTempFileName()), 4, 6)
+                           + right(arch1, 5);
+                /*
+                If FSO.FileExists(Carpeta & file_name) Then
+                    file_name = Left(file_name, Len(file_name) - 4) & Mid(FSO.GetBaseName(FSO.GetTempName), 4, 2) & Right(file_name, 4)
+                End If
+                */
+                if (ValidaNombreArchivo(id_rep) == 1)
+                {
+                    file_name2 = mid(file_n, 7, file_n.Length - 10) + "_" + left(html[3, i], 6) + right(file_n, 5);
+                    if (System.IO.File.Exists(Carpeta + "\\" + file_n))
+                        file_name2 = left(file_n, file_n.Length - 5) + mid(Path.GetFileName(System.IO.Path.GetTempFileName()), 4, 2) + right(file_n, 5);
+                    File.Move(Carpeta + html[0, i], Carpeta + file_n);
+                    html[0, i] = file_n;
+                    /*
+                     If ValidaNombreArchivo(rs.Fields("ID_REP")) = True Then
+                     '  CHG-DESA-10022023-02>>
+                     file_name = Mid(tab_archivos(0, i), 7, Len(tab_archivos(0, i)) - 10) & "_" & Left(tab_archivos(3, i), 6) & Right(tab_archivos(0, i), 4)
+                     If FSO.FileExists(Carpeta & file_name) Then
+                          file_name = Left(file_name, Len(file_name) - 4) & Mid(FSO.GetBaseName(FSO.GetTempName), 4, 2) & Right(file_name, 4)
+                     End If
+                     FSO.MoveFile Carpeta & tab_archivos(0, i), Carpeta & file_name
+                     tab_archivos(0, i) = file_name
+                    'If mail_adjuntarArchivoXLS = True Then
+                     '    FSO.CopyFile Carpeta & file_name, mail_tempFolder & file_name
+                     '    mail_archivoAdjunto_xls = mail_tempFolder & file_name
+                     'End If
+                   End If                         
+                   */
+                }
+                /*
+                parins[0, 0] = "DEST_MAIL";
+                parins[1, 0] = "Carpeta";
+                parins[2, 0] = "param_string";
+                parins[3, 0] = "days_deleted";
+                parins[4, 0] = "subCarpeta";
+                parins[5, 0] = "id_Reporte";
+                parins[6, 0] = "FECHA_1";
+                parins[7, 0] = "FECHA_2";
+                parins[8, 0] = "fecha_1_intervalo";
+                */
+                string ins = "insert into rep_archivos (id_rep, carpeta, nombre, date_created, DEST_MAIL, PARAMS, days_deleted, subcarpeta, tipo_reporte, HASH_MD5, FECHA_INICIO, FECHA_FIN) "
+                  + "values ('" + id_rep.ToString() + "', '" + parins[1, 1] + "', '" + html[0, i] + "', sysdate, '" + parins[0, 1] + "'";
+                if (parins[8, 1] == "")
+                    ins = ins + ",'" + parins[2, 1].Replace("'", "''") + "', " + parins[3, 1] + ", '" + nvl(parins[4, 1]) + "', '" + nvl(parins[5, 1]) + "', '" + html[3, i] + "', to_date('" + parins[6, 1] + "', 'mm/dd/yyyy'), to_date('" + parins[7, 1] + "', 'mm/dd/yyyy'))";
+                else
+                    ins = ins + ",'" + parins[2, 1].Replace("'", "''") + "', " + parins[3, 1] + ", '" + nvl(parins[4, 1]) + "', '" + nvl(parins[5, 1]) + "', '" + html[3, i] + "', to_date('" + parins[8, 1] + "', 'mm/dd/yyyy'), to_date('" + parins[6, 1] + "', 'mm/dd/yyyy'))";
+                Console.WriteLine(ins);
+            }
+            return html;
+        }
+
+        public string[,] hexafile(string[,] array, string[,] file_name, string Carpeta, int id_rep, string[,] parins)
         {
             string[,] html = array;
             for (int i = 0; i < file_name.Rank - 1; i++)
@@ -297,6 +387,14 @@ namespace serverreports
                        */
                     }
                 }
+                string ins = "insert into rep_archivos (id_rep, carpeta, nombre, date_created, DEST_MAIL, PARAMS, days_deleted, subcarpeta, tipo_reporte, HASH_MD5, FECHA_INICIO, FECHA_FIN) "
+                  + "values ('" + id_rep.ToString() + "', '" + parins[1, 1] + "', '" + html[0, i] + "', sysdate, '" + parins[0, 1] + "'";
+                if (parins[8, 1] == "")
+                    ins = ins + ",'" + parins[2, 1].Replace("'","''") + "', " + parins[3, 1] + ", '" + nvl(parins[4, 1]) + "', '" + nvl(parins[5, 1]) + "', '" + html[3, i] + "', to_date('" + parins[6, 1] + "', 'mm/dd/yyyy'), to_date('" + parins[7, 1] + "', 'mm/dd/yyyy'))";
+                else
+                    ins = ins + ",'" + parins[2, 1].Replace("'", "''") + "', " + parins[3, 1] + ", '" + nvl(parins[4, 1]) + "', '" + nvl(parins[5, 1]) + "', '" + html[3, i] + "', to_date('" + parins[8, 1] + "', 'mm/dd/yyyy'), to_date('" + parins[6, 1] + "', 'mm/dd/yyyy'))";
+                Console.WriteLine(ins);
+
             }
             return html;
         }

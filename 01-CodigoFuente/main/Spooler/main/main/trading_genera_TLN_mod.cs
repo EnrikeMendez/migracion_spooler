@@ -5,12 +5,13 @@ using System.Data;
 using System.Text;
 using System.Threading.Tasks;
 using DocumentFormat.OpenXml.Drawing;
+using MD5Hash;
 
 namespace serverreports
 {
     internal class trading_genera_TLN_mod
     {
-        public string trading_genera_TLN(string Carpeta, string[,] file_name, string cliente, string Fecha_1, string Fecha_2, string empresa, Int32 idCron, string servidor, int vs)
+        public string trading_genera_TLN(string Carpeta, string[,] file_name, string cliente, string Fecha_1, string Fecha_2, string empresa, Int32 idCron, string servidor, int vs, string [,] parins)
         {
             int sw_error = 0;
             Utilerias util = new Utilerias();
@@ -19,9 +20,13 @@ namespace serverreports
             Excel xlsx = new Excel();
             DataTable[] LisDT = new DataTable[1];
             string[] LisDT_tit = new string[1];
-            string[] arh = new string[2];
-            string[,] html = new string[6, 1];
+            //string[,] html = new string[6, 1];
             //LisDT[0] = DM.datos(DM.porteos_tln(cliente, Fecha_1, Fecha_2, empresa, idCron, 1));
+            string[] arh;
+            if (file_name[4, 0] == "1")
+                arh = new string[2];
+            else
+                arh = new string[1];
             (string? codigo, string? msg, string? sql, DataTable? tb) datos_sp;
             datos_sp.sql = "SC_DIST.SPG_RS_COEX.P_RS_PORTEOS_TLN";
             //datos_sp = DM.datos_sp([datos_sp.sql], vs);
@@ -32,38 +37,44 @@ namespace serverreports
             par_st[1, 0] = "o";
             par_st[1, 1] = "v";
             par_st[1, 2] = "p_Mensaje";
+            par_st[1, 3] = "msg";
             par_st[2, 0] = "o";
             par_st[2, 1] = "i";
             par_st[2, 2] = "p_Codigo_Error";
-            datos_sp = DM.datos_spArray([datos_sp.sql], par_st, vs);
+            par_st[2, 3] = "cod";
 
+
+            datos_sp = DM.datos_spArray([datos_sp.sql], par_st, vs);
+            string[,] html = new string[6, 1];
             Console.WriteLine(" Mensaje store :" + datos_sp.msg);
             Console.WriteLine(" Codigo store :" + datos_sp.codigo);
             LisDT_tit[0] = "Shipments";
             LisDT[0] = datos_sp.tb;
+            string arch = file_name[0, 0];
             try
             {
-                if (LisDT[0].Rows.Count > 0 && datos_sp.codigo == "1")
+                if ((LisDT[0].Rows.Count > 0) && (datos_sp.codigo == "1"))
                 {
-                    xlsx.CrearExcel_file(LisDT, LisDT_tit, Carpeta + "\\" + file_name + ".xlsx");
+                    xlsx.CrearExcel_file(LisDT, LisDT_tit, Carpeta + "\\" + arch + ".xlsx");
                     //msg = DM.porteos_tln(cliente, Fecha_1, Fecha_2, empresa, idCron, 1);
                     //correo.send_mail("Report: < Logis PORTEO TLN> Envio ok", [], "proceso correcto", ["C:\\pc\\prueba_adj.txt"], ["logis04prog@hotmail.com"]);
-                    arh[0] = Carpeta + "\\" + file_name + ".xlsx";                    
-                    arh[1] = util.agregar_zip(arh, file_name[0,0], Carpeta);
 
-                    // VALIDAR FUNCION
-                    html[0, 0] = file_name[0, 0] + ".xlsx";
-                    html[1, 0] = file_name[1, 0];
-                    html = util.hexafile(html, file_name, Carpeta, idCron);
-                    string mensaje = correo.display_mail(servidor, "", file_name[0, 0], html, 7, "");
-                    Console.WriteLine(mensaje);
+                    arh[0] = Carpeta + "\\" + file_name[0, 0] + ".xlsx";
+                    if (file_name[4, 0] == "1")
+                        arh[1] = util.agregar_zip(arh, file_name[0, 0], Carpeta);
+                    file_name[0, 0] = file_name[0, 0] + ".xlsx";
+                    file_name[4, 0] = "0";
+                    html = util.hexafile_nv(file_name, Carpeta, idCron, arch, parins);
 
-                    correo.send_mail("Report: < Logis PORTEO TLN> Envio ok", [], "proceso correcto", arh);
+                    string mensaje = correo.display_mail(servidor, "", arch, html, Int32.Parse(parins[3, 1]), "");
+
+                    correo.send_mail("Report: < PORTEO TLN> created v2024", [], mensaje, arh);
+
                 }
                 else
                 {
                     if (datos_sp.codigo == "1")
-                        datos_sp.msg = "No hay registros en la consulta :" + datos_sp.sql;
+                        datos_sp.msg = "No hay registros 0 la consulta :" + datos_sp.sql;
                     sw_error = 1;
                 }
             }
@@ -73,10 +84,12 @@ namespace serverreports
                 datos_sp.msg = ex1.Message;
                 sw_error = 1;
             }
-            if (sw_error==1)
-               correo.msg_error("PORTEOS_TLN",datos_sp.codigo, datos_sp.msg);
+            if (sw_error == 1)
+                correo.msg_error("PORTEOS_TLN", datos_sp.codigo, datos_sp.msg);
             LisDT[0].Clear();
             return sw_error.ToString();
+
+           
         }
 
     }

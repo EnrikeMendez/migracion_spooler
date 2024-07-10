@@ -53,3 +53,5 @@ C:\pc\raul\programas consola\main\Spooler\main\main\bin\Debug\net8.0\runtimes\li
 C:\pc\raul\programas consola\main\Spooler\main\main\bin\Debug\net8.0\runtimes\osx\lib\net8.0\System.DirectoryServices.Protocols.dll
 C:\pc\raul\programas consola\main\Spooler\main\main\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.DirectoryServices.Protocols.dll
 C:\pc\raul\programas consola\main\Spooler\main\main\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\bin\Debug\net8.0\MD5.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\bin\Debug\net8.0\Newtonsoft.Json.dll
