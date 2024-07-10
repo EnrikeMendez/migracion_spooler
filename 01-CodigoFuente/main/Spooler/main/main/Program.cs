@@ -36,8 +36,8 @@ bool mail_adjuntarArchivoTXT = false;
 string mail_tempFolder = "";
 bool bExit = false;
 ///
+string[,] tab_archivos;
 
-string[] tab_archivos;
 string[] tab_files;
 
 string reporte_name = "";
@@ -74,8 +74,9 @@ try
  if (rep_id != 1)
  {
     trep_cron = DM.Main_rep("main_rp_cron", rep_id.ToString(), visible_sql,  reporte_temporal.ToString()).tb;
+    
 
-    if (trep_cron.Rows.Count > 0)
+        if (trep_cron.Rows.Count > 0)
         sw_cron = 1;
        
  }
@@ -132,7 +133,8 @@ try
             */
             Console.WriteLine(" valor dia libre =" + dialib);
             //Por aplicar
-            if (dialib != "")
+            //            if (dialib != "")
+            if (dialib !="0")
             {
                 Console.WriteLine("************** actializa **************");
                 string SQL_p = "update rep_chron set in_progress=0 \n" +
@@ -253,10 +255,10 @@ try
                       util.iff(util.nvl(util.Tcampo(tdato_repor, "SUBCARPETA")), "<>", "", util.nvl(util.Tcampo(tdato_repor, "SUBCARPETA")) + "\\", "");
     MiComando = util.nvl(util.Tcampo(tdato_repor, "COMMAND"));
 
-    tab_archivos = new string[5];
-    tab_archivos[0] = file_name;
-    tab_archivos[1] = reporte_name;
-    tab_archivos[4] = "1";
+    tab_archivos = new string[6,1];
+    tab_archivos[0,0] = file_name;
+    tab_archivos[1,0] = reporte_name;
+    tab_archivos[4,0] = "1";
 
 
     Console.WriteLine("valor ''dest_mail   '':" + dest_mail);
@@ -268,9 +270,9 @@ try
     Console.WriteLine("valor ''Carpeta     '':" + Carpeta);
     Console.WriteLine("valor ''COMMAND     '' " + MiComando);
 
-    Console.WriteLine("valor ''tab_archivos 0 '':" + tab_archivos[0]);
-    Console.WriteLine("valor ''tab_archivos 1 '':" + tab_archivos[1]);
-    Console.WriteLine("valor ''tab_archivos 4 '' " + tab_archivos[4]);
+    Console.WriteLine("valor ''tab_archivos 0 '':" + tab_archivos[0,0]);
+    Console.WriteLine("valor ''tab_archivos 1 '':" + tab_archivos[1,0]);
+    Console.WriteLine("valor ''tab_archivos 4 '' " + tab_archivos[4,0]);
     for (int i = 1; i <= num_of_param; i++)
         Console.WriteLine("valor ''PARAM_"+i+" '':" + util.nvl(util.Tcampo(tdato_repor, "PARAM_"+i)));
 
@@ -312,17 +314,17 @@ try
     {
         case "transmision_edocs_bosch":
              web_transmision_edocs_bosch edocs_bosch = new web_transmision_edocs_bosch();
-             edocs_bosch.transmision_edocs_bosch(Carpeta, tab_archivos[0], util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), visible_sql);
+             edocs_bosch.transmision_edocs_bosch(Carpeta, tab_archivos[0,0], util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), visible_sql);
              break;
           
         case "gsk_pedimientos":
              trading_genera_GSK_mod trading_genera_GSK = new trading_genera_GSK_mod();
-             trading_genera_GSK.trading_genera_GSK(Carpeta, tab_archivos[0], util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id, visible_sql);
+             trading_genera_GSK.trading_genera_GSK(Carpeta, tab_archivos[0,0], util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id, visible_sql);
              break;
         case "porteos_tln":
              // 6651805
              trading_genera_TLN_mod trading_genera_TLN = new trading_genera_TLN_mod();
-             trading_genera_TLN.trading_genera_TLN(Carpeta, tab_archivos[0], util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id, visible_sql);
+             trading_genera_TLN.trading_genera_TLN(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id,servidor, visible_sql);
              break;
 
         }
@@ -331,7 +333,6 @@ try
  else
     Console.WriteLine("Error es necesario especifica los parametros \n 1. Falta numero reporte: ''{0}'' \n 2. valor tipo de reporte: {1} " + msg, rep_id, reporte_temporal);
     envio_correo correo = new envio_correo();
-    Console.WriteLine(correo.display_mail1(servidor, "reporte_prueba"));
  Console.WriteLine("Oprimar cualquier tecla para terminar");
  trep_cron.Clear();
  tdato_repor.Clear();

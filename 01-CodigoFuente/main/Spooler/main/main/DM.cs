@@ -81,8 +81,9 @@ internal class DM
         info.Item3 = SQL[0];
         info.Item4 = dtTemp;
         int sw_cur = 0;
-        //string campo_out = "";
-
+        string campo_out = "";
+        string campo_msg = "";
+        string campo_err = "";
         try
         {
             using (cnn)
@@ -92,17 +93,19 @@ internal class DM
                 {
                     OracleCommand cmd = new OracleCommand(SQL[0], cnn);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    for (int a = 0; a <= rstore.Rank; a++)
+                    for (int a = 0; a < rstore.GetLength(0); a++)
                     {
                         if (rstore[a, 0] == "i")
                         {
+                            string para = rstore[a, 3];
                             switch (rstore[a, 1])
                             {
                                 case "i":
-                                        cmd.Parameters.Add(rstore[a, 2], OracleDbType.Int32).Value = Convert.ToInt32(rstore[a, 3]);
+                                    
+                                        cmd.Parameters.Add(rstore[a, 2], OracleDbType.Int32).Value = Convert.ToInt32(para);
                                     break;
                                 case "v":
-                                        cmd.Parameters.Add(rstore[a, 2], OracleDbType.Varchar2).Value = rstore[a, 3];
+                                        cmd.Parameters.Add(rstore[a, 2], OracleDbType.Varchar2).Value = para;
                                     break;
                             }
                         }
@@ -116,20 +119,30 @@ internal class DM
                                     break;
                                 case "v":
                                     cmd.Parameters.Add(new OracleParameter(rstore[a, 2], OracleDbType.NVarchar2, 4000)).Direction = ParameterDirection.Output;
+                                    if (rstore[a, 3] == "msg") campo_msg = rstore[a, 2];
                                     break;
                                 case "i":
                                     cmd.Parameters.Add(new OracleParameter(rstore[a, 2], OracleDbType.Int64)).Direction = ParameterDirection.Output;
+                                    if (rstore[a, 3] == "cod") campo_err = rstore[a, 2];
                                     break;
                             }
                         }
-
-                    }      
-                    OracleDataAdapter da1 = new OracleDataAdapter(cmd);
-                    da1.Fill(dtTemp);
-                    info.Item1 = cmd.Parameters["p_Codigo_Error"].Value.ToString();
-                    info.Item2 = cmd.Parameters["p_Mensaje"].Value.ToString();
+                        if ((SQL.Length > 1) && (rstore[a, 3] == "o"))
+                            campo_out = rstore[a, 2];
+                    }
+                    if (sw_cur == 0)
+                    {
+                        OracleDataReader reader = cmd.ExecuteReader();
+                        info.Item3 = cmd.Parameters[campo_out].Value.ToString();
+                    }
+                    else
+                    {
+                        OracleDataAdapter da1 = new OracleDataAdapter(cmd);
+                        da1.Fill(dtTemp);
+                    }
+                    info.Item1 = cmd.Parameters[campo_err].Value.ToString();
+                    info.Item2 = cmd.Parameters[campo_msg].Value.ToString();
                     info.Item4 = dtTemp;
-
                 }
             }
         }
@@ -185,7 +198,7 @@ internal class DM
                     /*parametros de salidad*/
                     if (SQL.Length > 1)                    {
                         string campo_out = "p_Dia_Libre";
-                        if (frecuencia != null)
+                        if (frecuencia == null)
                             cmd.Parameters.Add("p_Dia_Libre", OracleDbType.Int32).Direction = ParameterDirection.Output;
                         else
                         {
@@ -246,6 +259,7 @@ internal class DM
         }
         return orfeo;
     }
+    
     public (DataTable tb, string val) Main_rep(string nom_proc, string id_cron, int? vs, string? addsq = "", string? cliente = null, string? fecha = null)
     {
         DataTable dtTemp1 = new DataTable();
@@ -262,8 +276,35 @@ internal class DM
             switch (nom_proc)
             {
                 case "main_rp_cron":
+                    string[,] par_st = new string[5, 4];
+                    par_st[2, 0] = "o";
+                    par_st[2, 1] = "c";
+                    par_st[2, 2] = "p_Cur_GSK";
+
+                    par_st[3, 0] = "o";
+                    par_st[3, 1] = "v";
+                    par_st[3, 2] = "p_Mensaje";
+                    par_st[3, 3] = "msg";
+
+                    par_st[4, 0] = "o";
+                    par_st[4, 1] = "i";
+                    par_st[4, 2] = "p_Codigo_Error";
+                    par_st[4, 3] = "cod";
+
+                    par_st[0, 0] = "i";
+                    par_st[0, 1] = "i";
+                    par_st[0, 2] = "p_Reporte_Id";
+                    par_st[0, 3] = id_cron;
+
+                    par_st[1, 0] = "i";
+                    par_st[1, 1] = "i";
+                    par_st[1, 2] = "p_Parametro1";
+                    par_st[1, 3] = addsq;
+
                     datos_spr.sql = "SC_DIST.SPG_RS_COEX.P_OBTEN_DATOS_REPORTE_1 ";
-                    datos_spr = datos_sp([datos_spr.sql], vs, null, null, null, null, null, null, id_cron.ToString(), addsq);
+
+                    //datos_spr = datos_sp([datos_spr.sql], vs, null, null, null, null, null, null, id_cron.ToString(), addsq);
+                    datos_spr = datos_spArray([datos_spr.sql], par_st, vs);
                     dtTemp.tb = datos_spr.tb;
                     break;
                 case "main_mail_contact":
@@ -275,8 +316,33 @@ internal class DM
                     dtTemp.Item1 = datos(main_num_param(id_cron.ToString(), vs));
                     break;
                 case "confirmacion2":
+                    par_st = new string[5, 4];
+                    par_st[0, 0] = "i";
+                    par_st[0, 1] = "i";
+                    par_st[0, 2] = "p_Reporte_Id";
+                    par_st[0, 3] = id_cron.ToString();
+
+                    par_st[1, 0] = "i";
+                    par_st[1, 1] = "i";
+                    par_st[1, 2] = "p_Frecuencia";
+                    par_st[1, 3] = fecha;
+
+                    par_st[2, 0] = "o";
+                    par_st[2, 1] = "c";
+                    par_st[2, 2] = "p_Cur_GSK";
+
+                    par_st[3, 0] = "o";
+                    par_st[3, 1] = "v";
+                    par_st[3, 2] = "p_Mensaje";
+                    par_st[3, 3] = "msg";
+
+                    par_st[4, 0] = "o";
+                    par_st[4, 1] = "i";
+                    par_st[4, 2] = "p_Codigo_Error";
+                    par_st[4, 3] = "cod";
                     datos_spr.sql = " SC_DIST.SPG_RS_COEX.P_VALIDA_CONFIRMACION_2";
-                    datos_spr = datos_sp([datos_spr.sql], vs, null, null, null, null, null, null, id_cron, null, null, fecha);
+                    datos_spr = datos_spArray([datos_spr.sql], par_st, vs);
+                    //datos_spr = datos_sp([datos_spr.sql], vs, null, null, null, null, null, null, id_cron, null, null, fecha);
                     dtTemp.tb = datos_spr.tb;
                     break;
                 case "main_datos_rep":
@@ -285,8 +351,35 @@ internal class DM
                     dtTemp.tb = datos_spr.tb;
                     break;
                 case "rep_dias_libres":
+                    par_st = new string[5, 4];
+                    par_st[0, 0] = "i";
+                    par_st[0, 1] = "i";
+                    par_st[0, 2] = "p_Num_Cliente";
+                    par_st[0, 3] = cliente;
+
+                    par_st[1, 0] = "i";
+                    par_st[1, 1] = "v";
+                    par_st[1, 2] = "p_Fecha";
+                    par_st[1, 3] = fecha;
+
+                    par_st[2, 0] = "o";
+                    par_st[2, 1] = "i";
+                    par_st[2, 2] = "p_Dia_Libre";
+                    par_st[2, 3] = "o";
+
+                    par_st[3, 0] = "o";
+                    par_st[3, 1] = "v";
+                    par_st[3, 2] = "p_Mensaje";
+                    par_st[3, 3] = "msg";
+
+                    par_st[4, 0] = "o";
+                    par_st[4, 1] = "i";
+                    par_st[4, 2] = "p_Codigo_Error";
+                    par_st[4, 3] = "cod";
+
                     datos_spr.sql = "SC_DIST.SPG_RS_COEX.P_VALIDA_DIA_LIBRE";
-                    datos_spr = datos_sp([datos_spr.sql, "1"], vs, cliente, null, null, null, null, null, null, null, fecha);
+                    datos_spr = datos_spArray([datos_spr.sql, "1"], par_st, vs);
+                    //datos_spr = datos_sp([datos_spr.sql, "1"], vs, cliente, null, null, null, null, null, null, null, fecha);
                     dtTemp.val = datos_spr.sql;
 
                     break;

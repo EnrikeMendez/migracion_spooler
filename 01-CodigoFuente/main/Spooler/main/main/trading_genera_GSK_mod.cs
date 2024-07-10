@@ -40,8 +40,7 @@ namespace serverreports
                     xlsx.CrearExcel_file(LisDT, LisDT_tit, Carpeta + "\\" + file_name + ".xlsx");
                     //  correo.send_mail("Report: < Logis GSK > Envio ok", [], "proceso correcto");
                     arh[0] = Carpeta + "\\" + file_name + ".xlsx";
-                    util.agregar_zip(arh, file_name, Carpeta);
-                    arh[1] = Carpeta + "\\" + file_name + ".zip";
+                    arh[1] = util.agregar_zip(arh, file_name, Carpeta);
                     correo.send_mail("Report: < Logis GSK> Envio ok", [], "proceso correcto", arh);
                 }
                 else

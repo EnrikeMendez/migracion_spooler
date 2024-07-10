@@ -195,7 +195,7 @@ namespace serverreports
         }
 
 
-        public void agregar_zip(string[] arch, string nombre, string ruta)
+        public string agregar_zip(string[] arch, string nombre, string ruta)
         {
             try
             {
@@ -209,8 +209,129 @@ namespace serverreports
                 Console.WriteLine(e.Message + " error No. " + e.HResult);
                 //Console.WriteLine("Error archivo " + nombre + ".zip existe en ruta " + ruta + " error No. " + e.HResult);
             }
+            return ruta + "\\" + nombre + ".zip";
         }
 
+
+        public string StringToHex(string hexstring)
+        {
+            // string value = "raul granados gonzalez";
+            byte[] bytes = Encoding.UTF8.GetBytes(hexstring);
+            string hexString = Convert.ToHexString(bytes);
+            // Console.WriteLine($"String value: \"{value}\"");
+            //Console.WriteLine($"   Hex value: \"{hexString}\"");
+            //Console.WriteLine($"   Hex value 2: \"{StringToHex(value)}\"");
+            //Console.WriteLine($"  valor ori: \"{FromHexString(hexString)}\"");
+            //Console.WriteLine($"  valor ori2: \"{FromHexString(StringToHex(value))}\"");
+            /*
+            if (System.IO.File.Exists(value))
+            {
+                long sizeInBytes = new FileInfo(Carpeta + "\\" + file_name[0] + ".xlsx").Length;
+            }
+            else
+            {   
+            }
+            */
+            StringBuilder sb = new StringBuilder();
+            foreach (char t in hexstring)
+            {
+                //Note: X for upper, x for lower case letters
+                sb.Append(Convert.ToInt32(t).ToString("x2"));
+            }
+            return sb.ToString();
+        }
+
+        public string[,] hexafile(string[,] array, string[,] file_name, string Carpeta, int id_rep)
+        {
+            string[,] html = array;
+            for (int i = 0; i < file_name.Rank - 1; i++)
+            {
+                long sizeInBytes = new FileInfo(Carpeta + "\\" + file_name[0, 0] + ".xlsx").Length;
+                html[2, i] = sizeInBytes.ToString();
+                if (sizeInBytes >= 104857600 || sizeInBytes <= 0)
+                    html[3, i] = StringToHex(Carpeta + "\\" + file_name[0, 0] + System.IO.Path.GetTempFileName());
+                else
+                    html[3, i] = StringToHex(Carpeta + "\\" + file_name[0, 0]);
+                /*
+                If FSO.GetFile(Carpeta & tab_archivos(0, i)).size >= 104857600 Then
+                   tab_archivos(3, i) = md5_hash.DigestStrToHexStr(Carpeta & file_name & FSO.GetTempName)
+                Else
+                   tab_archivos(3, i) = md5_hash.DigestFileToHexStr(Carpeta & tab_archivos(0, i))
+                 End If
+                If FSO.GetFile(Carpeta & tab_archivos(0, i)).size <= 0 Then
+                  tab_archivos(3, i) = md5_hash.DigestStrToHexStr(Carpeta & file_name & FSO.GetTempName)
+                End If
+                */
+                string file_name2;
+                if (System.IO.File.Exists(Carpeta + "\\" + file_name[0, 0]))
+                    file_name2 = left(file_name[0, 0], file_name[0, 0].Length - 5) +
+                           mid(Path.GetFileName(System.IO.Path.GetTempFileName()), 4, 6)
+                           + right(file_name[0, 0], 5);
+                /*
+                If FSO.FileExists(Carpeta & file_name) Then
+                    file_name = Left(file_name, Len(file_name) - 4) & Mid(FSO.GetBaseName(FSO.GetTempName), 4, 2) & Right(file_name, 4)
+                End If
+                */
+                if (ValidaNombreArchivo(id_rep) == 1)
+                {
+                    file_name2 = mid(file_name[0, 0], 7, file_name[0, 0].Length - 10) + "_" + left(html[3, i], 6) + right(file_name[0, 0], 5);
+                    if (System.IO.File.Exists(Carpeta + "\\" + file_name[0, 0]))
+                    {
+                        file_name2 = left(file_name[0, 0], file_name[0, 0].Length - 5) + mid(Path.GetFileName(System.IO.Path.GetTempFileName()), 4, 2) + right(file_name[0, 0], 5);
+                        File.Move(Carpeta + html[0, i], Carpeta + file_name);
+                        html[0, i] = file_name[0, 0];
+                        /*
+                         If ValidaNombreArchivo(rs.Fields("ID_REP")) = True Then
+                         '  CHG-DESA-10022023-02>>
+                         file_name = Mid(tab_archivos(0, i), 7, Len(tab_archivos(0, i)) - 10) & "_" & Left(tab_archivos(3, i), 6) & Right(tab_archivos(0, i), 4)
+                         If FSO.FileExists(Carpeta & file_name) Then
+                              file_name = Left(file_name, Len(file_name) - 4) & Mid(FSO.GetBaseName(FSO.GetTempName), 4, 2) & Right(file_name, 4)
+                         End If
+                         FSO.MoveFile Carpeta & tab_archivos(0, i), Carpeta & file_name
+                         tab_archivos(0, i) = file_name
+                        'If mail_adjuntarArchivoXLS = True Then
+                         '    FSO.CopyFile Carpeta & file_name, mail_tempFolder & file_name
+                         '    mail_archivoAdjunto_xls = mail_tempFolder & file_name
+                         'End If
+                       End If                         
+                       */
+                    }
+                }
+            }
+            return html;
+        }
+
+        public string mid(string cad, int ini, int? fin = 0)
+        {
+            string val = "";
+            if (fin == 0)
+                val = cad.Substring(cad.Length - ini, ini);
+            else
+                val = cad.Substring(ini, (int)fin);
+            return val;
+        }
+
+        public string left(string cad, int pos)
+        {
+            string val = "";
+            val = cad.Substring(0, pos);
+            return val;
+        }
+
+        public string right(string cad, int pos)
+        {
+            string val = "";
+            val = cad.Substring(cad.Length - pos, pos);
+            return val;
+        }
+
+        public int ValidaNombreArchivo(int idRep)
+        {
+            int val = 0;
+            if (idRep == 252 || idRep == 253 || idRep == 342 || idRep == 343 || idRep == 344)
+                val = 1;
+            return val;
+        }
 
     }
 
