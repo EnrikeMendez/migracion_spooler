@@ -49,6 +49,7 @@ namespace serverreports
                 correo.Subject = asunto;
                 correo.IsBodyHtml = true;
                 correo.Body = mensaje;
+                
                 if (contact.Length > 0)
                     for (int i = 0; i < contact.Length; i++)
                         correo.To.Add(contact[i]);

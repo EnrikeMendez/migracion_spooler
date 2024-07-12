@@ -31,7 +31,7 @@ namespace serverreports
             {
                 LisDT = new DataTable[1];
                 LisDT_tit = new string[1];
-                datos_sp = DM.datos_sp([datos_sp.sql], visible_sql, Clientes, Fecha_1, Fecha_2, imp_exp, tipo_doc, imp_exp);
+                datos_sp = DM.datos_sp_A([datos_sp.sql], visible_sql, Clientes, Fecha_1, Fecha_2, imp_exp, tipo_doc, imp_exp);
                 Console.WriteLine(" Mensaje store :" + datos_sp.msg);
                 Console.WriteLine(" Codigo store :" + datos_sp.codigo);
                 LisDT[0] = datos_sp.tb;
@@ -42,12 +42,12 @@ namespace serverreports
             {
                 LisDT = new DataTable[2];
                 LisDT_tit = new string[2];
-                datos_sp = DM.datos_sp([datos_sp.sql], visible_sql, Clientes, Fecha_1, Fecha_2, "null", tipo_doc, "2");
+                datos_sp = DM.datos_sp_A([datos_sp.sql], visible_sql, Clientes, Fecha_1, Fecha_2, "null", tipo_doc, "2");
                 LisDT[0] = datos_sp.tb;
                 LisDT_tit[0] = "Exportación";
                 Console.WriteLine(" Mensaje store :" + datos_sp.msg);
                 Console.WriteLine(" Codigo store :" + datos_sp.codigo);
-                datos_sp = DM.datos_sp([datos_sp.sql], visible_sql, Clientes, Fecha_1, Fecha_2, "null", tipo_doc, "1");
+                datos_sp = DM.datos_sp_A([datos_sp.sql], visible_sql, Clientes, Fecha_1, Fecha_2, "null", tipo_doc, "1");
                 LisDT[1] = datos_sp.tb;
                 LisDT_tit[1] = "Importación";
                 Console.WriteLine(" Mensaje store :" + datos_sp.msg);

@@ -198,18 +198,12 @@ namespace serverreports
 
         public string agregar_zip(string[] arch, string nombre, string ruta)
         {
-            try
-            {
+
                 for (int i = 0; i < arch.Length; i++)
                 {
                     CrearZip(arch[i], nombre, ruta, i);
                 }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message + " error No. " + e.HResult);
-                //Console.WriteLine("Error archivo " + nombre + ".zip existe en ruta " + ruta + " error No. " + e.HResult);
-            }
+  
             return ruta + "\\" + nombre + ".zip";
         }
 

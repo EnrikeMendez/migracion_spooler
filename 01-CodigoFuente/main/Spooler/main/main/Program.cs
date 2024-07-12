@@ -51,7 +51,7 @@ string param_string = "";
 string dest_mail = "";
 string MiComando = "";
 string fecha_1_intervalo = "";
-string[,] parins = new string[9, 2];
+string[,] parins = new string[11, 2];
 try
 {
 
@@ -148,7 +148,8 @@ try
 
 
         if ((util.nvl(util.Tcampo(trep_cron, "CONFIRMACION")) == "1") && (reporte_temporal == 0))
-        {
+        //    if (1 == 1)
+            {
             string SQL_p2 = "select check_fecha_confirmacion2('" + util.Tcampo(trep_cron, "FRECUENCIA") + "',conf_date, conf_date_2) as ok \n" +
                           " , to_char(conf.conf_date, 'mm/dd/yyyy') as fecha_1 \n" +
                           " , to_char(conf.conf_date_2, 'mm/dd/yyyy') as fecha_2, conf.param \n" +
@@ -163,7 +164,7 @@ try
             tconfirmacion2 = DM.Main_rep("confirmacion2", rep_id.ToString(), visible_sql, reporte_temporal.ToString(), null, util.Tcampo(trep_cron, "FRECUENCIA")).tb;
 
             if (util.Tcampo(tconfirmacion2, "CONFIRMACION") != "")
-            //if (1 == 1)
+           // if (1 == 1)
             {
                 SQL_p2 = "select display_fecha_confirmacion4(('" + util.Tcampo(trep_cron, "FRECUENCIA") + "',conf.CONF_DATE,conf.CONF_DATE_2,decode(conf.CONF_DATE,null,1,0)) as next_fecha \n" +
              " from rep_confirmacion conf \n" +
@@ -172,7 +173,7 @@ try
                 string confirma4 = DM.Main_rep("confirmacion4", rep_id.ToString(), visible_sql, reporte_temporal.ToString(), null, util.Tcampo(trep_cron, "FRECUENCIA")).val;
                 Console.WriteLine(" valor confirma4 =" + confirma4);
 
-                if (confirma4 != null)
+                if (confirma4 != "null")
                     mail_error = "agregar valor de " + confirma4;
                 else
                     mail_error = "Ninguna confirmacion llegada.";
@@ -206,7 +207,7 @@ try
         string tema = "Error generacion de : " + util.Tcampo(tmail_contact, "NAME");
         string contactos = util.listTcampo(tmail_contact, "mail", ";");
         contactos = contactos + mail_grupo_error[0];
-        if (mail_error.Split("/").Length > 0)
+        if (mail_error.Split("/").Length > 1)
         {
             Error_texto = mail_error.Split("|");
             mail_error = "Id_reporte : " + rep_id + "\n" +
@@ -305,24 +306,30 @@ try
     }
     else Console.WriteLine("La carpeta existe.."+Carpeta);
 
-        parins[0, 0] = "DEST_MAIL";
-        parins[0, 1] = dest_mail;
-        parins[1, 0] = "Carpeta";
-        parins[1, 1] = util.nvl(util.Tcampo(tdato_repor, "CARPETA"));
-        parins[2, 0] = "param_string";
-        parins[2, 1] = param_string;
-        parins[3, 0] = "days_deleted";
-        parins[3, 1] = days_deleted.ToString();
-        parins[4, 0] = "SUBCARPETA";
-        parins[4, 1] = util.nvl(util.Tcampo(tdato_repor, "SUBCARPETA"));
-        parins[5, 0] = "id_Reporte";
-        parins[5, 1] = id_Reporte.ToString();
-        parins[6, 0] = "FECHA_1";
-        parins[6, 1] = FECHA_1;
-        parins[7, 0] = "FECHA_2";
-        parins[7, 1] = FECHA_2;
-        parins[8, 0] = "fecha_1_intervalo";
-        parins[8, 1] = fecha_1_intervalo;
+        parins[0, 0]  = "DEST_MAIL";
+        parins[0, 1]  = dest_mail;
+        parins[1, 0]  = "Carpeta";
+        parins[1, 1]  = util.nvl(util.Tcampo(tdato_repor, "CARPETA"));
+        parins[2, 0]  = "param_string";
+        parins[2, 1]  = param_string;
+        parins[3, 0]  = "days_deleted";
+        parins[3, 1]  = days_deleted.ToString();
+        parins[4, 0]  = "SUBCARPETA";
+        parins[4, 1]  = util.nvl(util.Tcampo(tdato_repor, "SUBCARPETA"));
+        parins[5, 0]  = "id_Reporte";
+        parins[5, 1]  = id_Reporte.ToString();
+        parins[6, 0]  = "FECHA_1";
+        parins[6, 1]  = FECHA_1;
+        parins[7, 0]  = "FECHA_2";
+        parins[7, 1]  = FECHA_2;
+        parins[8, 0]  = "fecha_1_intervalo";
+        parins[8, 1]  = fecha_1_intervalo;
+        parins[9, 0] = "id_cron";
+        parins[9, 1] = rep_id.ToString();
+        parins[10, 0] = "Servidor";
+        parins[10, 1] = servidor;
+
+
         //web_transmision_edocs_bosch edocs_bosch = new web_transmision_edocs_bosch();
         //edocs_bosch.transmision_edocs_bosch(Carpeta, tab_archivos[0], util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), visible_sql);
         // Console.WriteLine(DM.transmision_edocs_bosch("18975", "04/01/2024", "04/30/2024", "", "E", "1"));
@@ -341,12 +348,12 @@ try
           
         case "gsk_pedimientos":
              trading_genera_GSK_mod trading_genera_GSK = new trading_genera_GSK_mod();
-             trading_genera_GSK.trading_genera_GSK(Carpeta, tab_archivos[0,0], util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id, visible_sql);
+             trading_genera_GSK.trading_genera_GSK(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id, parins, visible_sql);
              break;
         case "porteos_tln":
              // 6651805
              trading_genera_TLN_mod trading_genera_TLN = new trading_genera_TLN_mod();
-             trading_genera_TLN.trading_genera_TLN(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id, servidor, visible_sql, parins);
+             trading_genera_TLN.trading_genera_TLN(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id, servidor, parins, visible_sql);
              break;
         }
 

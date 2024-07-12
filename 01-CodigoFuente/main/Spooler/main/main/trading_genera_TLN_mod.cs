@@ -6,12 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using DocumentFormat.OpenXml.Drawing;
 using MD5Hash;
+using DocumentFormat.OpenXml.Spreadsheet;
 
 namespace serverreports
 {
     internal class trading_genera_TLN_mod
     {
-        public string trading_genera_TLN(string Carpeta, string[,] file_name, string cliente, string Fecha_1, string Fecha_2, string empresa, Int32 idCron, string servidor, int vs, string [,] parins)
+        public string trading_genera_TLN(string Carpeta, string[,] file_name, string cliente, string Fecha_1, string Fecha_2, string empresa, Int32 idCron, string servidor, string[,] parins, int vs)
         {
             int sw_error = 0;
             Utilerias util = new Utilerias();
@@ -44,7 +45,7 @@ namespace serverreports
             par_st[2, 3] = "cod";
 
 
-            datos_sp = DM.datos_spArray([datos_sp.sql], par_st, vs);
+            datos_sp = DM.datos_sp([datos_sp.sql], par_st, vs);
             string[,] html = new string[6, 1];
             Console.WriteLine(" Mensaje store :" + datos_sp.msg);
             Console.WriteLine(" Codigo store :" + datos_sp.codigo);
@@ -61,15 +62,16 @@ namespace serverreports
 
                     arh[0] = Carpeta + "\\" + file_name[0, 0] + ".xlsx";
                     if (file_name[4, 0] == "1")
-                        arh[1] = util.agregar_zip(arh, file_name[0, 0], Carpeta);
+                      arh[1] = util.agregar_zip(arh, file_name[0, 0], Carpeta); 
+
                     file_name[0, 0] = file_name[0, 0] + ".xlsx";
                     file_name[4, 0] = "0";
                     html = util.hexafile_nv(file_name, Carpeta, idCron, arch, parins);
 
                     string mensaje = correo.display_mail(servidor, "", arch, html, Int32.Parse(parins[3, 1]), "");
 
-                    correo.send_mail("Report: < PORTEO TLN> created v2024", [], mensaje, arh);
-
+                    correo.send_mail("Report: "+ html[1,0] + " created v2024", [], mensaje, arh);
+                  
                 }
                 else
                 {
@@ -80,8 +82,10 @@ namespace serverreports
             }
             catch (Exception ex1)
             {
+                
                 datos_sp.codigo = ex1.HResult.ToString();
                 datos_sp.msg = ex1.Message;
+                //if (ex1.HResult == -2147024816) datos_sp.msg = "Error generar ZIP " + datos_sp.msg;
                 sw_error = 1;
             }
             if (sw_error == 1)

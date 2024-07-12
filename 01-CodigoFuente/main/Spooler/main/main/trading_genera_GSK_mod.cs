@@ -4,7 +4,7 @@ namespace serverreports
 {
     internal class trading_genera_GSK_mod
     {
-        public string trading_genera_GSK(string Carpeta, string file_name, string cliente, string Fecha_1, string Fecha_2, string empresa, Int32 idCron, int vs)
+        public string trading_genera_GSK(string Carpeta, string[,] file_name, string cliente, string Fecha_1, string Fecha_2, string empresa, Int32 idCron, string[,] parins, int vs)
         {
             int sw_error = 0;
             Utilerias util = new Utilerias();
@@ -13,6 +13,11 @@ namespace serverreports
             Excel xlsx = new Excel();
             DataTable[] LisDT = new DataTable[1];
             string[] LisDT_tit = new string[1]; ;
+            string[] arh;
+            if (file_name[4, 0] == "1")
+                arh = new string[2];
+            else
+                arh = new string[1];
             (string? codigo, string? msg, string? sql, DataTable? tb) datos_sp;
             datos_sp.sql = "SC_DIST.SPG_RS_COEX.P_RS_GSK_PEDIMENTOS";
 //            datos_sp = DM.datos_sp([datos_sp.sql], vs);
@@ -26,28 +31,39 @@ namespace serverreports
                 par_st[2, 0] = "o";
                 par_st[2, 1] = "i";
                 par_st[2, 2] = "p_Codigo_Error";
-            datos_sp = DM.datos_spArray([datos_sp.sql], par_st, vs);
-
+            datos_sp = DM.datos_sp([datos_sp.sql], par_st, vs);
+            string[,] html = new string[6, 1];
             Console.WriteLine(" Mensaje store :" + datos_sp.msg);
             Console.WriteLine(" Codigo store :" + datos_sp.codigo);
             LisDT_tit[0] = "Shipments";
-            string[] arh = new string[2];
+            //string[] arh = new string[2];
             LisDT[0] = datos_sp.tb;
+            string arch = file_name[0, 0];
             try
             {
                 if ((LisDT[0].Rows.Count > 0) && (datos_sp.codigo == "1"))
                 {
                     xlsx.CrearExcel_file(LisDT, LisDT_tit, Carpeta + "\\" + file_name + ".xlsx");
                     //  correo.send_mail("Report: < Logis GSK > Envio ok", [], "proceso correcto");
+                    /*
                     arh[0] = Carpeta + "\\" + file_name + ".xlsx";
                     arh[1] = util.agregar_zip(arh, file_name, Carpeta);
                     correo.send_mail("Report: < Logis GSK> Envio ok", [], "proceso correcto", arh);
+                    */
+                    arh[0] = Carpeta + "\\" + file_name[0, 0] + ".xlsx";
+                    if (file_name[4, 0] == "1")
+                        arh[1] = util.agregar_zip(arh, file_name[0, 0], Carpeta);
+                    file_name[0, 0] = file_name[0, 0] + ".xlsx";
+                    file_name[4, 0] = "0";
+                    html = util.hexafile_nv(file_name, Carpeta, idCron, arch, parins);
+                    string mensaje = correo.display_mail(parins[10, 1], "", arch, html, Int32.Parse(parins[3, 1]), "");
+                    correo.send_mail("Report: <  "+ html[1,0] + "> created v2024", [], mensaje, arh);
                 }
                 else
                 {
-                    arh[0] = AppDomain.CurrentDomain.BaseDirectory+"\\Grafica.xlsx";
-                    arh[1] = AppDomain.CurrentDomain.BaseDirectory+"\\porteos_tln.xlsx";
-                    util.agregar_zip(arh, "prueb_zip", AppDomain.CurrentDomain.BaseDirectory);
+                   // arh[0] = AppDomain.CurrentDomain.BaseDirectory+"\\Grafica.xlsx";
+                   /// arh[1] = AppDomain.CurrentDomain.BaseDirectory+"\\porteos_tln.xlsx";
+                   // util.agregar_zip(arh, "prueb_zip", AppDomain.CurrentDomain.BaseDirectory);
                     if (datos_sp.codigo == "1")
                         datos_sp.msg = "No hay registros en la consulta :" + datos_sp.sql;
                     sw_error = 1;

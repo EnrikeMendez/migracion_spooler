@@ -69,7 +69,7 @@ internal class DM
     }
 
 
-    public (string, string, string, DataTable) datos_spArray(string[] SQL, string[,] rstore, int? vs = 0)
+    public (string, string, string, DataTable) datos_sp(string[] SQL, string[,] rstore, int? vs = 0)
     //public (string, string, string, DataTable) datos_sp(string SQL, int? vs = 0, string? Cliente = null, string? Fecha_1 = null, string? Fecha_2 = null, string? impexp = null, string? tipo_doc = null, string? tp = null)
     //public (string, string, string, DataTable) datos_sp(string SQL, int? vs = 0)
     {
@@ -159,7 +159,7 @@ internal class DM
     }
 
 
-    public (string, string, string, DataTable) datos_sp(string[] SQL, int? vs = 0, string? Cliente = null, string? Fecha_1 = null, string? Fecha_2 = null, string? impexp = null, string? tipo_doc = null, string? tp = null, string? id_cron = null, string? param_1 = null, string? Fecha = null, string? frecuencia = null)
+    public (string, string, string, DataTable) datos_sp_A(string[] SQL, int? vs = 0, string? Cliente = null, string? Fecha_1 = null, string? Fecha_2 = null, string? impexp = null, string? tipo_doc = null, string? tp = null, string? id_cron = null, string? param_1 = null, string? Fecha = null, string? frecuencia = null)
    //public (string, string, string, DataTable) datos_sp(string SQL, int? vs = 0, string? Cliente = null, string? Fecha_1 = null, string? Fecha_2 = null, string? impexp = null, string? tipo_doc = null, string? tp = null)
     //public (string, string, string, DataTable) datos_sp(string SQL, int? vs = 0)
     {
@@ -303,12 +303,40 @@ internal class DM
                     datos_spr.sql = "SC_DIST.SPG_RS_COEX.P_OBTEN_DATOS_REPORTE_1 ";
 
                     //datos_spr = datos_sp([datos_spr.sql], vs, null, null, null, null, null, null, id_cron.ToString(), addsq);
-                    datos_spr = datos_spArray([datos_spr.sql], par_st, vs);
+                    datos_spr = datos_sp([datos_spr.sql], par_st, vs);
                     dtTemp.tb = datos_spr.tb;
                     break;
                 case "main_mail_contact":
+                    /*
                     datos_spr.sql = "SC_DIST.SPG_RS_COEX.P_OBTEN_DATOS_CORREO ";
                     datos_spr = datos_sp([datos_spr.sql], vs, null, null, null, null, null, null, id_cron.ToString());
+                    dtTemp.tb = datos_spr.tb;
+                    */
+                    par_st = new string[4, 4];
+                    par_st[0, 0] = "i";
+                    par_st[0, 1] = "i";
+                    par_st[0, 2] = "p_Reporte_ID";
+                    par_st[0, 3] = id_cron.ToString();
+
+                    par_st[1, 0] = "o";
+                    par_st[1, 1] = "c";
+                    par_st[1, 2] = "p_Cur_Datos_Correo";
+
+                    par_st[2, 0] = "o";
+                    par_st[2, 1] = "v";
+                    par_st[2, 2] = "p_Mensaje";
+                    par_st[2, 3] = "msg";
+
+                    par_st[3, 0] = "o";
+                    par_st[3, 1] = "i";
+                    par_st[3, 2] = "p_Codigo_Error";
+                    par_st[3, 3] = "cod";
+
+
+
+                    datos_spr.sql = "SC_DIST.SPG_RS_COEX.P_OBTEN_DATOS_CORREO ";
+                    //datos_spr = datos_sp([datos_spr.sql], vs, null, null, null, null, null, null, id_cron.ToString());
+                    datos_spr = datos_sp([datos_spr.sql], par_st, vs);
                     dtTemp.tb = datos_spr.tb;
                     break;
                 case "main_num_param":
@@ -340,13 +368,39 @@ internal class DM
                     par_st[4, 2] = "p_Codigo_Error";
                     par_st[4, 3] = "cod";
                     datos_spr.sql = " SC_DIST.SPG_RS_COEX.P_VALIDA_CONFIRMACION_2";
-                    datos_spr = datos_spArray([datos_spr.sql], par_st, vs);
+                    datos_spr = datos_sp([datos_spr.sql], par_st, vs);
                     //datos_spr = datos_sp([datos_spr.sql], vs, null, null, null, null, null, null, id_cron, null, null, fecha);
                     dtTemp.tb = datos_spr.tb;
                     break;
                 case "main_datos_rep":
+                    /*
                     datos_spr.sql = "SC_DIST.SPG_RS_COEX.P_OBTEN_DATOS_REPORTE_2";
                     datos_spr = datos_sp([datos_spr.sql], vs, null, null, null, null, null, null, id_cron.ToString());
+                    dtTemp.tb = datos_spr.tb;
+                    */
+                    par_st = new string[4, 4];
+                    par_st[0, 0] = "i";
+                    par_st[0, 1] = "i";
+                    par_st[0, 2] = "p_Reporte_ID";
+                    par_st[0, 3] = id_cron.ToString();
+
+                    par_st[1, 0] = "o";
+                    par_st[1, 1] = "c";
+                    par_st[1, 2] = "p_Cur_Datos_Correo";
+
+                    par_st[2, 0] = "o";
+                    par_st[2, 1] = "v";
+                    par_st[2, 2] = "p_Mensaje";
+                    par_st[2, 3] = "msg";
+
+                    par_st[3, 0] = "o";
+                    par_st[3, 1] = "i";
+                    par_st[3, 2] = "p_Codigo_Error";
+                    par_st[3, 3] = "cod";
+
+
+                    datos_spr.sql = "SC_DIST.SPG_RS_COEX.P_OBTEN_DATOS_REPORTE_2";
+                    datos_spr = datos_sp([datos_spr.sql], par_st, vs);
                     dtTemp.tb = datos_spr.tb;
                     break;
                 case "rep_dias_libres":
@@ -377,14 +431,46 @@ internal class DM
                     par_st[4, 3] = "cod";
 
                     datos_spr.sql = "SC_DIST.SPG_RS_COEX.P_VALIDA_DIA_LIBRE";
-                    datos_spr = datos_spArray([datos_spr.sql, "1"], par_st, vs);
+                    datos_spr = datos_sp([datos_spr.sql, "1"], par_st, vs);
                     //datos_spr = datos_sp([datos_spr.sql, "1"], vs, cliente, null, null, null, null, null, null, null, fecha);
                     dtTemp.val = datos_spr.sql;
 
                     break;
                 case "confirmacion4":
+
+                    /*
                     datos_spr.sql = "SC_DIST.SPG_RS_COEX.P_VALIDA_CONFIRMACION_4";
                     datos_spr = datos_sp([datos_spr.sql, "1"], vs, null, null, null, null, null, null, id_cron, null, null, fecha);
+                    dtTemp.val = datos_spr.sql;*/
+                    par_st = new string[5, 4];
+                    par_st[0, 0] = "i";
+                    par_st[0, 1] = "i";
+                    par_st[0, 2] = "p_Reporte_ID";
+                    par_st[0, 3] = id_cron;
+
+                    par_st[1, 0] = "i";
+                    par_st[1, 1] = "i";
+                    par_st[1, 2] = "p_Frecuencia";
+                    par_st[1, 3] = fecha;
+
+                    par_st[2, 0] = "o";
+                    par_st[2, 1] = "v";
+                    par_st[2, 2] = "v_Next_Fecha";
+                    par_st[2, 3] = "o";
+
+                    par_st[3, 0] = "o";
+                    par_st[3, 1] = "v";
+                    par_st[3, 2] = "p_Mensaje";
+                    par_st[3, 3] = "msg";
+
+                    par_st[4, 0] = "o";
+                    par_st[4, 1] = "i";
+                    par_st[4, 2] = "p_Codigo_Error";
+                    par_st[4, 3] = "cod";
+
+                    datos_spr.sql = "SC_DIST.SPG_RS_COEX.P_VALIDA_CONFIRMACION_4";
+                    //((datos_spr = datos_sp([datos_spr.sql, "1"], vs, null, null, null, null, null, null, id_cron, null, null, fecha);
+                    datos_spr = datos_sp([datos_spr.sql, "1"], par_st, vs);
                     dtTemp.val = datos_spr.sql;
                     break;
             }
