@@ -6,3 +6,19 @@ Parametros (string rep_id)
   inner join  REP_MAIL DEST   on DEST_M.ID_DEST = DEST.ID_MAIL
   WHERE status = 1
   AND REP.ID_CRON = '" & rep_id & "'
+
+
+C:\Users\usuario\Desktop\Raul\main\main\bin\Debug\net8.0\\reportes\web_reports\TLN\TLN\porteos_tln.xlsx
+
+
+ReDim tab_archivos(5, 0)
+'tab_archivos(0,i) > nombre del archivo
+'tab_archivos(1,i) > nombre del reporte
+'tab_archivos(2,i) > tamaño del archivo
+'tab_archivos(3,i) > Hash MD5
+'tab_archivos(4,i) > 1 o 0 (o si se olivida, vacio) (si se necesita o no un zip)
+'tab_archivos(5,i) > tamaño del zip
+tab_archivos(0, 0) = file_name
+tab_archivos(1, 0) = reporte_name
+tab_archivos(4, 0) = "1"
+On Error GoTo Errman

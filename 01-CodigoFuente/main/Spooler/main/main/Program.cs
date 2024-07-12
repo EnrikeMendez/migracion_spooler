@@ -51,7 +51,8 @@ string param_string = "";
 string dest_mail = "";
 string MiComando = "";
 string fecha_1_intervalo = "";
-string[,] parins = new string[11, 2];
+string[,] parins = new string[13, 2];
+string[] contmail;
 try
 {
 
@@ -241,8 +242,19 @@ try
     tdato_repor = DM.Main_rep("main_datos_rep", rep_id.ToString(), visible_sql, util.arma_param("REP.PARAM_", num_of_param)).tb;
     Console.WriteLine("************** datos repore **************");
     Console.WriteLine(util.Tdetalle(tdato_repor));
-    ///////////////////////////////////////
-    dest_mail = util.nvl(util.Tcampo(tdato_repor, "DEST_MAIL"));
+        ///////////////////////////////////////
+        if (tdato_repor.Rows.Count > 0)
+        {
+            contmail = new string[tdato_repor.Rows.Count];
+            for (int j = 0; j < tdato_repor.Rows.Count; j++)
+            {
+                contmail[j] = tdato_repor.Rows[j]["mail"].ToString();
+            }
+        }
+        else
+            contmail = new string[0];
+
+        dest_mail = util.nvl(util.Tcampo(tdato_repor, "DEST_MAIL"));
     for (int i = 1; i <= num_of_param; i++)
     {
         param_string = param_string + util.nvl(util.Tcampo(tdato_repor, "PARAM_" + i));
@@ -328,6 +340,11 @@ try
         parins[9, 1] = rep_id.ToString();
         parins[10, 0] = "Servidor";
         parins[10, 1] = servidor;
+        parins[11, 0] = "second_path";
+        parins[11, 1] = second_path;
+        parins[12, 0] = "Path_file";
+        parins[12, 1] = Carpeta;
+
 
 
         //web_transmision_edocs_bosch edocs_bosch = new web_transmision_edocs_bosch();
@@ -348,12 +365,12 @@ try
           
         case "gsk_pedimientos":
              trading_genera_GSK_mod trading_genera_GSK = new trading_genera_GSK_mod();
-             trading_genera_GSK.trading_genera_GSK(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id, parins, visible_sql);
+             trading_genera_GSK.trading_genera_GSK(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id, parins, contmail, visible_sql);
              break;
         case "porteos_tln":
              // 6651805
              trading_genera_TLN_mod trading_genera_TLN = new trading_genera_TLN_mod();
-             trading_genera_TLN.trading_genera_TLN(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id, servidor, parins, visible_sql);
+             trading_genera_TLN.trading_genera_TLN(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id, servidor, parins, contmail, visible_sql);
              break;
         }
 

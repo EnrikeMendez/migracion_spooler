@@ -4,7 +4,7 @@ namespace serverreports
 {
     internal class trading_genera_GSK_mod
     {
-        public string trading_genera_GSK(string Carpeta, string[,] file_name, string cliente, string Fecha_1, string Fecha_2, string empresa, Int32 idCron, string[,] parins, int vs)
+        public string trading_genera_GSK(string Carpeta, string[,] file_name, string cliente, string Fecha_1, string Fecha_2, string empresa, Int32 idCron, string[,] parins, string[] contacmail, int vs)
         {
             int sw_error = 0;
             Utilerias util = new Utilerias();
@@ -57,7 +57,12 @@ namespace serverreports
                     file_name[4, 0] = "0";
                     html = util.hexafile_nv(file_name, Carpeta, idCron, arch, parins);
                     string mensaje = correo.display_mail(parins[10, 1], "", arch, html, Int32.Parse(parins[3, 1]), "");
-                    correo.send_mail("Report: <  "+ html[1,0] + "> created v2024", [], mensaje, arh);
+                    if (contacmail.Length > 0) {
+                        //correo.send_mail("Report: <  "+ html[1,0] + "> created v2024", contacmail, mensaje, arh);
+                        util.replica_tem(arch, parins);
+                        correo.send_mail("Report: <  "+ html[1,0] + "> created v2024", [], mensaje, arh);
+                        DM.act_proceso(parins, vs);
+                    }
                 }
                 else
                 {

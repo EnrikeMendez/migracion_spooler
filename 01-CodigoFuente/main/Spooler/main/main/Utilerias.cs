@@ -12,6 +12,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using MD5Hash;
+using System.Security.Cryptography;
 
 namespace serverreports
 {
@@ -199,7 +200,7 @@ namespace serverreports
         public string agregar_zip(string[] arch, string nombre, string ruta)
         {
 
-                for (int i = 0; i < arch.Length; i++)
+                for (int i = 0; i < arch.Length - 1; i++)
                 {
                     CrearZip(arch[i], nombre, ruta, i);
                 }
@@ -241,6 +242,7 @@ namespace serverreports
             //string[,] html = array;
             //  var stream =File.OpenRead(null);
             // string actualHash;
+            DM DM = new DM();
 
             for (int i = 0; i < file_name.Rank - 1; i++)
             {
@@ -320,7 +322,8 @@ namespace serverreports
                     ins = ins + ",'" + parins[2, 1].Replace("'", "''") + "', " + parins[3, 1] + ", '" + nvl(parins[4, 1]) + "', '" + nvl(parins[5, 1]) + "', '" + html[3, i] + "', to_date('" + parins[6, 1] + "', 'mm/dd/yyyy'), to_date('" + parins[7, 1] + "', 'mm/dd/yyyy'))";
                 else
                     ins = ins + ",'" + parins[2, 1].Replace("'", "''") + "', " + parins[3, 1] + ", '" + nvl(parins[4, 1]) + "', '" + nvl(parins[5, 1]) + "', '" + html[3, i] + "', to_date('" + parins[8, 1] + "', 'mm/dd/yyyy'), to_date('" + parins[6, 1] + "', 'mm/dd/yyyy'))";
-                Console.WriteLine(ins);
+                //Console.WriteLine(ins);
+                DM.ejecuta_sql(ins);
             }
             return html;
         }
@@ -424,6 +427,92 @@ namespace serverreports
                 val = 1;
             return val;
         }
+        /*
+        parins[0, 0]  = "DEST_MAIL";
+        parins[0, 1]  = dest_mail;
+        parins[1, 0]  = "Carpeta";
+        parins[1, 1]  = util.nvl(util.Tcampo(tdato_repor, "CARPETA"));
+        parins[2, 0]  = "param_string";
+        parins[2, 1]  = param_string;
+        parins[3, 0]  = "days_deleted";
+        parins[3, 1]  = days_deleted.ToString();
+        parins[4, 0]  = "SUBCARPETA";
+        parins[4, 1]  = util.nvl(util.Tcampo(tdato_repor, "SUBCARPETA"));
+        parins[5, 0]  = "id_Reporte";
+        parins[5, 1]  = id_Reporte.ToString();
+        parins[6, 0]  = "FECHA_1";
+        parins[6, 1]  = FECHA_1;
+        parins[7, 0]  = "FECHA_2";
+        parins[7, 1]  = FECHA_2;
+        parins[8, 0]  = "fecha_1_intervalo";
+        parins[8, 1]  = fecha_1_intervalo;
+        parins[9, 0] = "id_cron";
+        parins[9, 1] = rep_id.ToString();
+        parins[10, 0] = "Servidor";
+        parins[10, 1] = servidor;
+        parins[11, 0] = "second_path";
+        parins[11, 1] = second_path;
+        parins[12, 0] = "Path_file";
+        parins[12, 1] = Carpeta;
+        */
+        public int replica_tem(string arch, string[,] parins)
+
+        {
+            int resultado = 0;
+            string carpeta_resp = "C:\\pc\\ruta_alterna\\ejeml";
+            //string carpeta_resp = parins[11, 1] + "\\" + nvl(parins[1, 1]) + "\\" + iff(nvl(parins[4, 1]), "<>", "", nvl(parins[4, 1]) + "\\", "");
+            /*
+              if (!new System.IO.FileInfo(carpeta_resp + "\\" + arch + ".xlsx").Exists)
+                System.IO.File.Copy(localPath + fileName, remotePath + fileName);
+            */
+            //string carpeta_resp = parins[11, 1] + "\\" + nvl(parins[1, 1]) + "\\" + iff(nvl(parins[4, 1]), "<>", "", nvl(parins[4, 1]) + "\\", "");
+            if (arch != "")
+            {
+                Console.WriteLine("primera" + parins[11, 0]);
+                //if (!Directory.Exists(parins[11, 1]))
+                if (!Directory.Exists(carpeta_resp))
+                {
+                    if (!Directory.Exists(carpeta_resp))
+                        Directory.CreateDirectory(carpeta_resp);
+                }
+                Console.WriteLine(parins[12, 1] + "\\" + arch + ".xlsx");
+                if (new System.IO.FileInfo(parins[12, 1] + "\\" + arch + ".xlsx").Exists)
+                    File.Copy(Path.Combine(parins[12, 1], arch + ".xlsx"), Path.Combine(carpeta_resp, arch + ".xlsx"), true);
+
+                if (new System.IO.FileInfo(parins[12, 1] + "\\" + arch + ".zip").Exists)
+                    File.Copy(Path.Combine(parins[12, 1], arch + ".zip"), Path.Combine(carpeta_resp, arch + ".zip"), true);
+                resultado = 1;
+            }
+            return resultado;
+        }
+
+
+        /*
+  
+    If tab_archivos(0, i) <> "" Then
+        If FSO.FolderExists(second_path) Then
+            If Not FSO.FolderExists(second_path & rs.Fields("CARPETA") & "\" & IIf(NVL(rs.Fields("SUBCARPETA")) <> "", NVL(rs.Fields("SUBCARPETA")) & "\", "")) Then
+                Call Create_Entire_Path(second_path & rs.Fields("CARPETA") & "\" & IIf(NVL(rs.Fields("SUBCARPETA")) <> "", NVL(rs.Fields("SUBCARPETA")) & "\", ""))
+            End If
+            
+            'copiar el archivo en el otro servidor
+            If FSO.FileExists(Carpeta & tab_archivos(0, i)) Then
+                FSO.CopyFile Carpeta & tab_archivos(0, i), second_path & rs.Fields("CARPETA") & "\" & IIf(NVL(rs.Fields("SUBCARPETA")) <> "", NVL(rs.Fields("SUBCARPETA")) & "\", "") & tab_archivos(0, i), True
+            End If
+            |
+            'insercion de datos en la tabla de errores para copiar lo luego
+           
+            'copiar el zip
+            If FSO.FileExists(Carpeta & Left(tab_archivos(0, i), Len(tab_archivos(0, i)) - 3) & "zip") Then
+                FSO.CopyFile Carpeta & Left(tab_archivos(0, i), Len(tab_archivos(0, i)) - 3) & "zip", second_path & rs.Fields("CARPETA") & "\" & IIf(NVL(rs.Fields("SUBCARPETA")) <> "", NVL(rs.Fields("SUBCARPETA")) & "\", "") & Left(tab_archivos(0, i), Len(tab_archivos(0, i)) - 3) & "zip", True
+            End If  
+        Else
+        End If
+    End If
+Next
+         */
+
+       
 
     }
 

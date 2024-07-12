@@ -895,6 +895,34 @@ internal class DM
         return SQL;
     }
 
+    public int act_proceso(string[,] parins,int? vs)
+    {
+        //'una vez que esta generado el reporte, actualizamos los campos del detalle :
+        //'last_created : ultima fecha a cual fue creado el reporte
+        //'last_conf_date_1 y 2 el rango de fecha del reporte que fue generado
+        string SQL;
+        if (parins[0, 1] == "")
+        {
+            //    actualizacion de las fechas
+            SQL = "update rep_detalle_reporte set last_created=sysdate " +
+                         ", last_conf_date_1 = to_date('" + parins[6, 1] + "', 'mm/dd/yyyy') " +
+                         ", last_conf_date_2 = to_date('" + parins[7, 1] + "', 'mm/dd/yyyy') " +
+                         "where id_cron= '" + parins[9, 1] + "' ";
+            ejecuta_sql(SQL, vs);
+            //decir a la tabla rep_chron que esta generado el reporte : ponemos el campo IN_PROGRESS a 0            
+            SQL = "update rep_chron set in_progress=0 where id_rapport= '" + parins[9, 1] + "' ";
+            ejecuta_sql(SQL, vs);
+        }
+        else
+        {
+            //es un reporte generado desde la web o puntual
+            //borramos el detalle
+            SQL = "delete from rep_detalle_reporte where id_cron= '" + parins[9, 1] + "'";
+            ejecuta_sql(SQL, vs);
+        }
+        return 1;
+    }
+
 
 }
 

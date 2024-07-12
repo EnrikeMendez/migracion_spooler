@@ -209,7 +209,8 @@ namespace serverreports
                 {
                     string img = "";
                     string cve = tab_archivos[3, i].Substring(tab_archivos[3, i].Length - 8, 8);
-                    string ext = tab_archivos[0, i].Substring(tab_archivos[0, i].Length - 3, 3);
+                    //string ext = tab_archivos[0, i].Substring(tab_archivos[0, i].Length - 3, 3);
+                    string ext = tab_archivos[0, i].Substring (tab_archivos[0, i].IndexOf(".") + 1, tab_archivos[0, i].Length- (tab_archivos[0, i].IndexOf(".") + 1));
                     string ext1 = tab_archivos[4, i];
                     string ext2 = tab_archivos[2, i];
                     string ext5 = tab_archivos[5, i];
@@ -220,7 +221,7 @@ namespace serverreports
 
                         switch (ext)
                         {
-                            case "lsx":
+                            case "xlsx":
                                 Excel = 1;
                                 img = "excel.gif Excel";
                                 //        display_mail = display_mail + "    <IMG SRC=\"" + servidor + " /images/excel.gif\" align =\"bottom\" alt =\"excel\" border =\"0\" ></a>" + "\n"

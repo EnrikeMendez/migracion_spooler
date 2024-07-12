@@ -1,0 +1,6 @@
+parametros (string rep_id)
+
+select TEMP_MENSAJE, TEMP_MENSAJE_FECHA 
+, decode(sign(TEMP_MENSAJE_FECHA - trunc(sysdate)), 1, 'ok', 'delete') ver
+ from rep_reporte 
+ where id_rep = '" & rep_id & "'
