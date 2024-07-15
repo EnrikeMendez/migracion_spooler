@@ -237,6 +237,7 @@ namespace serverreports
             return sb.ToString();
         }
         public string[,] hexafile_nv(string[,] file_name, string Carpeta, int id_rep, string file_n, string[,] parins)
+        
         {
             string[,] html = file_name;
             //string[,] html = array;
@@ -459,8 +460,8 @@ namespace serverreports
 
         {
             int resultado = 0;
-            string carpeta_resp = "C:\\pc\\ruta_alterna\\ejeml";
-            //string carpeta_resp = parins[11, 1] + "\\" + nvl(parins[1, 1]) + "\\" + iff(nvl(parins[4, 1]), "<>", "", nvl(parins[4, 1]) + "\\", "");
+            //string carpeta_resp = "C:\\pc\\ruta_alterna\\ejeml";
+            string carpeta_resp = parins[11, 1] + "\\" + nvl(parins[1, 1]) + "\\" + iff(nvl(parins[4, 1]), "<>", "", nvl(parins[4, 1]) + "\\", "");
             /*
               if (!new System.IO.FileInfo(carpeta_resp + "\\" + arch + ".xlsx").Exists)
                 System.IO.File.Copy(localPath + fileName, remotePath + fileName);

@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\dm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\dm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\web_transmision_edocs_bosch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\web_transmision_edocs_bosch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|c:\\pc\\raul\\programas consola\\main\\spooler\\main\\main\\trading_genera_tln_mod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\trading_genera_tln_mod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\trading_genera_tln_mod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|c:\\pc\\raul\\programas consola\\main\\spooler\\main\\main\\dm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\dm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\envio_correo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\envio_correo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\trading_genera_gsk_mod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\trading_genera_gsk_mod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\utilerias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -27,15 +27,15 @@
       "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\trading_genera_gsk_mod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\trading_genera_gsk_mod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\excel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\excel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\web_transmision_edocs_bosch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\web_transmision_edocs_bosch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|c:\\pc\\raul\\programas consola\\main\\spooler\\main\\main\\serverreports.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\serverreports.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
       "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\serverreports.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     },
     {
@@ -49,17 +49,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "DM.cs",
               "DocumentMoniker": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\DM.cs",
               "RelativeDocumentMoniker": "main\\DM.cs",
               "ToolTip": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\DM.cs",
               "RelativeToolTip": "main\\DM.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAJAAAA",
+              "ViewState": "AQIAAC0DAAAAAAAAAAAiwKcDAAAbAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-06T15:42:25.043Z",
               "IsPinned": true,
@@ -73,20 +73,20 @@
               "RelativeDocumentMoniker": "main\\trading_genera_TLN_mod.cs",
               "ToolTip": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\trading_genera_TLN_mod.cs",
               "RelativeToolTip": "main\\trading_genera_TLN_mod.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAAQwF4AAAAXAAAA",
+              "ViewState": "AQIAAB8AAAAAAAAAAAAuwCEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-18T23:33:15.62Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "envio_correo.cs",
               "DocumentMoniker": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\envio_correo.cs",
               "RelativeDocumentMoniker": "main\\envio_correo.cs",
               "ToolTip": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\envio_correo.cs",
               "RelativeToolTip": "main\\envio_correo.cs",
-              "ViewState": "AQIAABIAAAAAAAAAAAAiwB4AAAAcAAAA",
+              "ViewState": "AQIAAFsAAAAAAAAAAAAQwBsBAABjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-11T15:38:19.059Z",
               "EditorCaption": ""
@@ -99,7 +99,7 @@
               "RelativeDocumentMoniker": "main\\Program.cs",
               "ToolTip": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\Program.cs",
               "RelativeToolTip": "main\\Program.cs",
-              "ViewState": "AQIAADoAAAAAAAAAAAAAAD0AAAAAAAAA",
+              "ViewState": "AQIAAA8BAAAAAAAAAAAlwCEBAAArAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-30T16:55:35.323Z",
               "EditorCaption": ""
@@ -112,20 +112,20 @@
               "RelativeDocumentMoniker": "main\\Utilerias.cs",
               "ToolTip": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\Utilerias.cs",
               "RelativeToolTip": "main\\Utilerias.cs",
-              "ViewState": "AQIAANYBAAAAAAAAAADgv3MBAAAyAAAA",
+              "ViewState": "AQIAAK8AAAAAAAAAAAAiwP8AAAA4AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-07T15:22:57.016Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 0,
               "Title": "web_transmision_edocs_bosch.cs",
               "DocumentMoniker": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\web_transmision_edocs_bosch.cs",
               "RelativeDocumentMoniker": "main\\web_transmision_edocs_bosch.cs",
               "ToolTip": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\web_transmision_edocs_bosch.cs",
               "RelativeToolTip": "main\\web_transmision_edocs_bosch.cs",
-              "ViewState": "AQIAACUAAAAAAAAAAAAgwGgAAAAsAAAA",
+              "ViewState": "AQIAAMMAAAAAAAAAAAAgwNEAAABZAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-30T23:56:03.707Z",
               "EditorCaption": ""
@@ -144,7 +144,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "trading_genera_GSK_mod.cs",
               "DocumentMoniker": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\trading_genera_GSK_mod.cs",
               "RelativeDocumentMoniker": "main\\trading_genera_GSK_mod.cs",
@@ -152,12 +152,11 @@
               "RelativeToolTip": "main\\trading_genera_GSK_mod.cs",
               "ViewState": "AQIAAAUAAAAAAAAAAAAQwFAAAAAdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-05T22:27:18.522Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-05T22:27:18.522Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Excel.cs",
               "DocumentMoniker": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\Excel.cs",
               "RelativeDocumentMoniker": "main\\Excel.cs",
@@ -165,8 +164,7 @@
               "RelativeToolTip": "main\\Excel.cs",
               "ViewState": "AQIAABEAAAAAAAAAAAAlwCMAAAAxAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-03T15:31:10.154Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-03T15:31:10.154Z"
             },
             {
               "$type": "Document",
@@ -177,8 +175,7 @@
               "ToolTip": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\serverreports.csproj",
               "RelativeToolTip": "main\\serverreports.csproj",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-07-12T16:17:32.187Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-12T16:17:32.187Z"
             }
           ]
         },

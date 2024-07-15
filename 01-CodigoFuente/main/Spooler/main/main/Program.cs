@@ -422,7 +422,7 @@ void init_var()
         second_path = "\\\\" + IP_servidor2 + "\\reportes\\web_reports\\";
     else
         second_path = "\\\\" + IP_servidor1 + "\\reportes\\web_reports\\";
-
+    second_path = "C:\\pc\\ruta_alterna\\ejeml\\";
     mail_Lots_Info = "";
     mail_adjuntarArchivoXLS = false;
     mail_adjuntarArchivoTXT = false;

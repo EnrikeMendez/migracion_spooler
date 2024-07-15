@@ -67,11 +67,12 @@ namespace serverreports
                     file_name[0, 0] = file_name[0, 0] + ".xlsx";
                     file_name[4, 0] = "0";
                     html = util.hexafile_nv(file_name, Carpeta, idCron, arch, parins);
-                    string mensaje = correo.display_mail(servidor, "", arch, html, Int32.Parse(parins[3, 1]), "");
+                    util.replica_tem(arch, parins);
+                    string warning_message = DM.msg_temp(parins, vs);
+                    string mensaje = correo.display_mail(servidor, warning_message, arch, html, Int32.Parse(parins[3, 1]), "");
                     if (contacmail.Length > 0)
                     {
                         //correo.send_mail("Report: " + html[1, 0] + " created v2024", contacmail, mensaje, arh);
-                        util.replica_tem(arch, parins);
                         correo.send_mail("Report: " + html[1, 0] + " created v2024", [], mensaje, arh);
                         DM.act_proceso(parins, vs);
                     }

@@ -1,18 +1,141 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Drawing;
+using DocumentFormat.OpenXml.Presentation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace serverreports
 {
     internal class web_transmision_edocs_bosch
     {
 
-
         public string transmision_edocs_bosch(string Carpeta, string file_name, string Clientes, string Fecha_1, string Fecha_2, string imp_exp, string tipo_doc, int visible_sql)
+        {
+            int sw_error = 0;
+            Utilerias util = new Utilerias();
+            envio_correo correo = new envio_correo();
+            DM DM = new DM();
+            Excel xlsx = new Excel();
+            DataTable[] LisDT = new DataTable[1];
+            string[] LisDT_tit = new string[1]; ;
+            string[] tab_impexp;
+            string[,] par_st = new string[9, 4];
+            /*
+            PARAMETRO ENTRADA/ SALIDA  TIPO DATO   DESCRIPCIÓN
+
+            p_Num_Cliente       Entrada NUMBER  Numero de Cliente
+            p_Fecha_Inicio      Entrada VARCHAR2    Fecha inicio de consulta
+            p_Fecha_Fin         Entrada VARCHAR2 Fecha Fin de consulta
+            p_Impexp            Entrada VARCHAR2    Tipo Operación 1
+            p_Tipo_Doc          Entrada  VARCHAR2 Tipo Documento
+            p_Tipo_Op           Entrada VARCHAR2    Tipo Operación 2
+            p_Cur_Trans_COVE    Salida  SYS_REFCURSOR Cursor que regresa el conjunto de resultados de la consulta Transmision COVE
+            p_Mensaje           Salida VARCHAR2    Mensaje de error
+            p_Codigo_Error      Salida NUMBER  Código de error
+            */
+            par_st[0, 0] = "i";
+            par_st[0, 1] = "i";
+            par_st[0, 2] = "p_Num_Cliente";
+            par_st[0, 2] = Clientes;
+
+            par_st[1, 0] = "i";
+            par_st[1, 1] = "v";
+            par_st[1, 2] = "p_Fecha_Inicio";
+            par_st[1, 3] = Fecha_1;
+
+            par_st[2, 0] = "i";
+            par_st[2, 1] = "v";
+            par_st[2, 2] = "p_Fecha_Fin";
+            par_st[2, 3] = Fecha_2;
+            //
+
+            ///
+            par_st[6, 0] = "o";
+            par_st[6, 1] = "c";
+            par_st[6, 2] = "p_Cur_GSK";
+            par_st[7, 0] = "o";
+            par_st[7, 1] = "v";
+            par_st[7, 2] = "p_Mensaje";
+            par_st[7, 3] = "msg";
+            par_st[8, 0] = "o";
+            par_st[8, 1] = "i";
+            par_st[8, 2] = "p_Codigo_Error";
+            par_st[8, 3] = "cod";
+
+
+
+            (string? codigo, string? msg, string? sql, DataTable? tb) datos_sp;
+            try
+            {
+                datos_sp.sql = "SC_DIST.SPG_RS_COEX.P_RS_TRANSMISION_COVE";
+                if (imp_exp.Trim() == "1" || imp_exp.Trim() == "2")
+                {
+                    LisDT = new DataTable[1];
+                    LisDT_tit = new string[1];
+
+                    par_st[3, 0] = "i";
+                    par_st[3, 1] = "v";
+                    par_st[3, 2] = "p_Impexp";
+                    par_st[3, 3] = imp_exp;
+
+                    par_st[4, 0] = "i";
+                    par_st[4, 1] = "v";
+                    par_st[4, 2] = "p_Tipo_Doc";
+                    par_st[4, 3] = tipo_doc;
+
+                    par_st[5, 0] = "i";
+                    par_st[5, 1] = "v";
+                    par_st[5, 2] = "p_Tipo_Op";
+                    par_st[5, 3] = imp_exp;
+
+                    datos_sp = DM.datos_sp_A([datos_sp.sql], visible_sql, Clientes, Fecha_1, Fecha_2, imp_exp, tipo_doc, imp_exp);
+
+                    Console.WriteLine(" Mensaje store :" + datos_sp.msg);
+                    Console.WriteLine(" Codigo store :" + datos_sp.codigo);
+                    LisDT[0] = datos_sp.tb;
+                    LisDT_tit[0] = util.iff(imp_exp, "=", "1", "Importación", "Exportación");
+                    xlsx.CrearExcel_file(LisDT, LisDT_tit, Carpeta + file_name);
+                }
+                else
+                {
+                    LisDT = new DataTable[2];
+                    LisDT_tit = new string[2];
+                    datos_sp = DM.datos_sp_A([datos_sp.sql], visible_sql, Clientes, Fecha_1, Fecha_2, "null", tipo_doc, "2");
+                    LisDT[0] = datos_sp.tb;
+                    LisDT_tit[0] = "Exportación";
+                    Console.WriteLine(" Mensaje store :" + datos_sp.msg);
+                    Console.WriteLine(" Codigo store :" + datos_sp.codigo);
+                    datos_sp = DM.datos_sp_A([datos_sp.sql], visible_sql, Clientes, Fecha_1, Fecha_2, "null", tipo_doc, "1");
+                    LisDT[1] = datos_sp.tb;
+                    LisDT_tit[1] = "Importación";
+                    Console.WriteLine(" Mensaje store :" + datos_sp.msg);
+                    Console.WriteLine(" Codigo store :" + datos_sp.codigo);
+                    string[] arh = new string[2];
+
+                    xlsx.CrearExcel_file(LisDT, LisDT_tit, Carpeta + file_name, 1);
+                    correo.send_mail("Report: < Logis transmision_edocs_bosch > Envio ok", [], "proceso correcto", [Carpeta + "\\" + file_name + ".xlsx"]);
+                }
+            }
+            catch (Exception ex1)
+            {
+                datos_sp.codigo = ex1.HResult.ToString();
+                datos_sp.msg = ex1.Message;
+                sw_error = 1;
+            }
+            if (sw_error == 1)
+                correo.msg_error("edocs_bosch", datos_sp.codigo, datos_sp.msg);
+            LisDT[0].Clear();
+            return sw_error.ToString();
+        }
+
+
+
+        public string transmision_edocs_bosch_ant(string Carpeta, string file_name, string Clientes, string Fecha_1, string Fecha_2, string imp_exp, string tipo_doc, int visible_sql)
         {
             int sw_error = 0;
             Utilerias util = new Utilerias();

@@ -922,7 +922,40 @@ internal class DM
         }
         return 1;
     }
-
+    public string msg_temp(string[,] parins, int? vs)
+    {
+        string warning_message = "";
+        string[,] par_st = new string[4, 4];
+        par_st[0, 0] = "i";
+        par_st[0, 1] = "i";
+        par_st[0, 2] = "p_Reporte_ID";
+        par_st[0, 3] = parins[9, 1];
+        par_st[1, 0] = "o";
+        par_st[1, 1] = "c";
+        par_st[1, 2] = "p_Cur_GSK";
+        par_st[2, 0] = "o";
+        par_st[2, 1] = "v";
+        par_st[2, 2] = "p_Mensaje";
+        par_st[2, 3] = "msg";
+        par_st[3, 0] = "o";
+        par_st[3, 1] = "i";
+        par_st[3, 2] = "p_Codigo_Error";
+        par_st[3, 3] = "cod";
+        (string? codigo, string? msg, string? sql, DataTable? tb) datos_sp1;
+        datos_sp1.sql = "SC_DIST.SPG_RS_COEX.P_OBTEN_TEMP_MENSAJE ";
+        datos_sp1 = datos_sp([datos_sp1.sql], par_st, vs);
+        if (util.Tcampo(datos_sp1.tb, "VER") == "ok")
+            warning_message = util.Tcampo(datos_sp1.tb, "TEMP_MENSAJE");
+        else
+            if (util.Tcampo(datos_sp1.tb, "TEMP_MENSAJE") != "")
+        {
+            string SQL_02 = "update rep_reporte set TEMP_MENSAJE = NULL " +
+                            " , TEMP_MENSAJE_FECHA = NULL " +
+                           " where id_rep= '" + parins[9, 1] + "' ";
+            ejecuta_sql(SQL_02, vs);
+        }
+        return warning_message;
+    }
 
 }
 
