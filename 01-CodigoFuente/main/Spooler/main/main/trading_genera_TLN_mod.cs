@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using DocumentFormat.OpenXml.Drawing;
 using MD5Hash;
 using DocumentFormat.OpenXml.Spreadsheet;
-
+///6651805 0
 namespace serverreports
 {
     internal class trading_genera_TLN_mod
@@ -29,8 +29,10 @@ namespace serverreports
             else
                 arh = new string[1];
             (string? codigo, string? msg, string? sql, DataTable? tb) datos_sp;
+            datos_sp.tb = LisDT[1];
             datos_sp.sql = "SC_DIST.SPG_RS_COEX.P_RS_PORTEOS_TLN";
             //datos_sp = DM.datos_sp([datos_sp.sql], vs);
+            string[,] html = new string[6, 1];
             string[,] par_st = new string[3, 4];
             par_st[0, 0] = "o";
             par_st[0, 1] = "c";
@@ -44,16 +46,16 @@ namespace serverreports
             par_st[2, 2] = "p_Codigo_Error";
             par_st[2, 3] = "cod";
 
+            try
+            {
+                datos_sp = DM.datos_sp([datos_sp.sql], par_st, vs);
 
-            datos_sp = DM.datos_sp([datos_sp.sql], par_st, vs);
-            string[,] html = new string[6, 1];
             Console.WriteLine(" Mensaje store :" + datos_sp.msg);
             Console.WriteLine(" Codigo store :"  + datos_sp.codigo);
             LisDT_tit[0] = "Shipments";
             LisDT[0] = datos_sp.tb;
             string arch = file_name[0, 0];
-            try
-            {
+
                 if ((LisDT[0].Rows.Count > 0) && (datos_sp.codigo == "1"))
                 {
                     xlsx.CrearExcel_file(LisDT, LisDT_tit, Carpeta + "\\" + arch);
@@ -74,8 +76,10 @@ namespace serverreports
                     {
                         //correo.send_mail("Report: " + html[1, 0] + " created v2024", contacmail, mensaje, arh);
                         correo.send_mail("Report: " + html[1, 0] + " created v2024", [], mensaje, arh);
-                        DM.act_proceso(parins, vs);
+
                     }
+                    DM.act_proceso(parins, vs);
+                    util.borra_arch(arh, Carpeta);
                 }
                 else
                 {
@@ -95,9 +99,9 @@ namespace serverreports
             if (sw_error == 1)
                 correo.msg_error(html[1, 0], datos_sp.codigo, datos_sp.msg);
             LisDT[0].Clear();
-            return sw_error.ToString();
+            datos_sp.tb.Dispose();            
+            return sw_error.ToString();        
 
-           
         }
 
     }

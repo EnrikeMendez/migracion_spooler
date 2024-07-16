@@ -86,6 +86,7 @@ namespace serverreports
                     try
                     {
                         servidor.Send(correo);
+                        correo.Attachments.Dispose();
                         Console.WriteLine("\t\tCorreo enviado de manera exitosa");
                         correo.Dispose();
                         return "OK";
@@ -121,6 +122,7 @@ namespace serverreports
             try
             {
                 //  servidor.Send(correo);
+                correo.Attachments.Dispose();
                 correo.Dispose();
                 return "OK";
             }

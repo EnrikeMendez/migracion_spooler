@@ -8,6 +8,28 @@ namespace serverreports;
 internal class DM
 {
     Utilerias util = new Utilerias();
+
+    private string conecBD()
+    {
+        var orfeo = "Error";
+        try
+        {
+            var configuration = new ConfigurationBuilder()
+                                              .AddUserSecrets(Assembly.GetExecutingAssembly())
+                                              .Build();
+            //orfeo = configuration["Orfeo2"];
+            orfeo = configuration["ORFEODES2"];
+            // toma el valor de app.config
+            //  orfeo = ConfigurationManager.ConnectionStrings["Orfeo2"].ToString();
+            //  orfeo = ConfigurationManager.ConnectionStrings["ORFEODES"].ToString();
+        }
+        catch (Exception ex)
+        {
+            orfeo = orfeo + ex.Message;
+        }
+        return orfeo;
+    }
+
     public DataTable datos(string SQL)
     {
         DataTable dtTemp = new DataTable();
@@ -100,7 +122,6 @@ internal class DM
                             switch (rstore[a, 1])
                             {
                                 case "i":
-
                                         cmd.Parameters.Add(rstore[a, 2], OracleDbType.Int32).Value = Convert.ToInt32(rstore[a, 3]);
                                     break;
                                 case "v":
@@ -238,26 +259,7 @@ internal class DM
 
 
 
-    private string conecBD()
-    {
-        var orfeo = "Error";
-        try
-        {
-            var configuration = new ConfigurationBuilder()
-                                              .AddUserSecrets(Assembly.GetExecutingAssembly())
-                                              .Build();
-            //orfeo = configuration["Orfeo2"];
-            orfeo = configuration["ORFEODES2"];
-            // toma el valor de app.config
-            //  orfeo = ConfigurationManager.ConnectionStrings["Orfeo2"].ToString();
-            //  orfeo = ConfigurationManager.ConnectionStrings["ORFEODES"].ToString();
-        }
-        catch (Exception ex)
-        {
-            orfeo = orfeo + ex.Message;
-        }
-        return orfeo;
-    }
+
     
     public (DataTable tb, string val) Main_rep(string nom_proc, string id_cron, int? vs, string? addsq = "", string? cliente = null, string? fecha = null)
     {

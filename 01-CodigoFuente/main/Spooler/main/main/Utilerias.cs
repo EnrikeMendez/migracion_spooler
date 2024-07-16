@@ -256,11 +256,13 @@ namespace serverreports
                     var stream = File.CreateText(Carpeta + "\\" + file_n + System.IO.Path.GetTempFileName());
                     //html[3, i] = StringToHex(Carpeta + "\\" + arch + System.IO.Path.GetTempFileName());
                     html[3, i] = stream.GetMD5().ToString();
+                    stream.Dispose();
                 }
                 else
                 {
                     var stream = File.OpenRead(Carpeta + "\\" + arch1);
                     html[3, i] = stream.GetMD5();
+                    stream.Dispose();
                 }
                 /*
                 If FSO.GetFile(Carpeta & tab_archivos(0, i)).size >= 104857600 Then
@@ -335,6 +337,7 @@ namespace serverreports
             for (int i = 0; i < file_name.Rank - 1; i++)
             {
                 long sizeInBytes = new FileInfo(Carpeta + "\\" + file_name[0, 0] + ".xlsx").Length;
+                
                 html[2, i] = sizeInBytes.ToString();
                 if (sizeInBytes >= 104857600 || sizeInBytes <= 0)
                     html[3, i] = StringToHex(Carpeta + "\\" + file_name[0, 0] + System.IO.Path.GetTempFileName());
@@ -513,7 +516,19 @@ namespace serverreports
 Next
          */
 
-       
+        public int borra_arch(string[] arch, string ruta)
+        {
+            int sw = 0;
+            if (Directory.Exists(ruta))
+            {
+                for (int i = 0; i < arch.Length; i++)
+                {
+                    File.Delete(arch[i]);
+                }
+                sw = 1;
+            }
+            return sw;
+        }
 
     }
 

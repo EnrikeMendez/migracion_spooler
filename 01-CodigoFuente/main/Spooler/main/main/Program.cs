@@ -53,6 +53,11 @@ string MiComando = "";
 string fecha_1_intervalo = "";
 string[,] parins = new string[13, 2];
 string[] contmail;
+DataTable trep_cron = new DataTable();
+DataTable tdato_repor = new DataTable();
+DataTable tnum_param = new DataTable();
+DataTable tmail_contact = new DataTable();
+DataTable tconfirmacion2 = new DataTable();
 try
 {
 
@@ -61,11 +66,7 @@ try
  Utilerias util = new Utilerias();
  DM DM = new DM();
  init_var();
- DataTable trep_cron = new DataTable();
- DataTable tdato_repor = new DataTable();
- DataTable tnum_param = new DataTable();
- DataTable tmail_contact = new DataTable();
- DataTable tconfirmacion2 = new DataTable();
+
     try
  
     { string comand = args[0];
@@ -389,7 +390,11 @@ catch (Exception e)
 {    
    Console.WriteLine(e.Message +" No. error" + e.HResult);
 }
-
+trep_cron.Dispose();
+tdato_repor.Dispose();
+tnum_param.Dispose();
+tmail_contact.Dispose();
+tconfirmacion2.Dispose();
 void init_var()
 {
     num_of_param = 0;
