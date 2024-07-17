@@ -122,9 +122,15 @@ internal class DM
                             switch (rstore[a, 1])
                             {
                                 case "i":
+                                    if (rstore[a, 3] == "null")
+                                        cmd.Parameters.Add(rstore[a, 2], OracleDbType.Int32).Value = null;
+                                    else
                                         cmd.Parameters.Add(rstore[a, 2], OracleDbType.Int32).Value = Convert.ToInt32(rstore[a, 3]);
                                     break;
                                 case "v":
+                                    if (rstore[a, 3] == "null")
+                                        cmd.Parameters.Add(rstore[a, 2], OracleDbType.Varchar2).Value = null;
+                                    else
                                         cmd.Parameters.Add(rstore[a, 2], OracleDbType.Varchar2).Value = rstore[a, 3];
                                     break;
                             }

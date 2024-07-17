@@ -25,23 +25,10 @@ namespace serverreports
             string[] LisDT_tit = new string[1]; ;
             string[] tab_impexp;
             string[,] par_st = new string[9, 4];
-            /*
-            PARAMETRO ENTRADA/ SALIDA  TIPO DATO   DESCRIPCIÓN
-
-            p_Num_Cliente       Entrada NUMBER  Numero de Cliente
-            p_Fecha_Inicio      Entrada VARCHAR2    Fecha inicio de consulta
-            p_Fecha_Fin         Entrada VARCHAR2 Fecha Fin de consulta
-            p_Impexp            Entrada VARCHAR2    Tipo Operación 1
-            p_Tipo_Doc          Entrada  VARCHAR2 Tipo Documento
-            p_Tipo_Op           Entrada VARCHAR2    Tipo Operación 2
-            p_Cur_Trans_COVE    Salida  SYS_REFCURSOR Cursor que regresa el conjunto de resultados de la consulta Transmision COVE
-            p_Mensaje           Salida VARCHAR2    Mensaje de error
-            p_Codigo_Error      Salida NUMBER  Código de error
-            */
             par_st[0, 0] = "i";
             par_st[0, 1] = "i";
             par_st[0, 2] = "p_Num_Cliente";
-            par_st[0, 2] = Clientes;
+            par_st[0, 3] = Clientes;
 
             par_st[1, 0] = "i";
             par_st[1, 1] = "v";
@@ -52,16 +39,16 @@ namespace serverreports
             par_st[2, 1] = "v";
             par_st[2, 2] = "p_Fecha_Fin";
             par_st[2, 3] = Fecha_2;
-            //
 
-            ///
             par_st[6, 0] = "o";
             par_st[6, 1] = "c";
-            par_st[6, 2] = "p_Cur_GSK";
+            par_st[6, 2] = "p_Cur_Trans_COVE";
+
             par_st[7, 0] = "o";
             par_st[7, 1] = "v";
             par_st[7, 2] = "p_Mensaje";
             par_st[7, 3] = "msg";
+
             par_st[8, 0] = "o";
             par_st[8, 1] = "i";
             par_st[8, 2] = "p_Codigo_Error";
@@ -93,7 +80,8 @@ namespace serverreports
                     par_st[5, 2] = "p_Tipo_Op";
                     par_st[5, 3] = imp_exp;
 
-                    datos_sp = DM.datos_sp_A([datos_sp.sql], visible_sql, Clientes, Fecha_1, Fecha_2, imp_exp, tipo_doc, imp_exp);
+                    //datos_sp = DM.datos_sp_A([datos_sp.sql], visible_sql, Clientes, Fecha_1, Fecha_2, imp_exp, tipo_doc, imp_exp);
+                    datos_sp = DM.datos_sp([datos_sp.sql], par_st, visible_sql);
 
                     Console.WriteLine(" Mensaje store :" + datos_sp.msg);
                     Console.WriteLine(" Codigo store :" + datos_sp.codigo);
@@ -105,18 +93,48 @@ namespace serverreports
                 {
                     LisDT = new DataTable[2];
                     LisDT_tit = new string[2];
-                    datos_sp = DM.datos_sp_A([datos_sp.sql], visible_sql, Clientes, Fecha_1, Fecha_2, "null", tipo_doc, "2");
+                    par_st[3, 0] = "i";
+                    par_st[3, 1] = "v";
+                    par_st[3, 2] = "p_Impexp";
+                    par_st[3, 3] = "null";
+
+                    par_st[4, 0] = "i";
+                    par_st[4, 1] = "v";
+                    par_st[4, 2] = "p_Tipo_Doc";
+                    par_st[4, 3] = tipo_doc;
+
+                    par_st[5, 0] = "i";
+                    par_st[5, 1] = "v";
+                    par_st[5, 2] = "p_Tipo_Op";
+                    par_st[5, 3] = "2";
+
+                    //datos_sp = DM.datos_sp_A([datos_sp.sql], visible_sql, Clientes, Fecha_1, Fecha_2, "null", tipo_doc, "2");
+                    datos_sp = DM.datos_sp([datos_sp.sql], par_st, visible_sql);
                     LisDT[0] = datos_sp.tb;
                     LisDT_tit[0] = "Exportación";
                     Console.WriteLine(" Mensaje store :" + datos_sp.msg);
                     Console.WriteLine(" Codigo store :" + datos_sp.codigo);
-                    datos_sp = DM.datos_sp_A([datos_sp.sql], visible_sql, Clientes, Fecha_1, Fecha_2, "null", tipo_doc, "1");
+                    par_st[3, 0] = "i";
+                    par_st[3, 1] = "v";
+                    par_st[3, 2] = "p_Impexp";
+                    par_st[3, 3] = "null";
+
+                    par_st[4, 0] = "i";
+                    par_st[4, 1] = "v";
+                    par_st[4, 2] = "p_Tipo_Doc";
+                    par_st[4, 3] = tipo_doc;
+
+                    par_st[5, 0] = "i";
+                    par_st[5, 1] = "v";
+                    par_st[5, 2] = "p_Tipo_Op";
+                    par_st[5, 3] = "1";
+                    //datos_sp = DM.datos_sp([datos_sp.sql], visible_sql, Clientes, Fecha_1, Fecha_2, "null", tipo_doc, "1");
+                    datos_sp = DM.datos_sp([datos_sp.sql], par_st, visible_sql);
                     LisDT[1] = datos_sp.tb;
                     LisDT_tit[1] = "Importación";
                     Console.WriteLine(" Mensaje store :" + datos_sp.msg);
                     Console.WriteLine(" Codigo store :" + datos_sp.codigo);
                     string[] arh = new string[2];
-
                     xlsx.CrearExcel_file(LisDT, LisDT_tit, Carpeta + file_name, 1);
                     correo.send_mail("Report: < Logis transmision_edocs_bosch > Envio ok", [], "proceso correcto", [Carpeta + "\\" + file_name + ".xlsx"]);
                 }
