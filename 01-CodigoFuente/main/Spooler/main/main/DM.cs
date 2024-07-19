@@ -953,15 +953,13 @@ internal class DM
         datos_sp1.sql = "SC_DIST.SPG_RS_COEX.P_OBTEN_TEMP_MENSAJE ";
         datos_sp1 = datos_sp([datos_sp1.sql], par_st, vs);
         if (util.Tcampo(datos_sp1.tb, "VER") == "ok")
-        { 
             warning_message = util.Tcampo(datos_sp1.tb, "TEMP_MENSAJE");
-        }
         else
             if (util.Tcampo(datos_sp1.tb, "TEMP_MENSAJE") != "")
         {
             string SQL_02 = "update rep_reporte set TEMP_MENSAJE = NULL " +
                             " , TEMP_MENSAJE_FECHA = NULL " +
-                            " where id_rep= '" + parins[8, 1] + "' ";
+                            " where id_rep= '" + parins[9, 1] + "' ";
             ejecuta_sql(SQL_02, vs);
         }
         return warning_message;

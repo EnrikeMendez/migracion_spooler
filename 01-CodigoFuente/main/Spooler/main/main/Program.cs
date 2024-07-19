@@ -367,6 +367,7 @@ try
         case "gsk_pedimientos":
              trading_genera_GSK_mod trading_genera_GSK = new trading_genera_GSK_mod();
              trading_genera_GSK.trading_genera_GSK(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id, parins, contmail, visible_sql);
+                
              break;
         case "porteos_tln":
              // 6651805

@@ -170,7 +170,7 @@ namespace serverreports
         public void CrearZip(string fileToAdd, string nombre, string ruta, int add)
         {
             var outFileName = Path.GetFileNameWithoutExtension(nombre) + ".zip";
-            var fileNameToAdd = Path.Combine(ruta, "data", fileToAdd);
+            var fileNameToAdd = Path.Combine(ruta, "", fileToAdd);
             var zipFileName = Path.Combine(ruta, "", outFileName);
             if (add == 0)
             {
@@ -199,12 +199,40 @@ namespace serverreports
 
         public string agregar_zip(string[] arch, string nombre, string ruta)
         {
-                for (int i = 0; i < arch.Length - 1; i++)
-                {
-                    CrearZip(arch[i], nombre, ruta, i);
-                }
-  
+            //   try
+            //  {
+            for (int i = 0; i < arch.Length - 1; i++)
+            {
+                CrearZip(arch[i], nombre, ruta, i);
+            }
+            //   }
+            /*
+               catch (Exception e)
+               {
+                   Console.WriteLine("Error archivo " + nombre + ".zip existe en ruta " + ruta + " error No. " + e.HResult);
+               }
+            */
             return ruta + "\\" + nombre + ".zip";
+        }
+
+        public string[,] agregar_zip_nv(string[,] arch, string nombre, string ruta)
+        {
+            string[,] html = arch;
+            //   try
+            //  {
+            for (int i = 0; i < arch.Rank - 1; i++)
+            {
+                CrearZip(arch[0, i], nombre, ruta, i);
+            }
+            //   }
+            /*
+               catch (Exception e)
+               {
+                   Console.WriteLine("Error archivo " + nombre + ".zip existe en ruta " + ruta + " error No. " + e.HResult);
+               }
+            */
+
+            return html;
         }
 
 
@@ -247,6 +275,7 @@ namespace serverreports
             {
                 string arch1 = file_name[0, i];
 
+                
                 long sizeInBytes = new FileInfo(Carpeta + "\\" + arch1).Length;
                 html[2, i] = sizeInBytes.ToString();
                 if (sizeInBytes >= 104857600 || sizeInBytes <= 0)
