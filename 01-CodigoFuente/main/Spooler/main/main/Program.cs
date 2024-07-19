@@ -361,7 +361,7 @@ try
     {
         case "transmision_edocs_bosch":
              web_transmision_edocs_bosch edocs_bosch = new web_transmision_edocs_bosch();
-             edocs_bosch.transmision_edocs_bosch(Carpeta, tab_archivos[0,0], util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), visible_sql);
+             edocs_bosch.transmision_edocs_bosch(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), parins, contmail, visible_sql);
              break;
           
         case "gsk_pedimientos":

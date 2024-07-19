@@ -29,7 +29,7 @@ namespace serverreports
             else
                 arh = new string[1];
             (string? codigo, string? msg, string? sql, DataTable? tb) datos_sp;
-            datos_sp.tb = LisDT[1];
+            datos_sp.tb = LisDT[0];
             datos_sp.sql = "SC_DIST.SPG_RS_COEX.P_RS_PORTEOS_TLN";
             //datos_sp = DM.datos_sp([datos_sp.sql], vs);
             string[,] html = new string[6, 1];
@@ -67,7 +67,7 @@ namespace serverreports
                       arh[1] = util.agregar_zip(arh, file_name[0, 0], Carpeta); 
 
                     file_name[0, 0] = file_name[0, 0] + ".xlsx";
-                    file_name[4, 0] = "0";
+                    //file_name[4, 0] = "0";
                     html = util.hexafile_nv(file_name, Carpeta, idCron, arch, parins);
                     util.replica_tem(arch, parins);
                     string warning_message = DM.msg_temp(parins, vs);

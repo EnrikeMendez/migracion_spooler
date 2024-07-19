@@ -199,7 +199,6 @@ namespace serverreports
 
         public string agregar_zip(string[] arch, string nombre, string ruta)
         {
-
                 for (int i = 0; i < arch.Length - 1; i++)
                 {
                     CrearZip(arch[i], nombre, ruta, i);
@@ -236,8 +235,7 @@ namespace serverreports
             }
             return sb.ToString();
         }
-        public string[,] hexafile_nv(string[,] file_name, string Carpeta, int id_rep, string file_n, string[,] parins)
-        
+        public string[,] hexafile_nv(string[,] file_name, string Carpeta, int id_rep, string file_n, string[,] parins)        
         {
             string[,] html = file_name;
             //string[,] html = array;

@@ -1,0 +1,8 @@
+ing_egr_gar_pend_fact
+Parametros (string Cliente, string Fecha_1, string Fecha_2, string impexp, string tipo_doc, string tp)
+
+SQL = " SELECT TO_CHAR(CONTENT) CONTENT  " +
+      " FROM CONTENIDO_REPORTE           " +
+      " WHERE REPID = '" + rep_clave + "'" +
+      " ORDER BY NO_LINEA "
+

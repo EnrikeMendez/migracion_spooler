@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,8 +14,8 @@ namespace serverreports
 {
     internal class web_transmision_edocs_bosch
     {
-
-        public string transmision_edocs_bosch(string Carpeta, string file_name, string Clientes, string Fecha_1, string Fecha_2, string imp_exp, string tipo_doc, int visible_sql)
+        //5132031
+        public string transmision_edocs_bosch(string Carpeta, string[,] file_name, string Clientes, string Fecha_1, string Fecha_2, string imp_exp, string tipo_doc, string[,] parins, string[] contacmail, int visible_sql)
         {
             int sw_error = 0;
             Utilerias util = new Utilerias();
@@ -22,8 +23,14 @@ namespace serverreports
             DM DM = new DM();
             Excel xlsx = new Excel();
             DataTable[] LisDT = new DataTable[1];
+            string[] arh;
+            if (file_name[4, 0] == "1")
+                arh = new string[2];
+            else
+                arh = new string[1];
             string[] LisDT_tit = new string[1]; ;
             string[] tab_impexp;
+            string[,] html = new string[6, 1];
             string[,] par_st = new string[9, 4];
             par_st[0, 0] = "i";
             par_st[0, 1] = "i";
@@ -53,7 +60,7 @@ namespace serverreports
             par_st[8, 1] = "i";
             par_st[8, 2] = "p_Codigo_Error";
             par_st[8, 3] = "cod";
-
+            string arch = file_name[0, 0];
 
 
             (string? codigo, string? msg, string? sql, DataTable? tb) datos_sp;
@@ -80,14 +87,14 @@ namespace serverreports
                     par_st[5, 2] = "p_Tipo_Op";
                     par_st[5, 3] = imp_exp;
 
-                    //datos_sp = DM.datos_sp_A([datos_sp.sql], visible_sql, Clientes, Fecha_1, Fecha_2, imp_exp, tipo_doc, imp_exp);
-                    datos_sp = DM.datos_sp([datos_sp.sql], par_st, visible_sql);
 
+                    datos_sp = DM.datos_sp([datos_sp.sql], par_st, visible_sql);
                     Console.WriteLine(" Mensaje store :" + datos_sp.msg);
                     Console.WriteLine(" Codigo store :" + datos_sp.codigo);
                     LisDT[0] = datos_sp.tb;
                     LisDT_tit[0] = util.iff(imp_exp, "=", "1", "Importación", "Exportación");
-                    xlsx.CrearExcel_file(LisDT, LisDT_tit, Carpeta + file_name);
+                   // xlsx.CrearExcel_file(LisDT, LisDT_tit, Carpeta + file_name);
+                    xlsx.CrearExcel_file(LisDT, LisDT_tit, Carpeta + file_name[0, 0], 1);
                 }
                 else
                 {
@@ -96,7 +103,7 @@ namespace serverreports
                     par_st[3, 0] = "i";
                     par_st[3, 1] = "v";
                     par_st[3, 2] = "p_Impexp";
-                    par_st[3, 3] = "null";
+                    par_st[3, 3] = null;
 
                     par_st[4, 0] = "i";
                     par_st[4, 1] = "v";
@@ -108,7 +115,6 @@ namespace serverreports
                     par_st[5, 2] = "p_Tipo_Op";
                     par_st[5, 3] = "2";
 
-                    //datos_sp = DM.datos_sp_A([datos_sp.sql], visible_sql, Clientes, Fecha_1, Fecha_2, "null", tipo_doc, "2");
                     datos_sp = DM.datos_sp([datos_sp.sql], par_st, visible_sql);
                     LisDT[0] = datos_sp.tb;
                     LisDT_tit[0] = "Exportación";
@@ -117,7 +123,7 @@ namespace serverreports
                     par_st[3, 0] = "i";
                     par_st[3, 1] = "v";
                     par_st[3, 2] = "p_Impexp";
-                    par_st[3, 3] = "null";
+                    par_st[3, 3] = null;
 
                     par_st[4, 0] = "i";
                     par_st[4, 1] = "v";
@@ -131,14 +137,31 @@ namespace serverreports
                     //datos_sp = DM.datos_sp([datos_sp.sql], visible_sql, Clientes, Fecha_1, Fecha_2, "null", tipo_doc, "1");
                     datos_sp = DM.datos_sp([datos_sp.sql], par_st, visible_sql);
                     LisDT[1] = datos_sp.tb;
+
                     LisDT_tit[1] = "Importación";
                     Console.WriteLine(" Mensaje store :" + datos_sp.msg);
                     Console.WriteLine(" Codigo store :" + datos_sp.codigo);
-                    string[] arh = new string[2];
-                    xlsx.CrearExcel_file(LisDT, LisDT_tit, Carpeta + file_name, 1);
-                    correo.send_mail("Report: < Logis transmision_edocs_bosch > Envio ok", [], "proceso correcto", [Carpeta + "\\" + file_name + ".xlsx"]);
+                    xlsx.CrearExcel_file(LisDT, LisDT_tit, Carpeta + file_name[0, 0], 1);
+                   
                 }
+
+                arh[0] = Carpeta + "\\" + file_name[0, 0] + ".xlsx";
+                if (file_name[4, 0] == "1")
+                    arh[1] = util.agregar_zip(arh, file_name[0, 0], Carpeta);
+                file_name[0, 0] = file_name[0, 0] + ".xlsx";
+                html = util.hexafile_nv(file_name, Carpeta, int.Parse(parins[9, 1]), arch, parins);
+                util.replica_tem(arch, parins);
+                string warning_message = DM.msg_temp(parins, visible_sql);
+                string mensaje = correo.display_mail(parins[10, 1], warning_message, arch, html, Int32.Parse(parins[3, 1]), "");
+                //  correo.send_mail("Report: < Logis transmision_edocs_bosch > Envio ok", [], "proceso correcto", [Carpeta + "\\" + file_name + ".xlsx"]);
+                if (contacmail.Length > 0)
+                {
+                    correo.send_mail("Report: " + html[1, 0] + " created v2024", [], mensaje, arh);
+                }
+                DM.act_proceso(parins, visible_sql);
+                util.borra_arch(arh, Carpeta);
             }
+
             catch (Exception ex1)
             {
                 datos_sp.codigo = ex1.HResult.ToString();

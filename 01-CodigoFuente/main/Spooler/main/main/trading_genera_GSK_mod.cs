@@ -61,8 +61,8 @@ namespace serverreports
                     if (file_name[4, 0] == "1")
                         arh[1] = util.agregar_zip(arh, file_name[0, 0], Carpeta);
                     file_name[0, 0] = file_name[0, 0] + ".xlsx";
-                    file_name[4, 0] = "0";
-                    html = util.hexafile_nv(file_name, Carpeta, idCron, arch, parins);
+                   // file_name[4, 0] = "0";
+                    html = util.hexafile_nv(file_name, Carpeta, int.Parse(parins[9, 1]), arch, parins);
                     util.replica_tem(arch, parins);
                     string mensaje = correo.display_mail(parins[10, 1], "", arch, html, Int32.Parse(parins[3, 1]), "");
                     if (contacmail.Length > 0) {
