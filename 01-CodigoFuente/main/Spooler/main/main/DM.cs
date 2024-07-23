@@ -166,8 +166,16 @@ internal class DM
                         OracleDataAdapter da1 = new OracleDataAdapter(cmd);
                         da1.Fill(dtTemp);
                     }
-                    info.Item1 = cmd.Parameters[campo_err].Value.ToString();
-                    info.Item2 = cmd.Parameters[campo_msg].Value.ToString();
+                    if (campo_err != "" && campo_msg != "")
+                    {
+                        info.Item1 = cmd.Parameters[campo_err].Value.ToString();
+                        info.Item2 = cmd.Parameters[campo_msg].Value.ToString();
+                    }
+                    else
+                    {
+                        info.Item1 = "ok";
+                        info.Item2 = "correcto";
+                    }
                     info.Item4 = dtTemp;
                 }
             }
