@@ -141,14 +141,23 @@ namespace serverreports
                     LisDT_tit[1] = "Importación";
                     Console.WriteLine(" Mensaje store :" + datos_sp.msg);
                     Console.WriteLine(" Codigo store :" + datos_sp.codigo);
-                    xlsx.CrearExcel_file(LisDT, LisDT_tit, Carpeta + file_name[0, 0], 1);
-                   
+                    //xlsx.CrearExcel_file(LisDT, LisDT_tit, Carpeta + file_name[0, 0], 1);
+                    xlsx.CrearExcel_file(LisDT, LisDT_tit, Carpeta + "\\" + arch);
+
                 }
 
                 arh[0] = Carpeta + "\\" + file_name[0, 0] + ".xlsx";
-                if (file_name[4, 0] == "1")
-                    arh[1] = util.agregar_zip(arh, file_name[0, 0], Carpeta);
                 file_name[0, 0] = file_name[0, 0] + ".xlsx";
+                //if (file_name[4, 0] == "1")
+                //   arh[1] = util.agregar_zip(arh, file_name[0, 0], Carpeta);
+                if (file_name[4, 0] == "1")
+                {
+                    //arh[1] = util.agregar_zip_nv(file_name, arch, Carpeta);
+                    html = util.agregar_zip_nv(file_name, arch, Carpeta);
+                    arh[1] = Carpeta + "\\" + arch + ".zip";
+                }
+
+                //file_name[0, 0] = file_name[0, 0] + ".xlsx";
                 html = util.hexafile_nv(file_name, Carpeta, int.Parse(parins[9, 1]), arch, parins);
                 util.replica_tem(arch, parins);
                 string warning_message = DM.msg_temp(parins, visible_sql);
@@ -156,7 +165,7 @@ namespace serverreports
                 //  correo.send_mail("Report: < Logis transmision_edocs_bosch > Envio ok", [], "proceso correcto", [Carpeta + "\\" + file_name + ".xlsx"]);
                 if (contacmail.Length > 0)
                 {
-                    correo.send_mail("Report: " + html[1, 0] + " created v2024", [], mensaje, arh);
+                    correo.send_mail("Report: <" + html[1, 0] + "> created v2024", [], mensaje, arh);
                 }
                 DM.act_proceso(parins, visible_sql);
                 util.borra_arch(arh, Carpeta);
@@ -169,7 +178,7 @@ namespace serverreports
                 sw_error = 1;
             }
             if (sw_error == 1)
-                correo.msg_error("edocs_bosch", datos_sp.codigo, datos_sp.msg);
+                correo.msg_error(html[1, 0], datos_sp.codigo, datos_sp.msg);
             LisDT[0].Clear();
             return sw_error.ToString();
         }

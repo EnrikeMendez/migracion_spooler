@@ -964,6 +964,15 @@ internal class DM
         }
         return warning_message;
     }
+    public DataTable sc_reportes_gen_rep_clave(int? vs = 0)
+    {
+        DataTable dtTemp = new DataTable();
+        string SQL = " select  SC_REPORTES.GEN_REP_CLAVE from dual";
+        if (vs == 1) { Console.WriteLine(SQL + "\n"); }
+        dtTemp = datos(SQL);
+        return dtTemp;
+    }
+
 
 }
 

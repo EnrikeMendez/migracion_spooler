@@ -50,25 +50,37 @@ namespace serverreports
 
                 if ((LisDT[0].Rows.Count > 0) && (datos_sp.codigo == "1"))
                 {
-                    xlsx.CrearExcel_file(LisDT, LisDT_tit, Carpeta + "\\" + file_name + ".xlsx");
+                    //xlsx.CrearExcel_file(LisDT, LisDT_tit, Carpeta + "\\" + file_name + ".xlsx");
+                    xlsx.CrearExcel_file(LisDT, LisDT_tit, Carpeta + "\\" + arch);
                     //  correo.send_mail("Report: < Logis GSK > Envio ok", [], "proceso correcto");
                     /*
                     arh[0] = Carpeta + "\\" + file_name + ".xlsx";
                     arh[1] = util.agregar_zip(arh, file_name, Carpeta);
                     correo.send_mail("Report: < Logis GSK> Envio ok", [], "proceso correcto", arh);
                     */
-                    arh[0] = Carpeta + "\\" + file_name[0, 0] + ".xlsx";
-                    if (file_name[4, 0] == "1")
-                        arh[1] = util.agregar_zip(arh, file_name[0, 0], Carpeta);
+                    arh[0] = Carpeta + "\\" + file_name[0, 0] + ".xlsx";                    
                     file_name[0, 0] = file_name[0, 0] + ".xlsx";
-                   // file_name[4, 0] = "0";
-                    html = util.hexafile_nv(file_name, Carpeta, int.Parse(parins[9, 1]), arch, parins);
+                    
+                    if (file_name[4, 0] == "1")
+                    { 
+                        //arh[1] = util.agregar_zip(arh, file_name[0, 0], Carpeta);
+                        html = util.agregar_zip_nv(file_name, arch, Carpeta);
+                        arh[1] = Carpeta + "\\" + arch + ".zip";
+                    }
+                    //file_name[0, 0] = file_name[0, 0] + ".xlsx";
+                    // file_name[4, 0] = "0";
+                    html = util.hexafile_nv(file_name, Carpeta, int.Parse(parins[9, 1]), arch, parins);                    
                     util.replica_tem(arch, parins);
-                    string mensaje = correo.display_mail(parins[10, 1], "", arch, html, Int32.Parse(parins[3, 1]), "");
+
+                    string warning_message = DM.msg_temp(parins, vs);
+                    string mensaje = correo.display_mail(parins[10, 1], warning_message, arch, html, Int32.Parse(parins[3, 1]), "");
+
+                    //string mensaje = correo.display_mail(parins[10, 1], "", arch, html, Int32.Parse(parins[3, 1]), "");
                     if (contacmail.Length > 0) {
                         //correo.send_mail("Report: <  "+ html[1,0] + "> created v2024", contacmail, mensaje, arh);
 
                         correo.send_mail("Report: <  "+ html[1,0] + "> created v2024", [], mensaje, arh);
+
                         
                     }
                     DM.act_proceso(parins, vs);
