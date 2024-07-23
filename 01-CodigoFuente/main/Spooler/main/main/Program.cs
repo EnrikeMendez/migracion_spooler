@@ -271,7 +271,7 @@ try
                       util.iff(util.nvl(util.Tcampo(tdato_repor, "SUBCARPETA")), "<>", "", util.nvl(util.Tcampo(tdato_repor, "SUBCARPETA")) + "\\", "");
     MiComando = util.nvl(util.Tcampo(tdato_repor, "COMMAND"));
 
-    tab_archivos = new string[6,1];
+    tab_archivos = new string[6,2];
     tab_archivos[0,0] = file_name;
     tab_archivos[1,0] = reporte_name;
     tab_archivos[4,0] = "1";

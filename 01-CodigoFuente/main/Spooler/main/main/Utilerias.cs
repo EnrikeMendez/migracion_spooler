@@ -199,6 +199,7 @@ namespace serverreports
 
         public string agregar_zip(string[] arch, string nombre, string ruta)
         {
+    
             //   try
             //  {
             for (int i = 0; i < arch.Length - 1; i++)
@@ -212,6 +213,7 @@ namespace serverreports
                    Console.WriteLine("Error archivo " + nombre + ".zip existe en ruta " + ruta + " error No. " + e.HResult);
                }
             */
+
             return ruta + "\\" + nombre + ".zip";
         }
 
@@ -231,7 +233,9 @@ namespace serverreports
                    Console.WriteLine("Error archivo " + nombre + ".zip existe en ruta " + ruta + " error No. " + e.HResult);
                }
             */
-
+            long sizeInBytes = new FileInfo(ruta + "\\" + nombre + ".zip").Length;
+            //html[5, 0] = sizeInBytes.ToString();
+            html[5, 0] = format_tam(sizeInBytes);
             return html;
         }
 
@@ -277,7 +281,8 @@ namespace serverreports
 
                 
                 long sizeInBytes = new FileInfo(Carpeta + "\\" + arch1).Length;
-                html[2, i] = sizeInBytes.ToString();
+                //html[2, i] = sizeInBytes.ToString();
+                html[2, i] = format_tam(sizeInBytes);
                 if (sizeInBytes >= 104857600 || sizeInBytes <= 0)
                 {
                     var stream = File.CreateText(Carpeta + "\\" + file_n + System.IO.Path.GetTempFileName());
@@ -555,6 +560,38 @@ Next
                 sw = 1;
             }
             return sw;
+        }
+        public string format_tam(decimal tam)
+        {
+            int n = 0;
+            String subj = "";
+            while (tam > 1024)
+            {
+                tam = Math.Round(tam / 1024);
+                n++;
+            }
+            switch (n)
+            {
+                case 0:
+                    subj = "B";
+                    break;
+                case 1:
+                    subj = "KB";
+                    break;
+                case 2:
+                    subj = "MB";
+                    break;
+                case 3:
+                    subj = "GB";
+                    break;
+                case 4:
+                    subj = "TB";
+                    break;
+                default:
+                    subj = "Trop long !!!";
+                    break;
+            }
+            return tam.ToString() + " " + subj;
         }
 
     }

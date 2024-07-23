@@ -63,7 +63,6 @@ namespace serverreports
                     xlsx.CrearExcel_file(LisDT, LisDT_tit, Carpeta + "\\" + arch);
                     //msg = DM.porteos_tln(cliente, Fecha_1, Fecha_2, empresa, idCron, 1);
                     //correo.send_mail("Report: < Logis PORTEO TLN> Envio ok", [], "proceso correcto", ["C:\\pc\\prueba_adj.txt"], ["logis04prog@hotmail.com"]);
-
                     arh[0] = Carpeta + "\\" + file_name[0, 0] + ".xlsx";
                     file_name[0, 0] = file_name[0, 0] + ".xlsx";
                     if (file_name[4, 0] == "1")
@@ -78,9 +77,9 @@ namespace serverreports
                     string warning_message = DM.msg_temp(parins, vs);
                     string mensaje = correo.display_mail(servidor, warning_message, arch, html, Int32.Parse(parins[3, 1]), "");
 
-                        //correo.send_mail("Report: " + html[1, 0] + " created v2024", contacmail, mensaje, arh);
-                          correo.send_mail("Report: " + html[1, 0] + " created v2024", [], mensaje, arh);
 
+                    //correo.send_mail("Report: " + html[1, 0] + " created v2024", contacmail, mensaje, arh);
+                    correo.send_mail("Report: " + html[1, 0] + " created v2024", [], mensaje, arh);
                     DM.act_proceso(parins, vs);
                     util.borra_arch(arh, Carpeta);
                 }
