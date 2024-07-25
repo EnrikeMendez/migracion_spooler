@@ -153,7 +153,7 @@ namespace serverreports
                 if (file_name[4, 0] == "1")
                 {
                     //arh[1] = util.agregar_zip_nv(file_name, arch, Carpeta);
-                    html = util.agregar_zip_nv(file_name, arch, Carpeta);
+                    html = util.agregar_zip(file_name, arch, Carpeta);
                     arh[1] = Carpeta + "\\" + arch + ".zip";
                 }
 

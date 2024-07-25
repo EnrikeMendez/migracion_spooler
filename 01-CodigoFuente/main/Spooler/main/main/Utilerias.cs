@@ -197,7 +197,7 @@ namespace serverreports
         }
 
 
-        public string agregar_zip(string[] arch, string nombre, string ruta)
+        public string agregar_zip_ant(string[] arch, string nombre, string ruta)
         {
     
             //   try
@@ -217,7 +217,7 @@ namespace serverreports
             return ruta + "\\" + nombre + ".zip";
         }
 
-        public string[,] agregar_zip_nv(string[,] arch, string nombre, string ruta)
+        public string[,] agregar_zip(string[,] arch, string nombre, string ruta)
         {
             string[,] html = arch;
             //   try

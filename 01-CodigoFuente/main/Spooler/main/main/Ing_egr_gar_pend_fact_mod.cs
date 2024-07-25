@@ -10,7 +10,7 @@ namespace serverreports
     internal class Ing_egr_gar_pend_fact_mod
     {
 
-        public string Ing_egr_gar_pend_fact(string Archivo, string Empresa, string Divisa, string fecha, string[,] parins, string[,] contacmail, int vs)
+        public string Ing_egr_gar_pend_fact(string Archivo, string Empresa, string Divisa, string fecha, string[,] parins, string[] contacmail, int vs)
         {
             DataTable dttmp = new DataTable();
             DM DM = new DM();
@@ -63,7 +63,38 @@ namespace serverreports
                 datos_sp.codigo = "-20000";
                 datos_sp.msg = "sc_reportes_step_folios_egr_ing_pend : Error al llamar sc_reportes_step_folios_egr_ing_pend";
             }
+            par_st = new string[4, 4];
+            par_st[0, 0] = "i";
+            par_st[0, 1] = "v";
+            par_st[0, 2] = "p_Rep_Clave";
+            par_st[0, 3] = rep_clave;
+            par_st[1, 0] = "o";
+            par_st[1, 1] = "c";
+            par_st[1, 2] = "p_Cur_GSK";
+            par_st[2, 0] = "o";
+            par_st[2, 1] = "v";
+            par_st[2, 2] = "p_Mensaje";
+            par_st[2, 3] = "msg";
+            par_st[3, 0] = "o";
+            par_st[3, 1] = "i";
+            par_st[3, 2] = "p_Codigo_Error";
+            par_st[3, 3] = "cod";
+            datos_sp.sql = "SC_DIST.SPG_RS_COEX.P_OBTEN_INGR_EGRE_PEN_FACT";
+            datos_sp = DM.datos_sp([datos_sp.sql], par_st, vs);
+            Console.WriteLine(util.Tdetalle(datos_sp.tb));
+            string cp = "C:\\pc\\ruta_alterna\\ejeml\\";
+            if (!Directory.Exists(cp))
+            {
+                Directory.CreateDirectory(cp);
+            }
 
+            DateTime DateTime = DateTime.Now;
+            using (StreamWriter sw = File.CreateText(cp + " Detail.txt"))
+            {
+
+                sw.WriteLine(util.Tdetalle(datos_sp.tb));
+
+            }
 
             return "";
 

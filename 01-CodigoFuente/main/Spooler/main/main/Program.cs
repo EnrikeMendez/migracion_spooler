@@ -374,7 +374,19 @@ try
              trading_genera_TLN_mod trading_genera_TLN = new trading_genera_TLN_mod();
              trading_genera_TLN.trading_genera_TLN(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id, servidor, parins, contmail, visible_sql);
              break;
+            case "ing_egr_gar_pend_fact":
+                //4220496
+                //4241096
+                //7216555
+                //5566766
+                //     Call Ing_egr_gar_pend_fact(Carpeta & tab_archivos(0, 0), rs.Fields("PARAM_1"), rs.Fields("PARAM_2"), NVL(rs.Fields("PARAM_3")))
+                Ing_egr_gar_pend_fact_mod Ing_egr_gar_pend_fact = new Ing_egr_gar_pend_fact_mod();
+                Ing_egr_gar_pend_fact.Ing_egr_gar_pend_fact(Carpeta + tab_archivos[0, 0], util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), parins, contmail, visible_sql);
+                //indice_cal_bosch.indice_cal_bosch(Carpeta, tab_archivos[0], FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), visible_sql);
+                break;
         }
+
+
 
 }
  else
