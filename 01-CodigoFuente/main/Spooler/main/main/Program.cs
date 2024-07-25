@@ -359,21 +359,22 @@ try
 
         switch (MiComando)
     {
-        case "transmision_edocs_bosch":
+            case "transmision_edocs_bosch":
              web_transmision_edocs_bosch edocs_bosch = new web_transmision_edocs_bosch();
              edocs_bosch.transmision_edocs_bosch(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), parins, contmail, visible_sql);
              break;
           
-        case "gsk_pedimientos":
+            case "gsk_pedimientos":
              trading_genera_GSK_mod trading_genera_GSK = new trading_genera_GSK_mod();
-             trading_genera_GSK.trading_genera_GSK(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id, parins, contmail, visible_sql);
-                
+             trading_genera_GSK.trading_genera_GSK(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id, parins, contmail, visible_sql);               
              break;
-        case "porteos_tln":
+            
+            case "porteos_tln":
              // 6651805
              trading_genera_TLN_mod trading_genera_TLN = new trading_genera_TLN_mod();
              trading_genera_TLN.trading_genera_TLN(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id, servidor, parins, contmail, visible_sql);
              break;
+
             case "ing_egr_gar_pend_fact":
                 //4220496
                 //4241096
@@ -382,13 +383,21 @@ try
                 //     Call Ing_egr_gar_pend_fact(Carpeta & tab_archivos(0, 0), rs.Fields("PARAM_1"), rs.Fields("PARAM_2"), NVL(rs.Fields("PARAM_3")))
                 Ing_egr_gar_pend_fact_mod Ing_egr_gar_pend_fact = new Ing_egr_gar_pend_fact_mod();
                 Ing_egr_gar_pend_fact.Ing_egr_gar_pend_fact(Carpeta + tab_archivos[0, 0], util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), parins, contmail, visible_sql);
-                //indice_cal_bosch.indice_cal_bosch(Carpeta, tab_archivos[0], FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), visible_sql);
+            break;
+
+            case "fondo_fijo":
+                //            Call Fondo_fijo(Carpeta & tab_archivos(0, 0) & ".txt", rs.Fields("PARAM_1"), rs.Fields("PARAM_2"))
+                web_fondo_fijo_mod Fondo_fijo = new web_fondo_fijo_mod();
+                Fondo_fijo.Fondo_fijo(Carpeta + tab_archivos[0, 0], util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), parins, contmail, visible_sql);
+
                 break;
+
+
         }
 
 
 
-}
+    }
  else
     Console.WriteLine("Error es necesario especifica los parametros \n 1. Falta numero reporte: ''{0}'' \n 2. valor tipo de reporte: {1} " + msg, rep_id, reporte_temporal);
     envio_correo correo = new envio_correo();
