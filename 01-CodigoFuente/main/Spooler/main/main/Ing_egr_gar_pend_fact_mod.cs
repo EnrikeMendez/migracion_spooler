@@ -1,0 +1,103 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Data;
+
+namespace serverreports
+{
+    internal class Ing_egr_gar_pend_fact_mod
+    {
+
+        public string Ing_egr_gar_pend_fact(string Archivo, string Empresa, string Divisa, string fecha, string[,] parins, string[] contacmail, int vs)
+        {
+            DataTable dttmp = new DataTable();
+            DM DM = new DM();
+            Utilerias util = new Utilerias();
+            (string? codigo, string? msg, string? sql, DataTable? tb) datos_sp;
+            string[,] par_st;
+            par_st = new string[5, 4];
+            par_st[0, 0] = "o";
+            par_st[0, 1] = "v";
+            par_st[0, 2] = "pmsg";
+            par_st[0, 3] = "o";
+            par_st[2, 0] = "i";
+            par_st[2, 1] = "i";
+            par_st[2, 2] = "pemp";
+            par_st[2, 3] = "55";
+            //par_st[2, 3] = Empresa;
+            par_st[3, 0] = "i";
+            par_st[3, 1] = "v";
+            par_st[3, 2] = "pdiv";
+            // par_st[3, 3] = "MXN";
+            par_st[3, 3] = Divisa;
+            par_st[4, 0] = "i";
+            par_st[4, 1] = "v";
+            par_st[4, 2] = "pfecha_max";
+            if (fecha == "")
+                par_st[4, 3] = null;
+            else
+                par_st[4, 3] = fecha;
+
+            dttmp = DM.sc_reportes_gen_rep_clave(vs);
+            string rep_clave = util.Tcampo(dttmp, "GEN_REP_CLAVE");
+            dttmp.Dispose();
+            if (rep_clave == "")
+            {
+                datos_sp.codigo = "-20000";
+                datos_sp.msg = "sc_reportes_gen_rep_clave : Error al llamar sc_reportes.gen_rep_clave";
+            }
+            par_st[1, 0] = "i";
+            par_st[1, 1] = "v";
+            par_st[1, 2] = "prep_clave";
+            // par_st[1, 3] = "2397C";
+            par_st[1, 3] = rep_clave;
+
+            datos_sp.sql = "LOGIS.SC_REPORTES.STEP_FOLIOS_EGR_ING_PEND";
+            datos_sp = DM.datos_sp([datos_sp.sql, "1"], par_st, vs);
+            string campox = datos_sp.sql;
+            datos_sp.tb.Dispose();
+            if (datos_sp.sql != "OK")
+            {
+                datos_sp.codigo = "-20000";
+                datos_sp.msg = "sc_reportes_step_folios_egr_ing_pend : Error al llamar sc_reportes_step_folios_egr_ing_pend";
+            }
+            par_st = new string[4, 4];
+            par_st[0, 0] = "i";
+            par_st[0, 1] = "v";
+            par_st[0, 2] = "p_Rep_Clave";
+            par_st[0, 3] = rep_clave;
+            par_st[1, 0] = "o";
+            par_st[1, 1] = "c";
+            par_st[1, 2] = "p_Cur_GSK";
+            par_st[2, 0] = "o";
+            par_st[2, 1] = "v";
+            par_st[2, 2] = "p_Mensaje";
+            par_st[2, 3] = "msg";
+            par_st[3, 0] = "o";
+            par_st[3, 1] = "i";
+            par_st[3, 2] = "p_Codigo_Error";
+            par_st[3, 3] = "cod";
+            datos_sp.sql = "SC_DIST.SPG_RS_COEX.P_OBTEN_INGR_EGRE_PEN_FACT";
+            datos_sp = DM.datos_sp([datos_sp.sql], par_st, vs);
+            Console.WriteLine(util.Tdetalle(datos_sp.tb));
+            string cp = "C:\\pc\\ruta_alterna\\ejeml\\";
+            if (!Directory.Exists(cp))
+            {
+                Directory.CreateDirectory(cp);
+            }
+
+            DateTime DateTime = DateTime.Now;
+            using (StreamWriter sw = File.CreateText(cp + " Detail.txt"))
+            {
+
+                sw.WriteLine(util.Tdetalle(datos_sp.tb));
+
+            }
+
+            return "";
+
+        }
+    }
+}

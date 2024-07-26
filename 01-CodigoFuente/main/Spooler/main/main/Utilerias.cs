@@ -170,7 +170,7 @@ namespace serverreports
         public void CrearZip(string fileToAdd, string nombre, string ruta, int add)
         {
             var outFileName = Path.GetFileNameWithoutExtension(nombre) + ".zip";
-            var fileNameToAdd = Path.Combine(ruta, "data", fileToAdd);
+            var fileNameToAdd = Path.Combine(ruta, "", fileToAdd);
             var zipFileName = Path.Combine(ruta, "", outFileName);
             if (add == 0)
             {
@@ -197,15 +197,46 @@ namespace serverreports
         }
 
 
-        public string agregar_zip(string[] arch, string nombre, string ruta)
+        public string agregar_zip_ant(string[] arch, string nombre, string ruta)
         {
+    
+            //   try
+            //  {
+            for (int i = 0; i < arch.Length - 1; i++)
+            {
+                CrearZip(arch[i], nombre, ruta, i);
+            }
+            //   }
+            /*
+               catch (Exception e)
+               {
+                   Console.WriteLine("Error archivo " + nombre + ".zip existe en ruta " + ruta + " error No. " + e.HResult);
+               }
+            */
 
-                for (int i = 0; i < arch.Length - 1; i++)
-                {
-                    CrearZip(arch[i], nombre, ruta, i);
-                }
-  
             return ruta + "\\" + nombre + ".zip";
+        }
+
+        public string[,] agregar_zip(string[,] arch, string nombre, string ruta)
+        {
+            string[,] html = arch;
+            //   try
+            //  {
+            for (int i = 0; i < arch.Rank - 1; i++)
+            {
+                CrearZip(arch[0, i], nombre, ruta, i);
+            }
+            //   }
+            /*
+               catch (Exception e)
+               {
+                   Console.WriteLine("Error archivo " + nombre + ".zip existe en ruta " + ruta + " error No. " + e.HResult);
+               }
+            */
+            long sizeInBytes = new FileInfo(ruta + "\\" + nombre + ".zip").Length;
+            //html[5, 0] = sizeInBytes.ToString();
+            html[5, 0] = format_tam(sizeInBytes);
+            return html;
         }
 
 
@@ -236,7 +267,7 @@ namespace serverreports
             }
             return sb.ToString();
         }
-        public string[,] hexafile_nv(string[,] file_name, string Carpeta, int id_rep, string file_n, string[,] parins)
+        public string[,] hexafile_nv(string[,] file_name, string Carpeta, int id_rep, string file_n, string[,] parins)        
         {
             string[,] html = file_name;
             //string[,] html = array;
@@ -248,18 +279,22 @@ namespace serverreports
             {
                 string arch1 = file_name[0, i];
 
+                
                 long sizeInBytes = new FileInfo(Carpeta + "\\" + arch1).Length;
-                html[2, i] = sizeInBytes.ToString();
+                //html[2, i] = sizeInBytes.ToString();
+                html[2, i] = format_tam(sizeInBytes);
                 if (sizeInBytes >= 104857600 || sizeInBytes <= 0)
                 {
                     var stream = File.CreateText(Carpeta + "\\" + file_n + System.IO.Path.GetTempFileName());
                     //html[3, i] = StringToHex(Carpeta + "\\" + arch + System.IO.Path.GetTempFileName());
                     html[3, i] = stream.GetMD5().ToString();
+                    stream.Dispose();
                 }
                 else
                 {
                     var stream = File.OpenRead(Carpeta + "\\" + arch1);
                     html[3, i] = stream.GetMD5();
+                    stream.Dispose();
                 }
                 /*
                 If FSO.GetFile(Carpeta & tab_archivos(0, i)).size >= 104857600 Then
@@ -334,6 +369,7 @@ namespace serverreports
             for (int i = 0; i < file_name.Rank - 1; i++)
             {
                 long sizeInBytes = new FileInfo(Carpeta + "\\" + file_name[0, 0] + ".xlsx").Length;
+                
                 html[2, i] = sizeInBytes.ToString();
                 if (sizeInBytes >= 104857600 || sizeInBytes <= 0)
                     html[3, i] = StringToHex(Carpeta + "\\" + file_name[0, 0] + System.IO.Path.GetTempFileName());
@@ -459,8 +495,8 @@ namespace serverreports
 
         {
             int resultado = 0;
-            string carpeta_resp = "C:\\pc\\ruta_alterna\\ejeml";
-            //string carpeta_resp = parins[11, 1] + "\\" + nvl(parins[1, 1]) + "\\" + iff(nvl(parins[4, 1]), "<>", "", nvl(parins[4, 1]) + "\\", "");
+            //string carpeta_resp = "C:\\pc\\ruta_alterna\\ejeml";
+            string carpeta_resp = parins[11, 1] + "\\" + nvl(parins[1, 1]) + "\\" + iff(nvl(parins[4, 1]), "<>", "", nvl(parins[4, 1]) + "\\", "");
             /*
               if (!new System.IO.FileInfo(carpeta_resp + "\\" + arch + ".xlsx").Exists)
                 System.IO.File.Copy(localPath + fileName, remotePath + fileName);
@@ -512,7 +548,51 @@ namespace serverreports
 Next
          */
 
-       
+        public int borra_arch(string[] arch, string ruta)
+        {
+            int sw = 0;
+            if (Directory.Exists(ruta))
+            {
+                for (int i = 0; i < arch.Length; i++)
+                {
+                    File.Delete(arch[i]);
+                }
+                sw = 1;
+            }
+            return sw;
+        }
+        public string format_tam(decimal tam)
+        {
+            int n = 0;
+            String subj = "";
+            while (tam > 1024)
+            {
+                tam = Math.Round(tam / 1024);
+                n++;
+            }
+            switch (n)
+            {
+                case 0:
+                    subj = "B";
+                    break;
+                case 1:
+                    subj = "KB";
+                    break;
+                case 2:
+                    subj = "MB";
+                    break;
+                case 3:
+                    subj = "GB";
+                    break;
+                case 4:
+                    subj = "TB";
+                    break;
+                default:
+                    subj = "Trop long !!!";
+                    break;
+            }
+            return tam.ToString() + " " + subj;
+        }
 
     }
 

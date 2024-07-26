@@ -159,14 +159,6 @@ namespace serverreports
      
             sl.InsertChart(chart);
 
-
-
-
-
-
-
-
-
             sl.SaveAs("Grafica.xlsx");           
             Console.WriteLine("Grafica");
         }

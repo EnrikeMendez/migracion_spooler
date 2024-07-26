@@ -86,6 +86,7 @@ namespace serverreports
                     try
                     {
                         servidor.Send(correo);
+                        correo.Attachments.Dispose();
                         Console.WriteLine("\t\tCorreo enviado de manera exitosa");
                         correo.Dispose();
                         return "OK";
@@ -121,6 +122,7 @@ namespace serverreports
             try
             {
                 //  servidor.Send(correo);
+                correo.Attachments.Dispose();
                 correo.Dispose();
                 return "OK";
             }
@@ -200,21 +202,22 @@ namespace serverreports
             + "    <IMG SRC=\"" + servidor + "/images/pixel.gif\" WIDTH=\"20\" HEIGHT=\"20\" alt=\"\"><IMG SRC=\"" + servidor + "/images/pointeurgris.gif\" alt=\"\">&nbsp;<B>Date :</B> " + DateTime.Now.ToString("dd/MM/yyyy H: mm") + "\n"
             + "    <br>\n";
             // for (int i = 0; i < tab_archivos.Length - 5; i++)
-            for (int i = 0; i < tab_archivos.Rank - 1; i++)
+            for (int i = 0; i < tab_archivos.Rank-1; i++)
 
             {
                 display_mail = display_mail + "    <IMG SRC=\"" + servidor + " /images/pixel.gif\" WIDTH =\"20\" HEIGHT =\"20\" alt =\"\" ><IMG SRC=\"" + servidor + " /images/pointeurgris.gif\" alt =\"\" > &nbsp;<B>Reporte :</B> " + tab_archivos[1, 0] + "\n"
                                                + " <br>\n";
-                if (tab_archivos[0, i] != "")
+                string arch23 = tab_archivos[0, i];
+                if (arch23 != "" && arch23 != null)
                 {
                     string img = "";
                     string cve = tab_archivos[3, i].Substring(tab_archivos[3, i].Length - 8, 8);
-                    //string ext = tab_archivos[0, i].Substring(tab_archivos[0, i].Length - 3, 3);
-                    string ext = tab_archivos[0, i].Substring (tab_archivos[0, i].IndexOf(".") + 1, tab_archivos[0, i].Length- (tab_archivos[0, i].IndexOf(".") + 1));
+                    string ext = tab_archivos[0, i].Substring(tab_archivos[0, i].IndexOf(".") + 1, tab_archivos[0, i].Length - (tab_archivos[0, i].IndexOf(".") + 1));
                     string ext1 = tab_archivos[4, i];
                     string ext2 = tab_archivos[2, i];
                     string ext5 = tab_archivos[5, i];
-                    if ((util.nvl(ext1) != "1") || (ext2.IndexOf("MB") == 0))
+                    int ex5 = ext2.IndexOf("MB");
+                    if ((util.nvl(ext1) != "1") || (ext2.IndexOf("MB") <= 0))
                     {
                         display_mail = display_mail + "    <IMG SRC=\"" + servidor + " /images/pixel.gif\" WIDTH =\"40\" HEIGHT =\"1\" alt =\"\" > " + "\n"
                                                     + "    <a href=\"" + servidor + " /download.asp?id=" + cve + "\" > " + "\n";
@@ -272,6 +275,7 @@ namespace serverreports
 
                     if ((util.nvl(ext1)) == "1")
                     {
+                        Zip = 1;
                         display_mail = display_mail + "    <IMG SRC=\"" + servidor + " /images/pixel.gif\" WIDTH =\"40\" HEIGHT =\"1\" alt =\"\" > " + "\n"
                           + "  <a href=\"" + servidor + " /download.asp?id=" + cve + "&zip=1" + "\" > " + "\n"
                           + "  <IMG SRC=\"" + servidor + " /images/winzip2.gif\" align =\"bottom\" alt =\"zip\" border =\"0\" ></a>" + "\n"

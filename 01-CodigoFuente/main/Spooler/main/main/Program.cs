@@ -53,6 +53,11 @@ string MiComando = "";
 string fecha_1_intervalo = "";
 string[,] parins = new string[13, 2];
 string[] contmail;
+DataTable trep_cron = new DataTable();
+DataTable tdato_repor = new DataTable();
+DataTable tnum_param = new DataTable();
+DataTable tmail_contact = new DataTable();
+DataTable tconfirmacion2 = new DataTable();
 try
 {
 
@@ -61,11 +66,7 @@ try
  Utilerias util = new Utilerias();
  DM DM = new DM();
  init_var();
- DataTable trep_cron = new DataTable();
- DataTable tdato_repor = new DataTable();
- DataTable tnum_param = new DataTable();
- DataTable tmail_contact = new DataTable();
- DataTable tconfirmacion2 = new DataTable();
+
     try
  
     { string comand = args[0];
@@ -270,7 +271,7 @@ try
                       util.iff(util.nvl(util.Tcampo(tdato_repor, "SUBCARPETA")), "<>", "", util.nvl(util.Tcampo(tdato_repor, "SUBCARPETA")) + "\\", "");
     MiComando = util.nvl(util.Tcampo(tdato_repor, "COMMAND"));
 
-    tab_archivos = new string[6,1];
+    tab_archivos = new string[6,2];
     tab_archivos[0,0] = file_name;
     tab_archivos[1,0] = reporte_name;
     tab_archivos[4,0] = "1";
@@ -358,23 +359,45 @@ try
 
         switch (MiComando)
     {
-        case "transmision_edocs_bosch":
+            case "transmision_edocs_bosch":
              web_transmision_edocs_bosch edocs_bosch = new web_transmision_edocs_bosch();
-             edocs_bosch.transmision_edocs_bosch(Carpeta, tab_archivos[0,0], util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), visible_sql);
+             edocs_bosch.transmision_edocs_bosch(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), parins, contmail, visible_sql);
              break;
           
-        case "gsk_pedimientos":
+            case "gsk_pedimientos":
              trading_genera_GSK_mod trading_genera_GSK = new trading_genera_GSK_mod();
-             trading_genera_GSK.trading_genera_GSK(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id, parins, contmail, visible_sql);
+             trading_genera_GSK.trading_genera_GSK(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id, parins, contmail, visible_sql);               
              break;
-        case "porteos_tln":
+            
+            case "porteos_tln":
              // 6651805
              trading_genera_TLN_mod trading_genera_TLN = new trading_genera_TLN_mod();
              trading_genera_TLN.trading_genera_TLN(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id, servidor, parins, contmail, visible_sql);
              break;
+
+            case "ing_egr_gar_pend_fact":
+                //4220496
+                //4241096
+                //7216555
+                //5566766
+                //     Call Ing_egr_gar_pend_fact(Carpeta & tab_archivos(0, 0), rs.Fields("PARAM_1"), rs.Fields("PARAM_2"), NVL(rs.Fields("PARAM_3")))
+                Ing_egr_gar_pend_fact_mod Ing_egr_gar_pend_fact = new Ing_egr_gar_pend_fact_mod();
+                Ing_egr_gar_pend_fact.Ing_egr_gar_pend_fact(Carpeta + tab_archivos[0, 0], util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), parins, contmail, visible_sql);
+            break;
+
+            case "fondo_fijo":
+                //            Call Fondo_fijo(Carpeta & tab_archivos(0, 0) & ".txt", rs.Fields("PARAM_1"), rs.Fields("PARAM_2"))
+                web_fondo_fijo_mod Fondo_fijo = new web_fondo_fijo_mod();
+                Fondo_fijo.Fondo_fijo(Carpeta + tab_archivos[0, 0], util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), parins, contmail, visible_sql);
+
+                break;
+
+
         }
 
-}
+
+
+    }
  else
     Console.WriteLine("Error es necesario especifica los parametros \n 1. Falta numero reporte: ''{0}'' \n 2. valor tipo de reporte: {1} " + msg, rep_id, reporte_temporal);
     envio_correo correo = new envio_correo();
@@ -389,7 +412,11 @@ catch (Exception e)
 {    
    Console.WriteLine(e.Message +" No. error" + e.HResult);
 }
-
+trep_cron.Dispose();
+tdato_repor.Dispose();
+tnum_param.Dispose();
+tmail_contact.Dispose();
+tconfirmacion2.Dispose();
 void init_var()
 {
     num_of_param = 0;
@@ -422,7 +449,7 @@ void init_var()
         second_path = "\\\\" + IP_servidor2 + "\\reportes\\web_reports\\";
     else
         second_path = "\\\\" + IP_servidor1 + "\\reportes\\web_reports\\";
-
+    second_path = "C:\\pc\\ruta_alterna\\ejeml\\";
     mail_Lots_Info = "";
     mail_adjuntarArchivoXLS = false;
     mail_adjuntarArchivoTXT = false;
