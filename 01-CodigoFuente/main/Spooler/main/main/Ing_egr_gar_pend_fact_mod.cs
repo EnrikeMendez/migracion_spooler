@@ -60,6 +60,8 @@ namespace serverreports
             datos_sp.tb.Dispose();
             if (datos_sp.sql != "OK")
             {
+
+   
                 datos_sp.codigo = "-20000";
                 datos_sp.msg = "sc_reportes_step_folios_egr_ing_pend : Error al llamar sc_reportes_step_folios_egr_ing_pend";
             }
