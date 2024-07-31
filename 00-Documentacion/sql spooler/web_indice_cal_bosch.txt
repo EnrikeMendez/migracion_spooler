@@ -1,0 +1,769 @@
+Private Function SQL_2(mi_tipo As String, Fecha_1 As String, Fecha_2 As String,filtro_cliente As String, tab_impexp As String)
+            SQL_2 = " SELECT " + vbCrLf
+    SQL_2 = SQL_2 + "      DECODE(T.ADUANA, '24', 'NVO LAREDO', T.DOUABREVIACION)  ""Dia \ Aduana"" " + vbCrLf
+    SQL_2 = SQL_2 + "     ,SUM(DECODE(SIGN(TRUNC(T.F_DESPACHO) - TRUNC(T.FOLFECHALLEGADA)), 0, 1, 0)) ""MISMO DIA"" " + vbCrLf
+    SQL_2 = SQL_2 + "     ,SUM(DECODE(SIGN(TRUNC(T.F_DESPACHO) - TRUNC(T.FOLFECHALLEGADA)), 0, 0, DECODE(SIGN(NUM_BUSINESS_HOURS(T.FOLFECHALLEGADA, T.F_DESPACHO)- 24), - 1, 1, 0, 1, 0))) ""< 24h"" " + vbCrLf
+    SQL_2 = SQL_2 + "     ,SUM(DECODE(SIGN(NUM_BUSINESS_HOURS(T.FOLFECHALLEGADA, T.F_DESPACHO) - 24), - 1, 0, 0, 0, DECODE(SIGN(NUM_BUSINESS_HOURS(T.FOLFECHALLEGADA, T.F_DESPACHO) - 48), -1, 1, 0, 1, 0))) ""< 48h"" " + vbCrLf
+    SQL_2 = SQL_2 + "     ,SUM(DECODE(SIGN(NUM_BUSINESS_HOURS(T.FOLFECHALLEGADA, T.F_DESPACHO) - 48), - 1, 0, 0, 0, DECODE(SIGN(NUM_BUSINESS_HOURS(T.FOLFECHALLEGADA, T.F_DESPACHO) - 72), - 1, 1, 0, 1, 0))) ""< 72h"" " + vbCrLf
+    SQL_2 = SQL_2 + "     ,SUM(DECODE(SIGN(NUM_BUSINESS_HOURS(T.FOLFECHALLEGADA, T.F_DESPACHO) - 72), - 1, 0, 0, 0, DECODE(SIGN(NUM_BUSINESS_HOURS(T.FOLFECHALLEGADA, T.F_DESPACHO) - 96), - 1, 1, 0, 1, 0))) ""< 96h"" " + vbCrLf
+    SQL_2 = SQL_2 + "     ,SUM(DECODE(SIGN(NUM_BUSINESS_HOURS(T.FOLFECHALLEGADA, T.F_DESPACHO) - 96), - 1, 0, 0, 0, DECODE(SIGN(NUM_BUSINESS_HOURS(T.FOLFECHALLEGADA, T.F_DESPACHO) - 120), - 1, 1, 0, 1, 0))) ""< 120h"" " + vbCrLf
+    SQL_2 = SQL_2 + "     ,SUM(DECODE(SIGN(NUM_BUSINESS_HOURS(T.FOLFECHALLEGADA, T.F_DESPACHO) - 120), NULL, 0, - 1, 0, 0, 0, 1)) ""> 120h"" " + vbCrLf
+    SQL_2 = SQL_2 + "     ,COUNT(T.FOLFECHALLEGADA) Total " + vbCrLf
+    SQL_2 = SQL_2 + " FROM " + vbCrLf
+    SQL_2 = SQL_2 + "     ( " + vbCrLf
+    SQL_2 = SQL_2 + "      -- CASO DE LOS PEDIMENTOS DIRECTOS DE IMPO Y EXPO, EXCEPTO EXPO TERRESTRE QUE SON CON REMISIONES " + vbCrLf
+    SQL_2 = SQL_2 + "         SELECT /*+ INDEX(SAL ISALFECHASALIDA) ORDERED USE_NL(SAD) USE_NL(PED) USE_NL(SGE) USE_NL(FOL) */ " + vbCrLf
+    SQL_2 = SQL_2 + "              PEDDATE PEDDATE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDDOUANE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDNUMERO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,0 RCOCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,TO_NUMBER(NULL) FOLIO_OPER " + vbCrLf
+    SQL_2 = SQL_2 + "             ,TO_NUMBER(NULL) FOLCLAVE_OPER " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL_DOUCLEF ADUANA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL_TFOCLEF FOLETAT " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOLFOLIO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOAGUIAHOUSE FOLGUIAHOUSE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOLGUIAMASTER " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL_YCXCLEF FOLOPECOMEXT " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL_YFOCLEF FOLTYPE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,CLICLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,CLINOM " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDFOLIO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDIMPOTS " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDREGIME " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDSIGNE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,YCXCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,YCXNOM " + vbCrLf
+    SQL_2 = SQL_2 + "             ,SALFECHASALIDA F_DESPACHO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.DATE_CREATED F_ALTA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL_SUCCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOLFECHALLEGADA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOAFECHARECOLECTA F_RECOLECTA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOLNUMBULTOS " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOLPESOKG " + vbCrLf
+    SQL_2 = SQL_2 + "             ,SGEVALORADUANA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,SALRESULTADOSIS1 " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PVSDATE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,COUNT(DISTINCT FOF.FOFCLEF) CDAD " + vbCrLf
+    SQL_2 = SQL_2 + "             ,COUNT(FRF.FRFCLEF) CDAD_REF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,DOU.DOUABREVIACION " + vbCrLf
+    SQL_2 = SQL_2 + "         FROM " + vbCrLf
+    SQL_2 = SQL_2 + "              ESALIDAS SAL " + vbCrLf
+    SQL_2 = SQL_2 + "             ,ESALIDASDETALLE SAD " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EPEDIMENTO PED " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EFOLIOS FOL " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EFOLIOAEREO FOA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,ESAAI_M3_GENERAL SGE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,ETYPEOPECOMEXT " + vbCrLf
+    SQL_2 = SQL_2 + "             ,ECLIENT CLI " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EPREVSALIDA PVS " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EFOLIO_FACTURA FOF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EFACTURA_REF_FRA FRF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EDOUANE DOU " + vbCrLf
+    SQL_2 = SQL_2 + "         WHERE " + vbCrLf
+    SQL_2 = SQL_2 + "             SALFECHASALIDA >= TO_DATE('" + Fecha_1 + "', 'mm/dd/yyyy') " + vbCrLf
+    SQL_2 = SQL_2 + "             AND SALFECHASALIDA < TO_DATE('" + Fecha_2 + "','mm/dd/yyyy') + 1 " + vbCrLf
+    'SQL_2 = SQL_2 + "             AND SAL_DOUCLEF = DECODE('47', NULL, SAL_DOUCLEF, '47') " + vbCrLf
+    
+    If mi_tipo = "A" Then
+        SQL_2 = SQL_2 + "             AND SAL_DOUCLEF in ('47','65','64','48','52') " + vbCrLf
+    ElseIf mi_tipo = "M" Then
+        SQL_2 = SQL_2 + "             AND SAL_DOUCLEF in ('43','16','81','51') " + vbCrLf
+    ElseIf mi_tipo = "T" Then
+        SQL_2 = SQL_2 + "             AND 
+in ('07','24','80','37') " + vbCrLf
+    End If
+    
+    SQL_2 = SQL_2 + "             AND DOU.DOUCLEF = SAL_DOUCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             AND SAD.SAD_SAACLAVE = SAL.SALCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             AND PED.PEDNUMERO = SAD.SAD_PEDNUMERO " + vbCrLf
+    SQL_2 = SQL_2 + "             AND PED.PEDDOUANE = SAD.SAD_PEDDOUANE " + vbCrLf
+    SQL_2 = SQL_2 + "             AND PED.PEDANIO = SAD.SAD_PEDANIO " + vbCrLf
+    SQL_2 = SQL_2 + "             AND PED.PEDREGIME NOT IN ('R1','R3','T3') " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOLCLAVE = PED.PEDFOLIO " + vbCrLf
+    SQL_2 = SQL_2 + "             AND ( FOL.FOL_YCXCLEF = 1 OR ( FOL.FOL_YCXCLEF = 2 AND FOL.FOL_YTRCLEF != 7 ) ) " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOL.FOL_TFOCLEF = 'ACT' " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOL.FOL_YCXCLEF = NVL(" + tab_impexp + ", FOL.FOL_YCXCLEF) " + vbCrLf
+    'SQL_2 = SQL_2 + "             AND FOL.FOL_CLICLEF = NVL(11244, FOL.FOL_CLICLEF) " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOL.FOL_CLICLEF " + filtro_cliente + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOA_FOLCLAVE (+) = FOLCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             AND SGEPEDNUMERO = PEDNUMERO " + vbCrLf
+    SQL_2 = SQL_2 + "             AND SGEDOUCLEF = PEDDOUANE " + vbCrLf
+    SQL_2 = SQL_2 + "             AND SGEANIO = PEDANIO " + vbCrLf
+    SQL_2 = SQL_2 + "             AND YCXCLEF = FOL_YCXCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             AND CLICLEF = FOL_CLICLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             AND PVS_PEDNUMERO (+) = PEDNUMERO " + vbCrLf
+    SQL_2 = SQL_2 + "             AND PVS_PEDDOUANE (+) = PEDDOUANE " + vbCrLf
+    SQL_2 = SQL_2 + "             AND PVSANIO (+) = PEDANIO " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOF.FOFFOLIO = FOL.FOLCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FRF.FRFFACTURA = FOF.FOFCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             AND EXISTS ( " + vbCrLf
+    SQL_2 = SQL_2 + "                 SELECT NULL " + vbCrLf
+    SQL_2 = SQL_2 + "                   FROM EAGENTDOUANE " + vbCrLf
+    SQL_2 = SQL_2 + "                  WHERE ADOPATENTE = SUBSTR(SGE.SGEPEDNUMERO, 1, 4) " + vbCrLf
+    SQL_2 = SQL_2 + "             ) " + vbCrLf
+    SQL_2 = SQL_2 + "         GROUP BY " + vbCrLf
+    SQL_2 = SQL_2 + "              PEDDATE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDDOUANE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDNUMERO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL_DOUCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL_TFOCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOLFOLIO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOAGUIAHOUSE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOLGUIAMASTER " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL_YCXCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL_YFOCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,CLICLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,CLINOM " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDFOLIO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDIMPOTS " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDREGIME " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDSIGNE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,YCXCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,YCXNOM " + vbCrLf
+    SQL_2 = SQL_2 + "             ,SALFECHASALIDA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.DATE_CREATED " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL_SUCCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOLFECHALLEGADA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOAFECHARECOLECTA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOLNUMBULTOS " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOLPESOKG " + vbCrLf
+    SQL_2 = SQL_2 + "             ,SGEVALORADUANA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,SALRESULTADOSIS1 " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PVSDATE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,DOU.DOUABREVIACION " + vbCrLf
+    SQL_2 = SQL_2 + "         UNION ALL " + vbCrLf
+    SQL_2 = SQL_2 + "       -- CASO DE LOS PEDIMENTOS DIRECTOS EXPO TERRESTRE, QUE SON CON REMISIONES " + vbCrLf
+    SQL_2 = SQL_2 + "         SELECT /*+ INDEX(SAL ISALFECHASALIDA) ORDERED USE_NL(REM) USE_NL(PED) USE_NL(SGE) USE_NL(FOL) */ " + vbCrLf
+    SQL_2 = SQL_2 + "              PEDDATE PEDDATE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDDOUANE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDNUMERO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,0 RCOCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,TO_NUMBER(NULL) FOLIO_OPER " + vbCrLf
+    SQL_2 = SQL_2 + "             ,TO_NUMBER(NULL) FOLCLAVE_OPER " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL_DOUCLEF FOLDOUANE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL_TFOCLEF FOLETAT " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOLFOLIO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOAGUIAHOUSE FOLGUIAHOUSE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOLGUIAMASTER " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL_YCXCLEF FOLOPECOMEXT " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL_YFOCLEF FOLTYPE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,CLICLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,CLINOM " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDFOLIO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDIMPOTS " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDREGIME " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDSIGNE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,YCXCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,YCXNOM " + vbCrLf
+    SQL_2 = SQL_2 + "             ,SALFECHASALIDA F_DESPACHO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.DATE_CREATED F_ALTA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL_SUCCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOLFECHALLEGADA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOAFECHARECOLECTA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOLNUMBULTOS " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOLPESOKG " + vbCrLf
+    SQL_2 = SQL_2 + "             ,SGEVALORADUANA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,SALRESULTADOSIS1 " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PVSDATE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,COUNT(DISTINCT FOF.FOFCLEF) " + vbCrLf
+    SQL_2 = SQL_2 + "             ,COUNT(FRF.FRFCLEF) CDAD_REF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,DOU.DOUABREVIACION " + vbCrLf
+    SQL_2 = SQL_2 + "         FROM " + vbCrLf
+    SQL_2 = SQL_2 + "              ESALIDAS SAL " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EREMISSION REM " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EPEDIMENTO PED " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EFOLIOS FOL " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EFOLIOAEREO FOA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,ESAAI_M3_GENERAL SGE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,ETYPEOPECOMEXT " + vbCrLf
+    SQL_2 = SQL_2 + "             ,ECLIENT CLI " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EPREVSALIDA PVS " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EFOLIO_FACTURA FOF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EFACTURA_REF_FRA FRF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EDOUANE DOU " + vbCrLf
+    SQL_2 = SQL_2 + "         WHERE " + vbCrLf
+    SQL_2 = SQL_2 + "             SALFECHASALIDA >= TO_DATE('" + Fecha_1 + "', 'mm/dd/yyyy') " + vbCrLf
+    SQL_2 = SQL_2 + "             AND SALFECHASALIDA < TO_DATE('" + Fecha_2 + "','mm/dd/yyyy') + 1 " + vbCrLf
+    'SQL_2 = SQL_2 + "             AND SAL_DOUCLEF = DECODE('47', NULL, SAL_DOUCLEF, '47') " + vbCrLf
+    If mi_tipo = "A" Then
+        SQL_2 = SQL_2 + "             AND SAL_DOUCLEF in ('47','65','64','48','52') " + vbCrLf
+    ElseIf mi_tipo = "M" Then
+        SQL_2 = SQL_2 + "             AND SAL_DOUCLEF in ('43','16','81','51') " + vbCrLf
+    ElseIf mi_tipo = "T" Then
+        SQL_2 = SQL_2 + "             AND SAL_DOUCLEF in ('07','24','80','37') " + vbCrLf
+    End If
+    SQL_2 = SQL_2 + "             AND DOU.DOUCLEF = SAL_DOUCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             AND REM.REM_SALIDA = SAL.SALCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             AND PED.PEDFOLIO = REM.REM_FOLCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             AND PED.PEDREGIME NOT IN ('R1','R3','T3') " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOLCLAVE = PED.PEDFOLIO " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOL.FOL_YCXCLEF = 2 " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOL.FOL_YTRCLEF = 7 " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOL.FOL_TFOCLEF = 'ACT' " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOL.FOL_YCXCLEF = NVL(" + tab_impexp + ", FOL.FOL_YCXCLEF) " + vbCrLf
+    'SQL_2 = SQL_2 + "             AND FOL.FOL_CLICLEF = NVL(11244, FOL.FOL_CLICLEF) " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOL.FOL_CLICLEF " + filtro_cliente + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOA_FOLCLAVE (+) = FOLCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             AND SGEPEDNUMERO = PEDNUMERO " + vbCrLf
+    SQL_2 = SQL_2 + "             AND SGEDOUCLEF = PEDDOUANE " + vbCrLf
+    SQL_2 = SQL_2 + "             AND SGEANIO = PEDANIO " + vbCrLf
+    SQL_2 = SQL_2 + "             AND YCXCLEF = FOL_YCXCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             AND CLICLEF = FOL_CLICLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             AND PVS_PEDNUMERO (+) = PEDNUMERO " + vbCrLf
+    SQL_2 = SQL_2 + "             AND PVS_PEDDOUANE (+) = PEDDOUANE " + vbCrLf
+    SQL_2 = SQL_2 + "             AND PVSANIO (+) = PEDANIO " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOF.FOFFOLIO = FOL.FOLCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FRF.FRFFACTURA = FOF.FOFCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             AND EXISTS ( " + vbCrLf
+    SQL_2 = SQL_2 + "                 SELECT NULL " + vbCrLf
+    SQL_2 = SQL_2 + "                   FROM EAGENTDOUANE " + vbCrLf
+    SQL_2 = SQL_2 + "                  WHERE ADOPATENTE = SUBSTR(SGE.SGEPEDNUMERO, 1, 4) " + vbCrLf
+    SQL_2 = SQL_2 + "             ) " + vbCrLf
+    SQL_2 = SQL_2 + "         GROUP BY " + vbCrLf
+    SQL_2 = SQL_2 + "              PEDDATE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDDOUANE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDNUMERO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL_DOUCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL_TFOCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOLFOLIO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOAGUIAHOUSE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOLGUIAMASTER " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL_YCXCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL_YFOCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,CLICLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,CLINOM " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDFOLIO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDIMPOTS " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDREGIME " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDSIGNE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,YCXCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,YCXNOM " + vbCrLf
+    SQL_2 = SQL_2 + "             ,SALFECHASALIDA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.DATE_CREATED " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL_SUCCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOLFECHALLEGADA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOAFECHARECOLECTA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOLNUMBULTOS " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOLPESOKG " + vbCrLf
+    SQL_2 = SQL_2 + "             ,SGEVALORADUANA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,SALRESULTADOSIS1 " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PVSDATE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,DOU.DOUABREVIACION " + vbCrLf
+    SQL_2 = SQL_2 + "         UNION ALL " + vbCrLf
+    SQL_2 = SQL_2 + "       -- CASO DE LOS FOLIOS DE CONSOLIDADOS QUE ESTAN EN UNA REMESA, EXCEPTO EXPO TERRESTRE QUE SON CON REMISIONES " + vbCrLf
+    SQL_2 = SQL_2 + "         SELECT /*+ INDEX(SAL ISALFECHASALIDA) ORDERED USE_NL(DRC) USE_NL(FOL) USE_NL(RCO) USE_NL(PED) USE_NL(FOL2) USE_NL(SGE) USE_NL(FOA) */ " + vbCrLf
+    SQL_2 = SQL_2 + "              PEDDATE PEDDATE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDDOUANE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDNUMERO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,DRC_RCOCLAVE RCOCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLFOLIO FOLIO_OPER " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLCLAVE FOLCLAVE_OPER " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOL_DOUCLEF FOLDOUANE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOL_TFOCLEF FOLETAT " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL2.FOLFOLIO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOAGUIAHOUSE FOLGUIAHOUSE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLGUIAMASTER " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOL_YCXCLEF FOLOPECOMEXT " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOL_YFOCLEF FOLTYPE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,CLICLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,CLINOM " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDFOLIO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDIMPOTS " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDREGIME " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDSIGNE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,YCXCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,YCXNOM " + vbCrLf
+    SQL_2 = SQL_2 + "             ,SALFECHASALIDA F_DESPACHO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.DATE_CREATED F_ALTA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOL_SUCCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLFECHALLEGADA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOAFECHARECOLECTA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLNUMBULTOS " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLPESOKG " + vbCrLf
+    SQL_2 = SQL_2 + "             ,SGEVALORADUANA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,SALRESULTADOSIS1 " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PVSDATE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,COUNT(DISTINCT FOF.FOFCLEF) " + vbCrLf
+    SQL_2 = SQL_2 + "             ,COUNT(FRF.FRFCLEF) CDAD_REF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,DOU.DOUABREVIACION " + vbCrLf
+    SQL_2 = SQL_2 + "         FROM " + vbCrLf
+    SQL_2 = SQL_2 + "              ESALIDAS SAL " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EDETRELACION_CONSOLIDADO DRC " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EFOLIOS FOL " + vbCrLf
+    SQL_2 = SQL_2 + "             ,ERELACION_CONSOLIDADO RCO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EPEDIMENTO PED " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EFOLIOS FOL2 " + vbCrLf
+    SQL_2 = SQL_2 + "             ,ESAAI_M3_GENERAL SGE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EFOLIOAEREO FOA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,ECLIENT CLI " + vbCrLf
+    SQL_2 = SQL_2 + "             ,ETYPEOPECOMEXT YCX " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EPREVSALIDA PVS " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EFOLIO_FACTURA FOF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EFACTURA_REF_FRA FRF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EDOUANE DOU " + vbCrLf
+    SQL_2 = SQL_2 + "         WHERE " + vbCrLf
+    SQL_2 = SQL_2 + "             SALFECHASALIDA >= TO_DATE('" + Fecha_1 + "', 'mm/dd/yyyy') " + vbCrLf
+    SQL_2 = SQL_2 + "             AND SALFECHASALIDA < TO_DATE('" + Fecha_2 + "','mm/dd/yyyy') + 1 " + vbCrLf
+    'SQL_2 = SQL_2 + "             AND SAL_DOUCLEF = DECODE('47', NULL, SAL_DOUCLEF, '47') " + vbCrLf
+    If mi_tipo = "A" Then
+        SQL_2 = SQL_2 + "             AND SAL_DOUCLEF in ('47','65','64','48','52') " + vbCrLf
+    ElseIf mi_tipo = "M" Then
+        SQL_2 = SQL_2 + "             AND SAL_DOUCLEF in ('43','16','81','51') " + vbCrLf
+    ElseIf mi_tipo = "T" Then
+        SQL_2 = SQL_2 + "             AND SAL_DOUCLEF in ('07','24','80','37') " + vbCrLf
+    End If
+    SQL_2 = SQL_2 + "             AND DOU.DOUCLEF = SAL_DOUCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             AND DRC.DRC_RCOCLAVE = SAL.SAL_RCOCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOL.FOLCLAVE = DRC.DRC_FOLCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             AND ( FOL.FOL_YCXCLEF = 1 OR ( FOL.FOL_YCXCLEF = 2 AND FOL.FOL_YTRCLEF != 7 ) ) " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOL.FOL_TFOCLEF = 'FCO' " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOL.FOL_YCXCLEF = NVL(" + tab_impexp + ", FOL.FOL_YCXCLEF) " + vbCrLf
+    'SQL_2 = SQL_2 + "             AND FOL.FOL_CLICLEF = NVL(11244, FOL.FOL_CLICLEF) " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOL.FOL_CLICLEF " + filtro_cliente + vbCrLf
+    SQL_2 = SQL_2 + "             AND RCO.RCOCLAVE = SAL.SAL_RCOCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             AND PED.PEDNUMERO = RCO.RCO_PEDNUMERO " + vbCrLf
+    SQL_2 = SQL_2 + "             AND PED.PEDDOUANE = RCO.RCO_PEDDOUANE " + vbCrLf
+    SQL_2 = SQL_2 + "             AND PED.PEDANIO = RCO.RCO_PEDANIO " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOL2.FOLCLAVE = PED.PEDFOLIO " + vbCrLf
+    SQL_2 = SQL_2 + "             AND SGEPEDNUMERO (+) = PEDNUMERO " + vbCrLf
+    SQL_2 = SQL_2 + "             AND SGEDOUCLEF (+) = PEDDOUANE " + vbCrLf
+    SQL_2 = SQL_2 + "             AND SGEANIO (+) = PEDANIO " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOA_FOLCLAVE (+) = FOL.FOLCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             AND CLI.CLICLEF = FOL.FOL_CLICLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             AND YCXCLEF = FOL.FOL_YCXCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             AND PVS_RCOCLAVE (+) = RCOCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOF.FOFFOLIO = FOL.FOLCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FRF.FRFFACTURA = FOF.FOFCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             AND EXISTS ( " + vbCrLf
+    SQL_2 = SQL_2 + "                 SELECT NULL " + vbCrLf
+    SQL_2 = SQL_2 + "                   FROM EAGENTDOUANE " + vbCrLf
+    SQL_2 = SQL_2 + "                  WHERE ADOPATENTE = SUBSTR(SGE.SGEPEDNUMERO, 1, 4) " + vbCrLf
+    SQL_2 = SQL_2 + "             ) " + vbCrLf
+    SQL_2 = SQL_2 + "         GROUP BY " + vbCrLf
+    SQL_2 = SQL_2 + "              PEDDATE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDDOUANE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDNUMERO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,DRC_RCOCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLFOLIO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOL_DOUCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOL_TFOCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL2.FOLFOLIO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOAGUIAHOUSE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLGUIAMASTER " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOL_YCXCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOL_YFOCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,CLICLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,CLINOM " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDFOLIO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDIMPOTS " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDREGIME " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDSIGNE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,YCXCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,YCXNOM " + vbCrLf
+    SQL_2 = SQL_2 + "             ,SALFECHASALIDA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.DATE_CREATED " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOL_SUCCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLFECHALLEGADA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOAFECHARECOLECTA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLNUMBULTOS " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLPESOKG " + vbCrLf
+    SQL_2 = SQL_2 + "             ,SGEVALORADUANA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,SALRESULTADOSIS1 " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PVSDATE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,DOU.DOUABREVIACION " + vbCrLf
+    SQL_2 = SQL_2 + "         UNION ALL " + vbCrLf
+    SQL_2 = SQL_2 + "       -- CASO DE LOS FOLIOS DE CONSOLIDADOS QUE ESTAN EN UNA REMESA, EXCEPTO EXPO TERRESTRE QUE SON CON REMISIONES " + vbCrLf
+    SQL_2 = SQL_2 + "         SELECT /*+ INDEX(SAL ISALFECHASALIDA) ORDERED USE_NL(REM) USE_NL(PED) USE_NL(SGE) USE_NL(FOL) USE_NL(FOL2) */ " + vbCrLf
+    SQL_2 = SQL_2 + "              PEDDATE PEDDATE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDDOUANE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDNUMERO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,DRC_RCOCLAVE RCOCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLFOLIO FOLIO_OPER " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLCLAVE FOLCLAVE_OPER " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOL_DOUCLEF FOLDOUANE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOL_TFOCLEF FOLETAT " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL2.FOLFOLIO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOAGUIAHOUSE FOLGUIAHOUSE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLGUIAMASTER " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOL_YCXCLEF FOLOPECOMEXT " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOL_YFOCLEF FOLTYPE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,CLICLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,CLINOM " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDFOLIO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDIMPOTS " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDREGIME " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDSIGNE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,YCXCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,YCXNOM " + vbCrLf
+    SQL_2 = SQL_2 + "             ,SALFECHASALIDA F_DESPACHO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.DATE_CREATED F_ALTA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOL_SUCCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLFECHALLEGADA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOAFECHARECOLECTA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLNUMBULTOS " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLPESOKG " + vbCrLf
+    SQL_2 = SQL_2 + "             ,SGEVALORADUANA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,SALRESULTADOSIS1 " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PVSDATE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,COUNT(DISTINCT FOF.FOFCLEF) " + vbCrLf
+    SQL_2 = SQL_2 + "             ,COUNT(FRF.FRFCLEF) CDAD_REF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,DOU.DOUABREVIACION " + vbCrLf
+    SQL_2 = SQL_2 + "         FROM " + vbCrLf
+    SQL_2 = SQL_2 + "              ESALIDAS SAL " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EREMISSION REM " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EFOLIOS FOL " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EDETRELACION_CONSOLIDADO DRC " + vbCrLf
+    SQL_2 = SQL_2 + "             ,ERELACION_CONSOLIDADO RCO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EPEDIMENTO PED " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EFOLIOS FOL2 " + vbCrLf
+    SQL_2 = SQL_2 + "             ,ESAAI_M3_GENERAL SGE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EFOLIOAEREO FOA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,ECLIENT CLI " + vbCrLf
+    SQL_2 = SQL_2 + "             ,ETYPEOPECOMEXT YCX " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EPREVSALIDA PVS " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EFOLIO_FACTURA FOF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EFACTURA_REF_FRA FRF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EDOUANE DOU " + vbCrLf
+    SQL_2 = SQL_2 + "         WHERE " + vbCrLf
+    SQL_2 = SQL_2 + "             SALFECHASALIDA >= TO_DATE('" + Fecha_1 + "', 'mm/dd/yyyy') " + vbCrLf
+    SQL_2 = SQL_2 + "             AND SALFECHASALIDA < TO_DATE('" + Fecha_2 + "','mm/dd/yyyy') + 1 " + vbCrLf
+    'SQL_2 = SQL_2 + "             AND SAL_DOUCLEF = DECODE('47', NULL, SAL_DOUCLEF, '47') " + vbCrLf
+    If mi_tipo = "A" Then
+        SQL_2 = SQL_2 + "             AND SAL_DOUCLEF in ('47','65','64','48','52') " + vbCrLf
+    ElseIf mi_tipo = "M" Then
+        SQL_2 = SQL_2 + "             AND SAL_DOUCLEF in ('43','16','81','51') " + vbCrLf
+    ElseIf mi_tipo = "T" Then
+        SQL_2 = SQL_2 + "             AND SAL_DOUCLEF in ('07','24','80','37') " + vbCrLf
+    End If
+    SQL_2 = SQL_2 + "             AND DOU.DOUCLEF = SAL_DOUCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             AND REM.REM_SALIDA = SAL.SALCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOL.FOLCLAVE = REM.REM_FOLCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOL.FOL_YCXCLEF = 2 " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOL.FOL_YTRCLEF = 7 " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOL.FOL_TFOCLEF = 'FCO' " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOL.FOL_YCXCLEF = NVL(" + tab_impexp + ", FOL.FOL_YCXCLEF) " + vbCrLf
+    'SQL_2 = SQL_2 + "             AND FOL.FOL_CLICLEF = NVL(11244, FOL.FOL_CLICLEF) " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOL.FOL_CLICLEF " + filtro_cliente + vbCrLf
+    SQL_2 = SQL_2 + "             AND DRC_FOLCLAVE = FOL.FOLCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             AND RCO.RCOCLAVE = DRC.DRC_RCOCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             AND PED.PEDNUMERO = RCO.RCO_PEDNUMERO " + vbCrLf
+    SQL_2 = SQL_2 + "             AND PED.PEDDOUANE = RCO.RCO_PEDDOUANE " + vbCrLf
+    SQL_2 = SQL_2 + "             AND PED.PEDANIO = RCO.RCO_PEDANIO " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOL2.FOLCLAVE = PED.PEDFOLIO " + vbCrLf
+    SQL_2 = SQL_2 + "             AND SGEPEDNUMERO (+) = PEDNUMERO " + vbCrLf
+    SQL_2 = SQL_2 + "             AND SGEDOUCLEF (+) = PEDDOUANE " + vbCrLf
+    SQL_2 = SQL_2 + "             AND SGEANIO (+) = PEDANIO " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOA_FOLCLAVE (+) = FOL.FOLCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             AND CLI.CLICLEF = FOL.FOL_CLICLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             AND YCXCLEF = FOL.FOL_YCXCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             AND PVS_RCOCLAVE (+) = RCOCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOF.FOFFOLIO = FOL.FOLCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FRF.FRFFACTURA = FOF.FOFCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             AND EXISTS ( " + vbCrLf
+    SQL_2 = SQL_2 + "                 SELECT NULL " + vbCrLf
+    SQL_2 = SQL_2 + "                   FROM EAGENTDOUANE " + vbCrLf
+    SQL_2 = SQL_2 + "                  WHERE ADOPATENTE = SUBSTR(SGE.SGEPEDNUMERO, 1, 4) " + vbCrLf
+    SQL_2 = SQL_2 + "             ) " + vbCrLf
+    SQL_2 = SQL_2 + "         GROUP BY " + vbCrLf
+    SQL_2 = SQL_2 + "              PEDDATE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDDOUANE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDNUMERO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,DRC_RCOCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLFOLIO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOL_DOUCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOL_TFOCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL2.FOLFOLIO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOAGUIAHOUSE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLGUIAMASTER " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOL_YCXCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOL_YFOCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,CLICLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,CLINOM " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDFOLIO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDIMPOTS " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDREGIME " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDSIGNE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,YCXCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,YCXNOM " + vbCrLf
+    SQL_2 = SQL_2 + "             ,SALFECHASALIDA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.DATE_CREATED " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOL_SUCCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLFECHALLEGADA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOAFECHARECOLECTA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLNUMBULTOS " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLPESOKG " + vbCrLf
+    SQL_2 = SQL_2 + "             ,SGEVALORADUANA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,SALRESULTADOSIS1 " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PVSDATE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,DOU.DOUABREVIACION " + vbCrLf
+    SQL_2 = SQL_2 + "         UNION ALL " + vbCrLf
+    SQL_2 = SQL_2 + "       -- CASO DE LOS FOLIOS DE CONSOLIDADOS QUE *NO* ESTAN EN UNA REMESA, EXCEPTO EXPO TERRESTRE QUE SON CON REMISIONES " + vbCrLf
+    SQL_2 = SQL_2 + "         SELECT /*+ INDEX(SAL ISALFECHASALIDA) ORDERED USE_NL(SAD) USE_NL(PED) USE_NL(FOL2) USE_NL(PCO) USE_NL(FOL) USE_NL(SGE) USE_NL(FOA) */ " + vbCrLf
+    SQL_2 = SQL_2 + "              PEDDATE PEDDATE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDDOUANE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDNUMERO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,0 RCOCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLFOLIO FOLIO_OPER " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLCLAVE FOLCLAVE_OPER " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOL_DOUCLEF FOLDOUANE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOL_TFOCLEF FOLETAT " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL2.FOLFOLIO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOAGUIAHOUSE FOLGUIAHOUSE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLGUIAMASTER " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOL_YCXCLEF FOLOPECOMEXT " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOL_YFOCLEF FOLTYPE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,CLICLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,CLINOM " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDFOLIO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDIMPOTS " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDREGIME " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDSIGNE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,YCXCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,YCXNOM " + vbCrLf
+    SQL_2 = SQL_2 + "             ,SALFECHASALIDA F_DESPACHO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.DATE_CREATED F_ALTA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOL_SUCCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLFECHALLEGADA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOAFECHARECOLECTA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLNUMBULTOS " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLPESOKG " + vbCrLf
+    SQL_2 = SQL_2 + "             ,SGEVALORADUANA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,SALRESULTADOSIS1 " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PVSDATE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,COUNT(DISTINCT FOF.FOFCLEF) " + vbCrLf
+    SQL_2 = SQL_2 + "             ,COUNT(FRF.FRFCLEF) CDAD_REF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,DOU.DOUABREVIACION " + vbCrLf
+    SQL_2 = SQL_2 + "         FROM " + vbCrLf
+    SQL_2 = SQL_2 + "              ESALIDAS SAL " + vbCrLf
+    SQL_2 = SQL_2 + "             ,ESALIDASDETALLE SAD " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EPEDIMENTO PED " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EFOLIOS FOL2 " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EPEDIMENTOS_CONSOLIDADOS PCO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EFOLIOS FOL " + vbCrLf
+    SQL_2 = SQL_2 + "             ,ESAAI_M3_GENERAL SGE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EFOLIOAEREO FOA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,ECLIENT CLI " + vbCrLf
+    SQL_2 = SQL_2 + "             ,ETYPEOPECOMEXT " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EPREVSALIDA PVS " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EFOLIO_FACTURA FOF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EFACTURA_REF_FRA FRF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EDOUANE DOU " + vbCrLf
+    SQL_2 = SQL_2 + "         WHERE " + vbCrLf
+    SQL_2 = SQL_2 + "             SALFECHASALIDA >= TO_DATE('" + Fecha_1 + "', 'mm/dd/yyyy') " + vbCrLf
+    SQL_2 = SQL_2 + "             AND SALFECHASALIDA < TO_DATE('" + Fecha_2 + "','mm/dd/yyyy') + 1 " + vbCrLf
+    'SQL_2 = SQL_2 + "             AND SAL_DOUCLEF = DECODE('47', NULL, SAL_DOUCLEF, '47') " + vbCrLf
+    If mi_tipo = "A" Then
+        SQL_2 = SQL_2 + "             AND SAL_DOUCLEF in ('47','65','64','48','52') " + vbCrLf
+    ElseIf mi_tipo = "M" Then
+        SQL_2 = SQL_2 + "             AND SAL_DOUCLEF in ('43','16','81','51') " + vbCrLf
+    ElseIf mi_tipo = "T" Then
+        SQL_2 = SQL_2 + "             AND SAL_DOUCLEF in ('07','24','80','37') " + vbCrLf
+    End If
+    SQL_2 = SQL_2 + "             AND DOU.DOUCLEF = SAL_DOUCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             AND SAD_SAACLAVE = SALCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             AND PEDNUMERO = SAD_PEDNUMERO " + vbCrLf
+    SQL_2 = SQL_2 + "             AND PEDDOUANE = SAD_PEDANIO " + vbCrLf
+    SQL_2 = SQL_2 + "             AND PEDANIO = SAD_PEDANIO " + vbCrLf
+    SQL_2 = SQL_2 + "             AND PED.PEDREGIME NOT IN ('R1','R3','T3') " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOL2.FOLCLAVE = PED.PEDFOLIO " + vbCrLf
+    SQL_2 = SQL_2 + "             AND PCO_FOLCLAVE_FIN = PED.PEDFOLIO " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOL.FOLCLAVE = PCO.PCO_FOLCLAVE_ORI " + vbCrLf
+    SQL_2 = SQL_2 + "             AND ( FOL.FOL_YCXCLEF = 1 OR ( FOL.FOL_YCXCLEF = 2 AND FOL.FOL_YTRCLEF != 7 ) ) " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOL.FOL_TFOCLEF = 'FCO' " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOL.FOL_YCXCLEF = NVL(" + tab_impexp + ", FOL.FOL_YCXCLEF) " + vbCrLf
+    'SQL_2 = SQL_2 + "             AND FOL.FOL_CLICLEF = NVL(11244, FOL.FOL_CLICLEF) " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOL.FOL_CLICLEF " + filtro_cliente + vbCrLf
+    SQL_2 = SQL_2 + "             AND NOT EXISTS ( " + vbCrLf
+    SQL_2 = SQL_2 + "                 SELECT NULL " + vbCrLf
+    SQL_2 = SQL_2 + "                   FROM EDETRELACION_CONSOLIDADO DRCIN " + vbCrLf
+    SQL_2 = SQL_2 + "                       ,ESALIDAS SALIN " + vbCrLf
+    SQL_2 = SQL_2 + "                 WHERE DRCIN.DRC_FOLCLAVE = FOL.FOLCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "                   AND SALIN.SAL_RCOCLAVE = DRCIN.DRC_RCOCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             ) " + vbCrLf
+    SQL_2 = SQL_2 + "             AND SGEPEDNUMERO (+) = PEDNUMERO " + vbCrLf
+    SQL_2 = SQL_2 + "             AND SGEDOUCLEF (+) = PEDDOUANE " + vbCrLf
+    SQL_2 = SQL_2 + "             AND SGEANIO (+) = PEDANIO " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOA_FOLCLAVE (+) = FOL.FOLCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             AND CLI.CLICLEF = FOL.FOL_CLICLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             AND YCXCLEF = FOL.FOL_YCXCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             AND PVS_PEDNUMERO (+) = PEDNUMERO " + vbCrLf
+    SQL_2 = SQL_2 + "             AND PVS_PEDDOUANE (+) = PEDDOUANE " + vbCrLf
+    SQL_2 = SQL_2 + "             AND PVSANIO (+) = PEDANIO " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOF.FOFFOLIO = FOL.FOLCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FRF.FRFFACTURA = FOF.FOFCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             AND EXISTS ( " + vbCrLf
+    SQL_2 = SQL_2 + "                 SELECT NULL " + vbCrLf
+    SQL_2 = SQL_2 + "                   FROM EAGENTDOUANE " + vbCrLf
+    SQL_2 = SQL_2 + "                  WHERE ADOPATENTE = SUBSTR(SGE.SGEPEDNUMERO, 1, 4) " + vbCrLf
+    SQL_2 = SQL_2 + "             ) " + vbCrLf
+    SQL_2 = SQL_2 + "         GROUP BY " + vbCrLf
+    SQL_2 = SQL_2 + "              PEDDATE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDDOUANE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDNUMERO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLFOLIO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOL_DOUCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOL_TFOCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL2.FOLFOLIO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOAGUIAHOUSE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLGUIAMASTER " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOL_YCXCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOL_YFOCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,CLICLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,CLINOM " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDFOLIO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDIMPOTS " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDREGIME " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDSIGNE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,YCXCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,YCXNOM " + vbCrLf
+    SQL_2 = SQL_2 + "             ,SALFECHASALIDA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.DATE_CREATED " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOL_SUCCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLFECHALLEGADA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOAFECHARECOLECTA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLNUMBULTOS " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLPESOKG " + vbCrLf
+    SQL_2 = SQL_2 + "             ,SGEVALORADUANA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,SALRESULTADOSIS1 " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PVSDATE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,DOU.DOUABREVIACION " + vbCrLf
+    SQL_2 = SQL_2 + "         UNION ALL " + vbCrLf
+    SQL_2 = SQL_2 + "       -- CASO DE LOS FOLIOS DE CONSOLIDADOS QUE *NO* ESTAN EN UNA REMESA, PARA EXPO TERRESTRE QUE SON CON REMISIONES " + vbCrLf
+    SQL_2 = SQL_2 + "         SELECT /*+ INDEX(SAL ISALFECHASALIDA) ORDERED USE_NL(REM) USE_NL(PED) USE_NL(FOL2) USE_NL(PCO) USE_NL(FOL) USE_NL(SGE) USE_NL(FOA) */ " + vbCrLf
+    SQL_2 = SQL_2 + "              PEDDATE PEDDATE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDDOUANE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDNUMERO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,0 RCOCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLFOLIO FOLIO_OPER " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLCLAVE FOLCLAVE_OPER " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOL_DOUCLEF FOLDOUANE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOL_TFOCLEF FOLETAT " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL2.FOLFOLIO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOAGUIAHOUSE FOLGUIAHOUSE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLGUIAMASTER " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOL_YCXCLEF FOLOPECOMEXT " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOL_YFOCLEF FOLTYPE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,CLICLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,CLINOM " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDFOLIO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDIMPOTS " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDREGIME " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDSIGNE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,YCXCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,YCXNOM " + vbCrLf
+    SQL_2 = SQL_2 + "             ,SALFECHASALIDA F_DESPACHO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.DATE_CREATED F_ALTA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOL_SUCCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLFECHALLEGADA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOAFECHARECOLECTA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLNUMBULTOS " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLPESOKG " + vbCrLf
+    SQL_2 = SQL_2 + "             ,SGEVALORADUANA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,SALRESULTADOSIS1 " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PVSDATE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,COUNT(DISTINCT FOF.FOFCLEF) " + vbCrLf
+    SQL_2 = SQL_2 + "             ,COUNT(FRF.FRFCLEF) CDAD_REF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,DOU.DOUABREVIACION " + vbCrLf
+    SQL_2 = SQL_2 + "         FROM " + vbCrLf
+    SQL_2 = SQL_2 + "              ESALIDAS SAL " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EREMISSION REM " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EFOLIOS FOL2 " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EPEDIMENTOS_CONSOLIDADOS PCO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EPEDIMENTO PED " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EFOLIOS FOL " + vbCrLf
+    SQL_2 = SQL_2 + "             ,ESAAI_M3_GENERAL SGE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EFOLIOAEREO FOA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,ECLIENT CLI " + vbCrLf
+    SQL_2 = SQL_2 + "             ,ETYPEOPECOMEXT " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EPREVSALIDA PVS " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EFOLIO_FACTURA FOF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EFACTURA_REF_FRA FRF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,EDOUANE DOU " + vbCrLf
+    SQL_2 = SQL_2 + "         WHERE " + vbCrLf
+    SQL_2 = SQL_2 + "             SALFECHASALIDA >= TO_DATE('" + Fecha_1 + "', 'mm/dd/yyyy') " + vbCrLf
+    SQL_2 = SQL_2 + "             AND SALFECHASALIDA < TO_DATE('" + Fecha_2 + "','mm/dd/yyyy') + 1 " + vbCrLf
+    'SQL_2 = SQL_2 + "             AND SAL_DOUCLEF = DECODE('47', NULL, SAL_DOUCLEF, '47') " + vbCrLf
+    If mi_tipo = "A" Then
+        SQL_2 = SQL_2 + "             AND SAL_DOUCLEF in ('47','65','64','48','52') " + vbCrLf
+    ElseIf mi_tipo = "M" Then
+        SQL_2 = SQL_2 + "             AND SAL_DOUCLEF in ('43','16','81','51') " + vbCrLf
+    ElseIf mi_tipo = "T" Then
+        SQL_2 = SQL_2 + "             AND SAL_DOUCLEF in ('07','24','80','37') " + vbCrLf
+    End If
+    SQL_2 = SQL_2 + "             AND DOU.DOUCLEF = SAL_DOUCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             AND REM_SALIDA = SALCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOL2.FOLCLAVE = REM_FOLCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             AND PEDFOLIO = REM_FOLCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             AND PED.PEDREGIME NOT IN ('R1','R3','T3') " + vbCrLf
+    SQL_2 = SQL_2 + "             AND PCO_FOLCLAVE_FIN = REM_FOLCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOL.FOLCLAVE = PCO.PCO_FOLCLAVE_ORI " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOL.FOL_YCXCLEF = 2 " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOL.FOL_YTRCLEF = 7 " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOL.FOL_TFOCLEF = 'FCO' " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOL.FOL_YCXCLEF = NVL(" + tab_impexp + ", FOL.FOL_YCXCLEF) " + vbCrLf
+    'SQL_2 = SQL_2 + "             AND FOL.FOL_CLICLEF = NVL(11244, FOL.FOL_CLICLEF) " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOL.FOL_CLICLEF " + filtro_cliente + vbCrLf
+    SQL_2 = SQL_2 + "             AND NOT EXISTS ( " + vbCrLf
+    SQL_2 = SQL_2 + "                 SELECT NULL " + vbCrLf
+    SQL_2 = SQL_2 + "                   FROM EDETRELACION_CONSOLIDADO DRCIN " + vbCrLf
+    SQL_2 = SQL_2 + "                       ,ESALIDAS SALIN " + vbCrLf
+    SQL_2 = SQL_2 + "                 WHERE DRCIN.DRC_FOLCLAVE = FOL.FOLCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "                   AND SALIN.SAL_RCOCLAVE = DRCIN.DRC_RCOCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             ) " + vbCrLf
+    SQL_2 = SQL_2 + "             AND SGEPEDNUMERO (+) = PEDNUMERO " + vbCrLf
+    SQL_2 = SQL_2 + "             AND SGEDOUCLEF (+) = PEDDOUANE " + vbCrLf
+    SQL_2 = SQL_2 + "             AND SGEANIO (+) = PEDANIO " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOA_FOLCLAVE (+) = FOL.FOLCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             AND CLI.CLICLEF = FOL.FOL_CLICLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             AND YCXCLEF = FOL.FOL_YCXCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             AND PVS_PEDNUMERO (+) = PEDNUMERO " + vbCrLf
+    SQL_2 = SQL_2 + "             AND PVS_PEDDOUANE (+) = PEDDOUANE " + vbCrLf
+    SQL_2 = SQL_2 + "             AND PVSANIO (+) = PEDANIO " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FOF.FOFFOLIO = FOL.FOLCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             AND FRF.FRFFACTURA = FOF.FOFCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             AND EXISTS ( " + vbCrLf
+    SQL_2 = SQL_2 + "                 SELECT NULL " + vbCrLf
+    SQL_2 = SQL_2 + "                   FROM EAGENTDOUANE " + vbCrLf
+    SQL_2 = SQL_2 + "                   WHERE ADOPATENTE = SUBSTR(SGE.SGEPEDNUMERO, 1, 4) " + vbCrLf
+    SQL_2 = SQL_2 + "             ) " + vbCrLf
+    SQL_2 = SQL_2 + "         GROUP BY " + vbCrLf
+    SQL_2 = SQL_2 + "              PEDDATE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDDOUANE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDNUMERO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLFOLIO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLCLAVE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOL_DOUCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOL_TFOCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL2.FOLFOLIO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOAGUIAHOUSE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLGUIAMASTER " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOL_YCXCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOL_YFOCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,CLICLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,CLINOM " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDFOLIO " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDIMPOTS " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDREGIME " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PEDSIGNE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,YCXCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,YCXNOM " + vbCrLf
+    SQL_2 = SQL_2 + "             ,SALFECHASALIDA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.DATE_CREATED " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOL_SUCCLEF " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLFECHALLEGADA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOAFECHARECOLECTA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLNUMBULTOS " + vbCrLf
+    SQL_2 = SQL_2 + "             ,FOL.FOLPESOKG " + vbCrLf
+    SQL_2 = SQL_2 + "             ,SGEVALORADUANA " + vbCrLf
+    SQL_2 = SQL_2 + "             ,SALRESULTADOSIS1 " + vbCrLf
+    SQL_2 = SQL_2 + "             ,PVSDATE " + vbCrLf
+    SQL_2 = SQL_2 + "             ,DOU.DOUABREVIACION " + vbCrLf
+    SQL_2 = SQL_2 + "     ) T " + vbCrLf
+    SQL_2 = SQL_2 + " WHERE T.ADUANA <> 0 " + vbCrLf
+    SQL_2 = SQL_2 + " GROUP BY DECODE(T.ADUANA, '24', 'NVO LAREDO', T.DOUABREVIACION) " + vbCrLf
+    SQL_2 = SQL_2 + " ORDER BY DECODE(T.ADUANA, '24', 'NVO LAREDO', T.DOUABREVIACION) " + vbCrLf
+End Function

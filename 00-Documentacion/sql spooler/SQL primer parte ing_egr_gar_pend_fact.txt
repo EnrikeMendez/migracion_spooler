@@ -1,0 +1,483 @@
+store (prep_clave, pemp, pdiv, pfecha_max,user) 
+
+   gv_modulo := 'step_folios_egr_ing_pend';
+    dbms_lob.createtemporary(vcontent, true);
+  
+    if prep_clave is null then
+      raise_application_error(-20001, 'Falta el parametro Clave Reporte');
+    end if;
+  
+    gv_rep_clave := prep_clave;
+  
+    if pemp is null or pdiv is null then
+      raise_application_error(-20001,
+                              'Falta el parametro Empresa o Divisa');
+    end if;
+  
+    clean(gv_rep_clave);
+  
+    if pfecha_max is null then
+      vfecha_max := sysdate;
+    else
+      vfecha_max := to_date(pfecha_max, 'dd/mm/yyyy');
+    end if;
+  
+    -- reporte >
+  
+    ----------------------
+    --  CALCULO FECHAS  --
+    ----------------------
+    log_sql(paccion => 'INICIO REPORTE');
+  
+    if vfecha_max is null then
+      fecha_cierre := sysdate;
+    else
+      select min(coc.date_created)
+        into fecha_cierre
+        from ecoupecompta coc
+       where coc.coc_empclave = pemp
+         and coc.cocdate >= vfecha_max;
+    
+      if fecha_cierre is null then
+        fecha_cierre := sysdate;
+      end if;
+    end if;
+
+/****************************
+SQL Principal
+/****************************
+ select /*+ use_nl(fol, dpc, cli) */
+       fol.fol_cliclef cliclef "No. Cliente",
+       cli.clinom "Razon Social",
+       fol.folclave,
+       fol.fol_douclef "Ad.",
+       fol.folfolio "Folio",
+      /* agregar" Fecha Pago" */
+/*  agregar"  mi_dpc dpc_importe "ING Pend. Integrar"*/
+/* agregar" costo_directo "Costo Directo"*/
+/* agregar" fct.fctnumero "No. Factura", fct.fctdatefacture "Fecha Factura"*/
+       fol.fol_ycxclef,
+       dtc.dtcclef dtcclf,
+       dtc.dtcconcept tipo,
+       'ING' /*orig*/ "Origen",
+       dtc.dtccheque "Renglon",
+       dtc.date_created /*fecha_int*/ "Fecha Integr.",
+       to_number(null) /*erogac*/ "clv Erog.",   
+       decode(dtcconcept, 'I01', nvl(dtc.dtcsomme, 0), 0) /*ingreso*/ "Ingresos",
+       0 /*egreso*/ "Erogaciones",
+       0 gar,
+       to_char(null) /*nombreerog*/ "Descripcion Erogacion",
+       0 "InterCo",
+       decode(dtcconcept, 'I09', -1 * nvl(dtc.dtcsomme, 0), 0) "Garantia"
+        from (select /*+ index (dtc idx_dtcconcept) */
+               dtcclef,
+               dtcconcept,
+               dtc.date_created,
+               dtccheque,
+               dtcsomme,
+               dtcfolio
+                from edetailcheque dtc
+               where nvl(dtc.date_modified, dtc.date_created) <= fec_cierre
+                 and dtccheque >= 336477
+                 and dtc.dtcconcept in ('I01', 'I09')
+                 and dtcfolio is not null
+                 and exists (select null
+                        from edepotcheque
+                       where dpcclef = dtccheque
+                         and dpc_empclave = pemp
+                         and dpcdivisa = pdiv
+                         and rownum = 1)
+                 and not exists
+               (select 1
+                        from efacturas fct
+                       where fct.fctclef = dtc.dtcfacture
+                         and fct.fct_yfaclef in ('1', '2', '3')
+                         and fct.fctdatefacture < vfecha_max + 1
+                         and rownum = 1)) dtc,
+             edepotcheque dpc,
+             efolios fol,
+             eclient cli
+       where dpc.dpc_empclave = pemp
+         and dpc.dpcdate <= vfecha_max
+         and dpcdate >= to_date('01/01/2013', 'DD/MM/YYYY')
+         and dpcclef >= 336477
+         and dpc.dpcdivisa = pdiv
+         and dpcetat = 'A'
+         and dtc.dtccheque = dpc.dpcclef
+         and fol.folclave = dtc.dtcfolio
+         and cli.cliclef = fol.fol_cliclef
+      union all
+      select /*+ use_nl( fol, sbq, cli, cho) */
+       fol.fol_cliclef,
+       cli.clinom,
+       fol.folclave,
+      fol.fol_douclef,    
+       fol.folfolio,
+    
+       fol.fol_ycxclef,
+       soa.soaclef,
+       soa.soatype,
+       decode(soa.soatype, 'E01', 'E_EGR', 'E12', 'G_EGR', '?_EGR'),
+       soa.soasortie,
+       soa.date_created,
+       cho.chonumero,
+       0,
+       decode(soa.soatype, 'E01', soa.soasomme, 0),
+       decode(soa.soatype, 'E12', soa.soasomme - nvl(soa.soaiva, 0), 0),
+       cho.chonombre,
+       0 interco,
+       decode(soa.soatype, 'E09', soa.soasomme, 0) garantia
+        from (select soasortie,
+                     soatype,
+                     soa.date_created,
+                     soa_choclave,
+                     soasomme,
+                     soaiva,
+                     soa_sbqanio,
+                     soafolio,
+                     soaclef
+                from esortieargent soa
+               where soa.soa_sbq_empclave = pemp
+                 and soa_sbqanio >= 2013
+                 and soa.soafolio is not null
+                 and soa.soatype in ('E01', 'E12', 'E09')
+                 and nvl(soa.date_modified, soa.date_created) <= fec_cierre
+                 and not exists
+               (select 1
+                        from efacturas fct
+                       where fct.fctclef = soa.soafacture
+                         and fct.fct_yfaclef in ('1', '2', '3')
+                         and fct.fctdatefacture < vfecha_max + 1
+                         and rownum = 1)) soa,
+             esortiebanque sbq,
+             efolios fol,
+             econceptoshoja cho,
+             eclient cli
+       where sbq.sbq_empclave = pemp
+         and sbqanio >= 2013
+         and sbq.sbqdatefait <= vfecha_max
+         and sbq.sbqetat = 'A'
+         and sbq.sbqdivisa = pdiv
+         and soa.soasortie = sbq.sbqclef
+         and soa.soa_sbqanio = sbq.sbqanio
+         and fol.folclave = soa.soafolio
+         and cho.choclave(+) = soa.soa_choclave
+         and cli.cliclef = fol.fol_cliclef
+      union all
+      select /*+ use_nl( fol, ddi, dia, cho, cli) */
+       fol.fol_cliclef,
+       cli.clinom,
+       fol.folclave,
+       fol.fol_douclef,
+       fol.folfolio,
+       fol.fol_ycxclef,
+       ddi.ddiclef,
+       ddi.dditype,
+       decode(ddi.dditype, 'D01', 'E_DIA', 'D12', 'G_DIA', '?_DIA'),
+       ddi.ddidiario,
+       ddi.date_created,
+       cho.chonumero,
+       0,
+       decode(ddi.dditype, 'D01', ddi.ddisomme, 0),
+       decode(ddi.dditype, 'D12', ddi.ddisomme - nvl(ddi.ddiiva, 0), 0),
+       cho.chonombre,
+       0 interco,
+       decode(ddi.dditype,
+              'D09',
+              decode(diadebe, 'D', -1, 1) * ddi.ddisomme,
+              0) garantia
+        from (select /*+ index(ddi idx_ddi_emp_type) */
+               ddiclef,
+               dditype,
+               ddidiario,
+               ddi.date_created,
+               ddisomme,
+               ddiiva,
+               ddifolio,
+               ddi_choclave,
+               ddi_diaanio
+                from edetaildiario ddi
+               where ddi.ddi_dia_empclave = pemp
+                 and ddi_diaanio >= 2013
+                 and ddi.ddifolio is not null
+                 and ddi.dditype in ('D01', 'D12', 'D09')
+                 and nvl(ddi.date_modified, ddi.date_created) <= fec_cierre
+                 and not exists
+               (select 1
+                        from efacturas fct
+                       where fct.fctclef = ddi.ddifacture
+                         and fct.fct_yfaclef in ('1', '2', '3')
+                         and fct.fctdatefacture < vfecha_max + 1
+                         and rownum = 1)) ddi,
+             ediario dia,
+             efolios fol,
+             econceptoshoja cho,
+             eclient cli
+       where dia.dia_empclave = pemp
+         and dia.diadate <= vfecha_max
+         and dia.diaetat = 'A'
+         and diaanio >= 2013
+         and dia.diadivisa = pdiv
+         and ddi.ddidiario = dia.diaclef
+         and ddi.ddi_diaanio = dia.diaanio
+         and fol.folclave = ddi.ddifolio
+         and cho.choclave(+) = ddi.ddi_choclave
+         and cli.cliclef = fol.fol_cliclef
+      union all
+      select /*+ use_nl( fol, gem, gco, cho, cli)  */
+       fol.fol_cliclef,
+       cli.clinom,
+       fol.folclave,
+       fol.fol_douclef,
+       fol.folfolio,
+       fol.fol_ycxclef,
+       gco.gcoclef,
+       gco.gcotype,
+       decode(gco.gcotype, 'G01', 'E_GAC', 'G12', 'G_GAC', '?_GAC'),
+       gco.gcogasto,
+       gco.date_created,
+       cho.chonumero,
+       0,
+       decode(gco.gcotype, 'G01', gco.gcosomme, 0),
+       decode(gco.gcotype, 'G12', gco.gcosomme - nvl(gco.gcoiva, 0), 0),
+       cho.chonombre,
+       0 interco,
+       0 garantia
+        from (select /*+ index(gco idx_gco_emp_type ) */
+               gcoclef,
+               gcotype,
+               gcogasto,
+               gcosomme,
+               gcoiva,
+               gco_choclave,
+               gco.date_created,
+               gco_gemanio,
+               gcofolio
+                from egcomprobar gco
+               where gco.gco_gem_empclave = pemp
+                 and gco_gemanio >= 2013
+                 and gco.gcofolio is not null
+                 and gco.gcotype in ('G01', 'G12')
+                 and nvl(gco.date_modified, gco.date_created) <= fec_cierre
+                 and not exists
+               (select 1
+                        from efacturas fct
+                       where fct.fctclef = gco.gcofacture
+                         and fct.fct_yfaclef in ('1', '2', '3')
+                         and fct.fctdatefacture < vfecha_max + 1
+                         and rownum = 1)) gco,
+             egastoempleado gem,
+             efolios fol,
+             econceptoshoja cho,
+             eclient cli
+       where gem.gem_empclave = pemp
+         and gem.gemdate <= vfecha_max
+         and gem.gemetat = 'A'
+         and gemanio >= 2013
+         and gem.gemaffecte = 'S'
+         and gem.gem_divclef = pdiv
+         and gco.gcogasto = gem.gemclef
+         and gco.gco_gemanio = gem.gemanio
+         and fol.folclave = gco.gcofolio
+         and cho.choclave = gco.gco_choclave
+         and cli.cliclef = fol.fol_cliclef
+      union all
+      select /*+ use_nl( prd, pdd, fol, pdd, cho, cli) */
+       fol.fol_cliclef,
+       cli.clinom,
+       fol.folclave,
+       fol.fol_douclef,
+       fol.folfolio,
+
+       fol.fol_ycxclef,
+       pdd.pddclef,
+       pdd.pddtype,
+       decode(pdd.pddtype, 'P01', 'E_PRO', 'P12', 'G_PRO', '?_PRO'),
+       pdd.pddprovdoc,
+       pdd.date_created,
+       cho.chonumero,
+       0,
+       decode(pdd.pddtype, 'P01', pdd.pddsomme, 0),
+       decode(pdd.pddtype, 'P12', pdd.pddsomme, 0),
+       cho.chonombre,
+       0 interco,
+       0 garantia
+        from (select /*+ index(pdd idx_pdd_emp_type ) */
+               pddclef,
+               pddtype,
+               pddprovdoc,
+               pdd.date_created,
+               pddsomme,
+               pdd_choclave,
+               pddfolio,
+               pddanio
+                from eprovdocdet pdd
+               where pdd.pdd_prd_empclave = pemp
+                 and pdd.pddfolio is not null
+                 and pddanio >= 2013
+                 and pdd.pddtype in ('P01', 'P12')
+                 and nvl(pdd.date_modified, pdd.date_created) <= fec_cierre
+                 and not exists
+               (select 1
+                        from efacturas fct
+                       where fct.fctclef = pdd.pddfacture
+                         and fct.fct_yfaclef in ('1', '2', '3')
+                         and fct.fctdatefacture < vfecha_max + 1
+                         and rownum = 1)) pdd,
+             eprovdoc prd,
+             efolios fol,
+             econceptoshoja cho,
+             eclient cli
+       where prd.prd_empclave = pemp
+         and prd.prddaterev <= vfecha_max
+         and prdanio >= 2013
+         and prd.prdetat = 'A'
+         and prd.prddivisa = pdiv
+         and pdd.pddprovdoc = prd.prdclef
+         and pdd.pddanio = prd.prdanio
+         and (prdproveedor < 9900 or prdproveedor > 9999)
+         and fol.folclave = pdd.pddfolio
+         and cho.choclave = pdd.pdd_choclave
+         and cli.cliclef = fol.fol_cliclef
+      union all
+      select /*+ use_nl( prd, pdd, fol, pdd, cho, cli) */
+       fol.fol_cliclef,
+       cli.clinom,
+       fol.folclave,
+
+       fol.fol_douclef,
+       fol.folfolio,
+       fol.fol_ycxclef,
+       pdd.pddclef,
+       pdd.pddtype,
+       decode(pdd.pddtype, 'P01', 'E_PRO', 'P12', 'G_PRO', '?_PRO'),
+       pdd.pddprovdoc,
+       pdd.date_created,
+       cho.chonumero,
+       0,
+       0,
+       0,
+       cho.chonombre,
+       pddsomme interco,
+       0 garantia
+        from (select /*+ index(pdd idx_pdd_emp_type ) */
+               pddclef,
+               pddtype,
+               pddprovdoc,
+               pdd.date_created,
+               pddsomme,
+               pdd_choclave,
+               pddfolio,
+               pddanio
+                from eprovdocdet pdd
+               where pdd.pdd_prd_empclave = pemp
+                 and pdd.pddfolio is not null
+                 and pddanio >= 2013
+                 and pdd.pddtype in ('P01', 'P12')
+                 and nvl(pdd.date_modified, pdd.date_created) <= fec_cierre
+                 and not exists
+               (select 1
+                        from efacturas fct
+                       where fct.fctclef = pdd.pddfacture
+                         and fct.fct_yfaclef in ('1', '2', '3')
+                         and fct.fctdatefacture < vfecha_max + 1
+                         and rownum = 1)) pdd,
+             eprovdoc prd,
+             efolios fol,
+             econceptoshoja cho,
+             eclient cli
+       where prd.prd_empclave = pemp
+         and prd.prddaterev <= vfecha_max
+         and prdanio >= 2013
+         and prd.prdetat = 'A'
+         and prd.prddivisa = pdiv
+         and pdd.pddprovdoc = prd.prdclef
+         and pdd.pddanio = prd.prdanio
+         and pdd.pddtype = 'P01'
+         and prdproveedor >= 9900
+         and prdproveedor <= 9999
+         and fol.folclave = pdd.pddfolio
+         and cho.choclave = pdd.pdd_choclave
+         and cli.cliclef = fol.fol_cliclef
+       order by 3;
+
+/***********************/
+(union SQL Principal)  
+se relacion con --fol.folclave (dependiendo del opcion del menu)
+/***********************/
+            select min(ped.peddate) "Fecha Pago" --ped_fecha
+            from epedimento ped, eagentdouane ado
+           where ped.pedfolio = '4604936' --fol.folclave
+             and ado.adopatente = substr(ped.pednumero, 1, 4)
+             and ped.pedregime not in ('R3', 'T3');
+/***********************/
+(union SQL Principal)  
+            /*FACTURA */
+se relacion con  prd_empclave,fol.folclave,prd.prddivisa  (dependiendo del opcion del menu)
+/***********************/
+       select fct.fctnumero "No. Factura", fct.fctdatefacture "Fecha Factura"
+       from efacturas fct
+       where fct.fct_empclave = '29'  ---prd_empclave
+        -- and fct.fct_yfaclef = '1' 
+         and fct.fctfolio = '5094367' --fol.folclave 
+         and fct.fctdivisa = 'MXN';   --prd.prddivisa
+ /***********************/
+(union SQL Principal)      
+se relacion con  prd_empclave,cli.cliclef,prd.prddivisa  (dependiendo del opcion del menu)
+ /***********************/
+          if tomar este sql en caso de regresar sea diferete null
+             select mi_cd /*costo_directo*/ "Costo Directo"
+          
+              from emontos_cli_rep
+             where mi_emp = '29' --prd_empclave
+               and mi_fec =  vfecha_max
+               and mi_div = 'MXN' --- prd.prddivisa
+               and created_by = upper('USUARIO_WEB_ORFEO2') --parametro user
+               and mi_cli = 22741;--cli.cliclef
+
+           else           
+               
+            select /*+ ordered use_nl(pol) */
+               sum(dpo.dpodu) - sum(dpo.dpoavoir) /*costo_directo*/ "Costo Directo"
+
+                from detailpolice dpo, police pol
+               where dpo.dpopolice = pol.polclef
+                 and dpo.dpocompte in
+                     ('7100-' || get_cli_enmascarado(22741),--cli.cliclef
+                      '7200-' || get_cli_enmascarado(22741))--cli.cliclef
+                 and dpo_poldate >= trunc( vfecha_max, 'MM')
+                 and dpo_poldate <  vfecha_max + 1
+                 and dpo_pol_empclave =  '29' --prd_empclave
+                 and dpo_pol_divclef = 'MXN' --prd.prddivisa;
+             endif Costo Directo
+/***********************/
+(union SQL Principal)
+se relacion con  prd_empclave,cli.cliclef,prd.prddivisa   (dependiendo del opcion del menu)
+/***********************/
+          if tomar este sql en caso de regresar sea diferete null
+            select  /*mi_dpc dpc_importe*/ "ING Pend. Integrar"
+          
+              from emontos_cli_rep
+             where mi_emp = '29'--prd_empclave
+               and mi_fec =  vfecha_max 
+               and mi_div = 'MXN' -prd.prddivisa;
+               and created_by = upper(user) --parametro user
+               and mi_cli = 22741; --cli.cliclef
+
+                   else     
+
+           
+              select /*+ INDEX(DPC IDX_DPC_CLI_EMP_DATE) */
+               sum(dpc.dpcsomme) - sum(nvl(dtc.dtcsomme, 0)) /*dpc_importe*/ "ING Pend. Integrar"
+    
+                from edepotcheque dpc, edetailcheque dtc
+               where dpc.dpcclient = 22741 --cli.cliclef
+                 and dpc.dpcdate <  vfecha_max  + 1
+                 and dpc.dpc_empclave =  '29' --prd_empclave
+                 and dpc.dpcdivisa = 'MXN' -prd.prddivisa;
+                 and dpc.dpcetat = 'A'
+                 and dtc.dtccheque(+) = dpc.dpcclef
+                 and dtcfacture is null
+                 and nvl(nvl(dtc.date_modified, dtc.date_created),
+                         dpc.dpcdate) <=  vfecha_max  ;
+               endif ING Pend. Integrar
