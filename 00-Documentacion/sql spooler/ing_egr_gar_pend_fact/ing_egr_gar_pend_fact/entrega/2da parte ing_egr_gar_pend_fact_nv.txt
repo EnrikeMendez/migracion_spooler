@@ -1,23 +1,5 @@
 store (user) 
 
-/****************************
-SQL Principal Anterior
-/****************************
-  select micli ,
-             clinom,
-             mifolio ,
-             sum(nvl(miant, 0)) ant,
-             sum(nvl(mierog, 0)) erog,
-             sum(nvl(migar, 0)) gar,
-             sum(nvl(miinterco, 0)) interco,
-             sum(nvl(migarantia, 0)) garantia*,            
-             folclave
-        from emontos_cliente_por_anio mcpa, eclient cli, efolios fol
-       where mcpa.created_by = upper(user) --upper('USUARIO_WEB_ORFEO2')
-         and cliclef = micli
-         and folfolio = mifolio
-       group by micli, clinom, mifolio, folclave
-       order by 1, 3;
 
 /****************************
 SQL Principal
@@ -93,5 +75,6 @@ select      micli,
 se relacion con --fol.folclave (dependiendo del opcion del menu)
 /***********************/
         select min(peddate) "Fecha Pago"
+
           from epedimento
          where pedfolio = i.folclave;

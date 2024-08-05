@@ -1,4 +1,4 @@
-store (prep_clave, pemp, pdiv, pfecha_max,user) 
+store (mi_rep_clave, pemp, pdiv, pfecha_max,user) 
 
    gv_modulo := 'step_folios_egr_ing_pend';
     dbms_lob.createtemporary(vcontent, true);
@@ -436,7 +436,7 @@ se relacion con  prd_empclave,cli.cliclef,prd.prddivisa  (dependiendo del opcion
                and mi_cli = 22741;--cli.cliclef
 
            else           
-               
+               /*STORE*/
             select /*+ ordered use_nl(pol) */
                sum(dpo.dpodu) - sum(dpo.dpoavoir) /*costo_directo*/ "Costo Directo"
 
@@ -466,7 +466,7 @@ se relacion con  prd_empclave,cli.cliclef,prd.prddivisa   (dependiendo del opcio
 
                    else     
 
-           
+            /*STORE*/
               select /*+ INDEX(DPC IDX_DPC_CLI_EMP_DATE) */
                sum(dpc.dpcsomme) - sum(nvl(dtc.dtcsomme, 0)) /*dpc_importe*/ "ING Pend. Integrar"
     
