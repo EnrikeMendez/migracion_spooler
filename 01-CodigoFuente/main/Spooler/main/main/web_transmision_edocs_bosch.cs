@@ -66,7 +66,7 @@ namespace serverreports
             (string? codigo, string? msg, string? sql, DataTable? tb) datos_sp;
             try
             {
-                datos_sp.sql = "SC_DIST.SPG_RS_COEX.P_RS_TRANSMISION_COVE";
+                datos_sp.sql = "SC_RS.SPG_RS_COEX.P_RS_TRANSMISION_COVE";
                 if (imp_exp.Trim() == "1" || imp_exp.Trim() == "2")
                 {
                     LisDT = new DataTable[1];

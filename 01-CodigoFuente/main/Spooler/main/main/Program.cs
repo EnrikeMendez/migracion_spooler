@@ -360,12 +360,14 @@ try
         switch (MiComando)
     {
             case "transmision_edocs_bosch":
-             web_transmision_edocs_bosch edocs_bosch = new web_transmision_edocs_bosch();
+                //5132031
+                web_transmision_edocs_bosch edocs_bosch = new web_transmision_edocs_bosch();
              edocs_bosch.transmision_edocs_bosch(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), parins, contmail, visible_sql);
              break;
           
             case "gsk_pedimientos":
-             trading_genera_GSK_mod trading_genera_GSK = new trading_genera_GSK_mod();
+                //gsk 3723307
+                trading_genera_GSK_mod trading_genera_GSK = new trading_genera_GSK_mod();
              trading_genera_GSK.trading_genera_GSK(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id, parins, contmail, visible_sql);               
              break;
             
