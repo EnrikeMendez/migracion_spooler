@@ -10,7 +10,70 @@ namespace serverreports
     internal class Ing_egr_gar_pend_fact_mod
     {
 
-        public string Ing_egr_gar_pend_fact(string Archivo, string Empresa, string Divisa, string fecha, string[,] parins, string[] contacmail, int vs)
+        public string Ing_egr_gar_pend_fact(string[,] file_name, string Empresa, string Divisa, string fecha, string[,] parins, string[] contacmail, int vs)
+        {
+            DataTable dttmp = new DataTable();
+            DM DM = new DM();
+            (string[] LisDT_tit, DataTable[] LisDT, string arch) inf;
+
+            int sw_error = 0;
+            Utilerias util = new Utilerias();
+            // envio_correo correo = new envio_correo();            
+            Excel xlsx = new Excel();
+            DataTable[] LisDT = new DataTable[1];
+            string[] LisDT_tit = new string[1];
+            (string? codigo, string? msg, string? sql, DataTable? tb) datos_sp;
+            string[,] html = new string[6, 2];
+            string arch = file_name[0, 0];
+            string[,] par_st;
+            par_st = new string[6, 4];
+
+            par_st[0, 0] = "i";
+            par_st[0, 1] = "v";
+            par_st[0, 2] = "pfecha_max";
+            if (fecha == "")
+            {
+                par_st[0, 3] = null;
+            }
+            else
+                par_st[0, 3] = fecha;
+            par_st[0, 3] = "07/08/2024";
+
+            par_st[1, 0] = "i";
+            par_st[1, 1] = "i";
+            par_st[1, 2] = "p_Empclave";
+            par_st[1, 3] = "55"; //cambiar
+            //par_st[1, 3] = Empresa; 
+
+            par_st[2, 0] = "i";
+            par_st[2, 1] = "v";
+            par_st[2, 2] = "p_Divisa";
+            // par_st[2, 3] = "MXN";
+            par_st[2, 3] = Divisa;
+
+            dttmp = DM.sc_reportes_gen_rep_clave(vs);
+            string rep_clave = util.Tcampo(dttmp, "GEN_REP_CLAVE");
+            dttmp.Dispose();
+            par_st[3, 0] = "o";
+            par_st[3, 1] = "c";
+            par_st[3, 2] = "p_Cur_Folios";
+            par_st[4, 0] = "o";
+            par_st[4, 1] = "v";
+            par_st[4, 2] = "p_Mensaje";
+            par_st[4, 3] = "msg";
+            par_st[5, 0] = "o";
+            par_st[5, 1] = "i";
+            par_st[5, 2] = "p_Codigo_Error";
+            par_st[5, 3] = "cod";
+            datos_sp.sql = "SC_RS.SPG_RS_COEX.P_DAT_FOLIOS";
+            datos_sp = DM.datos_sp([datos_sp.sql], par_st, vs);
+            LisDT[0] = datos_sp.tb;
+            LisDT_tit[0] = "EGR_ING_Pend_Fact";           
+            xlsx.CrearExcel_file(LisDT, LisDT_tit, parins[12, 1] + file_name[0, 0], null);
+            return "";
+        }
+
+        public string Ing_egr_gar_pend_fact_ante(string Archivo, string Empresa, string Divisa, string fecha, string[,] parins, string[] contacmail, int vs)
         {
             DataTable dttmp = new DataTable();
             DM DM = new DM();

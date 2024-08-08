@@ -384,7 +384,7 @@ try
                 //5566766
                 //     Call Ing_egr_gar_pend_fact(Carpeta & tab_archivos(0, 0), rs.Fields("PARAM_1"), rs.Fields("PARAM_2"), NVL(rs.Fields("PARAM_3")))
                 Ing_egr_gar_pend_fact_mod Ing_egr_gar_pend_fact = new Ing_egr_gar_pend_fact_mod();
-                Ing_egr_gar_pend_fact.Ing_egr_gar_pend_fact(Carpeta + tab_archivos[0, 0], util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), parins, contmail, visible_sql);
+                Ing_egr_gar_pend_fact.Ing_egr_gar_pend_fact(tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), parins, contmail, visible_sql);
             break;
 
             case "fondo_fijo":
