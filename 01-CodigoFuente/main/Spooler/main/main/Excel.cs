@@ -13,7 +13,7 @@ namespace serverreports
 {
     internal class Excel
     {
-        public void CrearExcel_file(DataTable[] LisDT, string[] tit, string name, int? del_col = null)
+        public string CrearExcel_file(DataTable[] LisDT, string[] tit, string name, int? del_col = null)
         {
             using (var workbook = new XLWorkbook())
             {
@@ -45,6 +45,7 @@ namespace serverreports
                 {
                     Console.WriteLine("Ocurrio una Excepción: " + ex.Message);
                 }
+                return name + ".xlsx";
             }
         }
 

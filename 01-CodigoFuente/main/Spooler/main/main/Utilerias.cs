@@ -148,7 +148,7 @@ namespace serverreports
             {
                 dt = DateTime.Parse(new_date_1[1] + "-" + new_date_1[0] + "-" + new_date_1[2]).ToString("MMM-dd-yyyy") +
                              DateTime.Parse(new_date_2[1] + "-" + new_date_2[0] + "-" + new_date_2[2]).ToString("MMM-dd-yyyy");
-                arc_nom = arc_nom.Replace("%p", dt.Replace(".", ""));
+                arc_nom = arc_nom.Replace("%P", dt.Replace(".", ""));
 
             }
             else
@@ -156,13 +156,13 @@ namespace serverreports
                 if (date_1 != "")
                 {
                     dt = DateTime.Parse(new_date_1[1] + "-" + new_date_1[0] + "-" + new_date_1[2]).ToString("MMM-dd-yyyy");
-                    arc_nom = arc_nom.Replace("%p", dt.Replace(".", ""));
+                    arc_nom = arc_nom.Replace("%P", dt.Replace(".", ""));
                 }
             }
             if (date_1 != "")
             {
                 dt = DateTime.Parse(new_date_1[1] + "-" + new_date_1[0] + "-" + new_date_1[2]).ToString("MMM-dd-yyyy");
-                arc_nom = arc_nom.Replace("%p", dt.Replace(".", ""));
+                arc_nom = arc_nom.Replace("%P", dt.Replace(".", ""));
             }
             return arc_nom;
         }

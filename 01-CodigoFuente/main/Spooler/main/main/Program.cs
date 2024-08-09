@@ -65,7 +65,10 @@ try
 
  Utilerias util = new Utilerias();
  DM DM = new DM();
- init_var();
+    (string[]? LisDT_tit, DataTable[]? LisDT, string? arch) inf;
+    Excel xlsx = new Excel();
+    envio_correo correo = new envio_correo();
+    init_var();
 
     try
  
@@ -356,7 +359,13 @@ try
         //trading_genera_GSK_mod trading_genera_GSK = new trading_genera_GSK_mod();
         //Console.WriteLine(trading_genera_GSK.trading_genera_GSK(Carpeta, tab_archivos[0], util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id,visible_sql));
         //Console.WriteLine(trading_genera_GSK.trading_genera_GSK(Carpeta, "gsk_pedimientos", "20501,20502"                                , FECHA_1, FECHA_2, ""                                           , 3723307, visible_sql));
-
+        string[] arh;
+        if (tab_archivos[4, 0] == "1")
+            arh = new string[2];
+        else
+            arh = new string[1];
+        string arch = "";
+        int encorr = 0;
         switch (MiComando)
     {
             case "transmision_edocs_bosch":
@@ -384,8 +393,11 @@ try
                 //5566766
                 //     Call Ing_egr_gar_pend_fact(Carpeta & tab_archivos(0, 0), rs.Fields("PARAM_1"), rs.Fields("PARAM_2"), NVL(rs.Fields("PARAM_3")))
                 Ing_egr_gar_pend_fact_mod Ing_egr_gar_pend_fact = new Ing_egr_gar_pend_fact_mod();
-                Ing_egr_gar_pend_fact.Ing_egr_gar_pend_fact(tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), parins, contmail, visible_sql);
-            break;
+                inf = Ing_egr_gar_pend_fact.Ing_egr_gar_pend_fact(tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), parins, contmail, visible_sql);
+                // arch = xlsx.CrearExcel_file(inf.LisDT, inf.LisDT_tit, Carpeta + "\\" + inf.arch + ".xlsx", null, null, 0);
+                arch = xlsx.CrearExcel_file(inf.LisDT, inf.LisDT_tit, Carpeta + "\\" + inf.arch);
+                encorr = 1;
+                break;
 
             case "fondo_fijo":
                 //            Call Fondo_fijo(Carpeta & tab_archivos(0, 0) & ".txt", rs.Fields("PARAM_1"), rs.Fields("PARAM_2"))
@@ -396,13 +408,39 @@ try
 
 
         }
+        if (encorr == 1)
+        {
+            string[,] html = new string[6, 1];
+            arh[0] = Carpeta + "\\" + tab_archivos[0, 0] + ".xlsx";
+            arch = tab_archivos[0, 0];
+            tab_archivos[0, 0] = tab_archivos[0, 0] + ".xlsx";
+            if (tab_archivos[4, 0] == "1")
+            {
+                //arh[1] = util.agregar_zip_nv(file_name, arch, Carpeta);
+                html = util.agregar_zip(tab_archivos, arch, Carpeta);
+                arh[1] = Carpeta + "\\" + arch + ".zip";
+            }
 
+
+            // tab_archivos[4, 0] = "0";
+            html = util.hexafile_nv(tab_archivos, Carpeta, int.Parse(parins[9, 1]), arch, parins);
+            string mensaje = correo.display_mail(parins[10, 1], "", arch, html, Int32.Parse(parins[3, 1]), "");
+            util.replica_tem(arch, parins);
+            if (contmail.Length > 0)
+            {
+                //correo.send_mail("Report: " + html[1, 0] + " created v2024", contacmail, mensaje, arh);
+                string[,] cor = new string[0, 0];
+                 correo.send_mail("Report: " + html[1, 0] + " created v2024", [], mensaje, arh);
+            }
+            DM.act_proceso(parins, visible_sql);
+            util.borra_arch(arh, Carpeta);
+        }
 
 
     }
  else
     Console.WriteLine("Error es necesario especifica los parametros \n 1. Falta numero reporte: ''{0}'' \n 2. valor tipo de reporte: {1} " + msg, rep_id, reporte_temporal);
-    envio_correo correo = new envio_correo();
+
  Console.WriteLine("Oprimar cualquier tecla para terminar");
  trep_cron.Clear();
  tdato_repor.Clear();

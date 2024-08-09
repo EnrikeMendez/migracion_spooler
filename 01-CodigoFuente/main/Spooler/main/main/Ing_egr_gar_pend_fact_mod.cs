@@ -10,7 +10,7 @@ namespace serverreports
     internal class Ing_egr_gar_pend_fact_mod
     {
 
-        public string Ing_egr_gar_pend_fact(string[,] file_name, string Empresa, string Divisa, string fecha, string[,] parins, string[] contacmail, int vs)
+        public (string[] LisDT_tit, DataTable[] LisDT, string arch) Ing_egr_gar_pend_fact(string[,] file_name, string Empresa, string Divisa, string fecha, string[,] parins, string[] contacmail, int vs)
         {
             DataTable dttmp = new DataTable();
             DM DM = new DM();
@@ -20,8 +20,8 @@ namespace serverreports
             Utilerias util = new Utilerias();
             // envio_correo correo = new envio_correo();            
             Excel xlsx = new Excel();
-            DataTable[] LisDT = new DataTable[1];
-            string[] LisDT_tit = new string[1];
+            DataTable[] LisDT = new DataTable[2];
+            string[] LisDT_tit = new string[2];
             (string? codigo, string? msg, string? sql, DataTable? tb) datos_sp;
             string[,] html = new string[6, 2];
             string arch = file_name[0, 0];
@@ -68,9 +68,33 @@ namespace serverreports
             datos_sp.sql = "SC_RS.SPG_RS_COEX.P_DAT_FOLIOS";
             datos_sp = DM.datos_sp([datos_sp.sql], par_st, vs);
             LisDT[0] = datos_sp.tb;
-            LisDT_tit[0] = "EGR_ING_Pend_Fact";           
-            xlsx.CrearExcel_file(LisDT, LisDT_tit, parins[12, 1] + file_name[0, 0], null);
-            return "";
+            LisDT_tit[0] = "EGR_ING_Pend_Fact";
+
+            par_st = new string[4, 4];
+            par_st[0, 0] = "i";
+            par_st[0, 1] = "v";
+            par_st[0, 2] = "p_Divisa";
+            par_st[0, 3] = "USUARIO_WEB_ORFEO2";
+            par_st[1, 0] = "o";
+            par_st[1, 1] = "c";
+            par_st[1, 2] = "p_Cur_Folios";
+            par_st[2, 0] = "o";
+            par_st[2, 1] = "v";
+            par_st[2, 2] = "p_Mensaje";
+            par_st[2, 3] = "msg";
+            par_st[3, 0] = "o";
+            par_st[3, 1] = "i";
+            par_st[3, 2] = "p_Codigo_Error";
+            par_st[3, 3] = "cod";
+            datos_sp.sql = "SC_RS.SPG_RS_COEX.P_DAT_FOLIOS_INGR_EGRE_PEN_FAC";
+            datos_sp = DM.datos_sp([datos_sp.sql], par_st, vs);
+            LisDT[1] = datos_sp.tb;
+            LisDT_tit[1] = "Folios";
+            //xlsx.CrearExcel_file(LisDT, LisDT_tit, parins[12, 1] + file_name[0, 0], null);
+            inf.LisDT_tit = LisDT_tit;
+            inf.LisDT = LisDT;
+            inf.arch = arch;
+            return inf;
         }
 
         public string Ing_egr_gar_pend_fact_ante(string Archivo, string Empresa, string Divisa, string fecha, string[,] parins, string[] contacmail, int vs)
@@ -147,6 +171,7 @@ namespace serverreports
             datos_sp.sql = "SC_DIST.SPG_RS_COEX.P_OBTEN_INGR_EGRE_PEN_FACT";
             datos_sp = DM.datos_sp([datos_sp.sql], par_st, vs);
             Console.WriteLine(util.Tdetalle(datos_sp.tb));
+
             string cp = "C:\\pc\\ruta_alterna\\ejeml\\";
             if (!Directory.Exists(cp))
             {
