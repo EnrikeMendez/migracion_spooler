@@ -594,6 +594,104 @@ Next
             return tam.ToString() + " " + subj;
         }
 
+        public DataTable Tdetalle_regtot(DataTable dtTemp, int col_ini, int int_fin, int ing_tot, int col_tot_proc, int porc = 0)
+        {
+            DataTable dtTemp_re = new DataTable();
+            dtTemp_re = dtTemp;
+            DataRow nvreg;
+            int total = 0;
+            decimal total_gral = 0;
+            string tit = "";
+            string val = "";
+            if (ing_tot == 1)
+            {
+                nvreg = dtTemp_re.NewRow();
+                for (int i = col_ini; i < dtTemp.Columns.Count; i++)
+                {
+                    total = 0;
+                    if (i == col_ini)
+                    {
+                        nvreg[dtTemp.Columns[i - 1].ColumnName] = "Total";
+
+                    }
+                    for (int j = 0; j < dtTemp.Rows.Count; j++)
+                    {
+                        if (j == 0)
+                        {
+                            tit = dtTemp.Columns[i].ColumnName;
+                        }
+                        val = dtTemp.Rows[j][i].ToString();
+                        total = total + Convert.ToInt32(val);
+                    }
+                    if (dtTemp.Rows.Count > 0)
+                        nvreg[tit] = total.ToString();
+                    else
+                    {
+                        tit = dtTemp.Columns[i].ColumnName;
+                        nvreg[tit] = total.ToString();
+                    }
+
+                }
+                total_gral = total;
+                dtTemp_re.Rows.Add(nvreg);
+            }
+            // nvreg = dtTemp_re.NewRow();
+            Console.WriteLine("Total :" + total_gral.ToString());
+
+            //porcetanje
+            if (total_gral == 0)
+            {
+                total = 0;
+                for (int i = col_tot_proc; i < dtTemp.Columns.Count; i++)
+                {
+                    total = 0;
+                    for (int j = 0; j < dtTemp.Rows.Count; j++)
+                    {
+                        if (j == dtTemp.Rows.Count - 1)
+                        {
+                            val = dtTemp.Rows[j][i].ToString();
+                            total = total + Convert.ToInt32(val);
+                            break;
+                        }
+                    }
+                    if (total > 0) break;
+                }
+                total_gral = total;
+            }
+            if (porc == 1)
+            {
+                nvreg = dtTemp_re.NewRow();
+                for (int i = col_ini; i < dtTemp.Columns.Count; i++)
+                {
+                    total = 0;
+                    if (i == dtTemp.Columns.Count - int_fin) break;
+                    if (i == col_ini)
+                    {
+                        nvreg[dtTemp.Columns[i - 1].ColumnName] = "%";
+
+                    }
+                    for (int j = 0; j < dtTemp.Rows.Count; j++)
+                    {
+                        if (j == 0)
+                        {
+                            tit = dtTemp.Columns[i].ColumnName;
+                        }
+                        if (j == dtTemp.Rows.Count - 1)
+                        {
+                            val = dtTemp.Rows[j][i].ToString();
+                            total = total + Convert.ToInt32(val);
+                        }
+                    }
+                    if (total == 0)
+                        nvreg[tit] = total.ToString();
+                    else
+                        nvreg[tit] = (Math.Round((total * 100) / total_gral, 2)).ToString();
+                }
+                dtTemp_re.Rows.Add(nvreg);
+            }
+            return dtTemp_re;
+        }
+
     }
 
 }

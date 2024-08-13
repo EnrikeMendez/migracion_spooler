@@ -21,21 +21,24 @@ namespace serverreports
                 {
                     for (int i = 0; i < LisDT.Length; i++)
                     {
-                        var hoja = workbook.Worksheets.Add(tit[i]);
-                        var table = hoja.Cell("A1").InsertTable(LisDT[i]);
-
-                        table.ShowAutoFilter = false;
-                        table.Theme = XLTableTheme.None;
-
-                        if (del_col != null)
+                        if (LisDT[i] != null)
                         {
-                            table.Column((int)del_col).Delete();
-                        }
-                        table.Style = estilo_bosch(hoja.Style, "d");
+                            var hoja = workbook.Worksheets.Add(tit[i]);
+                            var table = hoja.Cell("A1").InsertTable(LisDT[i]);
 
-                        var rango = table.Row(1);
-                        rango.Style = estilo_bosch(rango.Style, "e");
-                        hoja.Columns().AdjustToContents();
+                            table.ShowAutoFilter = false;
+                            table.Theme = XLTableTheme.None;
+
+                            if (del_col != null)
+                            {
+                                table.Column((int)del_col).Delete();
+                            }
+                            table.Style = estilo_bosch(hoja.Style, "d");
+
+                            var rango = table.Row(1);
+                            rango.Style = estilo_bosch(rango.Style, "e");
+                            hoja.Columns().AdjustToContents();
+                        }
                     }
 
                     workbook.SaveAs(name+".xlsx");
