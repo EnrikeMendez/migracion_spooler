@@ -201,7 +201,27 @@ namespace serverreports
                         if (i == 0) sl.RenameWorksheet("Sheet1", tit[i]);
                         else sl.AddWorksheet(tit[i]);
 
-                          
+                        //Vertical
+                        if (tit[i] == "Resumen")
+                        {
+                            /*
+                            pos = 1;
+                            posinitabla = 1;
+                           if ((i == 0) )       
+                            posinitabla = posinitabla + LisDT[i - 1].Rows.Count + espacio;
+                            */                 
+                            if ((i == 0))
+                            {
+                                posinitabla =1 ;
+                            }
+                            else
+                            {
+                                posinitabla = posinitabla + LisDT[i - 1].Rows.Count + espacio;
+                                pos = pos;
+                            }
+                        }
+                        //vertical                          
+
                         sl.ImportDataTable(posinitabla, pos, LisDT[i], true);//cambio
                         //
                         sl.AutoFitColumn(pos, col);
