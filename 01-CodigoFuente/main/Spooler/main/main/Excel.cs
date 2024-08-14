@@ -33,10 +33,10 @@ namespace serverreports
                             {
                                 table.Column((int)del_col).Delete();
                             }
-                            table.Style = estilo_bosch(hoja.Style, "d");
+                            table.Style = estilo_bosch1(hoja.Style, "d");
 
                             var rango = table.Row(1);
-                            rango.Style = estilo_bosch(rango.Style, "e");
+                            rango.Style = estilo_bosch1(rango.Style, "e");
                             hoja.Columns().AdjustToContents();
                         }
                     }
@@ -52,7 +52,7 @@ namespace serverreports
             }
         }
 
-        public IXLStyle estilo_bosch(IXLStyle hoja, string tp)
+        public IXLStyle estilo_bosch1(IXLStyle hoja, string tp)
         {
             hoja.Font.SetBold(true);
             hoja.Font.FontSize = 8;
@@ -165,6 +165,100 @@ namespace serverreports
 
             sl.SaveAs("Grafica.xlsx");           
             Console.WriteLine("Grafica");
+        }
+
+        public string CrearExcel_filen(DataTable[] LisDT, string[] tit, string? name = "", int? del_col = null, int? fre_row = null, int? posinitablav = 1, int? espaciov = 0)
+        {
+            string archivo = "";
+            int del;
+            string hoja = "";
+            SLDocument sl = new SLDocument();
+            int posinitabla = (int)(posinitablav);
+            int espacio = (int)(espaciov);
+            int col = 0;
+            int row = 0;
+            int rowg = 0;
+            string enc_h = "";
+            string enc_hh = "";
+            string enc_ht = "";
+            string enc_hg = "";
+            String[] enc;
+            String[] vert;
+            try
+            {
+                int pos = 1;
+                for (int i = 0; i < LisDT.Length; i++)
+                {
+                    if (LisDT[i] != null)
+                    {
+                       row = LisDT[i].Rows.Count;
+                       if (hoja == tit[i])
+                            pos = (int)(pos + col + espacio);
+                        else
+                            pos = 1;
+                        col = LisDT[i].Columns.Count;
+
+                        if (i == 0) sl.RenameWorksheet("Sheet1", tit[i]);
+                        else sl.AddWorksheet(tit[i]);
+
+                          
+                        sl.ImportDataTable(posinitabla, pos, LisDT[i], true);//cambio
+                        //
+                        sl.AutoFitColumn(pos, col);
+                        sl.SetCellStyle(posinitabla, pos, posinitabla, (col - 1) + (pos), estilo_bosch(sl, "e"));
+                        sl.SetCellStyle(posinitabla + 1, pos, (posinitabla - 1) + row + 1, col + (pos), estilo_bosch(sl, "d"));
+                        SLTable table = null;
+                        if (del_col != null)
+                        {
+                            sl.DeleteColumn(1, (int)del_col);
+                            table = sl.CreateTable(posinitabla, pos, (posinitabla - 1) + row + 1, col - (int)del_col);//resta pol a columna eliminada
+                        }
+                        else
+                        {
+                            table = sl.CreateTable(posinitabla, pos, (posinitabla - 1) + row + 1, col + (pos - 1));
+
+                        }
+                        table.HasBandedRows = true;
+                        table.HasAutoFilter = false;
+                        table.HasBandedColumns = true;
+                        sl.SetColumnWidth(1, col);
+                        if (fre_row != null)
+                        {
+                            sl.FreezePanes((int)fre_row, 0);
+                        }
+                        sl.InsertTable(table);
+
+                        hoja = tit[i];
+                    }
+                }
+                //Guardar como, y aqui ponemos la ruta de nuestro archivo
+                sl.SaveAs(name+".xlsx");
+                archivo = name + ".xlsx";
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Ocurrio una Excepción: " + ex.Message);
+            }
+            sl.Dispose();
+            return archivo;
+        }
+        public SLStyle estilo_bosch(SLDocument sl, string tp)
+        {
+            SLStyle style_d = sl.CreateStyle();
+            style_d.SetFont("Arial", 8);
+            style_d.SetFontBold(true);
+            style_d.SetVerticalAlignment(VerticalAlignmentValues.Center);
+            style_d.SetHorizontalAlignment(HorizontalAlignmentValues.Center);
+            style_d.Fill.SetPattern(PatternValues.Solid, System.Drawing.Color.White, System.Drawing.Color.Black);
+            style_d.SetFontColor(System.Drawing.Color.Black);
+            if (tp.ToUpper() == "E")
+            {
+                style_d.Fill.SetPattern(PatternValues.Solid, System.Drawing.Color.Black, System.Drawing.Color.White);
+                style_d.SetFontColor(System.Drawing.Color.White);
+                //  style_d.Alignment.ShrinkToFit = true;
+            }
+            return style_d;
         }
     }
 }
