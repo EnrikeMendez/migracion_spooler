@@ -10,18 +10,18 @@ namespace serverreports
     internal class Ing_egr_gar_pend_fact_mod
     {
 
-        public (string[] LisDT_tit, DataTable[] LisDT, string arch) Ing_egr_gar_pend_fact(string[,] file_name, string Empresa, string Divisa, string fecha, string[,] parins, string[] contacmail, int vs)
+        public (string[,] LisDT_tit, DataTable[] LisDT, string arch) Ing_egr_gar_pend_fact(string[,] file_name, string Empresa, string Divisa, string fecha, string[,] parins, string[] contacmail, int vs)
         {
             DataTable dttmp = new DataTable();
             DM DM = new DM();
-            (string[] LisDT_tit, DataTable[] LisDT, string arch) inf;
+            (string[,] LisDT_tit, DataTable[] LisDT, string arch) inf;
 
             int sw_error = 0;
             Utilerias util = new Utilerias();
             // envio_correo correo = new envio_correo();            
             Excel xlsx = new Excel();
             DataTable[] LisDT = new DataTable[6];
-            string[] LisDT_tit = new string[6];
+            string[,] LisDT_tit = new string[6,2];
             (string? codigo, string? msg, string? sql, DataTable? tb) datos_sp;
             string[,] html = new string[6, 2];
             string arch = file_name[0, 0];
@@ -55,7 +55,8 @@ namespace serverreports
             datos_sp.sql = "SC_RS.SPG_RS_COEX_DAF_REPORTES.P_DAT_RESUMEN_CLIENTES_BIM";
             datos_sp = DM.datos_sp([datos_sp.sql], par_st, vs);
             LisDT[0] = datos_sp.tb;
-            LisDT_tit[0] = "Resumen";
+            LisDT_tit[0,0] = "Resumen";
+            LisDT_tit[0, 1] = "2|2";
 
 
             par_st = new string[5, 4];
@@ -85,7 +86,8 @@ namespace serverreports
             datos_sp.sql = "SC_RS.SPG_RS_COEX_DAF_REPORTES.P_DAT_RESUMEN_CLIENTES_MES";
             datos_sp = DM.datos_sp([datos_sp.sql], par_st, vs);
             LisDT[1] = datos_sp.tb;
-            LisDT_tit[1] = "Resumen";
+            LisDT_tit[1,0] = "Resumen";
+            LisDT_tit[1, 1] = "2|2";
 
             par_st = new string[4, 4];
             par_st[0, 0] = "i";
@@ -106,7 +108,8 @@ namespace serverreports
             datos_sp.sql = "SC_RS.SPG_RS_COEX_DAF_REPORTES.P_DAT_RESUMEN_CLIENTES_MAS_FIN";
             datos_sp = DM.datos_sp([datos_sp.sql], par_st, vs);
             LisDT[2] = datos_sp.tb;
-            LisDT_tit[2] = "Resumen";
+            LisDT_tit[2,0] = "Resumen";
+            LisDT_tit[2, 1] = "1|2";
 
             par_st = new string[5, 4];
             par_st[0, 0] = "i";
@@ -134,7 +137,7 @@ namespace serverreports
             datos_sp.sql = "SC_RS.SPG_RS_COEX_DAF_REPORTES.P_DAT_RESUMEN_CLIENTES";
             datos_sp = DM.datos_sp([datos_sp.sql], par_st, vs);
             LisDT[3] = datos_sp.tb;
-            LisDT_tit[3] = "Resumen Cliente";
+            LisDT_tit[3,0] = "Resumen Cliente";
 
             par_st = new string[4, 4];
             par_st[0, 0] = "i";
@@ -156,7 +159,7 @@ namespace serverreports
             datos_sp.sql = "SC_RS.SPG_RS_COEX_DAF_REPORTES.P_DAT_RESUMEN_FOLIOS";
             datos_sp = DM.datos_sp([datos_sp.sql], par_st, vs);
             LisDT[4] = datos_sp.tb;
-            LisDT_tit[4] = "Folios";
+            LisDT_tit[4,0] = "Folios";
 
 
             par_st = new string[7, 4];
@@ -207,7 +210,7 @@ namespace serverreports
             datos_sp.sql = "SC_RS.SPG_RS_COEX_DAF_REPORTES.P_DAT_FOLIOS";
             datos_sp = DM.datos_sp([datos_sp.sql], par_st, vs);
             LisDT[5] = datos_sp.tb;
-            LisDT_tit[5] = "EGR_ING_Pend_Fact";       
+            LisDT_tit[5,0] = "EGR_ING_Pend_Fact";       
 
             //xlsx.CrearExcel_file(LisDT, LisDT_tit, parins[12, 1] + file_name[0, 0], null);
             inf.LisDT_tit = LisDT_tit;

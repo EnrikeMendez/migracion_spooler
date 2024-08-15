@@ -167,7 +167,7 @@ namespace serverreports
             Console.WriteLine("Grafica");
         }
 
-        public string CrearExcel_filen(DataTable[] LisDT, string[] tit, string? name = "", int? del_col = null, int? fre_row = null, int? posinitablav = 1, int? espaciov = 0)
+        public string CrearExcel_filen(DataTable[] LisDT, string[,] tit, string? name = "", int? del_col = null, int? fre_row = null, int? posinitablav = 1, int? espaciov = 0)
         {
             string archivo = "";
             int del;
@@ -192,34 +192,52 @@ namespace serverreports
                     if (LisDT[i] != null)
                     {
                        row = LisDT[i].Rows.Count;
-                       if (hoja == tit[i])
+                       if (hoja == tit[i,0])
                             pos = (int)(pos + col + espacio);
                         else
                             pos = 1;
                         col = LisDT[i].Columns.Count;
 
-                        if (i == 0) sl.RenameWorksheet("Sheet1", tit[i]);
-                        else sl.AddWorksheet(tit[i]);
+                        if (i == 0) sl.RenameWorksheet("Sheet1", tit[i,0]);
+                        else sl.AddWorksheet(tit[i,0]);
+
+
+                        if (LisDT[i].Rows.Count == 0)
+                        {
+                            DataTable dt = new DataTable();
+                            dt.Columns.Add("Tabla", typeof(string));
+                            dt.Rows.Add("Sin Inf.");
+                            LisDT[i] = dt;
+                            col = LisDT[i].Columns.Count;
+                        }
 
                         //Vertical
-                        if (tit[i] == "Resumen")
-                        {
+                       // if (tit[i,0] == "Resumen")
+                       if (tit[i, 1] != null)
+                       {
                             /*
                             pos = 1;
                             posinitabla = 1;
                            if ((i == 0) )       
                             posinitabla = posinitabla + LisDT[i - 1].Rows.Count + espacio;
-                            */                 
+                            */
+                            vert = tit[i, 1].Split("|");
+                            pos = int.Parse(vert[0]);
                             if ((i == 0))
                             {
-                                posinitabla =1 ;
+                                //posinitabla =1 ;
+                                posinitabla = int.Parse(vert[1]); ;
                             }
                             else
                             {
                                 posinitabla = posinitabla + LisDT[i - 1].Rows.Count + espacio;
-                                pos = pos;
                             }
+ 
                         }
+                        else
+                            posinitabla = (int)(posinitablav);
+                      
+
                         //vertical                          
 
                         sl.ImportDataTable(posinitabla, pos, LisDT[i], true);//cambio
@@ -248,12 +266,12 @@ namespace serverreports
                         }
                         sl.InsertTable(table);
 
-                        hoja = tit[i];
+                        hoja = tit[i,0];
                     }
                 }
                 //Guardar como, y aqui ponemos la ruta de nuestro archivo
-                sl.SaveAs(name+".xlsx");
-                archivo = name + ".xlsx";
+                sl.SaveAs(name);
+                archivo = name ;
 
             }
             catch (Exception ex)

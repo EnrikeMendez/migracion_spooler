@@ -65,7 +65,7 @@ try
 
  Utilerias util = new Utilerias();
  DM DM = new DM();
-    (string[]? LisDT_tit, DataTable[]? LisDT, string? arch) inf;
+    (string[,]? LisDT_tit, DataTable[]? LisDT, string? arch) inf;
     Excel xlsx = new Excel();
     envio_correo correo = new envio_correo();
     init_var();
@@ -395,7 +395,8 @@ try
                 Ing_egr_gar_pend_fact_mod Ing_egr_gar_pend_fact = new Ing_egr_gar_pend_fact_mod();
                 inf = Ing_egr_gar_pend_fact.Ing_egr_gar_pend_fact(tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), parins, contmail, visible_sql);
                 // arch = xlsx.CrearExcel_file(inf.LisDT, inf.LisDT_tit, Carpeta + "\\" + inf.arch + ".xlsx", null, null, 0);
-                arch = xlsx.CrearExcel_filen(inf.LisDT, inf.LisDT_tit, Carpeta + "\\" + inf.arch,null,null,1,3);
+                arch = xlsx.CrearExcel_filen(inf.LisDT, inf.LisDT_tit, Carpeta + "\\" + inf.arch + ".xlsx", null,null,1,3);
+                
                 encorr = 1;
                 break;
 
