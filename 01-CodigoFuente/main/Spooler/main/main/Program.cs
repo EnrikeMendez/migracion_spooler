@@ -367,7 +367,7 @@ try
         string arch = "";
         int encorr = 0;
         switch (MiComando)
-    {
+         {
             case "transmision_edocs_bosch":
                 //5132031
                 web_transmision_edocs_bosch edocs_bosch = new web_transmision_edocs_bosch();
@@ -403,8 +403,9 @@ try
             case "fondo_fijo":
                 //            Call Fondo_fijo(Carpeta & tab_archivos(0, 0) & ".txt", rs.Fields("PARAM_1"), rs.Fields("PARAM_2"))
                 web_fondo_fijo_mod Fondo_fijo = new web_fondo_fijo_mod();
-                Fondo_fijo.Fondo_fijo(Carpeta + tab_archivos[0, 0], util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), parins, contmail, visible_sql);
-
+                inf = Fondo_fijo.Fondo_fijo(tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), parins, contmail, visible_sql);
+                arch = xlsx.CrearExcel_filen(inf.LisDT, inf.LisDT_tit, Carpeta + "\\" + inf.arch + ".xlsx", null, null, 1, 3);
+                encorr = 1;
                 break;
             case "ind_cal_bosch":
                 //5071980
@@ -412,8 +413,6 @@ try
                 indice_cal_bosch.indice_cal_bosch(Carpeta, tab_archivos, FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), parins, contmail, visible_sql);
                 //indice_cal_bosch.indice_cal_bosch(Carpeta, tab_archivos[0], FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), visible_sql);
                 break;
-
-
         }
         if (encorr == 1)
         {
