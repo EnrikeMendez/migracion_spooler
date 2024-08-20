@@ -117,7 +117,7 @@ internal class DM
                     cmd.CommandType = CommandType.StoredProcedure;
                     for (int a = 0; a < rstore.GetLength(0); a++)
                     {
-                        if (rstore[a, 0] == "i")
+                        if (rstore[a, 0].ToLower()== "i")
                         {
                             switch (rstore[a, 1])
                             {
@@ -316,7 +316,7 @@ internal class DM
                     par_st[1, 2] = "p_Parametro1";
                     par_st[1, 3] = addsq;
 
-                    datos_spr.sql = "SC_RS.SPG_RS_COEX.P_OBTEN_DATOS_REPORTE_1 ";
+                    datos_spr.sql = "SC_RS.SPG_RS_COEX.P_OBTEN_DATOS_REPORTE_1";
 
                     //datos_spr = datos_sp([datos_spr.sql], vs, null, null, null, null, null, null, id_cron.ToString(), addsq);
                     datos_spr = datos_sp([datos_spr.sql], par_st, vs);

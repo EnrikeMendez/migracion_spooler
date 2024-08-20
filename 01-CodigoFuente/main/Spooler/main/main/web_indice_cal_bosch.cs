@@ -14,8 +14,6 @@ namespace serverreports
             (string Carpeta, string[,] file_name, string Fecha_1, string Fecha_2, string Clientes, string Planta, string imp_exp, string[,] parins, string[] contacmail, int visible_sql)
         {
             //5071980
-
-
             int sw_error = 0;
             Utilerias util = new Utilerias();
             envio_correo correo = new envio_correo();
@@ -121,11 +119,12 @@ namespace serverreports
                 LisDT[0] = datos_sp.tb;
                 Console.WriteLine(util.Tdetalle(LisDT[0]));
 
-                LisDT[1] = util.Tdetalle_regtot(LisDT[0], 1, 0, 1, 1, 1); //porcentaje
+                LisDT[0] = util.Tdetalle_regtot(LisDT[0], 1, 0, 1, 1, 1); //porcentaje
+                LisDT[0] = util.Tdetalle_reversa(LisDT[0]);
                 LisDT_tit[0] = tab_impexp[1, 0];
                 Console.WriteLine(util.Tdetalle(LisDT[0]));        
 
-            Console.WriteLine(xlsx.CrearExcel_file(LisDT, LisDT_tit, Carpeta + "\\" + arch));
+           // Console.WriteLine(xlsx.CrearExcel_file(LisDT, LisDT_tit, Carpeta + "\\" + arch));
             return "0";
         }
     }

@@ -426,6 +426,7 @@ namespace serverreports
                     ins = ins + ",'" + parins[2, 1].Replace("'","''") + "', " + parins[3, 1] + ", '" + nvl(parins[4, 1]) + "', '" + nvl(parins[5, 1]) + "', '" + html[3, i] + "', to_date('" + parins[6, 1] + "', 'mm/dd/yyyy'), to_date('" + parins[7, 1] + "', 'mm/dd/yyyy'))";
                 else
                     ins = ins + ",'" + parins[2, 1].Replace("'", "''") + "', " + parins[3, 1] + ", '" + nvl(parins[4, 1]) + "', '" + nvl(parins[5, 1]) + "', '" + html[3, i] + "', to_date('" + parins[8, 1] + "', 'mm/dd/yyyy'), to_date('" + parins[6, 1] + "', 'mm/dd/yyyy'))";
+                
                 Console.WriteLine(ins);
 
             }
@@ -691,6 +692,48 @@ Next
             }
             return dtTemp_re;
         }
+
+        public DataTable Tdetalle_reversa(DataTable dtTemp)
+        {
+            DataTable dtTemp_re = new DataTable();
+            string tit = "";
+            string val = "";
+            
+            for (int j = 0; j < dtTemp.Rows.Count; j++)
+            {
+                if (j == 0)
+                {
+                    tit = dtTemp.Columns[0].ColumnName;
+                    dtTemp_re.Columns.Add(tit);
+                }
+                tit = dtTemp.Rows[j][0].ToString();
+                if (j> 0)
+                  dtTemp_re.Columns.Add(tit);
+                else
+                  dtTemp_re.Columns.Add(tit);
+
+            }
+            for (int i = 1; i < dtTemp.Columns.Count; i++)
+            {
+                DataRow nvreg = dtTemp_re.NewRow();
+                for (int j = 0; j < dtTemp.Rows.Count; j++)
+                {
+                    if (j == 0)
+                    {
+                        tit = dtTemp_re.Columns[j].ColumnName;
+                        val = dtTemp.Columns[i].ColumnName;
+                        nvreg[tit] = val;
+                    }
+                    tit = dtTemp_re.Columns[j + 1].ColumnName;
+                    val = dtTemp.Rows[j][i].ToString();
+                    nvreg[tit] = val;
+                }
+                dtTemp_re.Rows.Add(nvreg);
+            }
+
+            return dtTemp_re;
+        }
+
 
     }
 
