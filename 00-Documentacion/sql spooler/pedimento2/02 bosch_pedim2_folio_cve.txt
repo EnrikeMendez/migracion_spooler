@@ -1,0 +1,102 @@
+
+procedimiento
+parametros 
+
+ string  Cliente
+string imp_exp
+string Fecha_1
+string Fecha_2
+string CLAVE_FAC
+string NUM_PEDIMENTO
+
+
+'si hubo R1, vamos a recuperar los encabezados
+'para poner el original en caso que fue en el mismo periodo
+
+  SQL = " SELECT  " & vbCrLf
+    SQL = SQL & "    'H'  " & vbCrLf
+    SQL = SQL & "    ,   DECODE(ESAAI_M3_GENERAL.SGE_YCXCLEF, 1, 'I', 2, 'E') IMP_EXP  " & vbCrLf
+'    SQL = SQL & "    , RPAD(EFOLIOS.FOLFOLIO, 10, ' ') FOLIO  " & vbCrLf
+    SQL = SQL & "   , SUBSTR(RPAD(ESAAI_M3_FACTURAS.SFANUMERO_FACTURA, 15, ' '), 1, 15) NUM_FACTURA " & vbCrLf
+    SQL = SQL & "    , TO_CHAR(ESAAI_M3_GENERAL.SGEFECHA_ENTRADA, 'DD-MM-YY') FECHA_ENTRADA  " & vbCrLf
+    SQL = SQL & "    , RPAD(ESAAI_M3_GENERAL.SGE_REDCLEF, 4, ' ')  CLAVE_PED  " & vbCrLf
+    SQL = SQL & "    , TO_CHAR(ESAAI_M3_GENERAL.SGEFECHA_PAGO, 'YY') || ESAAI_M3_GENERAL.SGEDOUCLEF || REPLACE(ESAAI_M3_GENERAL.SGEPEDNUMERO, '-') NUM_PEDIMENTO  " & vbCrLf
+    SQL = SQL & "    , TO_CHAR(ESAAI_M3_GENERAL.SGE_TIPOCAMBIO, 'FM000000.0000') TIPO_CAMBIO  " & vbCrLf
+    SQL = SQL & "    , TO_CHAR(ESAAI_M3_GENERAL.SGEFECHA_PAGO, 'DD-MM-YY') FECHA_PAGO  " & vbCrLf
+    SQL = SQL & "    , ESAAI_M3_GENERAL.SGEDOUCLEF || ESAAI_M3_GENERAL.SGE_ADUANA_SECCION ADUANA_SEC  " & vbCrLf
+    SQL = SQL & "    , TO_CHAR(DECODE(SGEFLETES + SGESEGUROS + SGEEMBALAJES + SGEOTROS_INC, 0, 1, DECODE(ESAAI_M3_GENERAL.SGEPRECIOPAGADO, 0, 0, ESAAI_M3_GENERAL.SGEVALORADUANA / ESAAI_M3_GENERAL.SGEPRECIOPAGADO)), 'FM0000.000000') PRECIO_PAGADO  " & vbCrLf
+    SQL = SQL & "    , DECODE(EFOLIOS.FOL_YTRCLEF, 1, 'MARITIMO ', 4, 'AEREO    ', 7, 'TERRESTRE', 6, 'FERROVIAR', 'OTROS    ') TRANSITO  " & vbCrLf
+    SQL = SQL & "    , ESAAI_M3_GENERAL.SGECLAVE   " & vbCrLf
+    SQL = SQL & "    , TO_CHAR(NVL(SGEVALORDOLARES, 0), 'FM000000000.00') SGEVALORDOLARES " & vbCrLf
+    SQL = SQL & "    , TO_CHAR(NVL(DECODE(SGE_YCXCLEF, 2, 0, SGEVALORADUANA), 0), 'FM000000000.00') SGEVALORADUANA " & vbCrLf
+    SQL = SQL & "    , TO_CHAR(NVL(SGEPRECIOPAGADO, 0), 'FM000000000.00') SGEPRECIOPAGADO " & vbCrLf
+    SQL = SQL & "    , 'EDOC-XXXXX     ' EDOCUMENT " & vbCrLf
+    
+    SQL = SQL & "   FROM ESAAI_M3_GENERAL   " & vbCrLf
+    SQL = SQL & "   , EPEDIMENTO   " & vbCrLf
+    SQL = SQL & "   , EFOLIOS   " & vbCrLf
+    SQL = SQL & "  , ESAAI_M3_FACTURAS  " & vbCrLf
+    SQL = SQL & "   WHERE ESAAI_M3_GENERAL.SGE_CLICLEF IN (" & Cliente & ")   " & vbCrLf
+'    SQL = SQL & "  AND ESAAI_M3_GENERAL.SGEFECHA_PAGO BETWEEN TRUNC(SYSDATE)-7 AND TRUNC(SYSDATE)+1 " & vbCrLf
+    SQL = SQL & "  AND ESAAI_M3_GENERAL.SGEFECHA_PAGO BETWEEN TO_DATE('" & Fecha_1 & "', 'mm/dd/yyyy') AND  TO_DATE('" & Fecha_2 & "', 'mm/dd/yyyy')" & vbCrLf
+    
+    SQL = SQL & "   AND ESAAI_M3_GENERAL.SGEFIRMA_ELECTRONICA IS NOT NULL   " & vbCrLf
+    SQL = SQL & "   AND EPEDIMENTO.PEDNUMERO = ESAAI_M3_GENERAL.SGEPEDNUMERO   " & vbCrLf
+    SQL = SQL & "   AND EPEDIMENTO.PEDANIO = ESAAI_M3_GENERAL.SGEANIO   " & vbCrLf
+    SQL = SQL & "   AND EPEDIMENTO.PEDDOUANE = ESAAI_M3_GENERAL.SGEDOUCLEF   " & vbCrLf
+    SQL = SQL & "   AND EFOLIOS.FOLCLAVE = EPEDIMENTO.PEDFOLIO   " & vbCrLf
+    SQL = SQL & "   AND EFOLIOS.FOL_CLICLEF IN (" & Cliente & ")   " & vbCrLf
+    SQL = SQL & "   AND EFOLIOS.FOL_YCXCLEF = " & imp_exp & " " & vbCrLf
+    SQL = SQL & "   AND SFACLAVE = " & Replace(CLAVE_FAC, "SFA_", "") & vbCrLf
+    SQL = SQL & "   AND ESAAI_M3_FACTURAS.SFA_SGECLAVE = ESAAI_M3_GENERAL.SGECLAVE  " & vbCrLf
+    SQL = SQL & "   and TO_CHAR(ESAAI_M3_GENERAL.SGEFECHA_PAGO, 'YY') || ESAAI_M3_GENERAL.SGEDOUCLEF || REPLACE(ESAAI_M3_GENERAL.SGEPEDNUMERO, '-') <> " & NUM_PEDIMENTO & vbCrLf
+    
+    
+    rs.Open SQL
+    If Not rs.EOF Then
+
+        
+        'agregar el IVA, ADV, DTA, OTROS
+        SQL_02 = "select TO_CHAR(IVA_GAL, 'FM000000000.00') IVA_GAL  " & vbCrLf
+        SQL_02 = SQL_02 & "  , TO_CHAR(ADV_GAL, 'FM000000000.00') ADV_GAL  " & vbCrLf
+        SQL_02 = SQL_02 & "  , TO_CHAR(DTA_GAL, 'FM000000000.00') DTA_GAL " & vbCrLf
+        
+        SQL_02 = SQL_02 & "  , TO_CHAR(OTROS_GAL, 'FM000000000.00') OTROS_GAL  " & vbCrLf
+        SQL_02 = SQL_02 & "  from  " & vbCrLf
+        SQL_02 = SQL_02 & "  (  " & vbCrLf
+        'SQL_02 = SQL_02 & " --insert IVA General " & vbCrLf
+        SQL_02 = SQL_02 & "  select NVL(SUM(NVL(ESAAI_M3_GRAVAMEN.SGRIMPORTE, 0)),0)  IVA_GAL  " & vbCrLf
+        SQL_02 = SQL_02 & "   FROM ESAAI_M3_GRAVAMEN, ESAAI_M3_PARTIDAS   " & vbCrLf
+        SQL_02 = SQL_02 & "   WHERE    ESAAI_M3_PARTIDAS.SPACLAVE = ESAAI_M3_GRAVAMEN.SGR_SPACLAVE   " & vbCrLf
+        SQL_02 = SQL_02 & "   AND  ESAAI_M3_GRAVAMEN.SGR_CONCLAVE = 3   " & vbCrLf
+        SQL_02 = SQL_02 & "   and spa_sgeclave = '" & NVL(rs.Fields("SGECLAVE")) & "' )  " & vbCrLf 'PEDTO_SGE
+        SQL_02 = SQL_02 & "  , (  " & vbCrLf
+        'SQL_02 = SQL_02 & " --insert ADV General " & vbCrLf
+        SQL_02 = SQL_02 & "  select NVL(SUM(NVL(ESAAI_M3_GRAVAMEN.SGRIMPORTE, 0)),0)  ADV_GAL  " & vbCrLf
+        SQL_02 = SQL_02 & "   FROM ESAAI_M3_GRAVAMEN, ESAAI_M3_PARTIDAS   " & vbCrLf
+        SQL_02 = SQL_02 & "   WHERE    ESAAI_M3_PARTIDAS.SPACLAVE = ESAAI_M3_GRAVAMEN.SGR_SPACLAVE   " & vbCrLf
+        SQL_02 = SQL_02 & "   AND  ESAAI_M3_GRAVAMEN.SGR_CONCLAVE = 6   " & vbCrLf
+        SQL_02 = SQL_02 & "   and spa_sgeclave = '" & NVL(rs.Fields("SGECLAVE")) & "' )  " & vbCrLf 'PEDTO_SGE
+        SQL_02 = SQL_02 & "  , (  " & vbCrLf
+        'SQL_02 = SQL_02 & " --insert DTA General " & vbCrLf
+        SQL_02 = SQL_02 & "  select NVL(SUM(SPC.SPC_IMPORTE), 0) DTA_GAL  " & vbCrLf
+        SQL_02 = SQL_02 & "   from ESSAI_M3_PED_CONTRIB SPC   " & vbCrLf
+        SQL_02 = SQL_02 & "   where SPC.SPC_SGECLAVE = '" & NVL(rs.Fields("SGECLAVE")) & "'   " & vbCrLf 'PEDTO_SGE
+        SQL_02 = SQL_02 & "   and SPC.SPC_CONCLAVE = 1 )  " & vbCrLf
+        SQL_02 = SQL_02 & "  , (  " & vbCrLf
+        'SQL_02 = SQL_02 & " --insert Otros General " & vbCrLf
+        SQL_02 = SQL_02 & " SELECT SUM(OTROS) OTROS_GAL  " & vbCrLf
+        SQL_02 = SQL_02 & " FROM ( " & vbCrLf
+        SQL_02 = SQL_02 & "   select NVL(SUM(NVL(ESAAI_M3_GRAVAMEN.SGRIMPORTE, 0)),0)  OTROS   " & vbCrLf
+        SQL_02 = SQL_02 & "    FROM ESAAI_M3_GRAVAMEN, ESAAI_M3_PARTIDAS    " & vbCrLf
+        SQL_02 = SQL_02 & "    WHERE    ESAAI_M3_PARTIDAS.SPACLAVE = ESAAI_M3_GRAVAMEN.SGR_SPACLAVE    " & vbCrLf
+        SQL_02 = SQL_02 & "    AND  ESAAI_M3_GRAVAMEN.SGR_CONCLAVE NOT IN (3, 6)    " & vbCrLf
+        SQL_02 = SQL_02 & "    and spa_sgeclave = '" & NVL(rs.Fields("SGECLAVE")) & "'     " & vbCrLf
+        SQL_02 = SQL_02 & " UNION " & vbCrLf
+        SQL_02 = SQL_02 & "   select NVL(SUM(SPC.SPC_IMPORTE), 0)   " & vbCrLf
+        SQL_02 = SQL_02 & "    from ESSAI_M3_PED_CONTRIB SPC    " & vbCrLf
+        SQL_02 = SQL_02 & "    where SPC.SPC_SGECLAVE = '" & NVL(rs.Fields("SGECLAVE")) & "'    " & vbCrLf
+        SQL_02 = SQL_02 & "    and SPC.SPC_CONCLAVE <> 1 " & vbCrLf
+        SQL_02 = SQL_02 & " )) " & vbCrLf
+        
+        rs2.Open SQL_02
