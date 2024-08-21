@@ -10,7 +10,7 @@ namespace serverreports
     internal class web_indice_cal_bosch
     {
 
-        public string indice_cal_bosch
+        public (string[,] LisDT_tit, DataTable[] LisDT, string arch) indice_cal_bosch
             (string Carpeta, string[,] file_name, string Fecha_1, string Fecha_2, string Clientes, string Planta, string imp_exp, string[,] parins, string[] contacmail, int visible_sql)
         {
             //5071980
@@ -21,7 +21,7 @@ namespace serverreports
             Excel xlsx = new Excel();
             string[,] tab_impexp;
             DataTable[] LisDT = new DataTable[1];
-            string[] LisDT_tit = new string[1]; ;
+            string[,] LisDT_tit = new string[6,1]; ;
 
             string[] arh;
             if (file_name[4, 0] == "1")
@@ -31,7 +31,8 @@ namespace serverreports
             string arch = file_name[0, 0];
             string[,] html = new string[6, 1];
             (string? codigo, string? msg, string? sql, DataTable? tb) datos_sp;
-            (string[,] tab_impexp, string[] LisDT_tit, DataTable[] LisDT) inf;
+
+            (string[,] LisDT_tit, DataTable[] LisDT, string arch) inf;
 
             string[,] par_st = new string[8, 4];
             par_st[1, 0] = "i";
@@ -83,8 +84,8 @@ namespace serverreports
                 tab_impexp = new string[1, 2];
                 tab_impexp[0, 0] = imp_exp;
                 tab_impexp[0, 1] = util.iff(imp_exp, "=", "1", "Import", "Export");
-                LisDT = new DataTable[1];
-                LisDT_tit = new string[1];
+                LisDT = new DataTable[3];
+                LisDT_tit = new string[3,2];
                 par_st[4, 0] = "i";
                 par_st[4, 1] = "v";
                 par_st[4, 2] = "p_Tab_Impexp";
@@ -99,13 +100,62 @@ namespace serverreports
                 tab_impexp[1, 0] = "Import";
                 tab_impexp[1, 1] = "Export";
                 LisDT = new DataTable[6];
-                LisDT_tit = new string[6];
+                LisDT_tit = new string[6,2];
 
             }
             Console.WriteLine(Planta);
 
+            int z = 0;
+            for (int i = 0; i < tab_impexp.GetLength(0); i++)
+            {
+                Console.WriteLine(tab_impexp[1, i]);
+                par_st[4, 0] = "i";
+                par_st[4, 1] = "v";
+                par_st[4, 2] = "p_Tab_Impexp";
+                par_st[4, 3] = tab_impexp[0, i];
 
-                Console.WriteLine(tab_impexp[1, 0]);
+                par_st[0, 0] = "i";
+                par_st[0, 1] = "v";
+                par_st[0, 2] = "p_Tipo_Aduana";
+                par_st[0, 3] = "A";
+
+                datos_sp = DM.datos_sp([datos_sp.sql], par_st, visible_sql);
+                LisDT[z] = datos_sp.tb;
+                Console.WriteLine(util.Tdetalle(LisDT[z]));
+                LisDT[z] = util.Tdetalle_regtot(LisDT[z], 1, 0, 1, 1, 1); //porcentaje
+                LisDT[z] = util.Tdetalle_reversa(LisDT[z]);
+                LisDT_tit[z,0] = tab_impexp[1, i];
+                Console.WriteLine(util.Tdetalle(LisDT[z]));                
+                z++;
+
+ 
+                par_st[0, 3] = "M";
+                datos_sp = DM.datos_sp([datos_sp.sql], par_st, visible_sql);
+                LisDT[z] = datos_sp.tb;
+                Console.WriteLine(util.Tdetalle(LisDT[z]));
+                LisDT[z] = util.Tdetalle_regtot(LisDT[z], 1, 0, 1, 1, 1); //porcentaje
+                LisDT[z] = util.Tdetalle_reversa(LisDT[z]); //reversa
+                Console.WriteLine(util.Tdetalle(LisDT[z]));
+                LisDT_tit[z,0] = tab_impexp[1, i];
+                //LisDT_tit[z] = tab_impexp[1, i];
+                Console.WriteLine(util.Tdetalle(LisDT[z]));
+                z++;
+
+                par_st[0, 3] = "T";
+                datos_sp = DM.datos_sp([datos_sp.sql], par_st, visible_sql);
+                LisDT[z] = datos_sp.tb;
+                Console.WriteLine(util.Tdetalle(LisDT[z]));
+                LisDT[z] = util.Tdetalle_regtot(LisDT[z], 1, 0, 1, 1, 1); //porcentaje
+                LisDT[z] = util.Tdetalle_reversa(LisDT[z]); //reversa
+                //LisDT_tit[z] = tab_impexp[1, 0];
+                LisDT_tit[z,0] = tab_impexp[1, i];
+                Console.WriteLine(util.Tdetalle(LisDT[z]));
+                z++;
+
+            }
+
+            /*
+            Console.WriteLine(tab_impexp[1, 0]);
                 par_st[4, 0] = "i";
                 par_st[4, 1] = "v";
                 par_st[4, 2] = "p_Tab_Impexp";
@@ -123,9 +173,12 @@ namespace serverreports
                 LisDT[0] = util.Tdetalle_reversa(LisDT[0]);
                 LisDT_tit[0] = tab_impexp[1, 0];
                 Console.WriteLine(util.Tdetalle(LisDT[0]));        
-
-           // Console.WriteLine(xlsx.CrearExcel_file(LisDT, LisDT_tit, Carpeta + "\\" + arch));
-            return "0";
+            */
+            // Console.WriteLine(xlsx.CrearExcel_file(LisDT, LisDT_tit, Carpeta + "\\" + arch));
+            inf.LisDT_tit = LisDT_tit;
+            inf.LisDT = LisDT;
+            inf.arch = arch;
+            return inf;
         }
     }
 }
