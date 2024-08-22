@@ -191,16 +191,16 @@ namespace serverreports
                 {
                     if (LisDT[i] != null)
                     {
-                       row = LisDT[i].Rows.Count;
-                       if (hoja == tit[i,0])
+                        enc_h = tit[i, 0];
+                        row = LisDT[i].Rows.Count;
+                        if (hoja == enc_h)
                             pos = (int)(pos + col + espacio);
                         else
                             pos = 1;
                         col = LisDT[i].Columns.Count;
 
-                        if (i == 0) sl.RenameWorksheet("Sheet1", tit[i,0]);
-                        else sl.AddWorksheet(tit[i,0]);
-
+                        if (i == 0) sl.RenameWorksheet("Sheet1", enc_h);
+                        else sl.AddWorksheet(enc_h);
 
                         if (LisDT[i].Rows.Count == 0)
                         {
@@ -235,8 +235,7 @@ namespace serverreports
  
                         }
                         else
-                            posinitabla = (int)(posinitablav);
-                      
+                            posinitabla = (int)(posinitablav);                      
 
                         //vertical                          
 
@@ -265,8 +264,8 @@ namespace serverreports
                             sl.FreezePanes((int)fre_row, 0);
                         }
                         sl.InsertTable(table);
-
-                        hoja = tit[i,0];
+     
+                        hoja = enc_h;
                     }
                 }
                 //Guardar como, y aqui ponemos la ruta de nuestro archivo

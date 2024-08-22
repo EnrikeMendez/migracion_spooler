@@ -601,6 +601,7 @@ Next
             dtTemp_re = dtTemp;
             DataRow nvreg;
             int total = 0;
+            int varcolporc = 0;
             decimal total_gral = 0;
             string tit = "";
             string val = "";
@@ -659,10 +660,14 @@ Next
                 }
                 total_gral = total;
             }
+  
             if (porc == 1)
             {
+                Console.WriteLine("Total rev:" + total_gral.ToString());
                 nvreg = dtTemp_re.NewRow();
-                for (int i = col_ini; i < dtTemp.Columns.Count; i++)
+                varcolporc = 0;
+                if (ing_tot == 0) varcolporc = dtTemp.Columns.Count - (col_tot_proc);
+                for (int i = col_ini; i < dtTemp.Columns.Count- varcolporc; i++)
                 {
                     total = 0;
                     if (i == dtTemp.Columns.Count - int_fin) break;
@@ -707,11 +712,8 @@ Next
                     dtTemp_re.Columns.Add(tit);
                 }
                 tit = dtTemp.Rows[j][0].ToString();
-                if (j> 0)
-                  dtTemp_re.Columns.Add(tit);
-                else
-                  dtTemp_re.Columns.Add(tit);
-
+                dtTemp_re.Columns.Add(tit, typeof(System.Decimal));
+     
             }
             for (int i = 1; i < dtTemp.Columns.Count; i++)
             {

@@ -122,8 +122,10 @@ namespace serverreports
                 datos_sp = DM.datos_sp([datos_sp.sql], par_st, visible_sql);
                 LisDT[z] = datos_sp.tb;
                 Console.WriteLine(util.Tdetalle(LisDT[z]));
-                LisDT[z] = util.Tdetalle_regtot(LisDT[z], 1, 0, 1, 1, 1); //porcentaje
+                LisDT[z] = util.Tdetalle_regtot(LisDT[z], 1, 0, 1, 0, 1); //porcentaje           
                 LisDT[z] = util.Tdetalle_reversa(LisDT[z]);
+                LisDT[z] = util.Tdetalle_regtot(LisDT[z], 1, 0, 0, LisDT[z].Columns.Count-2, 1); //porcentaje
+                //LisDT[z] = util.Tdetalle_regtot(LisDT[z], 1, 0, 1, 1, 1); //porcentaje
                 LisDT_tit[z,0] = tab_impexp[1, i];
                 Console.WriteLine(util.Tdetalle(LisDT[z]));                
                 z++;
@@ -133,8 +135,9 @@ namespace serverreports
                 datos_sp = DM.datos_sp([datos_sp.sql], par_st, visible_sql);
                 LisDT[z] = datos_sp.tb;
                 Console.WriteLine(util.Tdetalle(LisDT[z]));
-                LisDT[z] = util.Tdetalle_regtot(LisDT[z], 1, 0, 1, 1, 1); //porcentaje
+                LisDT[z] = util.Tdetalle_regtot(LisDT[z], 1, 0, 1, 0, 1); //porcentaje
                 LisDT[z] = util.Tdetalle_reversa(LisDT[z]); //reversa
+                LisDT[z] = util.Tdetalle_regtot(LisDT[z], 1, 0, 0, LisDT[z].Columns.Count - 2, 1); //porcentaje
                 Console.WriteLine(util.Tdetalle(LisDT[z]));
                 LisDT_tit[z,0] = tab_impexp[1, i];
                 //LisDT_tit[z] = tab_impexp[1, i];
@@ -145,8 +148,9 @@ namespace serverreports
                 datos_sp = DM.datos_sp([datos_sp.sql], par_st, visible_sql);
                 LisDT[z] = datos_sp.tb;
                 Console.WriteLine(util.Tdetalle(LisDT[z]));
-                LisDT[z] = util.Tdetalle_regtot(LisDT[z], 1, 0, 1, 1, 1); //porcentaje
+                LisDT[z] = util.Tdetalle_regtot(LisDT[z], 1, 0, 1, 0, 1); //porcentaje
                 LisDT[z] = util.Tdetalle_reversa(LisDT[z]); //reversa
+                LisDT[z] = util.Tdetalle_regtot(LisDT[z], 1, 0, 0, LisDT[z].Columns.Count - 2, 1); //porcentaje
                 //LisDT_tit[z] = tab_impexp[1, 0];
                 LisDT_tit[z,0] = tab_impexp[1, i];
                 Console.WriteLine(util.Tdetalle(LisDT[z]));
