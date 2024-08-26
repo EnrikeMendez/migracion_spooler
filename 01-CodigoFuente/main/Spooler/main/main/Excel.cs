@@ -191,8 +191,16 @@ namespace serverreports
                 {
                     if (LisDT[i] != null)
                     {
-                        enc_h = tit[i, 0];
+                        enc = tit[i, 0].Split("|");
+                        enc_h = enc[0];
                         row = LisDT[i].Rows.Count;
+                        row = LisDT[i].Rows.Count;
+                        if (enc.Length > 1)
+                        {
+                            enc_hh = enc[1];
+                        }
+
+
                         if (hoja == enc_h)
                             pos = (int)(pos + col + espacio);
                         else
@@ -264,7 +272,13 @@ namespace serverreports
                             sl.FreezePanes((int)fre_row, 0);
                         }
                         sl.InsertTable(table);
-     
+                        Utilerias util = new Utilerias();
+                        string[,] postabla = util.abc_cel(pos, col - 1);
+                        if (hoja != enc_h && enc_hh != "")
+                        {
+                            sl.SetCellValue(postabla[0, 0] + (posinitablav - 4).ToString(), enc_hh);
+                            sl.MergeWorksheetCells(postabla[0, 0] + (posinitablav - 4).ToString(), postabla[0, 1] + (posinitablav - 4).ToString(), estilo_bosch(sl, "e"));
+                        }
                         hoja = enc_h;
                     }
                 }

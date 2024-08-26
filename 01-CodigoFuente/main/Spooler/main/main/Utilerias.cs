@@ -614,7 +614,6 @@ Next
                     if (i == col_ini)
                     {
                         nvreg[dtTemp.Columns[i - 1].ColumnName] = "Total";
-
                     }
                     for (int j = 0; j < dtTemp.Rows.Count; j++)
                     {
@@ -632,7 +631,6 @@ Next
                         tit = dtTemp.Columns[i].ColumnName;
                         nvreg[tit] = total.ToString();
                     }
-
                 }
                 total_gral = total;
                 dtTemp_re.Rows.Add(nvreg);
@@ -728,14 +726,89 @@ Next
                     }
                     tit = dtTemp_re.Columns[j + 1].ColumnName;
                     val = dtTemp.Rows[j][i].ToString();
-                    nvreg[tit] = val;
-                }
+                    nvreg[tit] = val;                }
                 dtTemp_re.Rows.Add(nvreg);
             }
 
             return dtTemp_re;
         }
 
+        public string[,] abc_cel(int ini, int ancho)
+        {
+            string[,] arryapos = new string[1, 2];
+            int iniabc = ini;
+            //int sw = 26;  
+
+            //int alto = 10;
+            //int spacio = 0;
+            string posini = "";
+            /*ancho*/
+
+            int vi = 0;
+            string var = "";
+            vi = ini + ancho;
+            int valor = (vi / 26);
+            switch (valor)
+            {
+                case 1:
+                    vi = vi - 26;
+                    posini = "A";
+                    break;
+                case 2:
+                    vi = vi - 52;
+                    posini = "B";
+                    break;
+            }
+
+            posini = posini + Convert.ToChar(vi - 1 + 65).ToString();
+
+            valor = (iniabc / 26);
+            switch (valor)
+            {
+                case 1:
+                    iniabc = iniabc - 26;
+                    var = "A";
+                    break;
+                case 2:
+                    iniabc = iniabc - 52;
+                    var = "B";
+                    break;
+            }
+
+            var = Convert.ToChar(iniabc - 1 + 65).ToString();
+
+            /* for (int i = 0; i < 26; i++)
+        {
+            if (i > 25 && i < 51)
+                vi = i - 25;
+            else
+                if (i > 50 && i < 76)
+                vi = i - 50;
+            else
+                vi = i;
+            string abc = Convert.ToChar(vi + 65).ToString();
+            if (((ancho + sw) + spacio) == vi)
+            {
+                posini = Convert.ToChar(vi + 65).ToString();
+            }
+            if (abc == var)
+                sw = vi;
+         }
+
+            if (ancho >= 26 && ancho < 51)
+            posini = posini + posini;
+        else if (ancho >= 51 && ancho < 76)
+            posini = posini + posini + posini;
+        else
+            posini = posini;
+  */
+            arryapos[0, 0] = var;
+            arryapos[0, 1] = posini;
+
+            Console.WriteLine("posicion de inicial :" + arryapos[0, 0].ToString());
+            Console.WriteLine("ancho :" + arryapos[0, 1].ToString());
+            return arryapos;
+        }
 
     }
 
