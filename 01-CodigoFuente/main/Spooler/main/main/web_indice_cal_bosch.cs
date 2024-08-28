@@ -124,7 +124,9 @@ namespace serverreports
                 Console.WriteLine(util.Tdetalle(LisDT[z]));
                 LisDT[z] = util.Tdetalle_regtot(LisDT[z], 1, 0, 1, 0, 1); //porcentaje           
                 LisDT[z] = util.Tdetalle_reversa(LisDT[z]);
-                LisDT_tit[z,0] = tab_impexp[1, i] + "|" + "Titulo de Hoja";
+                //LisDT[z] = util.Tdetalle_regtot(LisDT[z], 1, 0, 0, LisDT[z].Columns.Count-2, 1); //porcentaje
+                //LisDT_tit[z,0] = tab_impexp[1, i] + "|" + "Titulo de Hoja";
+                LisDT_tit[z, 0] = Planta + " " + tab_impexp[1, i] + "|" + "Customs Clearance - From " + Fecha_1 + " To" + Fecha_2 + util.iff(Planta, "=", " ", "", " - " + Planta) + "|" + "MoT: Air" + "|" + "Customs Clearance Times - Air MoT";
                 Console.WriteLine(util.Tdetalle(LisDT[z]));                
                 z++; 
                 par_st[0, 3] = "M";
@@ -133,8 +135,10 @@ namespace serverreports
                 Console.WriteLine(util.Tdetalle(LisDT[z]));
                 LisDT[z] = util.Tdetalle_regtot(LisDT[z], 1, 0, 1, 0, 1); //porcentaje
                 LisDT[z] = util.Tdetalle_reversa(LisDT[z]); //reversa
+               // LisDT[z] = util.Tdetalle_regtot(LisDT[z], 1, 0, 0, LisDT[z].Columns.Count - 2, 1); //porcentaje
                 Console.WriteLine(util.Tdetalle(LisDT[z]));
-                LisDT_tit[z,0] = tab_impexp[1, i] + "|" + "Titulo de Hoja";
+                //LisDT_tit[z,0] = tab_impexp[1, i] + "|" + "Titulo de Hoja";
+                LisDT_tit[z, 0] = Planta + " " + tab_impexp[1, i] + "|" + "Customs Clearance - From " + Fecha_1 + " To" + Fecha_2 + util.iff(Planta, "=", " ", "", " - " + Planta) + "|" + "MoT: Sea" + "|" + "Customs Clearance Times - Sea MoT";
                 //LisDT_tit[z] = tab_impexp[1, i];
                 Console.WriteLine(util.Tdetalle(LisDT[z]));
                 z++;
@@ -144,8 +148,10 @@ namespace serverreports
                 Console.WriteLine(util.Tdetalle(LisDT[z]));
                 LisDT[z] = util.Tdetalle_regtot(LisDT[z], 1, 0, 1, 0, 1); //porcentaje
                 LisDT[z] = util.Tdetalle_reversa(LisDT[z]); //reversa
+                //LisDT[z] = util.Tdetalle_regtot(LisDT[z], 1, 0, 0, LisDT[z].Columns.Count - 2, 1); //porcentaje
                 //LisDT_tit[z] = tab_impexp[1, 0];
-                LisDT_tit[z, 0] = tab_impexp[1, i] + "|" + "Titulo de Hoja";
+                //LisDT_tit[z, 0] = tab_impexp[1, i] + "|" + "Titulo de Hoja";
+                LisDT_tit[z, 0] = Planta + " " + tab_impexp[1, i] + "|" + "Customs Clearance - From " + Fecha_1 + " To" + Fecha_2 + util.iff(Planta, "=", " ", "", " - " + Planta) + "|" + "MoT: Land" + "|" + "Customs Clearance Times - Land MoT";
                 Console.WriteLine(util.Tdetalle(LisDT[z]));
                 z++;
 
