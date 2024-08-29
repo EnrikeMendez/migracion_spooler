@@ -67,6 +67,30 @@ namespace serverreports
             inf.LisDT_tit = LisDT_tit;
             inf.LisDT = LisDT;
             inf.arch = arch;
+
+            arh[0] = Carpeta + "\\" + file_name[0, 0] + ".xlsx";
+            file_name[0, 0] = file_name[0, 0] + ".xlsx";
+            //if (file_name[4, 0] == "1")
+            //   arh[1] = util.agregar_zip(arh, file_name[0, 0], Carpeta);
+            if (file_name[4, 0] == "1")
+            {
+                //arh[1] = util.agregar_zip_nv(file_name, arch, Carpeta);
+                html = util.agregar_zip(file_name, arch, Carpeta);
+                arh[1] = Carpeta + "\\" + arch + ".zip";
+            }
+
+            //file_name[0, 0] = file_name[0, 0] + ".xlsx";
+            html = util.hexafile_nv(file_name, Carpeta, int.Parse(parins[9, 1]), arch, parins);
+            util.replica_tem(arch, parins);
+            string warning_message = DM.msg_temp(parins, visible_sql);
+            string mensaje = correo.display_mail(parins[10, 1], warning_message, arch, html, Int32.Parse(parins[3, 1]), "");
+            //  correo.send_mail("Report: < Logis transmision_edocs_bosch > Envio ok", [], "proceso correcto", [Carpeta + "\\" + file_name + ".xlsx"]);
+            if (contacmail.Length > 0)
+            {
+                correo.send_mail("Report: <" + html[1, 0] + "> created v2024", [], mensaje, arh);
+            }
+            DM.act_proceso(parins, visible_sql);
+            util.borra_arch(arh, Carpeta);
             return inf;
         }
         public string Fondo_fijo_ant(string Archivo, string Empresa, string Divisa,  string[,] parins, string[] contacmail, int vs)
@@ -88,7 +112,6 @@ namespace serverreports
             par_st[0, 1] = "v";
             par_st[0, 2] = "pmsg";
             par_st[0, 3] = "o";
-
             par_st[2, 0] = "i";
             par_st[2, 1] = "i";
             par_st[2, 2] = "pemp";
