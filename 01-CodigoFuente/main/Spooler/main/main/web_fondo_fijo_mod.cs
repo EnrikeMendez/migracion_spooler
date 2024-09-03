@@ -71,18 +71,6 @@ namespace serverreports
             inf.LisDT_tit = LisDT_tit;
             inf.LisDT = LisDT;
             inf.arch = arch;
-            /*
-            arh[0] = Carpeta + "\\" + file_name[0, 0] + ".xlsx";
-            file_name[0, 0] = file_name[0, 0] + ".xlsx";
-            if (file_name[4, 0] == "1")
-            {
-                html = util.agregar_zip(file_name, arch, Carpeta);
-                arh[1] = Carpeta + "\\" + arch + ".zip";
-            }
-            */
-            //file_name[0, 0] = file_name[0, 0] + ".xlsx";
-            //html = util.hexafile_nv(file_name, Carpeta, int.Parse(parins[9, 1]), arch, parins);
-            //util.replica_tem(arch, parins);
             return inf;
         }
         public string Fondo_fijo_ant(string Archivo, string Empresa, string Divisa,  string[,] parins, string[] contacmail, int vs)

@@ -403,7 +403,6 @@ try
 
             case "fondo_fijo":
                 //5566768
-                //            Call Fondo_fijo(Carpeta & tab_archivos(0, 0) & ".txt", rs.Fields("PARAM_1"), rs.Fields("PARAM_2"))
                 web_fondo_fijo_mod Fondo_fijo = new web_fondo_fijo_mod();
                 inf = Fondo_fijo.Fondo_fijo(tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), parins, contmail, visible_sql);
                 arch = xlsx.CrearExcel_filen(inf.LisDT, inf.LisDT_tit, Carpeta + "\\" + inf.arch + ".xlsx", null, null, 1, 3);
