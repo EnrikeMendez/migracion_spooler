@@ -167,7 +167,7 @@ namespace serverreports
             Console.WriteLine("Grafica");
         }
 
-        public string CrearExcel_filen(DataTable[] LisDT, string[,] tit, string? name = "", int? del_col = null, int? fre_row = null, int? posinitablav = 1, int? espaciov = 0)
+        public string CrearExcel_filen(DataTable[] LisDT, string[,] tit, string? name = "", int? del_col = null, int? fre_row = null, int? posinitablav = 1, int? espaciov = 0, int? graf = 0)
         {
             string archivo = "";
             int del;
@@ -285,7 +285,18 @@ namespace serverreports
                         sl.InsertTable(table);
                         Utilerias util = new Utilerias();
                         string[,] postabla = util.abc_cel(pos, col - 1);
-                        if (enc_ht != "")
+                        if (graf == 1)
+                        {
+                            double fChartHeight = 15.0;
+                            double fChartWidth = 7;
+                            //table = sl.CreateTable(2, 2, 5, 6);                            
+                            SLChart chart;
+                            Console.WriteLine(" Posicion Init  " + postabla[0, 0] + (posinitablav - 1).ToString());
+                            Console.WriteLine(" Posicion fInit " + postabla[0, 1] + (posinitablav - 1).ToString());
+                            Console.WriteLine(" Posicion Ini   " + postabla[0, 0] + (posinitablav + 1).ToString());
+                            Console.WriteLine(" Posicion fin   " + postabla[0, 1] + ((posinitabla - 1) + row + 1).ToString());
+                        }
+                            if (enc_ht != "")
                         {
                             sl.SetCellValue(postabla[0, 0] + (posinitablav - 1).ToString(), enc_ht);
                             sl.MergeWorksheetCells(postabla[0, 0] + (posinitablav - 1).ToString(), postabla[0, 1] + (posinitablav - 1).ToString(), estilo_bosch(sl, "e"));
