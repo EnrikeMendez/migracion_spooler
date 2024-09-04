@@ -295,8 +295,16 @@ namespace serverreports
                             Console.WriteLine(" Posicion fInit " + postabla[0, 1] + (posinitablav - 1).ToString());
                             Console.WriteLine(" Posicion Ini   " + postabla[0, 0] + (posinitablav + 1).ToString());
                             Console.WriteLine(" Posicion fin   " + postabla[0, 1] + ((posinitabla - 1) + row + 1).ToString());
+                            Console.WriteLine(" Posicion fin 1 " + postabla[0, 1] + ((posinitabla) + row + 1).ToString());
+                            Console.WriteLine(" Posicion fin 2 " + postabla[0, 1] + ((posinitabla - 1) + row).ToString());
+                            chart = sl.CreateChart("A5", "G11", new SLCreateChartOptions() { RowsAsDataSeries = false });
+                            chart.SetChartType(SLColumnChartType.ClusteredColumn);
+                            SLDataSeriesOptions dso;
+                            dso = chart.GetDataSeriesOptions(4);
+                            sl.InsertChart(chart);
+
                         }
-                            if (enc_ht != "")
+                         if (enc_ht != "")
                         {
                             sl.SetCellValue(postabla[0, 0] + (posinitablav - 1).ToString(), enc_ht);
                             sl.MergeWorksheetCells(postabla[0, 0] + (posinitablav - 1).ToString(), postabla[0, 1] + (posinitablav - 1).ToString(), estilo_bosch(sl, "e"));
