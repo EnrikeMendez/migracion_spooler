@@ -301,6 +301,20 @@ namespace serverreports
                             chart.SetChartType(SLColumnChartType.ClusteredColumn);
                             SLDataSeriesOptions dso;
                             dso = chart.GetDataSeriesOptions(4);
+                            dso.Line.Width = 0;
+                            dso.Fill.SetNoFill();
+                            dso.Marker.Fill.SetNoFill();
+                            dso.Line.SetSolidLine(SLThemeColorIndexValues.Accent1Color, 0, 100);
+                            dso.Marker.Line.SetSolidLine(SLThemeColorIndexValues.Accent5Color, 0, 100);
+                            chart.SetDataSeriesOptions(1, dso);
+                            chart.SetDataSeriesOptions(2, dso);
+                            chart.SetDataSeriesOptions(3, dso);
+                            chart.SetDataSeriesOptions(4, dso);
+                            chart.SetDataSeriesOptions(5, dso);
+                            chart.SetDataSeriesOptions(6, dso);
+                            chart.SetDataSeriesOptions(7, dso);                          
+
+                            chart.HideChartLegend();
                             sl.InsertChart(chart);
 
                         }
