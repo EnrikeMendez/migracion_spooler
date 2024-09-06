@@ -167,6 +167,7 @@ namespace serverreports
             Console.WriteLine("Grafica");
         }
 
+
         public string CrearExcel_filen(DataTable[] LisDT, string[,] tit, string? name = "", int? del_col = null, int? fre_row = null, int? posinitablav = 1, int? espaciov = 0, int? graf = 0)
         {
             string archivo = "";
@@ -306,17 +307,32 @@ namespace serverreports
                             dso.Marker.Fill.SetNoFill();
                             dso.Line.SetSolidLine(SLThemeColorIndexValues.Accent1Color, 0, 100);
                             dso.Marker.Line.SetSolidLine(SLThemeColorIndexValues.Accent5Color, 0, 100);
+                            
                             chart.SetDataSeriesOptions(1, dso);
                             chart.SetDataSeriesOptions(2, dso);
                             chart.SetDataSeriesOptions(3, dso);
                             chart.SetDataSeriesOptions(4, dso);
                             chart.SetDataSeriesOptions(5, dso);
                             chart.SetDataSeriesOptions(6, dso);
-                            chart.SetDataSeriesOptions(7, dso);                          
+                            chart.SetDataSeriesOptions(7, dso);
+                            
+                            chart.PlotDataSeriesAsPrimaryAreaChart(1, SLChartDataDisplayType.Normal);
+                            chart.PlotDataSeriesAsPrimaryAreaChart(2, SLChartDataDisplayType.Normal);
+                            chart.PlotDataSeriesAsPrimaryAreaChart(3, SLChartDataDisplayType.Normal);
+                            chart.PlotDataSeriesAsPrimaryAreaChart(4, SLChartDataDisplayType.Normal);
+                            chart.PlotDataSeriesAsPrimaryAreaChart(5, SLChartDataDisplayType.Normal);
+                            chart.PlotDataSeriesAsPrimaryAreaChart(6, SLChartDataDisplayType.Normal);
+                            chart.PlotDataSeriesAsPrimaryAreaChart(7, SLChartDataDisplayType.Normal);
 
-                            chart.HideChartLegend();
+                            SLGroupDataLabelOptions gdloptions;
+                            gdloptions = chart.CreateGroupDataLabelOptions();
+                            gdloptions.ShowValue = true;
+                            chart.SetGroupDataLabelOptions(8, gdloptions);
+                            SLFont ft;
+                            SLRstType rst = sl.CreateRstType();
+                            ft = sl.CreateFont();
+                            ft.SetFont("Arial", 10);
                             sl.InsertChart(chart);
-
                         }
                          if (enc_ht != "")
                         {
