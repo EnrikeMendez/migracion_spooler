@@ -168,7 +168,7 @@ namespace serverreports
         }
 
 
-        public string CrearExcel_filen(DataTable[] LisDT, string[,] tit, string? name = "", int? del_col = null, int? fre_row = null, int? posinitablav = 1, int? espaciov = 0, int? graf = 0)
+        public string CrearExcel_filen(DataTable[] LisDT, string[,] tit, string? name = "", int? del_col = null, int? fre_row = null, int? posinitablav = 1, int? espaciov = 0, int? graf = 0, int? graf_ran_row_neg = 0)
         {
             string archivo = "";
             int del;
@@ -298,7 +298,7 @@ namespace serverreports
                             Console.WriteLine(" Posicion fin   " + postabla[0, 1] + ((posinitabla - 1) + row + 1).ToString());
                             Console.WriteLine(" Posicion fin 1 " + postabla[0, 1] + ((posinitabla) + row + 1).ToString());
                             Console.WriteLine(" Posicion fin 2 " + postabla[0, 1] + ((posinitabla - 1) + row).ToString());
-                            chart = sl.CreateChart("A5", "G11", new SLCreateChartOptions() { RowsAsDataSeries = false });
+                            chart = sl.CreateChart("A5", "G11", new SLCreateChartOptions() { RowsAsDataSeries = false });                            
                             chart.SetChartType(SLColumnChartType.ClusteredColumn);
                             SLDataSeriesOptions dso;
                             dso = chart.GetDataSeriesOptions(4);
@@ -307,23 +307,11 @@ namespace serverreports
                             dso.Marker.Fill.SetNoFill();
                             dso.Line.SetSolidLine(SLThemeColorIndexValues.Accent1Color, 0, 100);
                             dso.Marker.Line.SetSolidLine(SLThemeColorIndexValues.Accent5Color, 0, 100);
-                            
-                            chart.SetDataSeriesOptions(1, dso);
-                            chart.SetDataSeriesOptions(2, dso);
-                            chart.SetDataSeriesOptions(3, dso);
-                            chart.SetDataSeriesOptions(4, dso);
-                            chart.SetDataSeriesOptions(5, dso);
-                            chart.SetDataSeriesOptions(6, dso);
-                            chart.SetDataSeriesOptions(7, dso);
-                            
-                            chart.PlotDataSeriesAsPrimaryAreaChart(1, SLChartDataDisplayType.Normal);
-                            chart.PlotDataSeriesAsPrimaryAreaChart(2, SLChartDataDisplayType.Normal);
-                            chart.PlotDataSeriesAsPrimaryAreaChart(3, SLChartDataDisplayType.Normal);
-                            chart.PlotDataSeriesAsPrimaryAreaChart(4, SLChartDataDisplayType.Normal);
-                            chart.PlotDataSeriesAsPrimaryAreaChart(5, SLChartDataDisplayType.Normal);
-                            chart.PlotDataSeriesAsPrimaryAreaChart(6, SLChartDataDisplayType.Normal);
-                            chart.PlotDataSeriesAsPrimaryAreaChart(7, SLChartDataDisplayType.Normal);
-
+                            for (int x = 1; x < col - 1; x++)
+                            {
+                                chart.SetDataSeriesOptions(x, dso);
+                                chart.PlotDataSeriesAsPrimaryAreaChart(x, SLChartDataDisplayType.Normal);
+                            }
                             SLGroupDataLabelOptions gdloptions;
                             gdloptions = chart.CreateGroupDataLabelOptions();
                             gdloptions.ShowValue = true;
@@ -332,6 +320,12 @@ namespace serverreports
                             SLRstType rst = sl.CreateRstType();
                             ft = sl.CreateFont();
                             ft.SetFont("Arial", 10);
+                            rst.AppendText(enc_hg, ft);
+                            chart.Title.SetTitle(rst);
+                            chart.ShowChartTitle(false);
+                            chart.HideChartLegend();
+                            if (rowg < row) rowg = row;
+                            chart.SetChartPosition(rowg + 6, pos - 1, rowg + 6 + fChartHeight, pos + fChartWidth - 2);
                             sl.InsertChart(chart);
                         }
                          if (enc_ht != "")
