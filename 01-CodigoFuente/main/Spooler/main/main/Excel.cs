@@ -211,8 +211,6 @@ namespace serverreports
                             enc_hg = enc[3];
                         }
 
-
-
                         if (hoja == enc_h)
                             pos = (int)(pos + col + espacio);
                         else
@@ -273,7 +271,6 @@ namespace serverreports
                         else
                         {
                             table = sl.CreateTable(posinitabla, pos, (posinitabla - 1) + row + 1, col + (pos - 1));
-
                         }
                         table.HasBandedRows = true;
                         table.HasAutoFilter = false;
@@ -298,7 +295,8 @@ namespace serverreports
                             Console.WriteLine(" Posicion fin   " + postabla[0, 1] + ((posinitabla - 1) + row + 1).ToString());
                             Console.WriteLine(" Posicion fin 1 " + postabla[0, 1] + ((posinitabla) + row + 1).ToString());
                             Console.WriteLine(" Posicion fin 2 " + postabla[0, 1] + ((posinitabla - 1) + row).ToString());
-                            chart = sl.CreateChart("A5", "G11", new SLCreateChartOptions() { RowsAsDataSeries = false });                            
+                          //  chart = sl.CreateChart("A5", "G11", new SLCreateChartOptions() { RowsAsDataSeries = false });
+                            chart = sl.CreateChart(postabla[0, 0] + (posinitablav).ToString(), postabla[0, 1] + ((posinitabla - graf_ran_row_neg) + row).ToString(), new SLCreateChartOptions() { RowsAsDataSeries = false });
                             chart.SetChartType(SLColumnChartType.ClusteredColumn);
                             SLDataSeriesOptions dso;
                             dso = chart.GetDataSeriesOptions(4);
@@ -343,7 +341,7 @@ namespace serverreports
                         hoja = enc_h;
                     }
                 }
-                //Guardar como, y aqui ponemos la ruta de nuestro archivo
+
                 sl.SaveAs(name);
                 archivo = name ;
 
