@@ -227,7 +227,8 @@ namespace serverreports
                 Console.WriteLine(" Codigo store :" + datos_sp.codigo);
                 string[] arh = new string[2];
                 
-                xlsx.CrearExcel_file(LisDT, LisDT_tit, Carpeta + file_name, 1);
+               xlsx.CrearExcel_file(LisDT, LisDT_tit, Carpeta + file_name, 1);
+
                correo.send_mail("Report: < Logis transmision_edocs_bosch > Envio ok", [], "proceso correcto", [Carpeta + "\\" + file_name + ".xlsx"]);
                 }
         }
