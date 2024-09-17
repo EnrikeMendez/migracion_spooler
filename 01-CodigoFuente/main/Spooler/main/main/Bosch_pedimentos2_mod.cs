@@ -83,25 +83,98 @@ namespace serverreports
             string val = "";
             for (int i = 0; i < LisDT[0].Rows.Count; i++)
             {
-                for (int j = 0; j < 10; j++)
-                    val = val + LisDT[0].Rows[i][j].ToString();               
-                val = val + LisDT[0].Rows[i]["IVA_GAL2"].ToString();
-                val = val + LisDT[0].Rows[i]["ADV_GAL2"].ToString();
-                val = val + LisDT[0].Rows[i]["DTA_GAL2"].ToString();
-                val = val + LisDT[0].Rows[i]["OTROS_GAL2"].ToString();
-                val = val + LisDT[0].Rows[i]["SGEVALORDOLARES"].ToString();
-                val = val + LisDT[0].Rows[i]["SGEVALORADUANA"].ToString();
-                val = val + LisDT[0].Rows[i]["SGEPRECIOPAGADO"].ToString();
-                val = val + LisDT[0].Rows[i]["EDOCUMENT"].ToString();              
-                elementos.Add(val); 
+                val = "";
+                if (header_tmp != util.nvl(LisDT[0].Rows[i]["SGECLAVE"].ToString()))
+                {
+                    for (int j = 0; j < 10; j++)
+                        val = val + LisDT[0].Rows[i][j].ToString();
+
+                    val = val + util.nvl(LisDT[0].Rows[i]["IVA_GAL2"].ToString());
+                    val = val + util.nvl(LisDT[0].Rows[i]["ADV_GAL2"].ToString());
+                    val = val + util.nvl(LisDT[0].Rows[i]["DTA_GAL2"].ToString());
+                    val = val + util.nvl(LisDT[0].Rows[i]["OTROS_GAL2"].ToString());
+
+                    val = val  + util.nvl(LisDT[0].Rows[i]["SGEVALORDOLARES"].ToString());
+                    val = val  + util.nvl(LisDT[0].Rows[i]["SGEVALORADUANA"].ToString());
+                    val = val  + util.nvl(LisDT[0].Rows[i]["SGEPRECIOPAGADO"].ToString());
+                    val = val  + util.nvl(LisDT[0].Rows[i]["EDOCUMENT"].ToString());
+                    header_tmp = util.nvl(LisDT[0].Rows[i]["CLAVE_FAC"].ToString());
+                    elementos.Add(val);
+                }
+                if (util.nvl(LisDT[0].Rows[i]["DETALLE_D"].ToString()) != "")
+                {
+                    Line_Buffer = "";
+                    for (int j = 20; j <= 37; j++)
+                        Line_Buffer = Line_Buffer + LisDT[0].Rows[i][j].ToString();
+                    elementos.Add(Line_Buffer);
+                }
             }
+
+            par_st = new string[9, 4];
+            par_st[0, 0] = "i";
+            par_st[0, 1] = "i";
+            par_st[0, 2] = "p_CLIENTE";
+            par_st[0, 3] = "1235";
+            //par_st[0, 3] = Clientes;
+
+            par_st[1, 0] = "i";
+            par_st[1, 1] = "i";
+            par_st[1, 2] = "p_IMP_EXP";
+            par_st[1, 3] = "1";
+            //par_st[1, 3] = imp_exp;
+
+            par_st[2, 0] = "i";
+            par_st[2, 1] = "v";
+            par_st[2, 2] = "p_Fecha_Inicio";
+            par_st[2, 3] = "03/04/2003";
+            //par_st[2, 3] = Fecha_1;
+
+            par_st[3, 0] = "i";
+            par_st[3, 1] = "v";
+            par_st[3, 2] = "p_Fecha_Fin";
+            par_st[3, 3] = "04/04/2003";
+            //par_st[3, 3] = Fecha_2;
+
+            par_st[4, 0] = "i";
+            par_st[4, 1] = "v";
+            par_st[4, 2] = "p_CLAVE_FAC";
+            //par_st[4, 3] = util.nvl(util.Tcampo(LisDT[0], "SGECLAVE"));
+            par_st[4, 3] = "165777";
+            //par_st[2, 3] = Fecha_1;
+
+            par_st[5, 0] = "i";
+            par_st[5, 1] = "v";
+            par_st[5, 2] = "p_NUM_PEDIMENTO";
+            //par_st[5, 3] = util.nvl(util.Tcampo(LisDT[0], "NUM_PEDIMENTO"));
+            par_st[5, 3] = "034734203004129";
+            //par_st[3, 3] = Fecha_2;
+
+
+            par_st[6, 0] = "o";
+            par_st[6, 1] = "c";
+            par_st[6, 2] = "p_Cur_Bosch_Pedi_cve";
+
+            par_st[7, 0] = "o";
+            par_st[7, 1] = "v";
+            par_st[7, 2] = "p_MENSAJE";
+            par_st[7, 3] = "msg";
+
+            par_st[8, 0] = "o";
+            par_st[8, 1] = "i";
+            par_st[8, 2] = "p_CODIGO_ERROR";
+            par_st[8, 3] = "cod";
+
+            datos_sp.sql = "SC_RS.SPG_RS_COEX_PEDIMENTOS_BOSCH.P_DAT_FOLIOS_CLAVE";
+            datos_sp = DM.datos_sp([datos_sp.sql], par_st, visible_sql);
+            LisDT[1] = datos_sp.tb;
+            Console.WriteLine(util.Tdetalle(LisDT[1]));
+
             /*
             string cp = "C:\\pc\\ruta_alterna\\";
             if (!Directory.Exists(cp))
             {
-                Directory.CreateDirectory(cp);
+              Directory.CreateDirectory(cp);
             }
-
             using (StreamWriter sw = File.CreateText(cp + "Pedimento2.txt"))
             {
                 sw.WriteLine(util.Tdetalle(LisDT[0]));
