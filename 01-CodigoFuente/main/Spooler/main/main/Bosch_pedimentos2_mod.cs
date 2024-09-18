@@ -168,6 +168,24 @@ namespace serverreports
             datos_sp = DM.datos_sp([datos_sp.sql], par_st, visible_sql);
             LisDT[1] = datos_sp.tb;
             Console.WriteLine(util.Tdetalle(LisDT[1]));
+            for (int i = 0; i < LisDT[1].Rows.Count; i++)
+            {
+                val = "";
+                for (int j = 0; j < 10; j++)
+                    val = val + LisDT[1].Rows[i][j].ToString();
+                val = val + util.nvl(LisDT[1].Rows[i]["IVA_GAL"].ToString());
+                val = val + util.nvl(LisDT[1].Rows[i]["ADV_GAL"].ToString());
+                val = val + util.nvl(LisDT[1].Rows[i]["DTA_GAL"].ToString());
+                val = val + util.nvl(LisDT[1].Rows[i]["OTROS_GAL"].ToString());
+
+                val = val + util.nvl(LisDT[1].Rows[i]["SGEVALORDOLARES"].ToString());
+                val = val + util.nvl(LisDT[1].Rows[i]["SGEVALORADUANA"].ToString());
+                val = val + util.nvl(LisDT[1].Rows[i]["SGEPRECIOPAGADO"].ToString());
+                val = val + util.nvl(LisDT[1].Rows[i]["EDOCUMENT"].ToString());
+
+                //header_tmp = util.nvl(LisDT[].Rows[i]["CLAVE_FAC"].ToString());
+                elementos.Add(val);
+            }
 
             /*
             string cp = "C:\\pc\\ruta_alterna\\";
