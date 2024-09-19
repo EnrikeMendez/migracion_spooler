@@ -187,6 +187,69 @@ namespace serverreports
                 elementos.Add(val);
             }
 
+
+            par_st = new string[7, 4];
+            par_st[0, 0] = "i";
+            par_st[0, 1] = "i";
+            par_st[0, 2] = "p_CLIENTE";
+            par_st[0, 3] = "23386";
+            //par_st[1, 3] = Fecha_1;
+
+            par_st[1, 0] = "i";
+            par_st[1, 1] = "i";
+            par_st[1, 2] = "p_IMP_EXP";
+            par_st[1, 3] = "1";
+            //par_st[2, 3] = Fecha_2;
+
+            par_st[2, 0] = "i";
+            par_st[2, 1] = "v";
+            par_st[2, 2] = "p_Fecha_Inicio";
+            par_st[2, 3] = "08/30/2023";
+            //par_st[2, 3] = Fecha_1;
+
+            par_st[3, 0] = "i";
+            par_st[3, 1] = "v";
+            par_st[3, 2] = "p_Fecha_Fin";
+            par_st[3, 3] = "03/19/2024";
+            //par_st[3, 3] = Fecha_2;
+            par_st[4, 0] = "o";
+            par_st[4, 1] = "c";
+            par_st[4, 2] = "p_Cur_Bosch_Pedi_rac";
+            par_st[5, 0] = "o";
+            par_st[5, 1] = "v";
+            par_st[5, 2] = "p_MENSAJE";
+            par_st[5, 3] = "msg";
+
+            par_st[6, 0] = "o";
+            par_st[6, 1] = "i";
+            par_st[6, 2] = "p_CODIGO_ERROR";
+            par_st[6, 3] = "cod";
+
+            datos_sp.sql = "SC_RS.SPG_RS_COEX_PEDIMENTOS_BOSCH.P_DAT_FOLIOS_RECTIFICACION ";
+            datos_sp = DM.datos_sp([datos_sp.sql], par_st, visible_sql);
+            LisDT[2] = datos_sp.tb;
+            Console.WriteLine(util.Tdetalle(LisDT[2]));
+            string IMP_EXP_tmp = "";
+            string FOLIO_tmp = "";
+            string CLAVE_PED_tmp = "";
+            string NUM_PEDIMENTO_tmp = "";
+            string SGECLAVE_tmp = "";
+            for (int i = 0; i < LisDT[2].Rows.Count; i++)
+            {
+                val = "";
+
+                    for (int j = 0; j < 10; j++)
+                        val = val + LisDT[2].Rows[i][j].ToString();
+                    val = val + util.nvl(LisDT[2].Rows[i]["IVA_GAL"].ToString());
+                    val = val + util.nvl(LisDT[2].Rows[i]["ADV_GAL"].ToString());
+                    val = val + util.nvl(LisDT[2].Rows[i]["DTA_GAL"].ToString());
+                    val = val + util.nvl(LisDT[2].Rows[i]["OTROS_GAL"].ToString());
+                    val = val + util.nvl(LisDT[2].Rows[i]["SGEVALORDOLARES"].ToString());
+                    val = val + util.nvl(LisDT[2].Rows[i]["SGEVALORADUANA"].ToString());
+                    val = val + util.nvl(LisDT[2].Rows[i]["SGEPRECIOPAGADO"].ToString());
+                    elementos.Add(val);
+
+            }
             /*
             string cp = "C:\\pc\\ruta_alterna\\";
             if (!Directory.Exists(cp))
