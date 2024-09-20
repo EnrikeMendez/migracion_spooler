@@ -350,8 +350,6 @@ try
         parins[12, 0] = "Path_file";
         parins[12, 1] = Carpeta;
 
-
-
         //web_transmision_edocs_bosch edocs_bosch = new web_transmision_edocs_bosch();
         //edocs_bosch.transmision_edocs_bosch(Carpeta, tab_archivos[0], util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), visible_sql);
         // Console.WriteLine(DM.transmision_edocs_bosch("18975", "04/01/2024", "04/30/2024", "", "E", "1"));
@@ -421,22 +419,35 @@ try
                 //207565
                 Bosch_pedimentos2_mod Bosch_Pedimentos2 = new Bosch_pedimentos2_mod();
                 inf = Bosch_Pedimentos2.Bosch_Pedimentos2(Carpeta, tab_archivos, FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), parins, contmail, visible_sql);
+                encorr = 2;
                 break;
         }
-        if (encorr == 1)
+        if (encorr >0)
         {
             string[,] html = new string[6, 1];
+            arch = tab_archivos[0, 0];
+            if (encorr == 2)
+            { 
+                arh[0] = Carpeta + "\\" + tab_archivos[0, 0] + ".txt";
+                tab_archivos[0, 0] = tab_archivos[0, 0] + ".txt";
+            }
+            else
+            { 
+                arh[0] = Carpeta + "\\" + tab_archivos[0, 0] + ".xlsx";
+                tab_archivos[0, 0] = tab_archivos[0, 0] + ".xlsx";
+            }
+                
+            /*
             arh[0] = Carpeta + "\\" + tab_archivos[0, 0] + ".xlsx";
             arch = tab_archivos[0, 0];
             tab_archivos[0, 0] = tab_archivos[0, 0] + ".xlsx";
+            */
             if (tab_archivos[4, 0] == "1")
             {
                 //arh[1] = util.agregar_zip_nv(file_name, arch, Carpeta);
                 html = util.agregar_zip(tab_archivos, arch, Carpeta);
                 arh[1] = Carpeta + "\\" + arch + ".zip";
             }
-
-
             // tab_archivos[4, 0] = "0";
             html = util.hexafile_nv(tab_archivos, Carpeta, int.Parse(parins[9, 1]), arch, parins);
             string mensaje = correo.display_mail(parins[10, 1], "", arch, html, Int32.Parse(parins[3, 1]), "");
@@ -449,8 +460,7 @@ try
             }
             DM.act_proceso(parins, visible_sql);
             util.borra_arch(arh, Carpeta);
-        }
-        
+        }        
     }
  else
     Console.WriteLine("Error es necesario especifica los parametros \n 1. Falta numero reporte: ''{0}'' \n 2. valor tipo de reporte: {1} " + msg, rep_id, reporte_temporal);

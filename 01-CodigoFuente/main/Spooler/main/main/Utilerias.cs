@@ -810,7 +810,27 @@ Next
             return arryapos;
         }
 
-       
+        public int Tcampo_numcol(DataTable dtTemp, string campo)
+        {
+            int valor = 0;
+
+
+            if (dtTemp.Rows.Count > 0 && campo != null)
+            {
+                for (int j = 0; j < dtTemp.Columns.Count; j++)
+                {
+                    if (dtTemp.Columns[j].ColumnName == campo)
+                    {
+                        valor = j;
+                        break;
+                    }
+                }
+            }
+
+            return valor;
+        }
+
+
 
     }
 

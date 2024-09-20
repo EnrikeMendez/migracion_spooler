@@ -149,7 +149,6 @@ namespace serverreports
             par_st[5, 3] = "034734203004129";
             //par_st[3, 3] = Fecha_2;
 
-
             par_st[6, 0] = "o";
             par_st[6, 1] = "c";
             par_st[6, 2] = "p_Cur_Bosch_Pedi_cve";
@@ -237,7 +236,13 @@ namespace serverreports
             for (int i = 0; i < LisDT[2].Rows.Count; i++)
             {
                 val = "";
-
+                if (
+                IMP_EXP_tmp != util.nvl(LisDT[2].Rows[i]["IMP_EXP"].ToString()) &
+                FOLIO_tmp != util.nvl(LisDT[2].Rows[i]["ADUANA_SEC"].ToString()) &
+                CLAVE_PED_tmp != util.nvl(LisDT[2].Rows[i]["CLAVE_PED"].ToString()) &
+                NUM_PEDIMENTO_tmp != util.nvl(LisDT[2].Rows[i]["NUM_PEDIMENTO"].ToString()) &
+                SGECLAVE_tmp != util.nvl(LisDT[2].Rows[i]["SGECLAVE"].ToString()))
+                {
                     for (int j = 0; j < 10; j++)
                         val = val + LisDT[2].Rows[i][j].ToString();
                     val = val + util.nvl(LisDT[2].Rows[i]["IVA_GAL"].ToString());
@@ -248,7 +253,17 @@ namespace serverreports
                     val = val + util.nvl(LisDT[2].Rows[i]["SGEVALORADUANA"].ToString());
                     val = val + util.nvl(LisDT[2].Rows[i]["SGEPRECIOPAGADO"].ToString());
                     elementos.Add(val);
+                }
 
+                val = "";
+                for (int j = util.Tcampo_numcol(LisDT[2], "DETALLE_D") + 1; j < LisDT[2].Columns.Count; j++)
+                    val = val + LisDT[2].Rows[i][j].ToString();
+                elementos.Add(val);
+                IMP_EXP_tmp = util.nvl(LisDT[2].Rows[i]["IMP_EXP"].ToString());
+                FOLIO_tmp = util.nvl(LisDT[2].Rows[i]["ADUANA_SEC"].ToString());
+                CLAVE_PED_tmp = util.nvl(LisDT[2].Rows[i]["CLAVE_PED"].ToString());
+                NUM_PEDIMENTO_tmp = util.nvl(LisDT[2].Rows[i]["NUM_PEDIMENTO"].ToString());
+                SGECLAVE_tmp = util.nvl(LisDT[2].Rows[i]["SGECLAVE"].ToString());
             }
             /*
             string cp = "C:\\pc\\ruta_alterna\\";
@@ -261,12 +276,14 @@ namespace serverreports
                 sw.WriteLine(util.Tdetalle(LisDT[0]));
             }
             */
-            Console.WriteLine(util.Tdetalle(LisDT[0]));
-            System.IO.File.WriteAllLines(@"C:\\pc\\ruta_alterna\\Pedimento2.txt", elementos);
+            //Console.WriteLine(util.Tdetalle(LisDT[0]));
+         //   System.IO.File.WriteAllLines(@"C:\\pc\\ruta_alterna\\Pedimento2.txt", elementos);
+            System.IO.File.WriteAllLines(@Carpeta + "\\" + arch + ".txt", elementos);
             inf.LisDT_tit = LisDT_tit;
             inf.LisDT     = LisDT;
-            inf.arch      = arch ;
-            return inf;
+            inf.arch = arch + "|" + Carpeta + "\\" + arch + ".txt";
+            return inf;            
+
         }
     }
 }
