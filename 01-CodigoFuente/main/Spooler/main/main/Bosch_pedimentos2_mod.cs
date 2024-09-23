@@ -281,7 +281,7 @@ namespace serverreports
             System.IO.File.WriteAllLines(@Carpeta + "\\" + arch + ".txt", elementos);
             inf.LisDT_tit = LisDT_tit;
             inf.LisDT     = LisDT;
-            inf.arch = arch + "|" + Carpeta + "\\" + arch + ".txt";
+            inf.arch = arch; //+ "|" + Carpeta + "\\" + arch + ".txt";
             return inf;            
 
         }
