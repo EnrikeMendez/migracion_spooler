@@ -18,7 +18,7 @@ internal class DM
                                               .AddUserSecrets(Assembly.GetExecutingAssembly())
                                               .Build();
             //orfeo = configuration["Orfeo2"];
-            orfeo = configuration["ORFEODES2"];
+            orfeo = configuration["ORFEODES"];
             // toma el valor de app.config
             //  orfeo = ConfigurationManager.ConnectionStrings["Orfeo2"].ToString();
             //  orfeo = ConfigurationManager.ConnectionStrings["ORFEODES"].ToString();

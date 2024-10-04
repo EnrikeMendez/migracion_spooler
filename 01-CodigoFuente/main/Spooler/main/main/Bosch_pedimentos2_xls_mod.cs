@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
+﻿using System.Data;
 
 namespace serverreports
 {
     internal class Bosch_pedimentos2_xls_mod
     {
-        public (string[,] LisDT_tit, DataTable[] LisDT, string arch) Bosch_Pedimentos2_xls 
-            (string Carpeta, string[,] file_name, string Fecha_1, string Fecha_2, string Clientes, string Planta, string imp_exp, string[,] parins, string[,] contacmail, int visible_sql)
+        public (string[,] LisDT_tit, DataTable[] LisDT, string arch) Bosch_Pedimentos2_xls
+            (string Carpeta, string[,] file_name, string Fecha_1, string Fecha_2, string Clientes, string Planta, string imp_exp, int visible_sql)
         {
             //5071980
-            int sw_error = 0;
             Utilerias util = new Utilerias();
             envio_correo correo = new envio_correo();
             DM DM = new DM();
@@ -32,11 +26,54 @@ namespace serverreports
             (string? codigo, string? msg, string? sql, DataTable? tb) datos_sp;
             (string[,] LisDT_tit, DataTable[] LisDT, string arch) inf;
             string[,] par_st = new string[7, 4];
+            par_st[0, 0] = "i";
+            par_st[0, 1] = "i";
+            par_st[0, 2] = "p_CLIENTE";
+            //par_st[0, 3] = Clientes;
+             par_st[0, 3] = "23386";
+            //Console.WriteLine("Cliente * " + Clientes);
+            par_st[1, 0] = "i";
+            par_st[1, 1] = "i";
+            par_st[1, 2] = "p_IMP_EXP";
+            //par_st[1, 3] = imp_exp;
+            par_st[1, 3] = "1";
+            //Console.WriteLine("imp_exp * " + imp_exp);
 
+            par_st[2, 0] = "i";
+            par_st[2, 1] = "v";
+            par_st[2, 2] = "p_Fecha_Inicio";
+            //par_st[2, 3] = Fecha_1;
+            par_st[2, 3] = "08/30/2023";
+
+            par_st[3, 0] = "i";
+            par_st[3, 1] = "v";
+            par_st[3, 2] = "p_Fecha_Fin";
+            //par_st[3, 3] = Fecha_2;
+            par_st[3, 3] = "03/19/2024";
+
+            par_st[4, 0] = "o";
+            par_st[4, 1] = "c";
+            par_st[4, 2] = "p_Cur_Bosch_Pedi_rac";
+
+            par_st[5, 0] = "o";
+            par_st[5, 1] = "v";
+            par_st[5, 2] = "p_MENSAJE";
+            par_st[5, 3] = "msg";
+
+            par_st[6, 0] = "o";
+            par_st[6, 1] = "i";
+            par_st[6, 2] = "p_CODIGO_ERROR";
+            par_st[6, 3] = "cod";
+            datos_sp.sql = "SC_RS.SPG_RS_COEX_PEDIMENTOS_BOSCH.P_DAT_FOLIOS_RECTIFICACION ";
+            datos_sp = DM.datos_sp([datos_sp.sql], par_st, visible_sql);
+            LisDT[0] = datos_sp.tb;
+            Console.WriteLine(util.Tdetalle(LisDT[0]));
             inf.LisDT_tit = LisDT_tit;
             inf.LisDT = LisDT;
             inf.arch = arch;
             return inf;
+
         }
     }
 }
+ 

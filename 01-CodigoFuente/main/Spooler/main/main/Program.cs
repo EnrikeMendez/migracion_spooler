@@ -423,7 +423,8 @@ try
                 break;
             case "bosch_pedim3":
                 //207565
-                Bosch_pedimentos2_xls_mod Bosch_Pedimentos2_xls = new Bosch_pedimentos2_xls_mod();               
+                Bosch_pedimentos2_xls_mod Bosch_Pedimentos2_xls = new Bosch_pedimentos2_xls_mod();
+                inf = Bosch_Pedimentos2_xls.Bosch_Pedimentos2_xls(Carpeta, tab_archivos, FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")),   visible_sql);
                 //indice_cal_bosch.indice_cal_bosch(Carpeta, tab_archivos[0], FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), visible_sql);
                 //arch = xlsx.CrearExcel_filen(inf.LisDT, inf.LisDT_tit, Carpeta + "\\" + inf.arch + ".xlsx", null, null, 5, 2, 1, 2);
                 break;

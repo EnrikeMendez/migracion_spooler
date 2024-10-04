@@ -3,32 +3,36 @@
   "WorkspaceRootPath": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\bosch_pedimentos2_xls_mod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|c:\\pc\\raul\\programas consola\\main\\spooler\\main\\main\\bosch_pedimentos2_xls_mod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\bosch_pedimentos2_xls_mod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\web_transmision_edocs_bosch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\web_transmision_edocs_bosch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\dm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\dm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\web_indice_cal_bosch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\web_indice_cal_bosch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\web_fondo_fijo_mod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\web_fondo_fijo_mod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\web_transmision_edocs_bosch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\web_transmision_edocs_bosch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|c:\\pc\\raul\\programas consola\\main\\spooler\\main\\main\\dm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\dm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\trading_genera_gsk_mod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\trading_genera_gsk_mod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\usersecrets\\850e964a-5cbf-45ca-9534-537ca3f4fa8f\\secrets.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\usersecrets\\850e964a-5cbf-45ca-9534-537ca3f4fa8f\\secrets.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\web_fondo_fijo_mod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\web_fondo_fijo_mod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\bosch_pedimentos2_mod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -47,19 +51,12 @@
       "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\excel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\trading_genera_gsk_mod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\trading_genera_gsk_mod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\ing_egr_gar_pend_fact_mod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\ing_egr_gar_pend_fact_mod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\trading_genera_tln_mod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\trading_genera_tln_mod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\usuario\\AppData\\Roaming\\Microsoft\\UserSecrets\\850e964a-5cbf-45ca-9534-537ca3f4fa8f\\secrets.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -69,21 +66,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "DM.cs",
               "DocumentMoniker": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\DM.cs",
               "RelativeDocumentMoniker": "main\\DM.cs",
               "ToolTip": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\DM.cs",
               "RelativeToolTip": "main\\DM.cs",
-              "ViewState": "AQIAACoDAAAAAAAAAAAiwIUCAAA7AAAA",
+              "ViewState": "AQIAAL4BAAAAAAAAAAAAAJQBAAA2AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-06T15:42:25.043Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "secrets.json",
+              "DocumentMoniker": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\UserSecrets\\850e964a-5cbf-45ca-9534-537ca3f4fa8f\\secrets.json",
+              "RelativeDocumentMoniker": "main\\UserSecrets\\850e964a-5cbf-45ca-9534-537ca3f4fa8f\\secrets.json",
+              "ToolTip": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\UserSecrets\\850e964a-5cbf-45ca-9534-537ca3f4fa8f\\secrets.json",
+              "RelativeToolTip": "main\\UserSecrets\\850e964a-5cbf-45ca-9534-537ca3f4fa8f\\secrets.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAALAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-09-30T18:16:53.149Z"
             },
             {
               "$type": "Document",
@@ -93,39 +101,14 @@
               "RelativeDocumentMoniker": "main\\Bosch_pedimentos2_xls_mod.cs",
               "ToolTip": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\Bosch_pedimentos2_xls_mod.cs",
               "RelativeToolTip": "main\\Bosch_pedimentos2_xls_mod.cs",
-              "ViewState": "AQIAAA8AAAAAAAAAAAAAABsAAAAQAAAA",
+              "ViewState": "AQIAAC4AAAAAAAAAAAAgwDwAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-24T22:21:58.828Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Bosch_pedimentos2_mod.cs",
-              "DocumentMoniker": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\Bosch_pedimentos2_mod.cs",
-              "RelativeDocumentMoniker": "main\\Bosch_pedimentos2_mod.cs",
-              "ToolTip": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\Bosch_pedimentos2_mod.cs",
-              "RelativeToolTip": "main\\Bosch_pedimentos2_mod.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-12T21:52:52.694Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "web_fondo_fijo_mod.cs",
-              "DocumentMoniker": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\web_fondo_fijo_mod.cs",
-              "RelativeDocumentMoniker": "main\\web_fondo_fijo_mod.cs",
-              "ToolTip": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\web_fondo_fijo_mod.cs",
-              "RelativeToolTip": "main\\web_fondo_fijo_mod.cs",
-              "ViewState": "AQIAAIoAAAAAAAAAAAAAAJUAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-24T21:52:46.226Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 5,
               "Title": "trading_genera_GSK_mod.cs",
               "DocumentMoniker": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\trading_genera_GSK_mod.cs",
               "RelativeDocumentMoniker": "main\\trading_genera_GSK_mod.cs",
@@ -137,57 +120,67 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "web_transmision_edocs_bosch.cs",
               "DocumentMoniker": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\web_transmision_edocs_bosch.cs",
               "RelativeDocumentMoniker": "main\\web_transmision_edocs_bosch.cs",
               "ToolTip": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\web_transmision_edocs_bosch.cs",
               "RelativeToolTip": "main\\web_transmision_edocs_bosch.cs",
-              "ViewState": "AQIAAM8AAAAAAAAAAAAowNAAAAATAAAA",
+              "ViewState": "AQIAAKAAAAAAAAAAAAAgwNAAAAATAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-30T23:56:03.707Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-30T23:56:03.707Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "web_indice_cal_bosch.cs",
               "DocumentMoniker": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\web_indice_cal_bosch.cs",
               "RelativeDocumentMoniker": "main\\web_indice_cal_bosch.cs",
               "ToolTip": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\web_indice_cal_bosch.cs",
               "RelativeToolTip": "main\\web_indice_cal_bosch.cs",
-              "ViewState": "AQIAAD0AAAAAAAAAAAAAAFUAAAAoAAAA",
+              "ViewState": "AQIAAGoAAAAAAAAAAAAAAIEAAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-12T16:25:00.251Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-12T16:25:00.251Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "secrets.json",
-              "DocumentMoniker": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\UserSecrets\\850e964a-5cbf-45ca-9534-537ca3f4fa8f\\secrets.json",
-              "RelativeDocumentMoniker": "main\\UserSecrets\\850e964a-5cbf-45ca-9534-537ca3f4fa8f\\secrets.json",
-              "ToolTip": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\UserSecrets\\850e964a-5cbf-45ca-9534-537ca3f4fa8f\\secrets.json",
-              "RelativeToolTip": "main\\UserSecrets\\850e964a-5cbf-45ca-9534-537ca3f4fa8f\\secrets.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-09-25T17:42:29.752Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\Program.cs",
               "RelativeDocumentMoniker": "main\\Program.cs",
               "ToolTip": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\Program.cs",
               "RelativeToolTip": "main\\Program.cs",
-              "ViewState": "AQIAAJUBAAAAAAAAAAAAAKQBAABkAAAA",
+              "ViewState": "AQIAAJMBAAAAAAAAAAAmwK8BAAAWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-30T16:55:35.323Z"
             },
             {
               "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "web_fondo_fijo_mod.cs",
+              "DocumentMoniker": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\web_fondo_fijo_mod.cs",
+              "RelativeDocumentMoniker": "main\\web_fondo_fijo_mod.cs",
+              "ToolTip": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\web_fondo_fijo_mod.cs",
+              "RelativeToolTip": "main\\web_fondo_fijo_mod.cs",
+              "ViewState": "AQIAAIoAAAAAAAAAAAAAAJUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-24T21:52:46.226Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 8,
+              "Title": "Bosch_pedimentos2_mod.cs",
+              "DocumentMoniker": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\Bosch_pedimentos2_mod.cs",
+              "RelativeDocumentMoniker": "main\\Bosch_pedimentos2_mod.cs",
+              "ToolTip": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\Bosch_pedimentos2_mod.cs",
+              "RelativeToolTip": "main\\Bosch_pedimentos2_mod.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-12T21:52:52.694Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "Utilerias.cs",
               "DocumentMoniker": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\Utilerias.cs",
               "RelativeDocumentMoniker": "main\\Utilerias.cs",
@@ -199,7 +192,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "Excel.cs",
               "DocumentMoniker": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\Excel.cs",
               "RelativeDocumentMoniker": "main\\Excel.cs",
@@ -235,7 +228,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "envio_correo.cs",
               "DocumentMoniker": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\envio_correo.cs",
               "RelativeDocumentMoniker": "main\\envio_correo.cs",
@@ -244,18 +237,6 @@
               "ViewState": "AQIAAEYBAAAAAAAAAAAAAEIBAABJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-11T15:38:19.059Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "secrets.json",
-              "DocumentMoniker": "C:\\Users\\usuario\\AppData\\Roaming\\Microsoft\\UserSecrets\\850e964a-5cbf-45ca-9534-537ca3f4fa8f\\secrets.json",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\Users\\usuario\\AppData\\Roaming\\Microsoft\\UserSecrets\\850e964a-5cbf-45ca-9534-537ca3f4fa8f\\secrets.json",
-              "ToolTip": "C:\\Users\\usuario\\AppData\\Roaming\\Microsoft\\UserSecrets\\850e964a-5cbf-45ca-9534-537ca3f4fa8f\\secrets.json",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\Users\\usuario\\AppData\\Roaming\\Microsoft\\UserSecrets\\850e964a-5cbf-45ca-9534-537ca3f4fa8f\\secrets.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-07-10T21:53:30.134Z"
             }
           ]
         },
