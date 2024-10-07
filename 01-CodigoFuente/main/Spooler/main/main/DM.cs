@@ -8,20 +8,35 @@ namespace serverreports;
 internal class DM
 {
     Utilerias util = new Utilerias();
-
-    private string conecBD()
+    OracleConnection? cnn;
+    private string conecBD(int? Usr = 0)
     {
-        var orfeo = "Error";
+        string orfeo = "Error";
         try
         {
             var configuration = new ConfigurationBuilder()
-                                              .AddUserSecrets(Assembly.GetExecutingAssembly())
-                                              .Build();
+                                          .AddUserSecrets(Assembly.GetExecutingAssembly())
+                                             .Build();
+            switch (Usr)
+            {
+                case 0:
+                    orfeo = configuration["USR_GLOBAL"];
+                    break;
+                case 1:
+                    orfeo = configuration["USR_COEX"];
+                    break;
+                case 2:
+                    orfeo = configuration["USR_DIST"];
+                    break;
+
+            }
             //orfeo = configuration["Orfeo2"];
-            orfeo = configuration["ORFEODES"];
             // toma el valor de app.config
             //  orfeo = ConfigurationManager.ConnectionStrings["Orfeo2"].ToString();
             //  orfeo = ConfigurationManager.ConnectionStrings["ORFEODES"].ToString();
+
+            // toma el valor de app.config
+            //orfeo = ConfigurationManager.ConnectionStrings["ORFEODES2"].ToString();
         }
         catch (Exception ex)
         {
@@ -30,30 +45,39 @@ internal class DM
         return orfeo;
     }
 
-    public DataTable datos(string SQL)
+
+    public DataTable datos(string SQL, int? Usr = 0, int? store = 0)
     {
+
         DataTable dtTemp = new DataTable();
-        OracleConnection cnn = new OracleConnection(conecBD());
+        cnn = new OracleConnection(conecBD((int)Usr));
         try
         {
             using (cnn)
             {
                 cnn.Open();
+
                 if ((cnn.State) > 0)
                 {
-                    OracleCommand cmd = new OracleCommand(SQL, cnn);
-                    OracleDataAdapter da = new OracleDataAdapter(cmd);
-                    da.Fill(dtTemp);
-                    cnn.Close();
+
+                    if (store == 0)
+                    {
+                        OracleCommand cmd = new OracleCommand(SQL, cnn);
+                        OracleDataAdapter da = new OracleDataAdapter(cmd);
+                        da.Fill(dtTemp);
+                        cnn.Close();
+                    }
                 }
+
             }
         }
         catch (Exception ex)
         {
+
             if (ex.HResult == -2147467261)
                 Console.WriteLine("No Existe la carpeta UserScrets " + ex.HResult);
             else
-                Console.WriteLine(ex.Message + " -var conex *" + conecBD() + "* " + ex.HResult);
+                Console.WriteLine(ex.Message + " -var conex *" + conecBD() + " * " + SQL + " * " + ex.HResult);
         }
         return dtTemp;
     }
@@ -313,21 +337,20 @@ internal class DM
 
                     par_st[1, 0] = "i";
                     par_st[1, 1] = "i";
-                    par_st[1, 2] = "p_Parametro1";
+                    //par_st[1, 2] = "p_Parametro1";
+                    par_st[1, 2] = "p_Parametro_Valida";
                     par_st[1, 3] = addsq;
 
-                    datos_spr.sql = "SC_RS.SPG_RS_COEX.P_OBTEN_DATOS_REPORTE_1";
+                    datos_spr.sql = "SC_RS.SPG_RS_GRL.P_DAT_DETALLE_REPORTE";
+                    //datos_spr.sql = "SC_RS.SPG_RS_COEX.P_OBTEN_DATOS_REPORTE_1 ";
 
+                    //datos_spr.sql = "SC_DIST.SPG_RS_COEX.P_OBTEN_DATOS_REPORTE_1 ";
                     //datos_spr = datos_sp([datos_spr.sql], vs, null, null, null, null, null, null, id_cron.ToString(), addsq);
                     datos_spr = datos_sp([datos_spr.sql], par_st, vs);
+
                     dtTemp.tb = datos_spr.tb;
                     break;
                 case "main_mail_contact":
-                    /*
-                    datos_spr.sql = "SC_DIST.SPG_RS_COEX.P_OBTEN_DATOS_CORREO ";
-                    datos_spr = datos_sp([datos_spr.sql], vs, null, null, null, null, null, null, id_cron.ToString());
-                    dtTemp.tb = datos_spr.tb;
-                    */
                     par_st = new string[4, 4];
                     par_st[0, 0] = "i";
                     par_st[0, 1] = "i";
@@ -350,7 +373,9 @@ internal class DM
 
 
 
-                    datos_spr.sql = "SC_RS.SPG_RS_COEX.P_OBTEN_DATOS_CORREO ";
+                    datos_spr.sql = "SC_RS.SPG_RS_GRL.P_DAT_CORREOS_REPORTE";
+                    //datos_spr.sql = "SC_RS.SPG_RS_COEX.P_OBTEN_DATOS_CORREO";
+                    //datos_spr.sql = "SC_DIST.SPG_RS_COEX.P_OBTEN_DATOS_CORREO ";
                     //datos_spr = datos_sp([datos_spr.sql], vs, null, null, null, null, null, null, id_cron.ToString());
                     datos_spr = datos_sp([datos_spr.sql], par_st, vs);
                     dtTemp.tb = datos_spr.tb;
@@ -362,7 +387,7 @@ internal class DM
                     par_st = new string[5, 4];
                     par_st[0, 0] = "i";
                     par_st[0, 1] = "i";
-                    par_st[0, 2] = "p_Reporte_Id";
+                    par_st[0, 2] = "p_Reporte_ID";
                     par_st[0, 3] = id_cron.ToString();
 
                     par_st[1, 0] = "i";
@@ -372,7 +397,7 @@ internal class DM
 
                     par_st[2, 0] = "o";
                     par_st[2, 1] = "c";
-                    par_st[2, 2] = "p_Cur_GSK";
+                    par_st[2, 2] = "p_Cur_Confirmacion";
 
                     par_st[3, 0] = "o";
                     par_st[3, 1] = "v";
@@ -383,17 +408,16 @@ internal class DM
                     par_st[4, 1] = "i";
                     par_st[4, 2] = "p_Codigo_Error";
                     par_st[4, 3] = "cod";
+
+
+
                     datos_spr.sql = " SC_RS.SPG_RS_COEX.P_VALIDA_CONFIRMACION_2";
-                    datos_spr = datos_sp([datos_spr.sql], par_st, vs);
+                    //datos_spr.sql = " SC_DIST.SPG_RS_COEX.P_VALIDA_CONFIRMACION_2";
                     //datos_spr = datos_sp([datos_spr.sql], vs, null, null, null, null, null, null, id_cron, null, null, fecha);
+                    datos_spr = datos_sp([datos_spr.sql], par_st, vs);
                     dtTemp.tb = datos_spr.tb;
                     break;
                 case "main_datos_rep":
-                    /*
-                    datos_spr.sql = "SC_DIST.SPG_RS_COEX.P_OBTEN_DATOS_REPORTE_2";
-                    datos_spr = datos_sp([datos_spr.sql], vs, null, null, null, null, null, null, id_cron.ToString());
-                    dtTemp.tb = datos_spr.tb;
-                    */
                     par_st = new string[4, 4];
                     par_st[0, 0] = "i";
                     par_st[0, 1] = "i";
@@ -402,7 +426,7 @@ internal class DM
 
                     par_st[1, 0] = "o";
                     par_st[1, 1] = "c";
-                    par_st[1, 2] = "p_Cur_Datos_Correo";
+                    par_st[1, 2] = "p_Cur_Datos_Reporte";
 
                     par_st[2, 0] = "o";
                     par_st[2, 1] = "v";
@@ -415,7 +439,10 @@ internal class DM
                     par_st[3, 3] = "cod";
 
 
+                    
                     datos_spr.sql = "SC_RS.SPG_RS_COEX.P_OBTEN_DATOS_REPORTE_2";
+                    //datos_spr.sql = "SC_DIST.SPG_RS_COEX.P_OBTEN_DATOS_REPORTE_2";
+                    //datos_spr = datos_sp([datos_spr.sql], vs, null, null, null, null, null, null, id_cron.ToString());
                     datos_spr = datos_sp([datos_spr.sql], par_st, vs);
                     dtTemp.tb = datos_spr.tb;
                     break;
@@ -445,19 +472,15 @@ internal class DM
                     par_st[4, 1] = "i";
                     par_st[4, 2] = "p_Codigo_Error";
                     par_st[4, 3] = "cod";
-
+                    
                     datos_spr.sql = "SC_RS.SPG_RS_COEX.P_VALIDA_DIA_LIBRE";
-                    datos_spr = datos_sp([datos_spr.sql, "1"], par_st, vs);
+                    //datos_spr.sql = "SC_DIST.SPG_RS_COEX.P_VALIDA_DIA_LIBRE";
                     //datos_spr = datos_sp([datos_spr.sql, "1"], vs, cliente, null, null, null, null, null, null, null, fecha);
+                    datos_spr = datos_sp([datos_spr.sql, "1"], par_st, vs);
                     dtTemp.val = datos_spr.sql;
 
                     break;
                 case "confirmacion4":
-
-                    /*
-                    datos_spr.sql = "SC_DIST.SPG_RS_COEX.P_VALIDA_CONFIRMACION_4";
-                    datos_spr = datos_sp([datos_spr.sql, "1"], vs, null, null, null, null, null, null, id_cron, null, null, fecha);
-                    dtTemp.val = datos_spr.sql;*/
                     par_st = new string[5, 4];
                     par_st[0, 0] = "i";
                     par_st[0, 1] = "i";
@@ -484,7 +507,10 @@ internal class DM
                     par_st[4, 2] = "p_Codigo_Error";
                     par_st[4, 3] = "cod";
 
+
+
                     datos_spr.sql = "SC_RS.SPG_RS_COEX.P_VALIDA_CONFIRMACION_4";
+                    //datos_spr.sql = "SC_DIST.SPG_RS_COEX.P_VALIDA_CONFIRMACION_4";
                     //((datos_spr = datos_sp([datos_spr.sql, "1"], vs, null, null, null, null, null, null, id_cron, null, null, fecha);
                     datos_spr = datos_sp([datos_spr.sql, "1"], par_st, vs);
                     dtTemp.val = datos_spr.sql;
