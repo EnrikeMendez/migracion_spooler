@@ -51,7 +51,7 @@ string param_string = "";
 string dest_mail = "";
 string MiComando = "";
 string fecha_1_intervalo = "";
-string[,] parins = new string[13, 2];
+string[,] parins = new string[14, 2];
 string[] contmail;
 DataTable trep_cron = new DataTable();
 DataTable tdato_repor = new DataTable();
@@ -316,12 +316,6 @@ try
         servidor = "http://www.logiscomercioexterior.com.mx";
         Console.WriteLine("valor servidor:" + servidor);
         // Carpeta = "C:\\Users\\usuario\\Desktop\\Raul\\prueba1";
-        if (!Directory.Exists(Carpeta))
-        {
-            Directory.CreateDirectory(Carpeta);
-            Console.WriteLine("carpeta creada :" + Carpeta);
-        }
-        else Console.WriteLine("La carpeta existe.." + Carpeta);
 
         parins[0, 0] = "DEST_MAIL";
         parins[0, 1] = dest_mail;
@@ -349,6 +343,8 @@ try
         parins[11, 1] = second_path;
         parins[12, 0] = "Path_file";
         parins[12, 1] = Carpeta;
+        parins[13, 0] = "usr_bd";
+        parins[13, 1] = "1";
 
         //web_transmision_edocs_bosch edocs_bosch = new web_transmision_edocs_bosch();
         //edocs_bosch.transmision_edocs_bosch(Carpeta, tab_archivos[0], util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), visible_sql);
@@ -473,10 +469,10 @@ try
     Console.WriteLine("Error es necesario especifica los parametros \n 1. Falta numero reporte: ''{0}'' \n 2. valor tipo de reporte: {1} " + msg, rep_id, reporte_temporal);
 
  Console.WriteLine("Oprimar cualquier tecla para terminar");
- trep_cron.Clear();
- tdato_repor.Clear();
- tnum_param.Clear();
- tmail_contact.Clear();
+ trep_cron.Dispose();
+ tdato_repor.Dispose();
+ tnum_param.Dispose();
+ tmail_contact.Dispose();
  Console.ReadKey();
 }
 catch (Exception e)

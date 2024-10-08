@@ -88,7 +88,7 @@ namespace serverreports
                     par_st[5, 3] = imp_exp;
 
 
-                    datos_sp = DM.datos_sp([datos_sp.sql], par_st, visible_sql);
+                    datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(parins[13, 1]), visible_sql);
                     Console.WriteLine(" Mensaje store :" + datos_sp.msg);
                     Console.WriteLine(" Codigo store :" + datos_sp.codigo);
                     LisDT[0] = datos_sp.tb;
@@ -115,7 +115,7 @@ namespace serverreports
                     par_st[5, 2] = "p_Tipo_Op";
                     par_st[5, 3] = "2";
 
-                    datos_sp = DM.datos_sp([datos_sp.sql], par_st, visible_sql);
+                    datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(parins[13, 1]), visible_sql);
                     LisDT[0] = datos_sp.tb;
                     LisDT_tit[0] = "Exportación";
                     Console.WriteLine(" Mensaje store :" + datos_sp.msg);
@@ -135,7 +135,7 @@ namespace serverreports
                     par_st[5, 2] = "p_Tipo_Op";
                     par_st[5, 3] = "1";
                     //datos_sp = DM.datos_sp([datos_sp.sql], visible_sql, Clientes, Fecha_1, Fecha_2, "null", tipo_doc, "1");
-                    datos_sp = DM.datos_sp([datos_sp.sql], par_st, visible_sql);
+                    datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(parins[13, 1]), visible_sql);
                     LisDT[1] = datos_sp.tb;
 
                     LisDT_tit[1] = "Importación";

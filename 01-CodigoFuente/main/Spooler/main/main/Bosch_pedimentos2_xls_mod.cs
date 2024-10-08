@@ -65,7 +65,7 @@ namespace serverreports
             par_st[6, 2] = "p_CODIGO_ERROR";
             par_st[6, 3] = "cod";
             datos_sp.sql = "SC_RS.SPG_RS_COEX_PEDIMENTOS_BOSCH.P_DAT_FOLIOS_RECTIFICACION ";
-            datos_sp = DM.datos_sp([datos_sp.sql], par_st, visible_sql);
+            datos_sp = DM.datos_sp([datos_sp.sql], par_st,1, visible_sql);
             LisDT[0] = datos_sp.tb;
             Console.WriteLine(util.Tdetalle(LisDT[0]));
             inf.LisDT_tit = LisDT_tit;
