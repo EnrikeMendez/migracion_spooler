@@ -119,7 +119,7 @@ namespace serverreports
                 par_st[0, 2] = "p_Tipo_Aduana";
                 par_st[0, 3] = "A";
 
-                datos_sp = DM.datos_sp([datos_sp.sql], par_st, visible_sql);
+                datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(parins[13, 1]), visible_sql);
                 LisDT[z] = datos_sp.tb;
                 Console.WriteLine(util.Tdetalle(LisDT[z]));
                 LisDT[z] = util.Tdetalle_regtot(LisDT[z], 1, 0, 1, 0, 1); //porcentaje           
@@ -130,7 +130,7 @@ namespace serverreports
                 Console.WriteLine(util.Tdetalle(LisDT[z]));                
                 z++; 
                 par_st[0, 3] = "M";
-                datos_sp = DM.datos_sp([datos_sp.sql], par_st, visible_sql);
+                datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(parins[13, 1]), visible_sql);
                 LisDT[z] = datos_sp.tb;
                 Console.WriteLine(util.Tdetalle(LisDT[z]));
                 LisDT[z] = util.Tdetalle_regtot(LisDT[z], 1, 0, 1, 0, 1); //porcentaje
@@ -143,7 +143,7 @@ namespace serverreports
                 Console.WriteLine(util.Tdetalle(LisDT[z]));
                 z++;
                 par_st[0, 3] = "T";
-                datos_sp = DM.datos_sp([datos_sp.sql], par_st, visible_sql);
+                datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(parins[13, 1]), visible_sql);
                 LisDT[z] = datos_sp.tb;
                 Console.WriteLine(util.Tdetalle(LisDT[z]));
                 LisDT[z] = util.Tdetalle_regtot(LisDT[z], 1, 0, 1, 0, 1); //porcentaje

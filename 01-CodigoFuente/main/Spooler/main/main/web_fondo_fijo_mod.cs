@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Data;
-using System.Text;
-using System.Threading.Tasks;
-using DocumentFormat.OpenXml.EMMA;
-using DocumentFormat.OpenXml.Vml;
+﻿using System.Data;
 
 namespace serverreports
 {
@@ -23,7 +16,7 @@ namespace serverreports
             (string? codigo, string? msg, string? sql, DataTable? tb) datos_sp;
             string arch = file_name[0, 0];
             string[,] par_st;
-            dttmp = DM.sc_reportes_gen_rep_clave(vs);
+            dttmp = DM.sc_reportes_gen_rep_clave(Convert.ToInt32(parins[13, 1]), vs);
             string rep_clave = util.Tcampo(dttmp, "GEN_REP_CLAVE");
             dttmp.Dispose();
             if (rep_clave == "")
@@ -65,7 +58,7 @@ namespace serverreports
             par_st[5, 3] = "cod";
 
             datos_sp.sql = "SC_RS.SPG_RS_COEX_DAF_REPORTES.P_DAT_FONDO_FIJO";
-            datos_sp = DM.datos_sp([datos_sp.sql], par_st, vs);
+            datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(parins[13, 1]), vs);
             LisDT[0] = datos_sp.tb;
             LisDT_tit[0, 0] = "Fondo Fijo";
             inf.LisDT_tit = LisDT_tit;
@@ -73,7 +66,7 @@ namespace serverreports
             inf.arch = arch;
             return inf;
         }
-        public string Fondo_fijo_ant(string Archivo, string Empresa, string Divisa,  string[,] parins, string[] contacmail, int vs)
+        public string Fondo_fijo_ant(string Archivo, string Empresa, string Divisa, string[,] parins, string[] contacmail, int vs)
         {
             DataTable dttmp = new DataTable();
             DM DM = new DM();
@@ -95,9 +88,9 @@ namespace serverreports
             par_st[2, 0] = "i";
             par_st[2, 1] = "i";
             par_st[2, 2] = "pemp";
-         //   par_st[2, 3] = "55";
+            //   par_st[2, 3] = "55";
             par_st[2, 3] = Empresa;
-            
+
             par_st[3, 0] = "i";
             par_st[3, 1] = "v";
             par_st[3, 2] = "pdiv";
@@ -116,8 +109,8 @@ namespace serverreports
             par_st[1, 0] = "i";
             par_st[1, 1] = "v";
             par_st[1, 2] = "prep_clave";
-             par_st[1, 3] = "2397C";
-           // par_st[1, 3] = rep_clave;
+            par_st[1, 3] = "2397C";
+            // par_st[1, 3] = rep_clave;
 
             datos_sp.sql = "LOGIS.SC_REPORTES.FONDO_FIJO";
             datos_sp = DM.datos_sp([datos_sp.sql, "1"], par_st, vs);

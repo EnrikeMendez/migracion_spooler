@@ -17,7 +17,7 @@ namespace serverreports
             var configuration = new ConfigurationBuilder()
                                               .AddUserSecrets(Assembly.GetExecutingAssembly())
                                               .Build();
-            correo_p = configuration["us_mail"] + "|" + configuration["pwd_mail"];
+            correo_p = configuration["us_mail2"] + "|" + configuration["pwd_mail2"];
             // toma el valor de app.config
             //correo_p = ConfigurationManager.AppSettings["us_mail"]+ "|"+ ConfigurationManager.AppSettings["pwd_mail"];
             return correo_p;
@@ -69,8 +69,8 @@ namespace serverreports
                     //correo.CC.Add(cc[i]);
                 }
                 
-                //using (SmtpClient servidor = new SmtpClient("smtp.gmail.com", 587)) 
-                using (SmtpClient servidor = new SmtpClient("smtp.office365.com", 587))
+                using (SmtpClient servidor = new SmtpClient("smtp.gmail.com", 587))
+                //using (SmtpClient servidor = new SmtpClient("smtp.office365.com", 587))
                 {
                     servidor.EnableSsl = true;
                     servidor.Credentials = new System.Net.NetworkCredential(dat_mail[0], dat_mail[1]);
