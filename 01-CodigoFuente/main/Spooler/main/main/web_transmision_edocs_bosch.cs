@@ -266,14 +266,11 @@ namespace serverreports
             {
                 LisDT = new DataTable[2];
                 LisDT_tit = new string[2];
-                //Console.WriteLine("/********tipo 2***/////////");
                 LisDT[0] = DM.datos(DM.transmision_edocs_bosch(Clientes, Fecha_1, Fecha_2, "", tipo_doc, "2", visible_sql));
                 LisDT_tit[0] = "Exportación";
-                // Console.WriteLine(util.Tdetalle(LisDT[0]));
-                //Console.WriteLine("/********tipo 1***/////////");
                 LisDT[1] = DM.datos(DM.transmision_edocs_bosch(Clientes, Fecha_1, Fecha_2, "", tipo_doc, "1", visible_sql));
                 LisDT_tit[1] = "Importación";
-                //Console.WriteLine(util.Tdetalle(LisDT[1]));
+             
                 xlsx.CrearExcel_file(LisDT, LisDT_tit, Carpeta + file_name, 1);
             }
             for (int i = 0; i < LisDT.Length; i++)

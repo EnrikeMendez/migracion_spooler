@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using DocumentFormat.OpenXml.Spreadsheet;
 using ClosedXML.Excel;
 using SpreadsheetLight.Charts;
+using DocumentFormat.OpenXml.Bibliography;
 
 namespace serverreports
 {
@@ -201,7 +202,13 @@ namespace serverreports
                             enc_hh = enc[1];
                         }
                         */
-                        enc = tit[i, 0].Split("|");
+                        if (tit[i, 0] == null)
+                        {
+                            enc = new string[1];
+                            enc[0] = "NA";
+                        }
+                        else
+                            enc = tit[i, 0].Split("|");
                         enc_h = enc[0];
                         row = LisDT[i].Rows.Count;
                         if (enc.Length > 1)

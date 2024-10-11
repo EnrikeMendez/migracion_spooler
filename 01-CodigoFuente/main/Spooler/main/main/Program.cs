@@ -61,8 +61,6 @@ DataTable tconfirmacion2 = new DataTable();
 try
 {
 
-
-
  Utilerias util = new Utilerias();
  DM DM = new DM();
     (string[,]? LisDT_tit, DataTable[]? LisDT, string? arch) inf;
@@ -81,12 +79,9 @@ try
 
  if (rep_id != 1)
  {
-    trep_cron = DM.Main_rep("main_rp_cron", rep_id.ToString(), visible_sql,  reporte_temporal.ToString()).tb;
-    
-
+    trep_cron = DM.Main_rep("main_rp_cron", rep_id.ToString(), visible_sql,  reporte_temporal.ToString()).tb;   
         if (trep_cron.Rows.Count > 0)
-        sw_cron = 1;
-       
+        sw_cron = 1;      
  }
  else
    Console.WriteLine("Falta el numero del reporte.....");
@@ -97,7 +92,7 @@ try
         Console.WriteLine("****************************");
         Console.WriteLine("ID_CRON =" + rep_id);
         Console.WriteLine("reporte_temporal =" + reporte_temporal);
-        Console.WriteLine(util.Tdetalle(trep_cron));
+     //   Console.WriteLine(util.Tdetalle(trep_cron));
         //   util.CrearZip();
         // util.CrearZip2("C:\\pc\\file2.xlsx", ["C:\\pc\\file.xlsx", "C:\\pc\\prueba_adj.txt"], "C:\\pc");
         // Excel xlsx = new Excel();
@@ -207,9 +202,9 @@ try
         {
             tmail_contact = DM.Main_rep("main_mail_contact", rep_id.ToString(), visible_sql).tb;
             //proceso de envio de correo
-            Console.WriteLine("************** SQL contactos **************");
+         /*   Console.WriteLine("************** SQL contactos **************");
             Console.WriteLine(util.Tdetalle(tmail_contact));
-
+         */
             string tema = "Error generacion de : " + util.Tcampo(tmail_contact, "NAME");
             string contactos = util.listTcampo(tmail_contact, "mail", ";");
             contactos = contactos + mail_grupo_error[0];
@@ -233,8 +228,6 @@ try
             Errror = DM.ejecuta_sql("update rep_chron set in_progress=0 where id_rapport= '" + rep_id + "'");
         }
 
-
-
         //////*******  Parametros *********////////////////////
 
         tnum_param = DM.Main_rep("main_num_param", rep_id.ToString(), visible_sql).tb;
@@ -245,8 +238,9 @@ try
         Console.WriteLine("Parametros : " + util.arma_param("REP.PARAM_", num_of_param));
 
         tdato_repor = DM.Main_rep("main_datos_rep", rep_id.ToString(), visible_sql, util.arma_param("REP.PARAM_", num_of_param)).tb;
-        Console.WriteLine("************** datos repore **************");
+       /* Console.WriteLine("************** datos repore **************");
         Console.WriteLine(util.Tdetalle(tdato_repor));
+       */
         ///////////////////////////////////////
         if (tdato_repor.Rows.Count > 0)
         {
@@ -279,8 +273,7 @@ try
         tab_archivos[0, 0] = file_name;
         tab_archivos[1, 0] = reporte_name;
         tab_archivos[4, 0] = "1";
-
-
+        /*
         Console.WriteLine("valor ''dest_mail   '':" + dest_mail);
         Console.WriteLine("valor ''param_string'':" + param_string);
         Console.WriteLine("valor ''reporte_name'':" + reporte_name);
@@ -300,7 +293,7 @@ try
         Console.WriteLine("valor ''FECHA_2'':" + FECHA_2);
 
         Console.WriteLine("valor ''filter_file_name     '' " + util.filter_file_name(file_name, FECHA_1, FECHA_2));
-
+        */
         //servidor = "http://" & Trim(Split(Get_IP(), "-")(0))
         servidor = "http://" + Get_IP;
 
@@ -424,6 +417,8 @@ try
                 //5335530
                 Bosch_pedimentos2_xls_mod Bosch_Pedimentos2_xls = new Bosch_pedimentos2_xls_mod();
                 inf = Bosch_Pedimentos2_xls.Bosch_Pedimentos2_xls(Carpeta, tab_archivos, FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), parins,   visible_sql);
+                arch = xlsx.CrearExcel_filen(inf.LisDT, inf.LisDT_tit, Carpeta + "\\" + inf.arch + ".xlsx", null, null, 1, 0);
+                encorr = 1;
                 break;
         }
         if (encorr >0)
@@ -486,7 +481,6 @@ tdato_repor.Dispose();
 tnum_param.Dispose();
 tmail_contact.Dispose();
 tconfirmacion2.Dispose();
-
 
 void init_var()
 {

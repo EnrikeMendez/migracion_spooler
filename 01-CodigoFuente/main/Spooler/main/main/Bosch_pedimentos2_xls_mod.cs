@@ -8,11 +8,7 @@ namespace serverreports
             (string Carpeta, string[,] file_name, string Fecha_1, string Fecha_2, string Clientes, string Planta, string imp_exp, string[,] parins, int visible_sql)
         {
             //5071980
-            Utilerias util = new Utilerias();
-            envio_correo correo = new envio_correo();
             DM DM = new DM();
-
-            Excel xlsx = new Excel();
             string[,] tab_impexp;
             DataTable[] LisDT = new DataTable[3];
             string[,] LisDT_tit = new string[3, 2]; ;
@@ -30,7 +26,7 @@ namespace serverreports
             par_st[0, 1] = "i";
             par_st[0, 2] = "p_CLIENTE";
             //par_st[0, 3] = Clientes;
-             par_st[0, 3] = "23386";
+            par_st[0, 3] = "23386";
 
             par_st[1, 0] = "i";
             par_st[1, 1] = "i";
@@ -66,7 +62,6 @@ namespace serverreports
             datos_sp.sql = "SC_RS.SPG_RS_COEX_PEDIMENTOS_BOSCH.P_DAT_FOLIOS_RECTIFICACION ";
             datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(parins[13, 1]), visible_sql);
             LisDT[0] = datos_sp.tb;
-            Console.WriteLine(util.Tdetalle(LisDT[0]));
             inf.LisDT_tit = LisDT_tit;
             inf.LisDT = LisDT;
             inf.arch = arch;
@@ -74,4 +69,3 @@ namespace serverreports
         }
     }
 }
- 
