@@ -412,17 +412,18 @@ try
 
                 break;
             case "bosch_pedim2":
-                //207565
+            //case "bosch_pedim3":
+                //5335530
                 Bosch_pedimentos2_mod Bosch_Pedimentos2 = new Bosch_pedimentos2_mod();
                 inf = Bosch_Pedimentos2.Bosch_Pedimentos2(Carpeta, tab_archivos, FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), parins, contmail, visible_sql);
                 encorr = 2;
                 break;
+
             case "bosch_pedim3":
-                //207565
+            //case "bosch_pedim2_xls":
+                //5335530
                 Bosch_pedimentos2_xls_mod Bosch_Pedimentos2_xls = new Bosch_pedimentos2_xls_mod();
                 inf = Bosch_Pedimentos2_xls.Bosch_Pedimentos2_xls(Carpeta, tab_archivos, FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), parins,   visible_sql);
-                //indice_cal_bosch.indice_cal_bosch(Carpeta, tab_archivos[0], FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), visible_sql);
-                //arch = xlsx.CrearExcel_filen(inf.LisDT, inf.LisDT_tit, Carpeta + "\\" + inf.arch + ".xlsx", null, null, 5, 2, 1, 2);
                 break;
         }
         if (encorr >0)
@@ -477,13 +478,16 @@ try
 }
 catch (Exception e)
 {    
-   Console.WriteLine(e.Message +" No. error" + e.HResult);
+ Console.WriteLine(e.Message +" No. error" + e.HResult);
+
 }
 trep_cron.Dispose();
 tdato_repor.Dispose();
 tnum_param.Dispose();
 tmail_contact.Dispose();
 tconfirmacion2.Dispose();
+
+
 void init_var()
 {
     num_of_param = 0;

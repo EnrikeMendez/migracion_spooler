@@ -68,9 +68,8 @@ namespace serverreports
                     //MailAddress ccm = new MailAddress(cc[i]);
                     //correo.CC.Add(cc[i]);
                 }
-                
+                //using (SmtpClient servidor = new SmtpClient("smtp.office365.com", 587))                
                 using (SmtpClient servidor = new SmtpClient("smtp.gmail.com", 587))
-                //using (SmtpClient servidor = new SmtpClient("smtp.office365.com", 587))
                 {
                     servidor.EnableSsl = true;
                     servidor.Credentials = new System.Net.NetworkCredential(dat_mail[0], dat_mail[1]);
@@ -133,7 +132,6 @@ namespace serverreports
             }
 
         }
-
 
         public string display_mail(string servidor, string warning_message, string nombre_reporte, string[,] tab_archivos, int days_deleted, string? adittional_info = "")
         {
@@ -379,7 +377,6 @@ namespace serverreports
          + "</center>\n"
          + "</BODY>\n"
          + "</HTML>";
-
 
             return display_mail;
         }

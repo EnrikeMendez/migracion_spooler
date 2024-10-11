@@ -28,13 +28,11 @@ internal class DM
                 case 2:
                     orfeo = configuration["USR_DIST"];
                     break;
-
             }
             //orfeo = configuration["Orfeo2"];
             // toma el valor de app.config
             //  orfeo = ConfigurationManager.ConnectionStrings["Orfeo2"].ToString();
             //  orfeo = ConfigurationManager.ConnectionStrings["ORFEODES"].ToString();
-
             // toma el valor de app.config
             //orfeo = ConfigurationManager.ConnectionStrings["ORFEODES2"].ToString();
         }
@@ -44,7 +42,6 @@ internal class DM
         }
         return orfeo;
     }
-
 
     public DataTable datos(string SQL, int? Usr = 0, int? store = 0)
     {
@@ -114,7 +111,6 @@ internal class DM
         return dtTemp;
     }
 
-
     public (string, string, string, DataTable) datos_sp(string[] SQL, string[,] rstore, int? urs = 0, int? vs = 0)
     //public (string, string, string, DataTable) datos_sp(string SQL, int? vs = 0, string? Cliente = null, string? Fecha_1 = null, string? Fecha_2 = null, string? impexp = null, string? tipo_doc = null, string? tp = null)
     //public (string, string, string, DataTable) datos_sp(string SQL, int? vs = 0)
@@ -141,7 +137,7 @@ internal class DM
                     cmd.CommandType = CommandType.StoredProcedure;
                     for (int a = 0; a < rstore.GetLength(0); a++)
                     {
-                        if (rstore[a, 0].ToLower()== "i")
+                        if (rstore[a, 0].ToLower() == "i")
                         {
                             switch (rstore[a, 1])
                             {
@@ -208,7 +204,6 @@ internal class DM
         {
             if (ex.HResult == -2147467261)
                 info.Item2 = "No Existe la carpeta UserScrets " + ex.HResult;
-
             info.Item1 = ex.HResult.ToString();
             info.Item2 = info.Item2 + " " + ex.Message + " : " + info.Item3;
             info.Item4 = dtTemp;
@@ -217,9 +212,8 @@ internal class DM
         return info;
     }
 
-
     public (string, string, string, DataTable) datos_sp_A(string[] SQL, int? vs = 0, string? Cliente = null, string? Fecha_1 = null, string? Fecha_2 = null, string? impexp = null, string? tipo_doc = null, string? tp = null, string? id_cron = null, string? param_1 = null, string? Fecha = null, string? frecuencia = null)
-   //public (string, string, string, DataTable) datos_sp(string SQL, int? vs = 0, string? Cliente = null, string? Fecha_1 = null, string? Fecha_2 = null, string? impexp = null, string? tipo_doc = null, string? tp = null)
+    //public (string, string, string, DataTable) datos_sp(string SQL, int? vs = 0, string? Cliente = null, string? Fecha_1 = null, string? Fecha_2 = null, string? impexp = null, string? tipo_doc = null, string? tp = null)
     //public (string, string, string, DataTable) datos_sp(string SQL, int? vs = 0)
     {
         (string?, string?, string?, DataTable?) info;
@@ -254,7 +248,7 @@ internal class DM
                     if (param_1 != null) cmd.Parameters.Add("p_Parametro1", OracleDbType.Varchar2).Value = param_1;
                     if (Fecha != null) cmd.Parameters.Add("p_Fecha", OracleDbType.Varchar2).Value = Fecha;
                     /*parametros de salidad*/
-                    if (SQL.Length > 1)                    {
+                    if (SQL.Length > 1) {
                         string campo_out = "p_Dia_Libre";
                         if (frecuencia == null)
                             cmd.Parameters.Add("p_Dia_Libre", OracleDbType.Int32).Direction = ParameterDirection.Output;
@@ -286,7 +280,6 @@ internal class DM
         {
             if (ex.HResult == -2147467261)
                 info.Item2 = "No Existe la carpeta UserScrets " + ex.HResult;
-
             info.Item1 = ex.HResult.ToString();
             info.Item2 = info.Item2 + " " + ex.Message + " : " + info.Item3;
             info.Item4 = dtTemp;
@@ -295,10 +288,6 @@ internal class DM
         return info;
     }
 
-
-
-
-    
     public (DataTable tb, string val) Main_rep(string nom_proc, string id_cron, int? vs, string? addsq = "", string? cliente = null, string? fecha = null)
     {
         DataTable dtTemp1 = new DataTable();
@@ -345,10 +334,9 @@ internal class DM
                     //datos_spr.sql = "SC_RS.SPG_RS_COEX.P_OBTEN_DATOS_REPORTE_1 ";
                     //datos_spr.sql = "SC_DIST.SPG_RS_COEX.P_OBTEN_DATOS_REPORTE_1 ";
                     //datos_spr = datos_sp([datos_spr.sql], vs, null, null, null, null, null, null, id_cron.ToString(), addsq);
-                    datos_spr = datos_sp([datos_spr.sql], par_st,0, vs);
-
+                    datos_spr = datos_sp([datos_spr.sql], par_st, 0, vs);
                     dtTemp.tb = datos_spr.tb;
-                    break;
+                break;
                 case "main_mail_contact":
                     par_st = new string[4, 4];
                     par_st[0, 0] = "i";
@@ -376,10 +364,10 @@ internal class DM
                     //datos_spr = datos_sp([datos_spr.sql], vs, null, null, null, null, null, null, id_cron.ToString());
                     datos_spr = datos_sp([datos_spr.sql], par_st, vs);
                     dtTemp.tb = datos_spr.tb;
-                    break;
+                break;
                 case "main_num_param":
                     dtTemp.Item1 = datos(main_num_param(id_cron.ToString(), vs));
-                    break;
+                break;
                 case "confirmacion2":
                     par_st = new string[5, 4];
                     par_st[0, 0] = "i";
@@ -410,9 +398,9 @@ internal class DM
                     //datos_spr.sql = " SC_RS.SPG_RS_COEX.P_VALIDA_CONFIRMACION_2";
                     //datos_spr.sql = " SC_DIST.SPG_RS_COEX.P_VALIDA_CONFIRMACION_2";
                     //datos_spr = datos_sp([datos_spr.sql], vs, null, null, null, null, null, null, id_cron, null, null, fecha);
-                    datos_spr = datos_sp([datos_spr.sql], par_st,0, vs);
+                    datos_spr = datos_sp([datos_spr.sql], par_st, 0, vs);
                     dtTemp.tb = datos_spr.tb;
-                    break;
+                break;
                 case "main_datos_rep":
                     par_st = new string[4, 4];
                     par_st[0, 0] = "i";
@@ -438,9 +426,9 @@ internal class DM
                     //datos_spr.sql = "SC_RS.SPG_RS_COEX.P_OBTEN_DATOS_REPORTE_2";
                     //datos_spr.sql = "SC_DIST.SPG_RS_COEX.P_OBTEN_DATOS_REPORTE_2";
                     //datos_spr = datos_sp([datos_spr.sql], vs, null, null, null, null, null, null, id_cron.ToString());
-                    datos_spr = datos_sp([datos_spr.sql], par_st,0, vs);
+                    datos_spr = datos_sp([datos_spr.sql], par_st, 0, vs);
                     dtTemp.tb = datos_spr.tb;
-                    break;
+                break;
                 case "rep_dias_libres":
                     par_st = new string[5, 4];
                     par_st[0, 0] = "i";
@@ -471,10 +459,9 @@ internal class DM
                     //datos_spr.sql = "SC_RS.SPG_RS_COEX.P_VALIDA_DIA_LIBRE";
                     //datos_spr.sql = "SC_DIST.SPG_RS_COEX.P_VALIDA_DIA_LIBRE";
                     //datos_spr = datos_sp([datos_spr.sql, "1"], vs, cliente, null, null, null, null, null, null, null, fecha);
-                    datos_spr = datos_sp([datos_spr.sql, "1"], par_st,0, vs);
+                    datos_spr = datos_sp([datos_spr.sql, "1"], par_st, 0, vs);
                     dtTemp.val = datos_spr.sql;
-
-                    break;
+                break;
                 case "confirmacion4":
                     par_st = new string[5, 4];
                     par_st[0, 0] = "i";
@@ -506,9 +493,9 @@ internal class DM
                     //datos_spr.sql = "SC_RS.SPG_RS_COEX.P_VALIDA_CONFIRMACION_4";
                     //datos_spr.sql = "SC_DIST.SPG_RS_COEX.P_VALIDA_CONFIRMACION_4";
                     //((datos_spr = datos_sp([datos_spr.sql, "1"], vs, null, null, null, null, null, null, id_cron, null, null, fecha);
-                    datos_spr = datos_sp([datos_spr.sql, "1"], par_st,0, vs);
+                    datos_spr = datos_sp([datos_spr.sql, "1"], par_st, 0, vs);
                     dtTemp.val = datos_spr.sql;
-                    break;
+                break;
             }
 
             if ((dtTemp.tb.Rows.Count <= 0) || (datos_spr.codigo != "1"))
@@ -524,12 +511,10 @@ internal class DM
             datos_spr.msg = ex1.Message;
             sw_error = 1;
         }
-
         if (sw_error == 1)
             Console.WriteLine("main " + datos_spr.codigo + " " + datos_spr.msg + " " + datos_spr.sql);
         return dtTemp;
     }
-
 
     public DataTable Main_rep_ant(string nom_proc, string id_cron, int? vs = 0, string? addsq = "")
     {
@@ -660,10 +645,10 @@ internal class DM
         /*return dtTemp*/
     }
 
-    public string ejecuta_sql(string sql, int? vs = 1)
+    public string ejecuta_sql(string sql, int? urs = 0, int? vs = 1)
     {
         string result = "Error conexion";
-        OracleConnection cnn = new OracleConnection(conecBD());
+        OracleConnection cnn = new OracleConnection(conecBD(urs));
         try
         {
             using (cnn)
@@ -690,7 +675,7 @@ internal class DM
         string SQL = "INSERT INTO EMODULOS_USADOS (MODULO, ACCION, INSTANCIA, USUARIO, FECHA) \n" +
                    " VALUES ('" + modulo.Substring(1, 100).Replace("'", "''") + "',\n '" + modulo.Substring(1, 200).Replace("'", "''") + "',\n '" + modulo.Substring(1, 50).Replace("'", "''") + "' "
                    + " ,\n USER, SYSDATE) ";
-        ejecuta_sql(SQL, vs);
+        ejecuta_sql(SQL,0, vs);
     }
 
     public string transmision_edocs_bosch(string Cliente, string Fecha_1, string Fecha_2, string impexp, string tipo_doc, string tp, int? vs = 0)
@@ -944,17 +929,17 @@ internal class DM
                          ", last_conf_date_1 = to_date('" + parins[6, 1] + "', 'mm/dd/yyyy') " +
                          ", last_conf_date_2 = to_date('" + parins[7, 1] + "', 'mm/dd/yyyy') " +
                          "where id_cron= '" + parins[9, 1] + "' ";
-            ejecuta_sql(SQL, vs);
+            ejecuta_sql(SQL, Convert.ToInt32(parins[13, 1]), vs);
             //decir a la tabla rep_chron que esta generado el reporte : ponemos el campo IN_PROGRESS a 0            
             SQL = "update rep_chron set in_progress=0 where id_rapport= '" + parins[9, 1] + "' ";
-            ejecuta_sql(SQL, vs);
+            ejecuta_sql(SQL, Convert.ToInt32(parins[13, 1]), vs);
         }
         else
         {
             //es un reporte generado desde la web o puntual
             //borramos el detalle
             SQL = "delete from rep_detalle_reporte where id_cron= '" + parins[9, 1] + "'";
-            ejecuta_sql(SQL, vs);
+            ejecuta_sql(SQL, Convert.ToInt32(parins[13, 1]), vs);
         }
         return 1;
     }
@@ -988,7 +973,7 @@ internal class DM
             string SQL_02 = "update rep_reporte set TEMP_MENSAJE = NULL " +
                             " , TEMP_MENSAJE_FECHA = NULL " +
                             " where id_rep= '" + parins[9, 1] + "' ";
-            ejecuta_sql(SQL_02, vs);
+            ejecuta_sql(SQL_02, Convert.ToInt32(parins[13, 1]), vs);
         }
         return warning_message;
     }

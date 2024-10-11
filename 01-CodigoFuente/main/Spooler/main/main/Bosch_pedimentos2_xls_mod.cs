@@ -31,13 +31,12 @@ namespace serverreports
             par_st[0, 2] = "p_CLIENTE";
             //par_st[0, 3] = Clientes;
              par_st[0, 3] = "23386";
-            //Console.WriteLine("Cliente * " + Clientes);
+
             par_st[1, 0] = "i";
             par_st[1, 1] = "i";
             par_st[1, 2] = "p_IMP_EXP";
             //par_st[1, 3] = imp_exp;
             par_st[1, 3] = "1";
-            //Console.WriteLine("imp_exp * " + imp_exp);
 
             par_st[2, 0] = "i";
             par_st[2, 1] = "v";
@@ -72,7 +71,6 @@ namespace serverreports
             inf.LisDT = LisDT;
             inf.arch = arch;
             return inf;
-
         }
     }
 }
