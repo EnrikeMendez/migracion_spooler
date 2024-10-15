@@ -1,14 +1,9 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using System.Data;
-using System.Linq.Expressions;
-using System.Net;
-using System.Security.Cryptography;
 using serverreports;
-using static System.Net.Mime.MediaTypeNames;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Data;
 int rep_id = 0;
 int sw_cron = 0;
-int visible_sql =1;
+int visible_sql = 1;
 string msg = "";
 string sqladd = " ,case when (@param=0 and  rep.FRECUENCIA is not null) then logis.display_fecha_confirmacion4(rep.FRECUENCIA, sysdate, sysdate,1)  end fecha  ";
 int reporte_temporal = 0;
@@ -16,7 +11,7 @@ string FECHA_1 = "";
 string FECHA_2 = "";
 int num_of_param = 0;
 ///init_var()
- string Errror = "";
+string Errror = "";
 string cc_mail = "";
 string mail_server = "";
 string mail_footer = "";
@@ -61,30 +56,31 @@ DataTable tconfirmacion2 = new DataTable();
 try
 {
 
- Utilerias util = new Utilerias();
- DM DM = new DM();
+    Utilerias util = new Utilerias();
+    DM DM = new DM();
     (string[,]? LisDT_tit, DataTable[]? LisDT, string? arch) inf;
     Excel xlsx = new Excel();
     envio_correo correo = new envio_correo();
     init_var();
 
     try
- 
-    { string comand = args[0];
-   rep_id = Convert.ToInt32(args[0]); 
-    } 
-   catch (Exception e) { msg = " ¡¡¡error opc de reporte¡¡ No.error" + e.HResult; }
- if (args.Length == 2 && args[1] == "1")
-    reporte_temporal = 1;
 
- if (rep_id != 1)
- {
-    trep_cron = DM.Main_rep("main_rp_cron", rep_id.ToString(), visible_sql,  reporte_temporal.ToString()).tb;   
+    {
+        string comand = args[0];
+        rep_id = Convert.ToInt32(args[0]);
+    }
+    catch (Exception e) { msg = " ¡¡¡error opc de reporte¡¡ No.error" + e.HResult; }
+    if (args.Length == 2 && args[1] == "1")
+        reporte_temporal = 1;
+
+    if (rep_id != 1)
+    {
+        trep_cron = DM.Main_rep("main_rp_cron", rep_id.ToString(), visible_sql, reporte_temporal.ToString()).tb;
         if (trep_cron.Rows.Count > 0)
-        sw_cron = 1;      
- }
- else
-   Console.WriteLine("Falta el numero del reporte.....");
+            sw_cron = 1;
+    }
+    else
+        Console.WriteLine("Falta el numero del reporte.....");
     if (rep_id != 0 && sw_cron == 1)
     {
         Console.WriteLine("****************************");
@@ -92,7 +88,7 @@ try
         Console.WriteLine("****************************");
         Console.WriteLine("ID_CRON =" + rep_id);
         Console.WriteLine("reporte_temporal =" + reporte_temporal);
-     //   Console.WriteLine(util.Tdetalle(trep_cron));
+        //   Console.WriteLine(util.Tdetalle(trep_cron));
         //   util.CrearZip();
         // util.CrearZip2("C:\\pc\\file2.xlsx", ["C:\\pc\\file.xlsx", "C:\\pc\\prueba_adj.txt"], "C:\\pc");
         // Excel xlsx = new Excel();
@@ -202,9 +198,9 @@ try
         {
             tmail_contact = DM.Main_rep("main_mail_contact", rep_id.ToString(), visible_sql).tb;
             //proceso de envio de correo
-         /*   Console.WriteLine("************** SQL contactos **************");
-            Console.WriteLine(util.Tdetalle(tmail_contact));
-         */
+            /*   Console.WriteLine("************** SQL contactos **************");
+               Console.WriteLine(util.Tdetalle(tmail_contact));
+            */
             string tema = "Error generacion de : " + util.Tcampo(tmail_contact, "NAME");
             string contactos = util.listTcampo(tmail_contact, "mail", ";");
             contactos = contactos + mail_grupo_error[0];
@@ -238,9 +234,9 @@ try
         Console.WriteLine("Parametros : " + util.arma_param("REP.PARAM_", num_of_param));
 
         tdato_repor = DM.Main_rep("main_datos_rep", rep_id.ToString(), visible_sql, util.arma_param("REP.PARAM_", num_of_param)).tb;
-       /* Console.WriteLine("************** datos repore **************");
-        Console.WriteLine(util.Tdetalle(tdato_repor));
-       */
+        /* Console.WriteLine("************** datos repore **************");
+         Console.WriteLine(util.Tdetalle(tdato_repor));
+        */
         ///////////////////////////////////////
         if (tdato_repor.Rows.Count > 0)
         {
@@ -398,44 +394,50 @@ try
             case "ind_cal_bosch":
                 //5071980
                 web_indice_cal_bosch indice_cal_bosch = new web_indice_cal_bosch();
-                inf=indice_cal_bosch.indice_cal_bosch(Carpeta, tab_archivos, FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), parins, contmail, visible_sql);
+                inf = indice_cal_bosch.indice_cal_bosch(Carpeta, tab_archivos, FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), parins, contmail, visible_sql);
                 //indice_cal_bosch.indice_cal_bosch(Carpeta, tab_archivos[0], FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), visible_sql);
                 arch = xlsx.CrearExcel_filen(inf.LisDT, inf.LisDT_tit, Carpeta + "\\" + inf.arch + ".xlsx", null, null, 5, 2, 1, 1);
                 encorr = 1;
 
                 break;
             case "bosch_pedim2":
-            //case "bosch_pedim3":
+                //case "bosch_pedim3":
                 //5335530
                 Bosch_pedimentos2_mod Bosch_Pedimentos2 = new Bosch_pedimentos2_mod();
                 inf = Bosch_Pedimentos2.Bosch_Pedimentos2(Carpeta, tab_archivos, FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), parins, contmail, visible_sql);
                 encorr = 2;
                 break;
 
-            case "bosch_pedim3":
-            //case "bosch_pedim2_xls":
+            //case "bosch_pedim3":
+            case "bosch_pedim2_xls":
                 //5335530
                 Bosch_pedimentos2_xls_mod Bosch_Pedimentos2_xls = new Bosch_pedimentos2_xls_mod();
-                inf = Bosch_Pedimentos2_xls.Bosch_Pedimentos2_xls(Carpeta, tab_archivos, FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), parins,   visible_sql);
+                inf = Bosch_Pedimentos2_xls.Bosch_Pedimentos2_xls(Carpeta, tab_archivos, FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), parins, visible_sql);
                 arch = xlsx.CrearExcel_filen(inf.LisDT, inf.LisDT_tit, Carpeta + "\\" + inf.arch + ".xlsx", null, null, 1, 0);
                 encorr = 1;
                 break;
+            case "bosch_pedim3":
+                //5335530                
+                Bosch_pedimentos3_mod Bosch_Pedimentos3 = new Bosch_pedimentos3_mod();
+                inf = Bosch_Pedimentos3.Bosch_Pedimentos3(Carpeta, tab_archivos, "01/09/2004", "09/04/2006", "2478", "1", null, null, parins, visible_sql);
+                //inf = Bosch_Pedimentos3.Bosch_Pedimentos3(Carpeta, tab_archivos, FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")),util.nvl(util.Tcampo(tdato_repor, "PARAM_4")), parins,  visible_sql);
+                break;
         }
-        if (encorr >0)
+        if (encorr > 0)
         {
             string[,] html = new string[6, 1];
             arch = tab_archivos[0, 0];
             if (encorr == 2)
-            { 
+            {
                 arh[0] = Carpeta + "\\" + tab_archivos[0, 0] + ".txt";
                 tab_archivos[0, 0] = tab_archivos[0, 0] + ".txt";
             }
             else
-            { 
+            {
                 arh[0] = Carpeta + "\\" + tab_archivos[0, 0] + ".xlsx";
                 tab_archivos[0, 0] = tab_archivos[0, 0] + ".xlsx";
             }
-                
+
             /*
             arh[0] = Carpeta + "\\" + tab_archivos[0, 0] + ".xlsx";
             arch = tab_archivos[0, 0];
@@ -459,21 +461,21 @@ try
             }
             DM.act_proceso(parins, visible_sql);
             util.borra_arch(arh, Carpeta);
-        }        
+        }
     }
- else
-    Console.WriteLine("Error es necesario especifica los parametros \n 1. Falta numero reporte: ''{0}'' \n 2. valor tipo de reporte: {1} " + msg, rep_id, reporte_temporal);
+    else
+        Console.WriteLine("Error es necesario especifica los parametros \n 1. Falta numero reporte: ''{0}'' \n 2. valor tipo de reporte: {1} " + msg, rep_id, reporte_temporal);
 
- Console.WriteLine("Oprimar cualquier tecla para terminar");
- trep_cron.Dispose();
- tdato_repor.Dispose();
- tnum_param.Dispose();
- tmail_contact.Dispose();
- Console.ReadKey();
+    Console.WriteLine("Oprimar cualquier tecla para terminar");
+    trep_cron.Dispose();
+    tdato_repor.Dispose();
+    tnum_param.Dispose();
+    tmail_contact.Dispose();
+    Console.ReadKey();
 }
 catch (Exception e)
-{    
- Console.WriteLine(e.Message +" No. error" + e.HResult);
+{
+    Console.WriteLine(e.Message + " No. error" + e.HResult);
 
 }
 trep_cron.Dispose();
@@ -522,7 +524,7 @@ void init_var()
     bExit = false;
     string Error = "0";
 }
-void Errman (Exception e)
+void Errman(Exception e)
 {
 
 }
