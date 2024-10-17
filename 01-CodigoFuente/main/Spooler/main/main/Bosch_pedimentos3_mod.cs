@@ -95,6 +95,16 @@ namespace serverreports
             for (int i = 0; i < LisDT[0].Rows.Count; i++)
             {
                 val = "";
+                if (Cliente == "11244, 11248" || Cliente == "11470,11471")
+                {
+                    if (header_R_tmp != util.nvl(LisDT[0].Rows[i]["FOLIO"].ToString()))
+                    {
+                        count_R1 = 0;
+                        imp_R = "";
+                        header_R_tmp = util.nvl(LisDT[0].Rows[i]["FOLIO"].ToString());
+                    }
+                }
+                val = "";
                 if (header_tmp != util.nvl(LisDT[0].Rows[i]["SGECLAVE"].ToString()))
                 {
                     for (int j = 0; j < 10; j++)
@@ -131,13 +141,14 @@ namespace serverreports
                     val = val + util.nvl(LisDT[0].Rows[i]["VALOR_AGREGADO_GAL"].ToString());
                     val = val + util.nvl(LisDT[0].Rows[i]["adicional"].ToString());
                     header_tmp = util.nvl(LisDT[0].Rows[i]["SGECLAVE"].ToString());
+                    //If NVL(rs.Fields("'D'")) <> "" Then
                     elementos.Add(val);
                 }
+                elementos.Add(val);
             }
-            inf.LisDT_tit = LisDT_tit;
+                        inf.LisDT_tit = LisDT_tit;
             inf.LisDT = LisDT;
             inf.arch = "";
-
             return inf;
 
         }
