@@ -3,7 +3,7 @@ using serverreports;
 using System.Data;
 int rep_id = 0;
 int sw_cron = 0;
-int visible_sql = 1;
+int visible_sql = 0;
 string msg = "";
 string sqladd = " ,case when (@param=0 and  rep.FRECUENCIA is not null) then logis.display_fecha_confirmacion4(rep.FRECUENCIA, sysdate, sysdate,1)  end fecha  ";
 int reporte_temporal = 0;
@@ -116,12 +116,12 @@ try
             FECHA_1 = util.Tcampo(trep_cron, "fecha_1");
             FECHA_2 = util.Tcampo(trep_cron, "fecha_2");
         }
-        Console.WriteLine("display_fecha_confirmacion4 :" + FECHA_1 + " :" + FECHA_2);
+        //Console.WriteLine("display_fecha_confirmacion4 :" + FECHA_1 + " :" + FECHA_2);
 
         if (FECHA_1 == FECHA_2)
         {
 
-            Console.WriteLine("************** rep_dias_libres **************");
+          //  Console.WriteLine("************** rep_dias_libres **************");
             string dialib = DM.Main_rep("rep_dias_libres", rep_id.ToString(), visible_sql, reporte_temporal.ToString(), util.Tcampo(trep_cron, "cliente"), FECHA_1).val;
             /*
             string SQL_p = " select 1 from rep_dias_libres \n" +
@@ -130,7 +130,7 @@ try
             // DM.datos(SQL_p);
             Console.WriteLine(SQL_p);
             */
-            Console.WriteLine(" valor dia libre =" + dialib);
+            //Console.WriteLine(" valor dia libre =" + dialib);
             //Por aplicar
             //            if (dialib != "")
             if (dialib != "0")
@@ -155,8 +155,8 @@ try
                           " and check_fecha_confirmacion2('" + util.Tcampo(trep_cron, "FRECUENCIA") + "',conf_date, conf_date_2) = 'ok' \n" +
                           " and trunc(conf_date) +decode(" + util.Tcampo(trep_cron, "FRECUENCIA") + ", 1, 1, 0) <= trunc(sysdate) \n" +
                           "";
-            Console.WriteLine("************** confirma fecha **************");
-            Console.WriteLine(SQL_p2);
+            //Console.WriteLine("************** confirma fecha **************");
+            //Console.WriteLine(SQL_p2);
 
             tconfirmacion2 = DM.Main_rep("confirmacion2", rep_id.ToString(), visible_sql, reporte_temporal.ToString(), null, util.Tcampo(trep_cron, "FRECUENCIA")).tb;
 
@@ -168,15 +168,15 @@ try
              " where  conf.ID_CONF = '" + rep_id + "' \n" +
              " order by to_date(next_fecha, 'mm/dd/yyyy') desc \n";
                 string confirma4 = DM.Main_rep("confirmacion4", rep_id.ToString(), visible_sql, reporte_temporal.ToString(), null, util.Tcampo(trep_cron, "FRECUENCIA")).val;
-                Console.WriteLine(" valor confirma4 =" + confirma4);
+              //  Console.WriteLine(" valor confirma4 =" + confirma4);
 
                 if (confirma4 != "null")
                     mail_error = "agregar valor de " + confirma4;
                 else
                     mail_error = "Ninguna confirmacion llegada.";
             }
-            Console.WriteLine("************** confirma fecha 2**************");
-            Console.WriteLine(SQL_p2);
+            //Console.WriteLine("************** confirma fecha 2**************");
+            //Console.WriteLine(SQL_p2);
         }
 
         /*
@@ -226,12 +226,12 @@ try
 
         //////*******  Parametros *********////////////////////
 
-        tnum_param = DM.Main_rep("main_num_param", rep_id.ToString(), visible_sql).tb;
+      //  tnum_param = DM.Main_rep("main_num_param", rep_id.ToString(), visible_sql).tb;
 
-        try { num_of_param = Convert.ToInt32(util.Tcampo(tnum_param, "NUM_OF_PARAM")); } catch (Exception) { }
-        Console.WriteLine("Numero Parametros : " + num_of_param);
-        util.arma_param("REP.PARAM_", num_of_param);
-        Console.WriteLine("Parametros : " + util.arma_param("REP.PARAM_", num_of_param));
+        //try { num_of_param = Convert.ToInt32(util.Tcampo(tnum_param, "NUM_OF_PARAM")); } catch (Exception) { }
+        //Console.WriteLine("Numero Parametros : " + num_of_param);
+        //util.arma_param("REP.PARAM_", num_of_param);
+        //Console.WriteLine("Parametros : " + util.arma_param("REP.PARAM_", num_of_param));
 
         tdato_repor = DM.Main_rep("main_datos_rep", rep_id.ToString(), visible_sql, util.arma_param("REP.PARAM_", num_of_param)).tb;
         /* Console.WriteLine("************** datos repore **************");
@@ -293,7 +293,7 @@ try
         //servidor = "http://" & Trim(Split(Get_IP(), "-")(0))
         servidor = "http://" + Get_IP;
 
-        Console.WriteLine("valor servidor:" + servidor);
+        //Console.WriteLine("valor servidor:" + servidor);
         //  Carpeta = "C:\\Users\\usuario\\Desktop\\Raul\\prueba";
 
         if (!Directory.Exists(Carpeta))
@@ -303,7 +303,7 @@ try
         //servidor = "http://" & Trim(Split(Get_IP(), "-")(0))
         servidor = "http://" + Get_IP;
         servidor = "http://www.logiscomercioexterior.com.mx";
-        Console.WriteLine("valor servidor:" + servidor);
+        //Console.WriteLine("valor servidor:" + servidor);
         // Carpeta = "C:\\Users\\usuario\\Desktop\\Raul\\prueba1";
 
         parins[0, 0] = "DEST_MAIL";

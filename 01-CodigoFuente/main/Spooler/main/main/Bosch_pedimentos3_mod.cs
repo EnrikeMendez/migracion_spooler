@@ -6,7 +6,6 @@ namespace serverreports
     {
         public (string[,] LisDT_tit, DataTable[] LisDT, string arch) Bosch_Pedimentos3
                    (string Carpeta, string[,] file_name, string Fecha_1, string Fecha_2, string Cliente, string imp_exp, string folios, string mi_sgeclave, string[,] parins, int visible_sql)
-
         {
             //5071980
             int sw_error = 0;
@@ -39,36 +38,30 @@ namespace serverreports
             par_st[0, 2] = "p_CLIENTE";
             par_st[0, 3] = Cliente;
 
-
             par_st[1, 0] = "i";
             par_st[1, 1] = "i";
             par_st[1, 2] = "p_IMP_EXP";
             par_st[1, 3] = imp_exp;
-
 
             par_st[2, 0] = "i";
             par_st[2, 1] = "v";
             par_st[2, 2] = "p_Fecha_Inicio";
             par_st[2, 3] = Fecha_1;
 
-
             par_st[3, 0] = "i";
             par_st[3, 1] = "v";
             par_st[3, 2] = "p_Fecha_Fin";
             par_st[3, 3] = Fecha_2;
-
 
             par_st[4, 0] = "i";
             par_st[4, 1] = "v";
             par_st[4, 2] = "p_MI_SGECLAVE";
             par_st[4, 3] = mi_sgeclave;
 
-
             par_st[5, 0] = "i";
             par_st[5, 1] = "v";
             par_st[5, 2] = "p_FOLIOS";
             par_st[5, 3] = folios;
-
 
             par_st[6, 0] = "o";
             par_st[6, 1] = "c";
@@ -90,7 +83,6 @@ namespace serverreports
             LisDT[0] = datos_sp.tb;
             LisDT_tit[0, 0] = " Store 1";
             LisDT_tit1[0] = " Store 1";
-            Console.WriteLine(util.Tdetalle(LisDT[0]));
             string val = "";
             for (int i = 0; i < LisDT[0].Rows.Count; i++)
             {
@@ -144,9 +136,22 @@ namespace serverreports
                     //If NVL(rs.Fields("'D'")) <> "" Then
                     elementos.Add(val);
                 }
-                elementos.Add(val);
+
+                if (util.nvl(LisDT[0].Rows[i]["DETALLE_D"].ToString()) != "")
+                {
+                    Line_Buffer = "";
+                    for (int j = 20; j <= 40; j++)
+                        Line_Buffer = Line_Buffer + LisDT[0].Rows[i][j].ToString();
+                    elementos.Add(Line_Buffer);
+                }
+                //elementos.Add(util.Tdetalle(LisDT[0]));
+                //elementos.Add(util.Tdetalle(LisDT[1]));
+                //elementos.Add(val);
             }
-                        inf.LisDT_tit = LisDT_tit;
+
+            System.IO.File.WriteAllLines(@"C:\pc\ruta_alterna\Hola" + arch + ".txt", elementos);
+            //System.IO.File.WriteAllLines(Carpeta + "\\" + arch + ".txt", elementos);
+            inf.LisDT_tit = LisDT_tit;
             inf.LisDT = LisDT;
             inf.arch = "";
             return inf;
