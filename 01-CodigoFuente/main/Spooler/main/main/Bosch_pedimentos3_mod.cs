@@ -83,7 +83,7 @@ namespace serverreports
             LisDT[0] = datos_sp.tb;
             LisDT_tit[0, 0] = " Store 1";
             LisDT_tit1[0] = " Store 1";
-           // Console.WriteLine(util.Tdetalle(LisDT[0]));
+            // Console.WriteLine(util.Tdetalle(LisDT[0]));
             string val = "";
             for (int i = 0; i < LisDT[0].Rows.Count; i++)
             {
@@ -137,7 +137,6 @@ namespace serverreports
                     //If NVL(rs.Fields("'D'")) <> "" Then
                     elementos.Add(val);
                 }
-
                 if (util.nvl(LisDT[0].Rows[i]["DETALLE_D"].ToString()) != "")
                 {
                     Line_Buffer = "";
@@ -146,7 +145,6 @@ namespace serverreports
                     elementos.Add(Line_Buffer);
                 }
             }
-
             par_st = new string[9, 4];
             par_st[0, 0] = "i";
             par_st[0, 1] = "i";
@@ -199,14 +197,47 @@ namespace serverreports
             LisDT[1] = datos_sp.tb;
             LisDT_tit[1, 0] = " Store 2";
             LisDT_tit1[1] = " Store 2";
-            Console.WriteLine(util.Tdetalle(LisDT[1]));
-            //System.IO.File.WriteAllLines(@"C:\pc\ruta_alterna\Hola" + arch + ".txt", elementos);
-            //System.IO.File.WriteAllLines(Carpeta + "\\" + arch + ".txt", elementos);
+            string IMP_EXP_tmp = "";
+            string FOLIO_tmp = "";
+            string CLAVE_PED_tmp = "";
+            string NUM_PEDIMENTO_tmp = "";
+            string SGECLAVE_tmp = "";
+            for (int i = 0; i < LisDT[1].Rows.Count; i++)
+            {
+                val = "";
+                if (
+                IMP_EXP_tmp != util.nvl(LisDT[1].Rows[i]["IMP_EXP"].ToString()) &
+                FOLIO_tmp != util.nvl(LisDT[1].Rows[i]["FOLIO"].ToString()) &
+                CLAVE_PED_tmp != util.nvl(LisDT[1].Rows[i]["CLAVE_PED"].ToString()) &
+                NUM_PEDIMENTO_tmp != util.nvl(LisDT[1].Rows[i]["NUM_PEDIMENTO"].ToString()) &
+                SGECLAVE_tmp != util.nvl(LisDT[1].Rows[i]["SGECLAVE"].ToString()))
+                {
+                    for (int j = 0; j < 10; j++)
+                        val = val + LisDT[1].Rows[i][j].ToString();
+                    val = val + util.nvl(LisDT[1].Rows[i]["IVA_GAL"].ToString());
+                    val = val + util.nvl(LisDT[1].Rows[i]["ADV_GAL"].ToString());
+                    val = val + util.nvl(LisDT[1].Rows[i]["DTA_GAL"].ToString());
+                    val = val + util.nvl(LisDT[1].Rows[i]["OTROS_GAL"].ToString());
+                    val = val + util.nvl(LisDT[1].Rows[i]["SGEVALORDOLARES"].ToString());
+                    val = val + util.nvl(LisDT[1].Rows[i]["SGEVALORADUANA"].ToString());
+                    val = val + util.nvl(LisDT[1].Rows[i]["SGEPRECIOPAGADO"].ToString());
+                    elementos.Add(val);
+                }
+                val = "";
+                for (int j = util.Tcampo_numcol(LisDT[1], "DETALLE_D") + 1; j < LisDT[1].Columns.Count; j++)
+                    val = val + LisDT[1].Rows[i][j].ToString();
+                elementos.Add(val);
+                IMP_EXP_tmp = util.nvl(LisDT[1].Rows[i]["IMP_EXP"].ToString());
+                FOLIO_tmp = util.nvl(LisDT[1].Rows[i]["FOLIO"].ToString());
+                CLAVE_PED_tmp = util.nvl(LisDT[1].Rows[i]["CLAVE_PED"].ToString());
+                NUM_PEDIMENTO_tmp = util.nvl(LisDT[1].Rows[i]["NUM_PEDIMENTO"].ToString());
+                SGECLAVE_tmp = util.nvl(LisDT[1].Rows[i]["SGECLAVE"].ToString());
+            }
+            System.IO.File.WriteAllLines(Carpeta + "\\" + arch + ".txt", elementos);
             inf.LisDT_tit = LisDT_tit;
             inf.LisDT = LisDT;
-            inf.arch = "";
+            inf.arch = arch + "|" + Carpeta + "\\" + arch + ".txt";
             return inf;
-
         }
     }
 }

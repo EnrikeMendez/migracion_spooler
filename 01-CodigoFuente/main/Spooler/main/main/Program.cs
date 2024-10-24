@@ -121,7 +121,7 @@ try
         if (FECHA_1 == FECHA_2)
         {
 
-          //  Console.WriteLine("************** rep_dias_libres **************");
+            //  Console.WriteLine("************** rep_dias_libres **************");
             string dialib = DM.Main_rep("rep_dias_libres", rep_id.ToString(), visible_sql, reporte_temporal.ToString(), util.Tcampo(trep_cron, "cliente"), FECHA_1).val;
             /*
             string SQL_p = " select 1 from rep_dias_libres \n" +
@@ -168,7 +168,7 @@ try
              " where  conf.ID_CONF = '" + rep_id + "' \n" +
              " order by to_date(next_fecha, 'mm/dd/yyyy') desc \n";
                 string confirma4 = DM.Main_rep("confirmacion4", rep_id.ToString(), visible_sql, reporte_temporal.ToString(), null, util.Tcampo(trep_cron, "FRECUENCIA")).val;
-              //  Console.WriteLine(" valor confirma4 =" + confirma4);
+                //  Console.WriteLine(" valor confirma4 =" + confirma4);
 
                 if (confirma4 != "null")
                     mail_error = "agregar valor de " + confirma4;
@@ -226,7 +226,7 @@ try
 
         //////*******  Parametros *********////////////////////
 
-      //  tnum_param = DM.Main_rep("main_num_param", rep_id.ToString(), visible_sql).tb;
+        //  tnum_param = DM.Main_rep("main_num_param", rep_id.ToString(), visible_sql).tb;
 
         //try { num_of_param = Convert.ToInt32(util.Tcampo(tnum_param, "NUM_OF_PARAM")); } catch (Exception) { }
         //Console.WriteLine("Numero Parametros : " + num_of_param);
@@ -380,7 +380,6 @@ try
                 inf = Ing_egr_gar_pend_fact.Ing_egr_gar_pend_fact(tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), parins, contmail, visible_sql);
                 // arch = xlsx.CrearExcel_file(inf.LisDT, inf.LisDT_tit, Carpeta + "\\" + inf.arch + ".xlsx", null, null, 0);
                 arch = xlsx.CrearExcel_filen(inf.LisDT, inf.LisDT_tit, Carpeta + "\\" + inf.arch + ".xlsx", null, null, 1, 3);
-
                 encorr = 1;
                 break;
 
@@ -407,7 +406,6 @@ try
                 inf = Bosch_Pedimentos2.Bosch_Pedimentos2(Carpeta, tab_archivos, FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), parins, contmail, visible_sql);
                 encorr = 2;
                 break;
-
             //case "bosch_pedim3":
             case "bosch_pedim2_xls":
                 //5335530
@@ -420,7 +418,8 @@ try
                 //5335530                
                 Bosch_pedimentos3_mod Bosch_Pedimentos3 = new Bosch_pedimentos3_mod();
                 inf = Bosch_Pedimentos3.Bosch_Pedimentos3(Carpeta, tab_archivos, "01/09/2004", "09/04/2006", "2478", "1", null, null, parins, visible_sql);
-                //inf = Bosch_Pedimentos3.Bosch_Pedimentos3(Carpeta, tab_archivos, FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")),util.nvl(util.Tcampo(tdato_repor, "PARAM_4")), parins,  visible_sql);
+                //inf = Bosch_Pedimentos3.Bosch_Pedimentos3(Carpeta, tab_archivos, FECHA_1     , FECHA_2     , util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")),util.nvl(util.Tcampo(tdato_repor, "PARAM_4")), parins,  visible_sql);
+                encorr = 2;
                 break;
         }
         if (encorr > 0)
