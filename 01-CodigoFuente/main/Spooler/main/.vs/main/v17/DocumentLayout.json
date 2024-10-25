@@ -3,12 +3,24 @@
   "WorkspaceRootPath": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|c:\\pc\\raul\\programas consola\\main\\spooler\\main\\main\\bosch_pedimentos3_xls_mod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\bosch_pedimentos3_xls_mod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|c:\\pc\\raul\\programas consola\\main\\spooler\\main\\main\\bosch_pedimentos3_mod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\bosch_pedimentos3_mod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\bosch_pedimentos2_xls_mod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\bosch_pedimentos2_xls_mod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\dm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\dm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\utilerias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -21,14 +33,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\web_transmision_edocs_bosch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\web_transmision_edocs_bosch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\bosch_pedimentos2_xls_mod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\bosch_pedimentos2_xls_mod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\dm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\dm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,7 +46,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 4,
               "Title": "DM.cs",
               "DocumentMoniker": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\DM.cs",
               "RelativeDocumentMoniker": "main\\DM.cs",
@@ -57,31 +61,45 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Bosch_pedimentos3_xls_mod.cs",
+              "DocumentMoniker": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\Bosch_pedimentos3_xls_mod.cs",
+              "RelativeDocumentMoniker": "main\\Bosch_pedimentos3_xls_mod.cs",
+              "ToolTip": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\Bosch_pedimentos3_xls_mod.cs",
+              "RelativeToolTip": "main\\Bosch_pedimentos3_xls_mod.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T18:52:35.261Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Bosch_pedimentos3_mod.cs",
               "DocumentMoniker": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\Bosch_pedimentos3_mod.cs",
               "RelativeDocumentMoniker": "main\\Bosch_pedimentos3_mod.cs",
               "ToolTip": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\Bosch_pedimentos3_mod.cs",
               "RelativeToolTip": "main\\Bosch_pedimentos3_mod.cs",
-              "ViewState": "AQIAABAAAAAAAAAAAAAgwCsAAAAjAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-14T21:50:57.529Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
               "Title": "Bosch_pedimentos2_xls_mod.cs",
               "DocumentMoniker": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\Bosch_pedimentos2_xls_mod.cs",
               "RelativeDocumentMoniker": "main\\Bosch_pedimentos2_xls_mod.cs",
               "ToolTip": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\Bosch_pedimentos2_xls_mod.cs",
               "RelativeToolTip": "main\\Bosch_pedimentos2_xls_mod.cs",
-              "ViewState": "AQIAACUAAAAAAAAAAAAAADYAAAAnAAAA",
+              "ViewState": "AQIAADAAAAAAAAAAAAAAACIAAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-11T22:00:50.077Z"
+              "WhenOpened": "2024-10-11T22:00:50.077Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "web_transmision_edocs_bosch.cs",
               "DocumentMoniker": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\web_transmision_edocs_bosch.cs",
               "RelativeDocumentMoniker": "main\\web_transmision_edocs_bosch.cs",
@@ -93,20 +111,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\Program.cs",
               "RelativeDocumentMoniker": "main\\Program.cs",
               "ToolTip": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\Program.cs",
               "RelativeToolTip": "main\\Program.cs",
-              "ViewState": "AQIAAJIBAAAAAAAAAAAmwKMBAAA5AAAA",
+              "ViewState": "AQIAAOcBAAAAAAAAAAAAAKsBAABkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-30T16:55:35.323Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "Excel.cs",
               "DocumentMoniker": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\Excel.cs",
               "RelativeDocumentMoniker": "main\\Excel.cs",
@@ -118,7 +136,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "Utilerias.cs",
               "DocumentMoniker": "C:\\pc\\raul\\programas consola\\main\\Spooler\\main\\main\\Utilerias.cs",
               "RelativeDocumentMoniker": "main\\Utilerias.cs",

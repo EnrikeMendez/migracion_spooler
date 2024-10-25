@@ -227,11 +227,11 @@ namespace serverreports
                 for (int j = util.Tcampo_numcol(LisDT[1], "DETALLE_D") + 1; j < LisDT[1].Columns.Count; j++)
                     val = val + LisDT[1].Rows[i][j].ToString();
                 elementos.Add(val);
-                IMP_EXP_tmp = util.nvl(LisDT[1].Rows[i]["IMP_EXP"].ToString());
-                FOLIO_tmp = util.nvl(LisDT[1].Rows[i]["FOLIO"].ToString());
-                CLAVE_PED_tmp = util.nvl(LisDT[1].Rows[i]["CLAVE_PED"].ToString());
+                IMP_EXP_tmp       = util.nvl(LisDT[1].Rows[i]["IMP_EXP"].ToString());
+                FOLIO_tmp         = util.nvl(LisDT[1].Rows[i]["FOLIO"].ToString());
+                CLAVE_PED_tmp     = util.nvl(LisDT[1].Rows[i]["CLAVE_PED"].ToString());
                 NUM_PEDIMENTO_tmp = util.nvl(LisDT[1].Rows[i]["NUM_PEDIMENTO"].ToString());
-                SGECLAVE_tmp = util.nvl(LisDT[1].Rows[i]["SGECLAVE"].ToString());
+                SGECLAVE_tmp      = util.nvl(LisDT[1].Rows[i]["SGECLAVE"].ToString());
             }
             System.IO.File.WriteAllLines(Carpeta + "\\" + arch + ".txt", elementos);
             inf.LisDT_tit = LisDT_tit;

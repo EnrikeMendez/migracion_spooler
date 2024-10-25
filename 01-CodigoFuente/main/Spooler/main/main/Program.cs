@@ -414,13 +414,36 @@ try
                 arch = xlsx.CrearExcel_filen(inf.LisDT, inf.LisDT_tit, Carpeta + "\\" + inf.arch + ".xlsx", null, null, 1, 0);
                 encorr = 1;
                 break;
-            case "bosch_pedim3":
+            case "bosch_pedim3ok":
                 //5335530                
                 Bosch_pedimentos3_mod Bosch_Pedimentos3 = new Bosch_pedimentos3_mod();
                 inf = Bosch_Pedimentos3.Bosch_Pedimentos3(Carpeta, tab_archivos, "01/09/2004", "09/04/2006", "2478", "1", null, null, parins, visible_sql);
                 //inf = Bosch_Pedimentos3.Bosch_Pedimentos3(Carpeta, tab_archivos, FECHA_1     , FECHA_2     , util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")),util.nvl(util.Tcampo(tdato_repor, "PARAM_4")), parins,  visible_sql);
                 encorr = 2;
                 break;
+            case "bosch_pedim3":
+                //case "bosch_pedim3_xls":
+                //5335530                
+                Bosch_pedimentos3_xls_mod Bosch_Pedimentos3_xls = new Bosch_pedimentos3_xls_mod();
+                inf = Bosch_Pedimentos3_xls.Bosch_Pedimentos3_xls(Carpeta, tab_archivos, "03/14/2013", "03/23/2013", "11244", "1", null, null, parins, visible_sql);
+              //inf = Bosch_Pedimentos3_xls.Bosch_Pedimentos3_xls(Carpeta, tab_archivos, FECHA_1     , FECHA_2     , util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")),util.nvl(util.Tcampo(tdato_repor, "PARAM_4")), parins,  visible_sql);
+
+                /*
+
+    SC_RS.SPG_RS_COEX_PEDIMENTOS_BOSCH.P_DAT_IMPORT_XLS ( p_CLIENTE                => 11244
+                                                        , p_IMP_EXP                => 1
+                                                        , p_Fecha_Inicio           => '03/14/2013'
+                                                        , p_Fecha_Fin              => '03/23/2013'
+                                                        , p_MI_SGECLAVE            => NULL
+                                                        , p_FOLIOS                 => NULL
+                                                        , p_Cur_Bosch_XLS          => :v_Cursor
+                                                        , p_MENSAJE                => v_Mensaje
+                                                        , p_CODIGO_ERROR           => v_Codigo_Error 
+                                                        ) ;                
+
+                 */
+                break;
+                //Sub Bosch_Pedimentos3_xls(Carpeta As String, file_name As String, FECHA_1 As String, FECHA_2 As String, cliente As String, imp_exp As String, folios As String, file_tab() As String, mi_sgeclave As String)
         }
         if (encorr > 0)
         {
