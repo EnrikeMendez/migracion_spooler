@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
+﻿using System.Data;
 
 namespace serverreports
 {
@@ -12,17 +7,29 @@ namespace serverreports
         public (string[,] LisDT_tit, DataTable[] LisDT, string arch) Bosch_Pedimentos3_xls
                    (string Carpeta, string[,] file_name, string Fecha_1, string Fecha_2, string Cliente, string imp_exp, string folios, string mi_sgeclave, string[,] parins, int visible_sql)
         {
-            string[,] LisDT_tit = new string[2, 2]; ;
-            DataTable[] LisDT = new DataTable[2];
-            string arh = "";
-            /*
-            Console.WriteLine("1 " + Carpeta);
-            Console.WriteLine("2 " + file_name[0,0]);
-            Console.WriteLine("3 " + Fecha_1);
-            Console.WriteLine("4 " + Fecha_2);
-            Console.WriteLine("5 " + Cliente);  
-            */
-            return (LisDT_tit, LisDT, arh);
+            DataTable[] LisDT = new DataTable[1];
+            string[,] LisDT_tit = new string[1, 2]; ;
+            (string[,] LisDT_tit, DataTable[] LisDT, string arch) inf;
+            string[,] par_st = new string[9, 4];
+            par_st[0, 0] = "i";
+            par_st[0, 1] = "i";
+            par_st[0, 2] = "p_CLIENTE";
+            par_st[0, 3] = Cliente;
+
+            par_st[1, 0] = "i";
+            par_st[1, 1] = "i";
+            par_st[1, 2] = "p_IMP_EXP";
+            par_st[1, 3] = imp_exp;
+
+            par_st[1, 0] = "i";
+            par_st[1, 1] = "i";
+            par_st[1, 2] = "p_Fecha_Inicio";
+            par_st[1, 3] = Fecha_1;
+
+            inf.LisDT_tit = LisDT_tit;
+            inf.LisDT = LisDT;
+            inf.arch = "";
+            return inf;
         }
     }
 

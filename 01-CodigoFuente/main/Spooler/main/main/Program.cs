@@ -104,7 +104,7 @@ try
          GoTo Errman
          End If
         */
-        /* DataTable tfec_conf = new DataTable(); si se habilida independientes*/
+        
         if (reporte_temporal == 0)
         {
             string tm_fec = util.Tcampo(trep_cron, "fecha");
@@ -116,22 +116,13 @@ try
             FECHA_1 = util.Tcampo(trep_cron, "fecha_1");
             FECHA_2 = util.Tcampo(trep_cron, "fecha_2");
         }
-        //Console.WriteLine("display_fecha_confirmacion4 :" + FECHA_1 + " :" + FECHA_2);
 
         if (FECHA_1 == FECHA_2)
         {
 
             //  Console.WriteLine("************** rep_dias_libres **************");
             string dialib = DM.Main_rep("rep_dias_libres", rep_id.ToString(), visible_sql, reporte_temporal.ToString(), util.Tcampo(trep_cron, "cliente"), FECHA_1).val;
-            /*
-            string SQL_p = " select 1 from rep_dias_libres \n" +
-            " where dia_libre = to_date('" + FECHA_1 + "', 'mm/dd/yyyy') \n" +
-            " and cliente in ('" + rep_id.ToString() + "', 0) \n";
-            // DM.datos(SQL_p);
-            Console.WriteLine(SQL_p);
-            */
-            //Console.WriteLine(" valor dia libre =" + dialib);
-            //Por aplicar
+                    //Por aplicar
             //            if (dialib != "")
             if (dialib != "0")
             {
@@ -142,7 +133,6 @@ try
                 Environment.Exit(0);
             }
         }
-
 
         if ((util.nvl(util.Tcampo(trep_cron, "CONFIRMACION")) == "1") && (reporte_temporal == 0))
         //    if (1 == 1)
@@ -160,8 +150,7 @@ try
 
             tconfirmacion2 = DM.Main_rep("confirmacion2", rep_id.ToString(), visible_sql, reporte_temporal.ToString(), null, util.Tcampo(trep_cron, "FRECUENCIA")).tb;
 
-            if (util.Tcampo(tconfirmacion2, "CONFIRMACION") != "")
-            // if (1 == 1)
+            if (util.Tcampo(tconfirmacion2, "CONFIRMACION") != "")            
             {
                 SQL_p2 = "select display_fecha_confirmacion4(('" + util.Tcampo(trep_cron, "FRECUENCIA") + "',conf.CONF_DATE,conf.CONF_DATE_2,decode(conf.CONF_DATE,null,1,0)) as next_fecha \n" +
              " from rep_confirmacion conf \n" +
@@ -176,31 +165,13 @@ try
                     mail_error = "Ninguna confirmacion llegada.";
             }
             //Console.WriteLine("************** confirma fecha 2**************");
-            //Console.WriteLine(SQL_p2);
+            
         }
-
-        /*
-         If FECHA_1 = FECHA_2 Then
-        valida 
-            sql 4 y 4.1
-
-        */
-
-        //////*******  Parametros *********////////////////////
-
-        /*
-        valida confirmacion
-        sql 5 y 5.1
-        */
 
 
         if (mail_error != "")
         {
             tmail_contact = DM.Main_rep("main_mail_contact", rep_id.ToString(), visible_sql).tb;
-            //proceso de envio de correo
-            /*   Console.WriteLine("************** SQL contactos **************");
-               Console.WriteLine(util.Tdetalle(tmail_contact));
-            */
             string tema = "Error generacion de : " + util.Tcampo(tmail_contact, "NAME");
             string contactos = util.listTcampo(tmail_contact, "mail", ";");
             contactos = contactos + mail_grupo_error[0];
@@ -224,20 +195,7 @@ try
             Errror = DM.ejecuta_sql("update rep_chron set in_progress=0 where id_rapport= '" + rep_id + "'");
         }
 
-        //////*******  Parametros *********////////////////////
-
-        //  tnum_param = DM.Main_rep("main_num_param", rep_id.ToString(), visible_sql).tb;
-
-        //try { num_of_param = Convert.ToInt32(util.Tcampo(tnum_param, "NUM_OF_PARAM")); } catch (Exception) { }
-        //Console.WriteLine("Numero Parametros : " + num_of_param);
-        //util.arma_param("REP.PARAM_", num_of_param);
-        //Console.WriteLine("Parametros : " + util.arma_param("REP.PARAM_", num_of_param));
-
         tdato_repor = DM.Main_rep("main_datos_rep", rep_id.ToString(), visible_sql, util.arma_param("REP.PARAM_", num_of_param)).tb;
-        /* Console.WriteLine("************** datos repore **************");
-         Console.WriteLine(util.Tdetalle(tdato_repor));
-        */
-        ///////////////////////////////////////
         if (tdato_repor.Rows.Count > 0)
         {
             contmail = new string[tdato_repor.Rows.Count];
@@ -269,27 +227,6 @@ try
         tab_archivos[0, 0] = file_name;
         tab_archivos[1, 0] = reporte_name;
         tab_archivos[4, 0] = "1";
-        /*
-        Console.WriteLine("valor ''dest_mail   '':" + dest_mail);
-        Console.WriteLine("valor ''param_string'':" + param_string);
-        Console.WriteLine("valor ''reporte_name'':" + reporte_name);
-        Console.WriteLine("valor ''days_deleted'':" + days_deleted);
-        Console.WriteLine("valor ''file_name   '':" + file_name);
-        Console.WriteLine("valor ''id_Reporte  '':" + id_Reporte);
-        Console.WriteLine("valor ''Carpeta     '':" + Carpeta);
-        Console.WriteLine("valor ''COMMAND     '' " + MiComando);
-
-        Console.WriteLine("valor ''tab_archivos 0 '':" + tab_archivos[0, 0]);
-        Console.WriteLine("valor ''tab_archivos 1 '':" + tab_archivos[1, 0]);
-        Console.WriteLine("valor ''tab_archivos 4 '' " + tab_archivos[4, 0]);
-        for (int i = 1; i <= num_of_param; i++)
-            Console.WriteLine("valor ''PARAM_" + i + " '':" + util.nvl(util.Tcampo(tdato_repor, "PARAM_" + i)));
-
-        Console.WriteLine("valor ''FECHA_1'':" + FECHA_1);
-        Console.WriteLine("valor ''FECHA_2'':" + FECHA_2);
-
-        Console.WriteLine("valor ''filter_file_name     '' " + util.filter_file_name(file_name, FECHA_1, FECHA_2));
-        */
         //servidor = "http://" & Trim(Split(Get_IP(), "-")(0))
         servidor = "http://" + Get_IP;
 
@@ -304,7 +241,6 @@ try
         servidor = "http://" + Get_IP;
         servidor = "http://www.logiscomercioexterior.com.mx";
         //Console.WriteLine("valor servidor:" + servidor);
-        // Carpeta = "C:\\Users\\usuario\\Desktop\\Raul\\prueba1";
 
         parins[0, 0] = "DEST_MAIL";
         parins[0, 1] = dest_mail;
@@ -333,16 +269,7 @@ try
         parins[12, 0] = "Path_file";
         parins[12, 1] = Carpeta;
         parins[13, 0] = "usr_bd";
-        parins[13, 1] = "1";
-
-        //web_transmision_edocs_bosch edocs_bosch = new web_transmision_edocs_bosch();
-        //edocs_bosch.transmision_edocs_bosch(Carpeta, tab_archivos[0], util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), visible_sql);
-        // Console.WriteLine(DM.transmision_edocs_bosch("18975", "04/01/2024", "04/30/2024", "", "E", "1"));
-
-        //Console.WriteLine(DM.trading_genera_GSK(tab_archivos[0], FECHA_1, FECHA_2, "", rep_id, 1));
-        //trading_genera_GSK_mod trading_genera_GSK = new trading_genera_GSK_mod();
-        //Console.WriteLine(trading_genera_GSK.trading_genera_GSK(Carpeta, tab_archivos[0], util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id,visible_sql));
-        //Console.WriteLine(trading_genera_GSK.trading_genera_GSK(Carpeta, "gsk_pedimientos", "20501,20502"                                , FECHA_1, FECHA_2, ""                                           , 3723307, visible_sql));
+        parins[13, 1] = "1";     
         string[] arh;
         if (tab_archivos[4, 0] == "1")
             arh = new string[2];
@@ -375,7 +302,6 @@ try
                 //4241096
                 //7216555
                 //5566766
-                //     Call Ing_egr_gar_pend_fact(Carpeta & tab_archivos(0, 0), rs.Fields("PARAM_1"), rs.Fields("PARAM_2"), NVL(rs.Fields("PARAM_3")))
                 Ing_egr_gar_pend_fact_mod Ing_egr_gar_pend_fact = new Ing_egr_gar_pend_fact_mod();
                 inf = Ing_egr_gar_pend_fact.Ing_egr_gar_pend_fact(tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), parins, contmail, visible_sql);
                 // arch = xlsx.CrearExcel_file(inf.LisDT, inf.LisDT_tit, Carpeta + "\\" + inf.arch + ".xlsx", null, null, 0);
@@ -426,24 +352,20 @@ try
                 //5335530                
                 Bosch_pedimentos3_xls_mod Bosch_Pedimentos3_xls = new Bosch_pedimentos3_xls_mod();
                 inf = Bosch_Pedimentos3_xls.Bosch_Pedimentos3_xls(Carpeta, tab_archivos, "03/14/2013", "03/23/2013", "11244", "1", null, null, parins, visible_sql);
-              //inf = Bosch_Pedimentos3_xls.Bosch_Pedimentos3_xls(Carpeta, tab_archivos, FECHA_1     , FECHA_2     , util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")),util.nvl(util.Tcampo(tdato_repor, "PARAM_4")), parins,  visible_sql);
-
+                //inf = Bosch_Pedimentos3_xls.Bosch_Pedimentos3_xls(Carpeta, tab_archivos, FECHA_1     , FECHA_2     , util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")),util.nvl(util.Tcampo(tdato_repor, "PARAM_4")), parins,  visible_sql);
                 /*
-
-    SC_RS.SPG_RS_COEX_PEDIMENTOS_BOSCH.P_DAT_IMPORT_XLS ( p_CLIENTE                => 11244
-                                                        , p_IMP_EXP                => 1
-                                                        , p_Fecha_Inicio           => '03/14/2013'
-                                                        , p_Fecha_Fin              => '03/23/2013'
-                                                        , p_MI_SGECLAVE            => NULL
-                                                        , p_FOLIOS                 => NULL
-                                                        , p_Cur_Bosch_XLS          => :v_Cursor
-                                                        , p_MENSAJE                => v_Mensaje
-                                                        , p_CODIGO_ERROR           => v_Codigo_Error 
-                                                        ) ;                
-
+                SC_RS.SPG_RS_COEX_PEDIMENTOS_BOSCH.P_DAT_IMPORT_XLS ( p_CLIENTE                => 11244
+                                                                     , p_IMP_EXP                => 1
+                                                                     , p_Fecha_Inicio           => '03/14/2013'
+                                                                     , p_Fecha_Fin              => '03/23/2013'
+                                                                     , p_MI_SGECLAVE            => NULL
+                                                                     , p_FOLIOS                 => NULL
+                                                                     , p_Cur_Bosch_XLS          => :v_Cursor
+                                                                     , p_MENSAJE                => v_Mensaje
+                                                                     , p_CODIGO_ERROR           => v_Codigo_Error 
+                                                                     ) ;                 
                  */
                 break;
-                //Sub Bosch_Pedimentos3_xls(Carpeta As String, file_name As String, FECHA_1 As String, FECHA_2 As String, cliente As String, imp_exp As String, folios As String, file_tab() As String, mi_sgeclave As String)
         }
         if (encorr > 0)
         {
@@ -460,11 +382,6 @@ try
                 tab_archivos[0, 0] = tab_archivos[0, 0] + ".xlsx";
             }
 
-            /*
-            arh[0] = Carpeta + "\\" + tab_archivos[0, 0] + ".xlsx";
-            arch = tab_archivos[0, 0];
-            tab_archivos[0, 0] = tab_archivos[0, 0] + ".xlsx";
-            */
             if (tab_archivos[4, 0] == "1")
             {
                 //arh[1] = util.agregar_zip_nv(file_name, arch, Carpeta);
@@ -477,8 +394,9 @@ try
             util.replica_tem(arch, parins);
             if (contmail.Length > 0)
             {
-                //correo.send_mail("Report: " + html[1, 0] + " created v2024", contacmail, mensaje, arh);
+
                 string[,] cor = new string[0, 0];
+                //correo.send_mail("Report: " + html[1, 0] + " created v2024", contacmail, mensaje, arh);
                 correo.send_mail("Report: " + html[1, 0] + " created v2024", [], mensaje, arh);
             }
             DM.act_proceso(parins, visible_sql);
