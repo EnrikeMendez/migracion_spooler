@@ -4,7 +4,7 @@ namespace serverreports
 {
     internal class trading_genera_GSK_mod
     {
-        public string trading_genera_GSK(string Carpeta, string[,] file_name, string cliente, string Fecha_1, string Fecha_2, string empresa, Int32 idCron, string[,] parins, string[] contacmail, int vs)
+        public string trading_genera_GSK(string Carpeta, string[,] file_name, string cliente, string Fecha_1, string Fecha_2, string empresa, Int32 idCron, string[,] pargral, string[] contacmail, int vs)
         {
             int sw_error = 0;
             Utilerias util = new Utilerias();
@@ -39,7 +39,7 @@ namespace serverreports
             try
             {
 
-                datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(parins[13, 1]), vs);
+                datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(pargral[13, 1]), vs);
 
             Console.WriteLine(" Mensaje store :" + datos_sp.msg);
             Console.WriteLine(" Codigo store :" + datos_sp.codigo);
@@ -69,13 +69,13 @@ namespace serverreports
                     }
                     //file_name[0, 0] = file_name[0, 0] + ".xlsx";
                     // file_name[4, 0] = "0";
-                    html = util.hexafile_nv(file_name, Carpeta, int.Parse(parins[9, 1]), arch, parins);                    
-                    util.replica_tem(arch, parins);
+                    html = util.hexafile_nv(file_name, Carpeta, int.Parse(pargral[9, 1]), arch, pargral);                    
+                    util.replica_tem(arch, pargral);
 
-                    string warning_message = DM.msg_temp(parins, vs);
-                    string mensaje = correo.display_mail(parins[10, 1], warning_message, arch, html, Int32.Parse(parins[3, 1]), "");
+                    string warning_message = DM.msg_temp(pargral, vs);
+                    string mensaje = correo.display_mail(pargral[10, 1], warning_message, arch, html, Int32.Parse(pargral[3, 1]), "");
 
-                    //string mensaje = correo.display_mail(parins[10, 1], "", arch, html, Int32.Parse(parins[3, 1]), "");
+                    //string mensaje = correo.display_mail(pargral[10, 1], "", arch, html, Int32.Parse(pargral[3, 1]), "");
                     if (contacmail.Length > 0) {
                         //correo.send_mail("Report: <  "+ html[1,0] + "> created v2024", contacmail, mensaje, arh);
 
@@ -83,7 +83,7 @@ namespace serverreports
 
                         
                     }
-                    DM.act_proceso(parins, vs);
+                    DM.act_proceso(pargral, vs);
                     util.borra_arch(arh, Carpeta);
                 }
                 else

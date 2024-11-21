@@ -11,7 +11,7 @@ namespace serverreports
     {
 
         public (string[,] LisDT_tit, DataTable[] LisDT, string arch) indice_cal_bosch
-            (string Carpeta, string[,] file_name, string Fecha_1, string Fecha_2, string Clientes, string Planta, string imp_exp, string[,] parins, string[] contacmail, int visible_sql)
+            (string Carpeta, string[,] file_name, string Fecha_1, string Fecha_2, string Clientes, string Planta, string imp_exp, string[,] pargral, string[] contacmail, int visible_sql)
         {
             //5071980
             int sw_error = 0;
@@ -119,7 +119,7 @@ namespace serverreports
                 par_st[0, 2] = "p_Tipo_Aduana";
                 par_st[0, 3] = "A";
 
-                datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(parins[13, 1]), visible_sql);
+                datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(pargral[13, 1]), visible_sql);
                 LisDT[z] = datos_sp.tb;
                 Console.WriteLine(util.Tdetalle(LisDT[z]));
                 LisDT[z] = util.Tdetalle_regtot(LisDT[z], 1, 0, 1, 0, 1); //porcentaje           
@@ -130,7 +130,7 @@ namespace serverreports
                 Console.WriteLine(util.Tdetalle(LisDT[z]));                
                 z++; 
                 par_st[0, 3] = "M";
-                datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(parins[13, 1]), visible_sql);
+                datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(pargral[13, 1]), visible_sql);
                 LisDT[z] = datos_sp.tb;
                 Console.WriteLine(util.Tdetalle(LisDT[z]));
                 LisDT[z] = util.Tdetalle_regtot(LisDT[z], 1, 0, 1, 0, 1); //porcentaje
@@ -143,7 +143,7 @@ namespace serverreports
                 Console.WriteLine(util.Tdetalle(LisDT[z]));
                 z++;
                 par_st[0, 3] = "T";
-                datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(parins[13, 1]), visible_sql);
+                datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(pargral[13, 1]), visible_sql);
                 LisDT[z] = datos_sp.tb;
                 Console.WriteLine(util.Tdetalle(LisDT[z]));
                 LisDT[z] = util.Tdetalle_regtot(LisDT[z], 1, 0, 1, 0, 1); //porcentaje

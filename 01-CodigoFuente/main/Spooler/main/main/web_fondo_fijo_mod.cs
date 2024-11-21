@@ -5,7 +5,7 @@ namespace serverreports
     internal class web_fondo_fijo_mod
     {
 
-        public (string[,] LisDT_tit, DataTable[] LisDT, string arch) Fondo_fijo(string[,] file_name, string Empresa, string Divisa, string[,] parins, string[] contacmail, int vs)
+        public (string[,] LisDT_tit, DataTable[] LisDT, string arch) Fondo_fijo(string[,] file_name, string Empresa, string Divisa, string[,] pargral, string[] contacmail, int vs)
         {
             DataTable dttmp = new DataTable();
             DM DM = new DM();
@@ -16,7 +16,7 @@ namespace serverreports
             (string? codigo, string? msg, string? sql, DataTable? tb) datos_sp;
             string arch = file_name[0, 0];
             string[,] par_st;
-            dttmp = DM.sc_reportes_gen_rep_clave(Convert.ToInt32(parins[13, 1]), vs);
+            dttmp = DM.sc_reportes_gen_rep_clave(Convert.ToInt32(pargral[13, 1]), vs);
             string rep_clave = util.Tcampo(dttmp, "GEN_REP_CLAVE");
             dttmp.Dispose();
             if (rep_clave == "")
@@ -58,7 +58,7 @@ namespace serverreports
             par_st[5, 3] = "cod";
 
             datos_sp.sql = "SC_RS.SPG_RS_COEX_DAF_REPORTES.P_DAT_FONDO_FIJO";
-            datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(parins[13, 1]), vs);
+            datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(pargral[13, 1]), vs);
             LisDT[0] = datos_sp.tb;
             LisDT_tit[0, 0] = "Fondo Fijo";
             inf.LisDT_tit = LisDT_tit;
@@ -66,7 +66,7 @@ namespace serverreports
             inf.arch = arch;
             return inf;
         }
-        public string Fondo_fijo_ant(string Archivo, string Empresa, string Divisa, string[,] parins, string[] contacmail, int vs)
+        public string Fondo_fijo_ant(string Archivo, string Empresa, string Divisa, string[,] pargral, string[] contacmail, int vs)
         {
             DataTable dttmp = new DataTable();
             DM DM = new DM();

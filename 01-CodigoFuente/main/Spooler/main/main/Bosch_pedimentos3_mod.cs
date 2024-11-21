@@ -5,7 +5,7 @@ namespace serverreports
     internal class Bosch_pedimentos3_mod
     {
         public (string[,] LisDT_tit, DataTable[] LisDT, string arch) Bosch_Pedimentos3
-                   (string Carpeta, string[,] file_name, string Fecha_1, string Fecha_2, string Cliente, string imp_exp, string folios, string mi_sgeclave, string[,] parins, int visible_sql)
+                   (string Carpeta, string[,] file_name, string Fecha_1, string Fecha_2, string Cliente, string imp_exp, string folios, string mi_sgeclave, string[,] pargral, int visible_sql)
         {
             //5071980
             int sw_error = 0;
@@ -79,7 +79,7 @@ namespace serverreports
 
             datos_sp.sql = " SC_RS.SPG_RS_COEX_PEDIMENTOS_BOSCH.P_DAT_IMPORT";
 
-            datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(parins[13, 1]), visible_sql);
+            datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(pargral[13, 1]), visible_sql);
             LisDT[0] = datos_sp.tb;
             LisDT_tit[0, 0] = " Store 1";
             LisDT_tit1[0] = " Store 1";
@@ -193,7 +193,7 @@ namespace serverreports
             par_st[8, 3] = "cod";
 
             datos_sp.sql = " SC_RS.SPG_RS_COEX_PEDIMENTOS_BOSCH.P_DAT_IMPORT_DET";
-            datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(parins[13, 1]), visible_sql);
+            datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(pargral[13, 1]), visible_sql);
             LisDT[1] = datos_sp.tb;
             LisDT_tit[1, 0] = " Store 2";
             LisDT_tit1[1] = " Store 2";

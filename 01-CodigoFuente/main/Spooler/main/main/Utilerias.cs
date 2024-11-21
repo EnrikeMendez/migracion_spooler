@@ -267,7 +267,7 @@ namespace serverreports
             }
             return sb.ToString();
         }
-        public string[,] hexafile_nv(string[,] file_name, string Carpeta, int id_rep, string file_n, string[,] parins)        
+        public string[,] hexafile_nv(string[,] file_name, string Carpeta, int id_rep, string file_n, string[,] pargral)        
         {
             string[,] html = file_name;
             //string[,] html = array;
@@ -341,29 +341,29 @@ namespace serverreports
                    */
                 }
                 /*
-                parins[0, 0] = "DEST_MAIL";
-                parins[1, 0] = "Carpeta";
-                parins[2, 0] = "param_string";
-                parins[3, 0] = "days_deleted";
-                parins[4, 0] = "subCarpeta";
-                parins[5, 0] = "id_Reporte";
-                parins[6, 0] = "FECHA_1";
-                parins[7, 0] = "FECHA_2";
-                parins[8, 0] = "fecha_1_intervalo";
+                pargral[0, 0] = "DEST_MAIL";
+                pargral[1, 0] = "Carpeta";
+                pargral[2, 0] = "param_string";
+                pargral[3, 0] = "days_deleted";
+                pargral[4, 0] = "subCarpeta";
+                pargral[5, 0] = "id_Reporte";
+                pargral[6, 0] = "FECHA_1";
+                pargral[7, 0] = "FECHA_2";
+                pargral[8, 0] = "fecha_1_intervalo";
                 */
                 string ins = "insert into rep_archivos (id_rep, carpeta, nombre, date_created, DEST_MAIL, PARAMS, days_deleted, subcarpeta, tipo_reporte, HASH_MD5, FECHA_INICIO, FECHA_FIN) "
-                  + "values ('" + id_rep.ToString() + "', '" + parins[1, 1] + "', '" + html[0, i] + "', sysdate, '" + parins[0, 1] + "'";
-                if (parins[8, 1] == "")
-                    ins = ins + ",'" + parins[2, 1].Replace("'", "''") + "', " + parins[3, 1] + ", '" + nvl(parins[4, 1]) + "', '" + nvl(parins[5, 1]) + "', '" + html[3, i] + "', to_date('" + parins[6, 1] + "', 'mm/dd/yyyy'), to_date('" + parins[7, 1] + "', 'mm/dd/yyyy'))";
+                  + "values ('" + id_rep.ToString() + "', '" + pargral[1, 1] + "', '" + html[0, i] + "', sysdate, '" + pargral[0, 1] + "'";
+                if (pargral[8, 1] == "")
+                    ins = ins + ",'" + pargral[2, 1].Replace("'", "''") + "', " + pargral[3, 1] + ", '" + nvl(pargral[4, 1]) + "', '" + nvl(pargral[5, 1]) + "', '" + html[3, i] + "', to_date('" + pargral[6, 1] + "', 'mm/dd/yyyy'), to_date('" + pargral[7, 1] + "', 'mm/dd/yyyy'))";
                 else
-                    ins = ins + ",'" + parins[2, 1].Replace("'", "''") + "', " + parins[3, 1] + ", '" + nvl(parins[4, 1]) + "', '" + nvl(parins[5, 1]) + "', '" + html[3, i] + "', to_date('" + parins[8, 1] + "', 'mm/dd/yyyy'), to_date('" + parins[6, 1] + "', 'mm/dd/yyyy'))";
+                    ins = ins + ",'" + pargral[2, 1].Replace("'", "''") + "', " + pargral[3, 1] + ", '" + nvl(pargral[4, 1]) + "', '" + nvl(pargral[5, 1]) + "', '" + html[3, i] + "', to_date('" + pargral[8, 1] + "', 'mm/dd/yyyy'), to_date('" + pargral[6, 1] + "', 'mm/dd/yyyy'))";
                 //Console.WriteLine(ins);
                 DM.ejecuta_sql(ins);
             }
             return html;
         }
 
-        public string[,] hexafile(string[,] array, string[,] file_name, string Carpeta, int id_rep, string[,] parins)
+        public string[,] hexafile(string[,] array, string[,] file_name, string Carpeta, int id_rep, string[,] pargral)
         {
             string[,] html = array;
             for (int i = 0; i < file_name.Rank - 1; i++)
@@ -421,11 +421,11 @@ namespace serverreports
                     }
                 }
                 string ins = "insert into rep_archivos (id_rep, carpeta, nombre, date_created, DEST_MAIL, PARAMS, days_deleted, subcarpeta, tipo_reporte, HASH_MD5, FECHA_INICIO, FECHA_FIN) "
-                  + "values ('" + id_rep.ToString() + "', '" + parins[1, 1] + "', '" + html[0, i] + "', sysdate, '" + parins[0, 1] + "'";
-                if (parins[8, 1] == "")
-                    ins = ins + ",'" + parins[2, 1].Replace("'","''") + "', " + parins[3, 1] + ", '" + nvl(parins[4, 1]) + "', '" + nvl(parins[5, 1]) + "', '" + html[3, i] + "', to_date('" + parins[6, 1] + "', 'mm/dd/yyyy'), to_date('" + parins[7, 1] + "', 'mm/dd/yyyy'))";
+                  + "values ('" + id_rep.ToString() + "', '" + pargral[1, 1] + "', '" + html[0, i] + "', sysdate, '" + pargral[0, 1] + "'";
+                if (pargral[8, 1] == "")
+                    ins = ins + ",'" + pargral[2, 1].Replace("'","''") + "', " + pargral[3, 1] + ", '" + nvl(pargral[4, 1]) + "', '" + nvl(pargral[5, 1]) + "', '" + html[3, i] + "', to_date('" + pargral[6, 1] + "', 'mm/dd/yyyy'), to_date('" + pargral[7, 1] + "', 'mm/dd/yyyy'))";
                 else
-                    ins = ins + ",'" + parins[2, 1].Replace("'", "''") + "', " + parins[3, 1] + ", '" + nvl(parins[4, 1]) + "', '" + nvl(parins[5, 1]) + "', '" + html[3, i] + "', to_date('" + parins[8, 1] + "', 'mm/dd/yyyy'), to_date('" + parins[6, 1] + "', 'mm/dd/yyyy'))";
+                    ins = ins + ",'" + pargral[2, 1].Replace("'", "''") + "', " + pargral[3, 1] + ", '" + nvl(pargral[4, 1]) + "', '" + nvl(pargral[5, 1]) + "', '" + html[3, i] + "', to_date('" + pargral[8, 1] + "', 'mm/dd/yyyy'), to_date('" + pargral[6, 1] + "', 'mm/dd/yyyy'))";
                 
                 Console.WriteLine(ins);
 
@@ -465,59 +465,59 @@ namespace serverreports
             return val;
         }
         /*
-        parins[0, 0]  = "DEST_MAIL";
-        parins[0, 1]  = dest_mail;
-        parins[1, 0]  = "Carpeta";
-        parins[1, 1]  = util.nvl(util.Tcampo(tdato_repor, "CARPETA"));
-        parins[2, 0]  = "param_string";
-        parins[2, 1]  = param_string;
-        parins[3, 0]  = "days_deleted";
-        parins[3, 1]  = days_deleted.ToString();
-        parins[4, 0]  = "SUBCARPETA";
-        parins[4, 1]  = util.nvl(util.Tcampo(tdato_repor, "SUBCARPETA"));
-        parins[5, 0]  = "id_Reporte";
-        parins[5, 1]  = id_Reporte.ToString();
-        parins[6, 0]  = "FECHA_1";
-        parins[6, 1]  = FECHA_1;
-        parins[7, 0]  = "FECHA_2";
-        parins[7, 1]  = FECHA_2;
-        parins[8, 0]  = "fecha_1_intervalo";
-        parins[8, 1]  = fecha_1_intervalo;
-        parins[9, 0] = "id_cron";
-        parins[9, 1] = rep_id.ToString();
-        parins[10, 0] = "Servidor";
-        parins[10, 1] = servidor;
-        parins[11, 0] = "second_path";
-        parins[11, 1] = second_path;
-        parins[12, 0] = "Path_file";
-        parins[12, 1] = Carpeta;
+        pargral[0, 0]  = "DEST_MAIL";
+        pargral[0, 1]  = dest_mail;
+        pargral[1, 0]  = "Carpeta";
+        pargral[1, 1]  = util.nvl(util.Tcampo(tdato_repor, "CARPETA"));
+        pargral[2, 0]  = "param_string";
+        pargral[2, 1]  = param_string;
+        pargral[3, 0]  = "days_deleted";
+        pargral[3, 1]  = days_deleted.ToString();
+        pargral[4, 0]  = "SUBCARPETA";
+        pargral[4, 1]  = util.nvl(util.Tcampo(tdato_repor, "SUBCARPETA"));
+        pargral[5, 0]  = "id_Reporte";
+        pargral[5, 1]  = id_Reporte.ToString();
+        pargral[6, 0]  = "FECHA_1";
+        pargral[6, 1]  = FECHA_1;
+        pargral[7, 0]  = "FECHA_2";
+        pargral[7, 1]  = FECHA_2;
+        pargral[8, 0]  = "fecha_1_intervalo";
+        pargral[8, 1]  = fecha_1_intervalo;
+        pargral[9, 0] = "id_cron";
+        pargral[9, 1] = rep_id.ToString();
+        pargral[10, 0] = "Servidor";
+        pargral[10, 1] = servidor;
+        pargral[11, 0] = "second_path";
+        pargral[11, 1] = second_path;
+        pargral[12, 0] = "Path_file";
+        pargral[12, 1] = Carpeta;
         */
-        public int replica_tem(string arch, string[,] parins)
+        public int replica_tem(string arch, string[,] pargral)
 
         {
             int resultado = 0;
             //string carpeta_resp = "C:\\pc\\ruta_alterna\\ejeml";
-            string carpeta_resp = parins[11, 1] + "\\" + nvl(parins[1, 1]) + "\\" + iff(nvl(parins[4, 1]), "<>", "", nvl(parins[4, 1]) + "\\", "");
+            string carpeta_resp = pargral[11, 1] + "\\" + nvl(pargral[1, 1]) + "\\" + iff(nvl(pargral[4, 1]), "<>", "", nvl(pargral[4, 1]) + "\\", "");
             /*
               if (!new System.IO.FileInfo(carpeta_resp + "\\" + arch + ".xlsx").Exists)
                 System.IO.File.Copy(localPath + fileName, remotePath + fileName);
             */
-            //string carpeta_resp = parins[11, 1] + "\\" + nvl(parins[1, 1]) + "\\" + iff(nvl(parins[4, 1]), "<>", "", nvl(parins[4, 1]) + "\\", "");
+            //string carpeta_resp = pargral[11, 1] + "\\" + nvl(pargral[1, 1]) + "\\" + iff(nvl(pargral[4, 1]), "<>", "", nvl(pargral[4, 1]) + "\\", "");
             if (arch != "")
             {
-                Console.WriteLine("primera" + parins[11, 0]);
-                //if (!Directory.Exists(parins[11, 1]))
+                Console.WriteLine("primera" + pargral[11, 0]);
+                //if (!Directory.Exists(pargral[11, 1]))
                 if (!Directory.Exists(carpeta_resp))
                 {
                     if (!Directory.Exists(carpeta_resp))
                         Directory.CreateDirectory(carpeta_resp);
                 }
-                Console.WriteLine(parins[12, 1] + "\\" + arch + ".xlsx");
-                if (new System.IO.FileInfo(parins[12, 1] + "\\" + arch + ".xlsx").Exists)
-                    File.Copy(Path.Combine(parins[12, 1], arch + ".xlsx"), Path.Combine(carpeta_resp, arch + ".xlsx"), true);
+                Console.WriteLine(pargral[12, 1] + "\\" + arch + ".xlsx");
+                if (new System.IO.FileInfo(pargral[12, 1] + "\\" + arch + ".xlsx").Exists)
+                    File.Copy(Path.Combine(pargral[12, 1], arch + ".xlsx"), Path.Combine(carpeta_resp, arch + ".xlsx"), true);
 
-                if (new System.IO.FileInfo(parins[12, 1] + "\\" + arch + ".zip").Exists)
-                    File.Copy(Path.Combine(parins[12, 1], arch + ".zip"), Path.Combine(carpeta_resp, arch + ".zip"), true);
+                if (new System.IO.FileInfo(pargral[12, 1] + "\\" + arch + ".zip").Exists)
+                    File.Copy(Path.Combine(pargral[12, 1], arch + ".zip"), Path.Combine(carpeta_resp, arch + ".zip"), true);
                 resultado = 1;
             }
             return resultado;

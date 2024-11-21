@@ -14,7 +14,7 @@ namespace serverreports
     internal class trading_genera_TLN_mod
     {
         
-        public string trading_genera_TLN(string Carpeta, string[,] file_name, string cliente, string Fecha_1, string Fecha_2, string empresa, Int32 idCron, string servidor, string[,] parins, string[] contacmail, int vs)
+        public string trading_genera_TLN(string Carpeta, string[,] file_name, string cliente, string Fecha_1, string Fecha_2, string empresa, Int32 idCron, string servidor, string[,] pargral, string[] contacmail, int vs)
         {
             int sw_error = 0;
             Utilerias util = new Utilerias();
@@ -72,15 +72,15 @@ namespace serverreports
                         arh[1] = Carpeta + "\\" + arch + ".zip";
                     }
                     //file_name[4, 0] = "0";
-                    html = util.hexafile_nv(file_name, Carpeta, idCron, arch, parins);
-                    util.replica_tem(arch, parins);
-                    string warning_message = DM.msg_temp(parins, vs);
-                    string mensaje = correo.display_mail(servidor, warning_message, arch, html, Int32.Parse(parins[3, 1]), "");
+                    html = util.hexafile_nv(file_name, Carpeta, idCron, arch, pargral);
+                    util.replica_tem(arch, pargral);
+                    string warning_message = DM.msg_temp(pargral, vs);
+                    string mensaje = correo.display_mail(servidor, warning_message, arch, html, Int32.Parse(pargral[3, 1]), "");
 
 
                     //correo.send_mail("Report: " + html[1, 0] + " created v2024", contacmail, mensaje, arh);
                     correo.send_mail("Report: " + html[1, 0] + " created v2024", [], mensaje, arh);
-                    DM.act_proceso(parins, vs);
+                    DM.act_proceso(pargral, vs);
                     util.borra_arch(arh, Carpeta);
                 }
                 else

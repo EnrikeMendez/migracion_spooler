@@ -10,7 +10,7 @@ namespace serverreports
     internal class Bosch_pedimentos2_mod
     {
         public (string[,] LisDT_tit, DataTable[] LisDT, string arch) Bosch_Pedimentos2
-               (string Carpeta, string[,] file_name, string Fecha_1, string Fecha_2, string Clientes, string Planta, string imp_exp, string[,] parins, string[] contacmail, int visible_sql)
+               (string Carpeta, string[,] file_name, string Fecha_1, string Fecha_2, string Clientes, string Planta, string imp_exp, string[,] pargral, string[] contacmail, int visible_sql)
         {
             int sw_error = 0;
             Utilerias util = new Utilerias();
@@ -76,7 +76,7 @@ namespace serverreports
 
             datos_sp.sql = " SC_RS.SPG_RS_COEX_PEDIMENTOS_BOSCH.P_DAT_FOLIOS_GENERAL ";
             Console.WriteLine(Planta);
-            datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(parins[13, 1]), visible_sql);
+            datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(pargral[13, 1]), visible_sql);
             LisDT[0] = datos_sp.tb;
             LisDT_tit[0, 0] = "Pediment 2 " + Fecha_1 + " To" + Fecha_2;
           
@@ -164,7 +164,7 @@ namespace serverreports
             par_st[8, 3] = "cod";
 
             datos_sp.sql = "SC_RS.SPG_RS_COEX_PEDIMENTOS_BOSCH.P_DAT_FOLIOS_CLAVE";
-            datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(parins[13, 1]), visible_sql);
+            datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(pargral[13, 1]), visible_sql);
             LisDT[1] = datos_sp.tb;
             Console.WriteLine(util.Tdetalle(LisDT[1]));
             for (int i = 0; i < LisDT[1].Rows.Count; i++)
@@ -225,7 +225,7 @@ namespace serverreports
             par_st[6, 3] = "cod";
 
             datos_sp.sql = "SC_RS.SPG_RS_COEX_PEDIMENTOS_BOSCH.P_DAT_FOLIOS_RECTIFICACION ";
-            datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(parins[13, 1]), visible_sql);
+            datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(pargral[13, 1]), visible_sql);
             LisDT[2] = datos_sp.tb;
             Console.WriteLine(util.Tdetalle(LisDT[2]));
             string IMP_EXP_tmp = "";

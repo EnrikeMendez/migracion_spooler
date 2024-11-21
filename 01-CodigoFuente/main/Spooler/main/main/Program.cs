@@ -46,7 +46,7 @@ string param_string = "";
 string dest_mail = "";
 string MiComando = "";
 string fecha_1_intervalo = "";
-string[,] parins = new string[14, 2];
+string[,] pargral = new string[14, 2];
 string[] contmail;
 DataTable trep_cron = new DataTable();
 DataTable tdato_repor = new DataTable();
@@ -242,34 +242,34 @@ try
         servidor = "http://www.logiscomercioexterior.com.mx";
         //Console.WriteLine("valor servidor:" + servidor);
 
-        parins[0, 0] = "DEST_MAIL";
-        parins[0, 1] = dest_mail;
-        parins[1, 0] = "Carpeta";
-        parins[1, 1] = util.nvl(util.Tcampo(tdato_repor, "CARPETA"));
-        parins[2, 0] = "param_string";
-        parins[2, 1] = param_string;
-        parins[3, 0] = "days_deleted";
-        parins[3, 1] = days_deleted.ToString();
-        parins[4, 0] = "SUBCARPETA";
-        parins[4, 1] = util.nvl(util.Tcampo(tdato_repor, "SUBCARPETA"));
-        parins[5, 0] = "id_Reporte";
-        parins[5, 1] = id_Reporte.ToString();
-        parins[6, 0] = "FECHA_1";
-        parins[6, 1] = FECHA_1;
-        parins[7, 0] = "FECHA_2";
-        parins[7, 1] = FECHA_2;
-        parins[8, 0] = "fecha_1_intervalo";
-        parins[8, 1] = fecha_1_intervalo;
-        parins[9, 0] = "id_cron";
-        parins[9, 1] = rep_id.ToString();
-        parins[10, 0] = "Servidor";
-        parins[10, 1] = servidor;
-        parins[11, 0] = "second_path";
-        parins[11, 1] = second_path;
-        parins[12, 0] = "Path_file";
-        parins[12, 1] = Carpeta;
-        parins[13, 0] = "usr_bd";
-        parins[13, 1] = "1";     
+        pargral[0, 0] = "DEST_MAIL";
+        pargral[0, 1] = dest_mail;
+        pargral[1, 0] = "Carpeta";
+        pargral[1, 1] = util.nvl(util.Tcampo(tdato_repor, "CARPETA"));
+        pargral[2, 0] = "param_string";
+        pargral[2, 1] = param_string;
+        pargral[3, 0] = "days_deleted";
+        pargral[3, 1] = days_deleted.ToString();
+        pargral[4, 0] = "SUBCARPETA";
+        pargral[4, 1] = util.nvl(util.Tcampo(tdato_repor, "SUBCARPETA"));
+        pargral[5, 0] = "id_Reporte";
+        pargral[5, 1] = id_Reporte.ToString();
+        pargral[6, 0] = "FECHA_1";
+        pargral[6, 1] = FECHA_1;
+        pargral[7, 0] = "FECHA_2";
+        pargral[7, 1] = FECHA_2;
+        pargral[8, 0] = "fecha_1_intervalo";
+        pargral[8, 1] = fecha_1_intervalo;
+        pargral[9, 0] = "id_cron";
+        pargral[9, 1] = rep_id.ToString();
+        pargral[10, 0] = "Servidor";
+        pargral[10, 1] = servidor;
+        pargral[11, 0] = "second_path";
+        pargral[11, 1] = second_path;
+        pargral[12, 0] = "Path_file";
+        pargral[12, 1] = Carpeta;
+        pargral[13, 0] = "usr_bd";
+        pargral[13, 1] = "1";     
         string[] arh;
         if (tab_archivos[4, 0] == "1")
             arh = new string[2];
@@ -282,19 +282,19 @@ try
             case "transmision_edocs_bosch":
                 //5132031
                 web_transmision_edocs_bosch edocs_bosch = new web_transmision_edocs_bosch();
-                edocs_bosch.transmision_edocs_bosch(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), parins, contmail, visible_sql);
+                edocs_bosch.transmision_edocs_bosch(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), pargral, contmail, visible_sql);
                 break;
 
             case "gsk_pedimientos":
                 //gsk 3723307
                 trading_genera_GSK_mod trading_genera_GSK = new trading_genera_GSK_mod();
-                trading_genera_GSK.trading_genera_GSK(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id, parins, contmail, visible_sql);
+                trading_genera_GSK.trading_genera_GSK(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id, pargral, contmail, visible_sql);
                 break;
 
             case "porteos_tln":
                 // 6651805
                 trading_genera_TLN_mod trading_genera_TLN = new trading_genera_TLN_mod();
-                trading_genera_TLN.trading_genera_TLN(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id, servidor, parins, contmail, visible_sql);
+                trading_genera_TLN.trading_genera_TLN(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id, servidor, pargral, contmail, visible_sql);
                 break;
 
             case "ing_egr_gar_pend_fact":
@@ -303,7 +303,7 @@ try
                 //7216555
                 //5566766
                 Ing_egr_gar_pend_fact_mod Ing_egr_gar_pend_fact = new Ing_egr_gar_pend_fact_mod();
-                inf = Ing_egr_gar_pend_fact.Ing_egr_gar_pend_fact(tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), parins, contmail, visible_sql);
+                inf = Ing_egr_gar_pend_fact.Ing_egr_gar_pend_fact(tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), pargral, contmail, visible_sql);
                 // arch = xlsx.CrearExcel_file(inf.LisDT, inf.LisDT_tit, Carpeta + "\\" + inf.arch + ".xlsx", null, null, 0);
                 arch = xlsx.CrearExcel_filen(inf.LisDT, inf.LisDT_tit, Carpeta + "\\" + inf.arch + ".xlsx", null, null, 1, 3);
                 encorr = 1;
@@ -312,14 +312,14 @@ try
             case "fondo_fijo":
                 //5566768
                 web_fondo_fijo_mod Fondo_fijo = new web_fondo_fijo_mod();
-                inf = Fondo_fijo.Fondo_fijo(tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), parins, contmail, visible_sql);
+                inf = Fondo_fijo.Fondo_fijo(tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), pargral, contmail, visible_sql);
                 arch = xlsx.CrearExcel_filen(inf.LisDT, inf.LisDT_tit, Carpeta + "\\" + inf.arch + ".xlsx", null, null, 1, 3);
                 encorr = 1;
                 break;
             case "ind_cal_bosch":
                 //5071980
                 web_indice_cal_bosch indice_cal_bosch = new web_indice_cal_bosch();
-                inf = indice_cal_bosch.indice_cal_bosch(Carpeta, tab_archivos, FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), parins, contmail, visible_sql);
+                inf = indice_cal_bosch.indice_cal_bosch(Carpeta, tab_archivos, FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), pargral, contmail, visible_sql);
                 //indice_cal_bosch.indice_cal_bosch(Carpeta, tab_archivos[0], FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), visible_sql);
                 arch = xlsx.CrearExcel_filen(inf.LisDT, inf.LisDT_tit, Carpeta + "\\" + inf.arch + ".xlsx", null, null, 5, 2, 1, 1);
                 encorr = 1;
@@ -329,42 +329,32 @@ try
                 //case "bosch_pedim3":
                 //5335530
                 Bosch_pedimentos2_mod Bosch_Pedimentos2 = new Bosch_pedimentos2_mod();
-                inf = Bosch_Pedimentos2.Bosch_Pedimentos2(Carpeta, tab_archivos, FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), parins, contmail, visible_sql);
+                inf = Bosch_Pedimentos2.Bosch_Pedimentos2(Carpeta, tab_archivos, FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), pargral, contmail, visible_sql);
                 encorr = 2;
                 break;
             //case "bosch_pedim3":
             case "bosch_pedim2_xls":
                 //5335530
                 Bosch_pedimentos2_xls_mod Bosch_Pedimentos2_xls = new Bosch_pedimentos2_xls_mod();
-                inf = Bosch_Pedimentos2_xls.Bosch_Pedimentos2_xls(Carpeta, tab_archivos, FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), parins, visible_sql);
+                inf = Bosch_Pedimentos2_xls.Bosch_Pedimentos2_xls(Carpeta, tab_archivos, FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), pargral, visible_sql);
                 arch = xlsx.CrearExcel_filen(inf.LisDT, inf.LisDT_tit, Carpeta + "\\" + inf.arch + ".xlsx", null, null, 1, 0);
                 encorr = 1;
                 break;
             case "bosch_pedim3ok":
                 //5335530                
                 Bosch_pedimentos3_mod Bosch_Pedimentos3 = new Bosch_pedimentos3_mod();
-                inf = Bosch_Pedimentos3.Bosch_Pedimentos3(Carpeta, tab_archivos, "01/09/2004", "09/04/2006", "2478", "1", null, null, parins, visible_sql);
-                //inf = Bosch_Pedimentos3.Bosch_Pedimentos3(Carpeta, tab_archivos, FECHA_1     , FECHA_2     , util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")),util.nvl(util.Tcampo(tdato_repor, "PARAM_4")), parins,  visible_sql);
+                inf = Bosch_Pedimentos3.Bosch_Pedimentos3(Carpeta, tab_archivos, "01/09/2004", "09/04/2006", "2478", "1", null, null, pargral, visible_sql);
+                //inf = Bosch_Pedimentos3.Bosch_Pedimentos3(Carpeta, tab_archivos, FECHA_1     , FECHA_2     , util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")),util.nvl(util.Tcampo(tdato_repor, "PARAM_4")), pargral,  visible_sql);
                 encorr = 2;
                 break;
             case "bosch_pedim3":
                 //case "bosch_pedim3_xls":
                 //5335530                
                 Bosch_pedimentos3_xls_mod Bosch_Pedimentos3_xls = new Bosch_pedimentos3_xls_mod();
-                inf = Bosch_Pedimentos3_xls.Bosch_Pedimentos3_xls(Carpeta, tab_archivos, "03/14/2013", "03/23/2013", "11244", "1", null, null, parins, visible_sql);
-                //inf = Bosch_Pedimentos3_xls.Bosch_Pedimentos3_xls(Carpeta, tab_archivos, FECHA_1     , FECHA_2     , util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")),util.nvl(util.Tcampo(tdato_repor, "PARAM_4")), parins,  visible_sql);
-                /*
-                SC_RS.SPG_RS_COEX_PEDIMENTOS_BOSCH.P_DAT_IMPORT_XLS ( p_CLIENTE                => 11244
-                                                                     , p_IMP_EXP                => 1
-                                                                     , p_Fecha_Inicio           => '03/14/2013'
-                                                                     , p_Fecha_Fin              => '03/23/2013'
-                                                                     , p_MI_SGECLAVE            => NULL
-                                                                     , p_FOLIOS                 => NULL
-                                                                     , p_Cur_Bosch_XLS          => :v_Cursor
-                                                                     , p_MENSAJE                => v_Mensaje
-                                                                     , p_CODIGO_ERROR           => v_Codigo_Error 
-                                                                     ) ;                 
-                 */
+                inf = Bosch_Pedimentos3_xls.Bosch_Pedimentos3_xls(Carpeta, tab_archivos, "03/14/2013", "03/23/2013", "11244", "1", null, null, pargral, visible_sql);
+                //inf = Bosch_Pedimentos3_xls.Bosch_Pedimentos3_xls(Carpeta, tab_archivos, FECHA_1     , FECHA_2     , util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")),util.nvl(util.Tcampo(tdato_repor, "PARAM_4")), pargral,  visible_sql);
+                arch = xlsx.CrearExcel_filen(inf.LisDT, inf.LisDT_tit, Carpeta + "\\" + inf.arch + ".xlsx", null, null, 1, 0);
+                encorr = 1;
                 break;
         }
         if (encorr > 0)
@@ -389,17 +379,16 @@ try
                 arh[1] = Carpeta + "\\" + arch + ".zip";
             }
             // tab_archivos[4, 0] = "0";
-            html = util.hexafile_nv(tab_archivos, Carpeta, int.Parse(parins[9, 1]), arch, parins);
-            string mensaje = correo.display_mail(parins[10, 1], "", arch, html, Int32.Parse(parins[3, 1]), "");
-            util.replica_tem(arch, parins);
+            html = util.hexafile_nv(tab_archivos, Carpeta, int.Parse(pargral[9, 1]), arch, pargral);
+            string mensaje = correo.display_mail(pargral[10, 1], "", arch, html, Int32.Parse(pargral[3, 1]), "");
+            util.replica_tem(arch, pargral);
             if (contmail.Length > 0)
             {
-
                 string[,] cor = new string[0, 0];
                 //correo.send_mail("Report: " + html[1, 0] + " created v2024", contacmail, mensaje, arh);
                 correo.send_mail("Report: " + html[1, 0] + " created v2024", [], mensaje, arh);
             }
-            DM.act_proceso(parins, visible_sql);
+            DM.act_proceso(pargral, visible_sql);
             util.borra_arch(arh, Carpeta);
         }
     }

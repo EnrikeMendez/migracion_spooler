@@ -15,7 +15,7 @@ namespace serverreports
     internal class web_transmision_edocs_bosch
     {
         //5132031
-        public string transmision_edocs_bosch(string Carpeta, string[,] file_name, string Clientes, string Fecha_1, string Fecha_2, string imp_exp, string tipo_doc, string[,] parins, string[] contacmail, int visible_sql)
+        public string transmision_edocs_bosch(string Carpeta, string[,] file_name, string Clientes, string Fecha_1, string Fecha_2, string imp_exp, string tipo_doc, string[,] pargral, string[] contacmail, int visible_sql)
         {
             int sw_error = 0;
             Utilerias util = new Utilerias();
@@ -88,7 +88,7 @@ namespace serverreports
                     par_st[5, 3] = imp_exp;
 
 
-                    datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(parins[13, 1]), visible_sql);
+                    datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(pargral[13, 1]), visible_sql);
                     Console.WriteLine(" Mensaje store :" + datos_sp.msg);
                     Console.WriteLine(" Codigo store :" + datos_sp.codigo);
                     LisDT[0] = datos_sp.tb;
@@ -115,7 +115,7 @@ namespace serverreports
                     par_st[5, 2] = "p_Tipo_Op";
                     par_st[5, 3] = "2";
 
-                    datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(parins[13, 1]), visible_sql);
+                    datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(pargral[13, 1]), visible_sql);
                     LisDT[0] = datos_sp.tb;
                     LisDT_tit[0] = "Exportación";
                     Console.WriteLine(" Mensaje store :" + datos_sp.msg);
@@ -135,7 +135,7 @@ namespace serverreports
                     par_st[5, 2] = "p_Tipo_Op";
                     par_st[5, 3] = "1";
                     //datos_sp = DM.datos_sp([datos_sp.sql], visible_sql, Clientes, Fecha_1, Fecha_2, "null", tipo_doc, "1");
-                    datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(parins[13, 1]), visible_sql);
+                    datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(pargral[13, 1]), visible_sql);
                     LisDT[1] = datos_sp.tb;
 
                     LisDT_tit[1] = "Importación";
@@ -158,16 +158,16 @@ namespace serverreports
                 }
 
                 //file_name[0, 0] = file_name[0, 0] + ".xlsx";
-                html = util.hexafile_nv(file_name, Carpeta, int.Parse(parins[9, 1]), arch, parins);
-                util.replica_tem(arch, parins);
-                string warning_message = DM.msg_temp(parins, visible_sql);
-                string mensaje = correo.display_mail(parins[10, 1], warning_message, arch, html, Int32.Parse(parins[3, 1]), "");
+                html = util.hexafile_nv(file_name, Carpeta, int.Parse(pargral[9, 1]), arch, pargral);
+                util.replica_tem(arch, pargral);
+                string warning_message = DM.msg_temp(pargral, visible_sql);
+                string mensaje = correo.display_mail(pargral[10, 1], warning_message, arch, html, Int32.Parse(pargral[3, 1]), "");
                 //  correo.send_mail("Report: < Logis transmision_edocs_bosch > Envio ok", [], "proceso correcto", [Carpeta + "\\" + file_name + ".xlsx"]);
                 if (contacmail.Length > 0)
                 {
                     correo.send_mail("Report: <" + html[1, 0] + "> created v2024", [], mensaje, arh);
                 }
-                DM.act_proceso(parins, visible_sql);
+                DM.act_proceso(pargral, visible_sql);
                 util.borra_arch(arh, Carpeta);
             }
 

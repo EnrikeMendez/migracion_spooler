@@ -916,41 +916,41 @@ internal class DM
         return SQL;
     }
 
-    public int act_proceso(string[,] parins,int? vs)
+    public int act_proceso(string[,] pargral,int? vs)
     {
         //'una vez que esta generado el reporte, actualizamos los campos del detalle :
         //'last_created : ultima fecha a cual fue creado el reporte
         //'last_conf_date_1 y 2 el rango de fecha del reporte que fue generado
         string SQL;
-        if (parins[0, 1] == "")
+        if (pargral[0, 1] == "")
         {
             //    actualizacion de las fechas
             SQL = "update rep_detalle_reporte set last_created=sysdate " +
-                         ", last_conf_date_1 = to_date('" + parins[6, 1] + "', 'mm/dd/yyyy') " +
-                         ", last_conf_date_2 = to_date('" + parins[7, 1] + "', 'mm/dd/yyyy') " +
-                         "where id_cron= '" + parins[9, 1] + "' ";
-            ejecuta_sql(SQL, Convert.ToInt32(parins[13, 1]), vs);
+                         ", last_conf_date_1 = to_date('" + pargral[6, 1] + "', 'mm/dd/yyyy') " +
+                         ", last_conf_date_2 = to_date('" + pargral[7, 1] + "', 'mm/dd/yyyy') " +
+                         "where id_cron= '" + pargral[9, 1] + "' ";
+            ejecuta_sql(SQL, Convert.ToInt32(pargral[13, 1]), vs);
             //decir a la tabla rep_chron que esta generado el reporte : ponemos el campo IN_PROGRESS a 0            
-            SQL = "update rep_chron set in_progress=0 where id_rapport= '" + parins[9, 1] + "' ";
-            ejecuta_sql(SQL, Convert.ToInt32(parins[13, 1]), vs);
+            SQL = "update rep_chron set in_progress=0 where id_rapport= '" + pargral[9, 1] + "' ";
+            ejecuta_sql(SQL, Convert.ToInt32(pargral[13, 1]), vs);
         }
         else
         {
             //es un reporte generado desde la web o puntual
             //borramos el detalle
-            SQL = "delete from rep_detalle_reporte where id_cron= '" + parins[9, 1] + "'";
-            ejecuta_sql(SQL, Convert.ToInt32(parins[13, 1]), vs);
+            SQL = "delete from rep_detalle_reporte where id_cron= '" + pargral[9, 1] + "'";
+            ejecuta_sql(SQL, Convert.ToInt32(pargral[13, 1]), vs);
         }
         return 1;
     }
-    public string msg_temp(string[,] parins, int? vs)
+    public string msg_temp(string[,] pargral, int? vs)
     {
         string warning_message = "";
         string[,] par_st = new string[4, 4];
         par_st[0, 0] = "i";
         par_st[0, 1] = "i";
         par_st[0, 2] = "p_Reporte_ID";
-        par_st[0, 3] = parins[9, 1];
+        par_st[0, 3] = pargral[9, 1];
         par_st[1, 0] = "o";
         par_st[1, 1] = "c";
         par_st[1, 2] = "p_Cur_GSK";
@@ -972,8 +972,8 @@ internal class DM
         {
             string SQL_02 = "update rep_reporte set TEMP_MENSAJE = NULL " +
                             " , TEMP_MENSAJE_FECHA = NULL " +
-                            " where id_rep= '" + parins[9, 1] + "' ";
-            ejecuta_sql(SQL_02, Convert.ToInt32(parins[13, 1]), vs);
+                            " where id_rep= '" + pargral[9, 1] + "' ";
+            ejecuta_sql(SQL_02, Convert.ToInt32(pargral[13, 1]), vs);
         }
         return warning_message;
     }

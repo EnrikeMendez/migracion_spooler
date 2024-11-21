@@ -235,7 +235,6 @@ namespace serverreports
                             LisDT[i] = dt;
                             col = LisDT[i].Columns.Count;
                         }
-
                         //Vertical
                        // if (tit[i,0] == "Resumen")
                        if (tit[i, 1] != null)
@@ -304,6 +303,7 @@ namespace serverreports
                             Console.WriteLine(" Posicion fin 2 " + postabla[0, 1] + ((posinitabla - 1) + row).ToString());
                           //  chart = sl.CreateChart("A5", "G11", new SLCreateChartOptions() { RowsAsDataSeries = false });
                             chart = sl.CreateChart(postabla[0, 0] + (posinitablav).ToString(), postabla[0, 1] + ((posinitabla - graf_ran_row_neg) + row).ToString(), new SLCreateChartOptions() { RowsAsDataSeries = false });
+
                             chart.SetChartType(SLColumnChartType.ClusteredColumn);
                             SLDataSeriesOptions dso;
                             dso = chart.GetDataSeriesOptions(4);
