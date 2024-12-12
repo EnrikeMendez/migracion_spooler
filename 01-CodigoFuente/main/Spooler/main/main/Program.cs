@@ -269,7 +269,12 @@ try
         pargral[12, 0] = "Path_file";
         pargral[12, 1] = Carpeta;
         pargral[13, 0] = "usr_bd";
-        pargral[13, 1] = "1";     
+        pargral[13, 1] = "1";
+
+
+
+
+
         string[] arh;
         if (tab_archivos[4, 0] == "1")
             arh = new string[2];

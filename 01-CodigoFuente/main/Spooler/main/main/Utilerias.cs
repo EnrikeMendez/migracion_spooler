@@ -830,8 +830,32 @@ Next
             return valor;
         }
 
+        public List<string> txt(DataTable dtTemp, List<string>? campos = null, string? separador = ",")
+        {
+            List<string> elementos = new List<string>();
+            string val = "";
+            int x = dtTemp.Rows.Count;
+            elementos.Clear();
+            if (campos != null)
+                x = campos.Count;
+            for (int i = 0; i < dtTemp.Rows.Count; i++)
+            {
+                val = "";
+                for (int j = 0; j < x; j++)
+                {
+                    if (j == (x - 1))
+                        if (campos != null)
+                            try { val = val + nvl(dtTemp.Rows[i][campos[j]].ToString()); } catch (Exception) { val = val + "Nofound [" + campos[j] + "]"; }
+                        else
+                            val = val + nvl(dtTemp.Rows[i][j].ToString());
+                    else                        
+                        val = val + nvl(dtTemp.Rows[i][campos[j]].ToString()) + separador;                     
+                }
+                elementos.Add(val);
+            }
+            return elementos;
+        }
 
 
     }
-
 }
