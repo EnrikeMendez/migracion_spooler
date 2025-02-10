@@ -964,7 +964,7 @@ internal class DM
         par_st[3, 3] = "cod";
         (string? codigo, string? msg, string? sql, DataTable? tb) datos_sp1;
         datos_sp1.sql = "SC_DIST.SPG_RS_COEX.P_OBTEN_TEMP_MENSAJE ";
-        datos_sp1 = datos_sp([datos_sp1.sql], par_st, vs);
+        datos_sp1 = datos_sp([datos_sp1.sql], par_st, vs); 
         if (util.Tcampo(datos_sp1.tb, "VER") == "ok")
             warning_message = util.Tcampo(datos_sp1.tb, "TEMP_MENSAJE");
         else

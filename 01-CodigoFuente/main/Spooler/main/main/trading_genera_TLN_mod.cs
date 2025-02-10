@@ -50,7 +50,7 @@ namespace serverreports
 
             try
             {
-                datos_sp = DM.datos_sp([datos_sp.sql], par_st, vs);
+                datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(pargral[13, 1]), vs);
 
             Console.WriteLine(" Mensaje store :" + datos_sp.msg);
             Console.WriteLine(" Codigo store :"  + datos_sp.codigo);

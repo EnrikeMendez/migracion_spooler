@@ -813,8 +813,6 @@ Next
         public int Tcampo_numcol(DataTable dtTemp, string campo)
         {
             int valor = 0;
-
-
             if (dtTemp.Rows.Count > 0 && campo != null)
             {
                 for (int j = 0; j < dtTemp.Columns.Count; j++)
@@ -848,14 +846,48 @@ Next
                             try { val = val + nvl(dtTemp.Rows[i][campos[j]].ToString()); } catch (Exception) { val = val + "Nofound [" + campos[j] + "]"; }
                         else
                             val = val + nvl(dtTemp.Rows[i][j].ToString());
-                    else                        
-                        val = val + nvl(dtTemp.Rows[i][campos[j]].ToString()) + separador;                     
+                    else
+                        if (campos != null)
+                        try { val = val + nvl(dtTemp.Rows[i][campos[j]].ToString()) + separador; } catch (Exception) { val = val + "Nofound [" + campos[j] + "]" + separador; }
+                    else
+                        val = val + nvl(dtTemp.Rows[i][j].ToString()) + separador;
                 }
                 elementos.Add(val);
             }
             return elementos;
         }
 
+        public DataTable tab_col_def(DataTable dtTemp, string[,] datosdef)
+        {
+            DataTable dtTemp_re = new DataTable();
+            string tit;
 
+            string val = "";
+            for (int j = 0; j < datosdef.GetLength(0); j++)
+            {
+                tit = datosdef[j, 0];
+                if (datosdef[j, 1].ToUpper() == "S")
+                    dtTemp_re.Columns.Add(tit, typeof(System.String));
+                else if (datosdef[j, 1].ToUpper() == "I")
+                    dtTemp_re.Columns.Add(tit, typeof(System.Int32));
+                else
+                    dtTemp_re.Columns.Add(tit);
+            }
+            for (int i = 0; i < dtTemp.Rows.Count; i++)
+            {
+                DataRow nvreg = dtTemp_re.NewRow();
+                for (int j = 0; j < datosdef.GetLength(0); j++)
+                {
+                    tit = datosdef[j, 0];
+                    if ((datosdef[j, 2].ToUpper()) == "V")
+                        val = dtTemp.Rows[i][tit].ToString();
+                    else
+                        val = "";
+                    nvreg[tit] = val;
+                }
+                dtTemp_re.Rows.Add(nvreg);
+            }
+            return dtTemp_re;
+        }
     }
 }

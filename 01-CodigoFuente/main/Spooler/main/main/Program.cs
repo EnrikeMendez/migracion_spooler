@@ -46,7 +46,8 @@ string param_string = "";
 string dest_mail = "";
 string MiComando = "";
 string fecha_1_intervalo = "";
-string[,] pargral = new string[14, 2];
+
+string[,] pargral = new string[17, 2];
 string[] contmail;
 DataTable trep_cron = new DataTable();
 DataTable tdato_repor = new DataTable();
@@ -270,7 +271,12 @@ try
         pargral[12, 1] = Carpeta;
         pargral[13, 0] = "usr_bd";
         pargral[13, 1] = "1";
-
+        pargral[14, 0] = "ip";
+        pargral[14, 1] = util.Tcampo(trep_cron, "IP_ADDRESS_err");
+        pargral[15, 0] = "param3";
+        pargral[15, 1] = util.nvl(util.Tcampo(tdato_repor, "PARAM_3"));
+        pargral[16, 0] = "param4";
+        pargral[16, 1] = util.nvl(util.Tcampo(tdato_repor, "PARAM_4"));
 
 
 
@@ -298,6 +304,7 @@ try
 
             case "porteos_tln":
                 // 6651805
+            
                 trading_genera_TLN_mod trading_genera_TLN = new trading_genera_TLN_mod();
                 trading_genera_TLN.trading_genera_TLN(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id, servidor, pargral, contmail, visible_sql);
                 break;
@@ -338,7 +345,7 @@ try
                 encorr = 2;
                 break;
             //case "bosch_pedim3":
-            case "bosch_pedim2_xls":
+            case "bosch_pedim2_xlsok":
                 //5335530
                 Bosch_pedimentos2_xls_mod Bosch_Pedimentos2_xls = new Bosch_pedimentos2_xls_mod();
                 inf = Bosch_Pedimentos2_xls.Bosch_Pedimentos2_xls(Carpeta, tab_archivos, FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), pargral, visible_sql);
@@ -360,6 +367,36 @@ try
                 //inf = Bosch_Pedimentos3_xls.Bosch_Pedimentos3_xls(Carpeta, tab_archivos, FECHA_1     , FECHA_2     , util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")),util.nvl(util.Tcampo(tdato_repor, "PARAM_4")), pargral,  visible_sql);
                 arch = xlsx.CrearExcel_filen(inf.LisDT, inf.LisDT_tit, Carpeta + "\\" + inf.arch + ".xlsx", null, null, 1, 0);
                 encorr = 1;
+                break;
+            //case "bosch_pedim3_xls":
+              case "reservacion_ltl":
+                //5545714
+                pargral[13, 1] = "2";
+                pargral[15, 1] = "1";//txt
+                pargral[16, 1] = "";
+                web_reservacion_LTL_mod reservacion_ltl = new web_reservacion_LTL_mod();
+                inf = reservacion_ltl.reservacion_ltl(Carpeta, tab_archivos, "23213", "3", pargral, visible_sql, rep_id.ToString());
+                //inf = reservacion_ltl.reservacion_ltl(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), pargral, visible_sql);
+                encorr = 2;                
+                break;
+            case "reservacion_ltl_excel":
+                //7864811
+                pargral[13, 1] = "2";
+                pargral[15, 1] = "";//txt
+                pargral[16, 1] = "1";//xlsx
+                web_reservacion_LTL_mod reservacion_ltl_xlsx = new web_reservacion_LTL_mod();
+                inf = reservacion_ltl_xlsx.reservacion_ltl(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), "3", pargral, visible_sql, rep_id.ToString());
+                //inf = reservacion_ltl.reservacion_ltl(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), pargral, visible_sql);                
+                arch = xlsx.CrearExcel_filen(inf.LisDT, inf.LisDT_tit, Carpeta + "\\" + inf.arch + ".xlsx", null, null, 1, 0);
+                encorr = 1;                
+                break;
+            case "reservacion_CD":
+                //5545714
+                //7774047
+                pargral[13, 1] = "2";
+                web_reservacion_CD_mod reservacion_CD = new web_reservacion_CD_mod();
+                inf = reservacion_CD.reservacion_CD(Carpeta, tab_archivos, "20660", "3", pargral, visible_sql, rep_id.ToString());
+
                 break;
         }
         if (encorr > 0)
@@ -391,7 +428,9 @@ try
             {
                 string[,] cor = new string[0, 0];
                 //correo.send_mail("Report: " + html[1, 0] + " created v2024", contacmail, mensaje, arh);
+                // correo.send_mail("Report: Reservacion_de_Guias_LTL  created v2024", [], mensaje, arh);
                 correo.send_mail("Report: " + html[1, 0] + " created v2024", [], mensaje, arh);
+            
             }
             DM.act_proceso(pargral, visible_sql);
             util.borra_arch(arh, Carpeta);

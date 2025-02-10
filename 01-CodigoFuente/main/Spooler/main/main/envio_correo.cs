@@ -1,7 +1,11 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System.Net;
 using System.Net.Mail;
+using System.Net.Security;
+
 using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
+
 
 namespace serverreports
 {
@@ -17,7 +21,18 @@ namespace serverreports
             var configuration = new ConfigurationBuilder()
                                               .AddUserSecrets(Assembly.GetExecutingAssembly())
                                               .Build();
-            correo_p = configuration["us_mail2"] + "|" + configuration["pwd_mail2"];
+            switch (configuration["cta_correo_envio"])
+            {
+                case "1":
+                    correo_p = configuration["us_mail_dis"] + "|" + configuration["pwd_mail_dis"] + "|" + configuration["smtp_mail_dis"] + "|" + configuration["puerto_mail_dis"] + "|" + configuration["Ssl_mail_dis"];
+                    break;
+                default:
+                    correo_p = configuration["us_mail2"] + "|" + configuration["pwd_mail2"] + "|" + configuration["smtp_mail2"] + "|" + configuration["puerto_mail2"] + "|" + configuration["Ssl_mail2"];
+                    //correo_p = ConfigurationManager.AppSettings["us_mail2"] + "|" + ConfigurationManager.AppSettings["pwd_mail2"] + "|" + ConfigurationManager.AppSettings["smtp_mail2"] + "|" + ConfigurationManager.AppSettings["puerto_mail2"];// gmail 
+                    break;
+            }
+            //correo_p = configuration["us_mail_dis"] + "|" + configuration["pwd_mail_dis"] + "|" + configuration["smtp_mail_dis"] + "|" + configuration["puerto_mail_dis"] + "|" + configuration["Ssl_mail_dis"];
+            //correo_p = configuration["us_mail2"] + "|" + configuration["pwd_mail2"] + "|" + configuration["smtp_mail2"] + "|" + configuration["puerto_mail2"] + "|" + configuration["Ssl_mail2"];
             // toma el valor de app.config
             //correo_p = ConfigurationManager.AppSettings["us_mail"]+ "|"+ ConfigurationManager.AppSettings["pwd_mail"];
             return correo_p;
@@ -68,11 +83,15 @@ namespace serverreports
                     //MailAddress ccm = new MailAddress(cc[i]);
                     //correo.CC.Add(cc[i]);
                 }
-                //using (SmtpClient servidor = new SmtpClient("smtp.office365.com", 587))                
-                using (SmtpClient servidor = new SmtpClient("smtp.gmail.com", 587))
+
+                //using (SmtpClient servidor = new SmtpClient("192.168.100.6", 25))
+                using (SmtpClient servidor = new SmtpClient(dat_mail[2], int.Parse(dat_mail[3])))
                 {
-                    servidor.EnableSsl = true;
+                    servidor.EnableSsl = false;
+                    if (dat_mail[4] == "1")
+                        servidor.EnableSsl = true;
                     servidor.Credentials = new System.Net.NetworkCredential(dat_mail[0], dat_mail[1]);
+                    //servidor.Credentials = new System.Net.NetworkCredential("web-reports-dist@logis.com.mx", "Logis.2025*");
                     if (arh != null)
                     {
                         System.Net.Mail.Attachment attachment;
@@ -83,7 +102,7 @@ namespace serverreports
                         }
                     }
                     try
-                    {
+                    {                 
                         servidor.Send(correo);
                         correo.Attachments.Dispose();
                         Console.WriteLine("\t\tCorreo enviado de manera exitosa");
@@ -99,6 +118,72 @@ namespace serverreports
             }
         }
 
+        /*
+        static void NEVER_EAT_POISON_Disable_CertificateValidation()
+        {
+            // Disabling certificate validation can expose you to a man-in-the-middle attack
+            // which may allow your encrypted message to be read by an attacker
+            // https://stackoverflow.com/a/14907718/740639
+            ServicePointManager.ServerCertificateValidationCallback =
+                delegate (
+                    object s,
+                    X509Certificate certificate,
+                    X509Chain chain,
+                    SslPolicyErrors sslPolicyErrors
+                ) {
+                    return true;
+                };
+        }
+
+        private static bool CertificateValidationCallBack(
+        object sender,
+        System.Security.Cryptography.X509Certificates.X509Certificate certificate,
+        System.Security.Cryptography.X509Certificates.X509Chain chain,
+        System.Net.Security.SslPolicyErrors sslPolicyErrors)
+        {
+            // If the certificate is a valid, signed certificate, return true.
+            if (sslPolicyErrors == System.Net.Security.SslPolicyErrors.None)
+            {
+                return true;
+            }
+
+            // If there are errors in the certificate chain, look at each error to determine the cause.
+            if ((sslPolicyErrors & System.Net.Security.SslPolicyErrors.RemoteCertificateChainErrors) != 0)
+            {
+                if (chain != null && chain.ChainStatus != null)
+                {
+                    foreach (System.Security.Cryptography.X509Certificates.X509ChainStatus status in chain.ChainStatus)
+                    {
+                        if ((certificate.Subject == certificate.Issuer) &&
+                           (status.Status == System.Security.Cryptography.X509Certificates.X509ChainStatusFlags.UntrustedRoot))
+                        {
+                            // Self-signed certificates with an untrusted root are valid. 
+                            continue;
+                        }
+                        else
+                        {
+                            if (status.Status != System.Security.Cryptography.X509Certificates.X509ChainStatusFlags.NoError)
+                            {
+                                // If there are any other errors in the certificate chain, the certificate is invalid,
+                                // so the method returns false.
+                                return false;
+                            }
+                        }
+                    }
+                }
+
+                // When processing reaches this line, the only errors in the certificate chain are 
+                // untrusted root errors for self-signed certificates. These certificates are valid
+                // for default Exchange server installations, so return true.
+                return true;
+            }
+            else
+            {
+                // In all other cases, return false.
+                return false;
+            }
+        }
+        */
         public string send_error_mail1(string asunto, string[] contact, string mensaje)
         {
             string[] dat_mail = new string[1];
