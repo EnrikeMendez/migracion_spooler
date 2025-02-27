@@ -19,6 +19,12 @@ namespace serverreports
     internal class Utilerias
     {
         string idioma = "es-MX";
+        /// <summary>
+        /// Busca un campo dentro del DataTable y retorna el valor de dicho campo dentro de la primer fila.
+        /// </summary>
+        /// <param name="dtTemp">DataTable con los datos a consultar y del cual se considerará sólo la primer fila.</param>
+        /// <param name="campo">Nombre del campo del caul se requiere obtener el valor</param>
+        /// <returns></returns>
         public string Tcampo(DataTable dtTemp, string campo)
         {
             string valor = "";

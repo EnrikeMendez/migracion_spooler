@@ -208,6 +208,18 @@ internal class DM
             info.Item2 = info.Item2 + " " + ex.Message + " : " + info.Item3;
             info.Item4 = dtTemp;
         }
+        finally
+        {
+            if (cnn != null)
+            {
+                if (cnn.State == ConnectionState.Open)
+                {
+                    cnn.Close();
+                }
+                cnn.Dispose();
+                GC.SuppressFinalize(cnn);
+            }
+        }
         if (vs == 1) { Console.WriteLine(SQL + "\n"); }
         return info;
     }
