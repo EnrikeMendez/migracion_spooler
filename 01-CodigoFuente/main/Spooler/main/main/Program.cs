@@ -290,21 +290,14 @@ try
         int encorr = 0;
         switch (MiComando)
         {
-            case "transmision_edocs_bosch":
-                //5132031
-                web_transmision_edocs_bosch edocs_bosch = new web_transmision_edocs_bosch();
-                edocs_bosch.transmision_edocs_bosch(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), pargral, contmail, visible_sql);
-                break;
-
             case "gsk_pedimientos":
                 //gsk 3723307
                 trading_genera_GSK_mod trading_genera_GSK = new trading_genera_GSK_mod();
                 trading_genera_GSK.trading_genera_GSK(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id, pargral, contmail, visible_sql);
                 break;
-
+            
             case "porteos_tln":
                 // 6651805
-            
                 trading_genera_TLN_mod trading_genera_TLN = new trading_genera_TLN_mod();
                 trading_genera_TLN.trading_genera_TLN(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id, servidor, pargral, contmail, visible_sql);
                 break;
@@ -328,6 +321,60 @@ try
                 arch = xlsx.CrearExcel_filen(inf.LisDT, inf.LisDT_tit, Carpeta + "\\" + inf.arch + ".xlsx", null, null, 1, 3);
                 encorr = 1;
                 break;
+
+            case "reservacion_ltl":
+                //5545714
+                pargral[13, 1] = "2";
+                pargral[15, 1] = "1";//txt
+                pargral[16, 1] = "";
+                web_reservacion_LTL_mod reservacion_ltl = new web_reservacion_LTL_mod();
+                inf = reservacion_ltl.reservacion_ltl(Carpeta, tab_archivos, "23213", "3", pargral, visible_sql, rep_id.ToString());
+                //inf = reservacion_ltl.reservacion_ltl(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), pargral, visible_sql);
+                encorr = 2;
+                break;
+
+            case "reservacion_CD":
+                //5545714
+                //7774047
+                pargral[13, 1] = "2";
+                web_reservacion_CD_mod reservacion_CD = new web_reservacion_CD_mod();
+                inf = reservacion_CD.reservacion_CD(Carpeta, tab_archivos, "20660", "3", pargral, visible_sql, rep_id.ToString());
+                break;
+
+            case "reservacion_ltl_excel":
+                //7864811
+                pargral[13, 1] = "2";
+                pargral[15, 1] = "";//txt
+                pargral[16, 1] = "1";//xlsx
+                web_reservacion_LTL_mod reservacion_ltl_xlsx = new web_reservacion_LTL_mod();
+                inf = reservacion_ltl_xlsx.reservacion_ltl(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), "3", pargral, visible_sql, rep_id.ToString());
+                //inf = reservacion_ltl.reservacion_ltl(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), pargral, visible_sql);                
+                arch = xlsx.CrearExcel_filen(inf.LisDT, inf.LisDT_tit, Carpeta + "\\" + inf.arch + ".xlsx", null, null, 1, 0);
+                encorr = 1;
+                break;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+            case "transmision_edocs_bosch":
+                //5132031
+                web_transmision_edocs_bosch edocs_bosch = new web_transmision_edocs_bosch();
+                edocs_bosch.transmision_edocs_bosch(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), pargral, contmail, visible_sql);
+                break;
+
             case "ind_cal_bosch":
                 //5071980
                 web_indice_cal_bosch indice_cal_bosch = new web_indice_cal_bosch();
@@ -369,35 +416,7 @@ try
                 encorr = 1;
                 break;
             //case "bosch_pedim3_xls":
-              case "reservacion_ltl":
-                //5545714
-                pargral[13, 1] = "2";
-                pargral[15, 1] = "1";//txt
-                pargral[16, 1] = "";
-                web_reservacion_LTL_mod reservacion_ltl = new web_reservacion_LTL_mod();
-                inf = reservacion_ltl.reservacion_ltl(Carpeta, tab_archivos, "23213", "3", pargral, visible_sql, rep_id.ToString());
-                //inf = reservacion_ltl.reservacion_ltl(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), pargral, visible_sql);
-                encorr = 2;                
-                break;
-            case "reservacion_ltl_excel":
-                //7864811
-                pargral[13, 1] = "2";
-                pargral[15, 1] = "";//txt
-                pargral[16, 1] = "1";//xlsx
-                web_reservacion_LTL_mod reservacion_ltl_xlsx = new web_reservacion_LTL_mod();
-                inf = reservacion_ltl_xlsx.reservacion_ltl(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), "3", pargral, visible_sql, rep_id.ToString());
-                //inf = reservacion_ltl.reservacion_ltl(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), pargral, visible_sql);                
-                arch = xlsx.CrearExcel_filen(inf.LisDT, inf.LisDT_tit, Carpeta + "\\" + inf.arch + ".xlsx", null, null, 1, 0);
-                encorr = 1;                
-                break;
-            case "reservacion_CD":
-                //5545714
-                //7774047
-                pargral[13, 1] = "2";
-                web_reservacion_CD_mod reservacion_CD = new web_reservacion_CD_mod();
-                inf = reservacion_CD.reservacion_CD(Carpeta, tab_archivos, "20660", "3", pargral, visible_sql, rep_id.ToString());
-
-                break;
+*/
         }
         if (encorr > 0)
         {
