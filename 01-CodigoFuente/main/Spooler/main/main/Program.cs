@@ -278,9 +278,6 @@ try
         pargral[16, 0] = "param4";
         pargral[16, 1] = util.nvl(util.Tcampo(tdato_repor, "PARAM_4"));
 
-
-
-
         string[] arh;
         if (tab_archivos[4, 0] == "1")
             arh = new string[2];

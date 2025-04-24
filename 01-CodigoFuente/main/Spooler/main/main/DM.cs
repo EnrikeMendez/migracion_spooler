@@ -2,7 +2,6 @@
 using Oracle.ManagedDataAccess.Client;
 using System.Data;
 using System.Reflection;
-
 namespace serverreports;
 
 internal class DM
@@ -42,7 +41,6 @@ internal class DM
         }
         return orfeo;
     }
-
     public DataTable datos(string SQL, int? Usr = 0, int? store = 0)
     {
 
