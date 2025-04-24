@@ -23,10 +23,10 @@ internal class DM
                     orfeo = configuration["USR_GLOBAL"];
                     break;
                 case 1:
-                    orfeo = configuration["USR_COEX"];
+                    orfeo = configuration["USR_DIST"];
                     break;
                 case 2:
-                    orfeo = configuration["USR_DIST"];
+                    orfeo = configuration["USR_COEX"];
                     break;
             }
             //orfeo = configuration["Orfeo2"];

@@ -270,7 +270,7 @@ try
         pargral[12, 0] = "Path_file";
         pargral[12, 1] = Carpeta;
         pargral[13, 0] = "usr_bd";
-        pargral[13, 1] = "1";
+        pargral[13, 1] = "2";
         pargral[14, 0] = "ip";
         pargral[14, 1] = util.Tcampo(trep_cron, "IP_ADDRESS_err");
         pargral[15, 0] = "param3";
@@ -324,7 +324,7 @@ try
 
             case "reservacion_ltl":
                 //5545714
-                pargral[13, 1] = "2";
+                pargral[13, 1] = "1";
                 pargral[15, 1] = "1";//txt
                 pargral[16, 1] = "";
                 web_reservacion_LTL_mod reservacion_ltl = new web_reservacion_LTL_mod();
@@ -336,14 +336,14 @@ try
             case "reservacion_CD":
                 //5545714
                 //7774047
-                pargral[13, 1] = "2";
+                pargral[13, 1] = "1";
                 web_reservacion_CD_mod reservacion_CD = new web_reservacion_CD_mod();
                 inf = reservacion_CD.reservacion_CD(Carpeta, tab_archivos, "20660", "3", pargral, visible_sql, rep_id.ToString());
                 break;
 
             case "reservacion_ltl_excel":
                 //7864811
-                pargral[13, 1] = "2";
+                pargral[13, 1] = "1";
                 pargral[15, 1] = "";//txt
                 pargral[16, 1] = "1";//xlsx
                 web_reservacion_LTL_mod reservacion_ltl_xlsx = new web_reservacion_LTL_mod();

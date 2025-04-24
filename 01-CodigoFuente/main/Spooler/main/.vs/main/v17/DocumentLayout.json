@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\usuario\\Documents\\net\\migracion_spooler\\01-CodigoFuente\\main\\Spooler\\main\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|c:\\users\\usuario\\documents\\net\\migracion_spooler\\01-codigofuente\\main\\spooler\\main\\main\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|C:\\Users\\usuario\\Documents\\net\\migracion_spooler\\01-CodigoFuente\\main\\Spooler\\main\\main\\dm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\dm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|c:\\users\\usuario\\documents\\net\\migracion_spooler\\01-codigofuente\\main\\spooler\\main\\main\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|solutionrelative:main\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CEA2BD62-91FB-41D6-8F47-F525D825D432}|main\\serverreports.csproj|C:\\Users\\usuario\\Documents\\net\\migracion_spooler\\01-CodigoFuente\\main\\Spooler\\main\\main\\utilerias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -26,17 +26,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "DM.cs",
               "DocumentMoniker": "C:\\Users\\usuario\\Documents\\net\\migracion_spooler\\01-CodigoFuente\\main\\Spooler\\main\\main\\DM.cs",
               "RelativeDocumentMoniker": "main\\DM.cs",
-              "ToolTip": "C:\\Users\\usuario\\Documents\\net\\migracion_spooler\\01-CodigoFuente\\main\\Spooler\\main\\main\\DM.cs*",
-              "RelativeToolTip": "main\\DM.cs*",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB4AAAAAAAAA",
+              "ToolTip": "C:\\Users\\usuario\\Documents\\net\\migracion_spooler\\01-CodigoFuente\\main\\Spooler\\main\\main\\DM.cs",
+              "RelativeToolTip": "main\\DM.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-06T15:42:25.043Z",
               "IsPinned": true,
@@ -50,9 +50,10 @@
               "RelativeDocumentMoniker": "main\\Utilerias.cs",
               "ToolTip": "C:\\Users\\usuario\\Documents\\net\\migracion_spooler\\01-CodigoFuente\\main\\Spooler\\main\\main\\Utilerias.cs",
               "RelativeToolTip": "main\\Utilerias.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-27T16:03:27.41Z"
+              "WhenOpened": "2025-02-27T16:03:27.41Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -63,18 +64,17 @@
               "ToolTip": "C:\\Users\\usuario\\Documents\\net\\migracion_spooler\\01-CodigoFuente\\main\\Spooler\\main\\main\\envio_correo.cs",
               "RelativeToolTip": "main\\envio_correo.cs",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-27T16:03:20.332Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-27T16:03:20.332Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\usuario\\Documents\\net\\migracion_spooler\\01-CodigoFuente\\main\\Spooler\\main\\main\\Program.cs",
               "RelativeDocumentMoniker": "main\\Program.cs",
-              "ToolTip": "C:\\Users\\usuario\\Documents\\net\\migracion_spooler\\01-CodigoFuente\\main\\Spooler\\main\\main\\Program.cs*",
-              "RelativeToolTip": "main\\Program.cs*",
-              "ViewState": "AQIAACMBAAAAAAAAAAAAAFEBAAAZAAAA",
+              "ToolTip": "C:\\Users\\usuario\\Documents\\net\\migracion_spooler\\01-CodigoFuente\\main\\Spooler\\main\\main\\Program.cs",
+              "RelativeToolTip": "main\\Program.cs",
+              "ViewState": "AQIAAMkAAAAAAAAAAAAAAFkBAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-30T16:55:35.323Z",
               "EditorCaption": ""
