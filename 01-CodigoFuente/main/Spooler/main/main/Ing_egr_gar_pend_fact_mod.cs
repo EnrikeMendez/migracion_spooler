@@ -52,7 +52,7 @@ namespace serverreports
             par_st[4, 1] = "i";
             par_st[4, 2] = "p_Codigo_Error";
             par_st[4, 3] = "cod";
-            datos_sp.sql = "SC_RS.SPG_RS_COEX_DAF_REPORTES.P_DAT_RESUMEN_CLIENTES_BIM";
+            datos_sp.sql = "SC_RS.SPG_RS_DIST_DAF_REPORTES.P_DAT_RESUMEN_CLIENTES_BIM";
             datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(pargral[13, 1]), vs);
             LisDT[0] = datos_sp.tb;
             LisDT_tit[0,0] = "Resumen";
@@ -83,7 +83,7 @@ namespace serverreports
             par_st[4, 1] = "i";
             par_st[4, 2] = "p_Codigo_Error";
             par_st[4, 3] = "cod";
-            datos_sp.sql = "SC_RS.SPG_RS_COEX_DAF_REPORTES.P_DAT_RESUMEN_CLIENTES_MES";
+            datos_sp.sql = "SC_RS.SPG_RS_DIST_DAF_REPORTES.P_DAT_RESUMEN_CLIENTES_MES";
             datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(pargral[13, 1]), vs);
             LisDT[1] = datos_sp.tb;
             LisDT_tit[1,0] = "Resumen";
@@ -105,7 +105,7 @@ namespace serverreports
             par_st[3, 1] = "i";
             par_st[3, 2] = "p_Codigo_Error";
             par_st[3, 3] = "cod";
-            datos_sp.sql = "SC_RS.SPG_RS_COEX_DAF_REPORTES.P_DAT_RESUMEN_CLIENTES_MAS_FIN";
+            datos_sp.sql = "SC_RS.SPG_RS_DIST_DAF_REPORTES.P_DAT_RESUMEN_CLIENTES_MAS_FIN";
             datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(pargral[13, 1]), vs);
             LisDT[2] = datos_sp.tb;
             LisDT_tit[2,0] = "Resumen";
@@ -134,7 +134,7 @@ namespace serverreports
             par_st[4, 1] = "i";
             par_st[4, 2] = "p_Codigo_Error";
             par_st[4, 3] = "cod";
-            datos_sp.sql = "SC_RS.SPG_RS_COEX_DAF_REPORTES.P_DAT_RESUMEN_CLIENTES";
+            datos_sp.sql = "SC_RS.SPG_RS_DIST_DAF_REPORTES.P_DAT_RESUMEN_CLIENTES";
             datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(pargral[13, 1]), vs);
             LisDT[3] = datos_sp.tb;
             LisDT_tit[3,0] = "Resumen Cliente";
@@ -156,7 +156,7 @@ namespace serverreports
             par_st[3, 2] = "p_Codigo_Error";
             par_st[3, 3] = "cod";
             //datos_sp.sql = "SC_RS.SPG_RS_COEX.P_DAT_FOLIOS_INGR_EGRE_PEN_FAC";
-            datos_sp.sql = "SC_RS.SPG_RS_COEX_DAF_REPORTES.P_DAT_RESUMEN_FOLIOS";
+            datos_sp.sql = "SC_RS.SPG_RS_DIST_DAF_REPORTES.P_DAT_RESUMEN_FOLIOS";
             datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(pargral[13, 1]), vs);
             LisDT[4] = datos_sp.tb;
             LisDT_tit[4,0] = "Folios";
@@ -165,7 +165,7 @@ namespace serverreports
             par_st = new string[7, 4];
             par_st[0, 0] = "i";
             par_st[0, 1] = "v";
-            par_st[0, 2] = "pfecha_max";
+            par_st[0, 2] = "p_Fecha_Max";
             if (fecha == "")
             {
                 par_st[0, 3] = null;
@@ -183,8 +183,8 @@ namespace serverreports
             par_st[2, 0] = "i";
             par_st[2, 1] = "v";
             par_st[2, 2] = "p_Divisa";
-            // par_st[2, 3] = "MXN";
-            par_st[2, 3] = Divisa;
+            par_st[2, 3] = "MXN";
+            //par_st[2, 3] = Divisa;
 
             par_st[3, 0] = "i";
             par_st[3, 1] = "v";
@@ -208,7 +208,7 @@ namespace serverreports
             par_st[6, 2] = "p_Codigo_Error";
             par_st[6, 3] = "cod";
             //datos_sp.sql = "SC_RS.SPG_RS_COEX.P_DAT_FOLIOS";
-            datos_sp.sql = "SC_RS.SPG_RS_COEX_DAF_REPORTES.P_DAT_FOLIOS";
+            datos_sp.sql = "SC_RS.SPG_RS_DIST_DAF_REPORTES.P_DAT_FOLIOS";
             datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(pargral[13, 1]), vs);
             LisDT[5] = datos_sp.tb;
             LisDT_tit[5,0] = "EGR_ING_Pend_Fact";       

@@ -57,7 +57,7 @@ namespace serverreports
             par_st[5, 2] = "p_CODIGO_ERROR";
             par_st[5, 3] = "cod";
 
-            datos_sp.sql = "SC_RS.SPG_RS_COEX_DAF_REPORTES.P_DAT_FONDO_FIJO";
+            datos_sp.sql = "SC_RS.SPG_RS_DIST_DAF_REPORTES.P_DAT_FONDO_FIJO";
             datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(pargral[13, 1]), vs);
             LisDT[0] = datos_sp.tb;
             LisDT_tit[0, 0] = "Fondo Fijo";

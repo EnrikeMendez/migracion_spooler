@@ -289,12 +289,14 @@ try
         {
             case "gsk_pedimientos":
                 //gsk 3723307
+                pargral[13, 1] = "1";
                 trading_genera_GSK_mod trading_genera_GSK = new trading_genera_GSK_mod();
                 trading_genera_GSK.trading_genera_GSK(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id, pargral, contmail, visible_sql);
                 break;
             
             case "porteos_tln":
                 // 6651805
+                pargral[13, 1] = "1";
                 trading_genera_TLN_mod trading_genera_TLN = new trading_genera_TLN_mod();
                 trading_genera_TLN.trading_genera_TLN(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id, servidor, pargral, contmail, visible_sql);
                 break;
@@ -304,6 +306,7 @@ try
                 //4241096
                 //7216555
                 //5566766
+                pargral[13, 1] = "1";
                 Ing_egr_gar_pend_fact_mod Ing_egr_gar_pend_fact = new Ing_egr_gar_pend_fact_mod();
                 inf = Ing_egr_gar_pend_fact.Ing_egr_gar_pend_fact(tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), pargral, contmail, visible_sql);
                 // arch = xlsx.CrearExcel_file(inf.LisDT, inf.LisDT_tit, Carpeta + "\\" + inf.arch + ".xlsx", null, null, 0);
@@ -313,6 +316,7 @@ try
 
             case "fondo_fijo":
                 //5566768
+                pargral[13, 1] = "1";
                 web_fondo_fijo_mod Fondo_fijo = new web_fondo_fijo_mod();
                 inf = Fondo_fijo.Fondo_fijo(tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), pargral, contmail, visible_sql);
                 arch = xlsx.CrearExcel_filen(inf.LisDT, inf.LisDT_tit, Carpeta + "\\" + inf.arch + ".xlsx", null, null, 1, 3);

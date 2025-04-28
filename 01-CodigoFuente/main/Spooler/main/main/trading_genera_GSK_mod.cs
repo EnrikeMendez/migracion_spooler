@@ -20,7 +20,7 @@ namespace serverreports
                 arh = new string[1];
             (string? codigo, string? msg, string? sql, DataTable? tb) datos_sp;
             datos_sp.tb = LisDT[0];
-            datos_sp.sql = "SC_RS.SPG_RS_COEX.P_RS_GSK_PEDIMENTOS";
+            datos_sp.sql = "SC_RS.SPG_RS_DIST.P_RS_GSK_PEDIMENTOS";
             //            datos_sp = DM.datos_sp([datos_sp.sql], vs);
             string[,] html = new string[6, 1];
             string[,] par_st = new string[3, 4];
