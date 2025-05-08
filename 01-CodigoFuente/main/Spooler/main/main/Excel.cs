@@ -9,6 +9,8 @@ using DocumentFormat.OpenXml.Spreadsheet;
 using ClosedXML.Excel;
 using SpreadsheetLight.Charts;
 using DocumentFormat.OpenXml.Bibliography;
+using DocumentFormat.OpenXml.Wordprocessing;
+using DocumentFormat.OpenXml.Drawing.Diagrams;
 
 namespace serverreports
 {
@@ -365,8 +367,8 @@ namespace serverreports
             SLStyle style_d = sl.CreateStyle();
             style_d.SetFont("Arial", 8);
             style_d.SetFontBold(true);
-            style_d.SetVerticalAlignment(VerticalAlignmentValues.Center);
-            style_d.SetHorizontalAlignment(HorizontalAlignmentValues.Center);
+            style_d.SetVerticalAlignment(DocumentFormat.OpenXml.Spreadsheet.VerticalAlignmentValues.Center);
+            style_d.SetHorizontalAlignment(DocumentFormat.OpenXml.Spreadsheet.HorizontalAlignmentValues.Center);
             style_d.Fill.SetPattern(PatternValues.Solid, System.Drawing.Color.White, System.Drawing.Color.Black);
             style_d.SetFontColor(System.Drawing.Color.Black);
             if (tp.ToUpper() == "E")
@@ -376,6 +378,121 @@ namespace serverreports
                 //  style_d.Alignment.ShrinkToFit = true;
             }
             return style_d;
+        }
+        /// <summary>
+        /// Crea un archivo XLSX a partir de un Dataset, considerando una Hoja de trabajo por cada DataTable.
+        /// </summary>
+        /// <param name="dsData">DataSet con los DataTable's que contienen la información a plasmar en el archivo.</param>
+        /// <param name="dsTitles">Opcional: En caso de requerir encabezados específicos, se debe declarar un DataTable de encabezados por cada DataTable de Datos.</param>
+        /// <param name="filename">Opcional: Nombre que se le dará al archivo, por default se almacenará como wroksheet_logis_{ddMMyyyyHHmmssfff}.xlsx</param>
+        /// <returns>Ruta y nombre del archivo creado.</returns>
+        public string CreateExcel_file(DataSet dsData, DataSet dsTitles = null, string? filename = "")
+        {
+            int i = 0;
+            int j = 0;
+            SLDocument sl = new SLDocument();
+            string ruta_nombre = string.Empty;
+            string hoja_default = string.Empty;
+            string hoja_inicial = string.Empty;
+            DataSet dsResultante = new DataSet();
+            SLStyle headerStyle = new SLStyle();
+
+            try
+            {
+                headerStyle = new SLStyle();
+                headerStyle.Font.Bold = true;
+                headerStyle.Font.FontColor = System.Drawing.Color.White;
+                headerStyle.Fill.SetPatternType(PatternValues.Solid);
+                headerStyle.Fill.SetPatternBackgroundColor(System.Drawing.Color.Black);
+                headerStyle.Alignment.Horizontal = DocumentFormat.OpenXml.Spreadsheet.HorizontalAlignmentValues.Center;
+
+
+                if (filename != null)
+                {
+                    if (!filename.Trim().Equals(string.Empty))
+                    {
+                        if (!filename.ToLower().EndsWith(".xls") && !filename.ToLower().EndsWith(".xlsx"))
+                        {
+                            filename = string.Format("{0}.xlsx", filename);
+                        }
+                    }
+                    else
+                    {
+                        filename = string.Format("wroksheet_logis_{0}.xlsx", DateTime.Now.ToString("ddMMyyyyHHmmssfff"));
+                    }
+                }
+                else
+                {
+                    filename = string.Format("wroksheet_logis_{0}.xlsx", DateTime.Now.ToString("ddMMyyyyHHmmssfff"));
+                }
+                if (dsData != null && dsTitles != null)
+                {
+                    if (dsData.Tables.Count > 0 && dsTitles.Tables.Count > 0)
+                    {
+                        if (dsData.Tables.Count.Equals(dsTitles.Tables.Count))
+                        {
+                            i = 0;
+                            foreach (DataTable dt in dsData.Tables)
+                            {
+                                j = 0;
+                                dsResultante.Tables.Add(dt.Copy());
+
+                                if (dsResultante.Tables[i].Columns.Count.Equals(dsTitles.Tables[i].Rows.Count))
+                                {
+                                    foreach (DataRow dr in dsTitles.Tables[i].Rows)
+                                    {
+                                        dsResultante.Tables[i].Columns[j].ColumnName = dr[0].ToString();
+                                        j++;
+                                    }
+                                }
+
+                                i++;
+                            }
+                        }
+                    }
+                }
+                else if (dsData != null && dsTitles == null)
+                {
+                    i = 0;
+                    foreach (DataTable dt in dsData.Tables)
+                    {
+                        dsResultante.Tables.Add(dt.Copy());
+                    }
+                }
+                if (dsResultante != null)
+                {
+                    if (dsResultante.Tables.Count > 0)
+                    {
+                        sl = new SLDocument();
+                        hoja_default = sl.GetCurrentWorksheetName();
+
+                        foreach (DataTable dt in dsResultante.Tables)
+                        {
+                            if (hoja_inicial.Trim().Equals(string.Empty))
+                            {
+                                hoja_inicial = dt.TableName;
+                            }
+                            sl.AddWorksheet(dt.TableName);
+                            sl.ImportDataTable(1, 1, dt, true);
+                            sl.AutoFitColumn(1, dt.Columns.Count);
+                            sl.FreezePanes(1, 0);
+                            sl.SetRowStyle(1, headerStyle);
+                        }
+
+                        sl.DeleteWorksheet(hoja_default);
+                        sl.SelectWorksheet(hoja_inicial);
+                        ruta_nombre = string.Format("{0}{1}", Path.GetTempPath(), filename);
+
+                        sl.SaveAs(ruta_nombre);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex);
+            }
+
+            return ruta_nombre;
         }
     }
 }
