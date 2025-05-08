@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("serverreports")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d43c7061928531b709720451f973b92d062491e4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c6723cde73fc63c9840a4d1e16e217133af8f9dc")]
 [assembly: System.Reflection.AssemblyProductAttribute("serverreports")]
 [assembly: System.Reflection.AssemblyTitleAttribute("serverreports")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

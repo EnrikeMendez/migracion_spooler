@@ -354,70 +354,82 @@ try
                 encorr = 1;
                 break;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-            case "transmision_edocs_bosch":
-                //5132031
-                web_transmision_edocs_bosch edocs_bosch = new web_transmision_edocs_bosch();
-                edocs_bosch.transmision_edocs_bosch(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), pargral, contmail, visible_sql);
-                break;
-
-            case "ind_cal_bosch":
-                //5071980
-                web_indice_cal_bosch indice_cal_bosch = new web_indice_cal_bosch();
-                inf = indice_cal_bosch.indice_cal_bosch(Carpeta, tab_archivos, FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), pargral, contmail, visible_sql);
-                //indice_cal_bosch.indice_cal_bosch(Carpeta, tab_archivos[0], FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), visible_sql);
-                arch = xlsx.CrearExcel_filen(inf.LisDT, inf.LisDT_tit, Carpeta + "\\" + inf.arch + ".xlsx", null, null, 5, 2, 1, 1);
-                encorr = 1;
-
-                break;
-            case "bosch_pedim2":
-                //case "bosch_pedim3":
-                //5335530
-                Bosch_pedimentos2_mod Bosch_Pedimentos2 = new Bosch_pedimentos2_mod();
-                inf = Bosch_Pedimentos2.Bosch_Pedimentos2(Carpeta, tab_archivos, FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), pargral, contmail, visible_sql);
-                encorr = 2;
-                break;
-            //case "bosch_pedim3":
-            case "bosch_pedim2_xlsok":
-                //5335530
-                Bosch_pedimentos2_xls_mod Bosch_Pedimentos2_xls = new Bosch_pedimentos2_xls_mod();
-                inf = Bosch_Pedimentos2_xls.Bosch_Pedimentos2_xls(Carpeta, tab_archivos, FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), pargral, visible_sql);
+            case "conv_sin_exp":
+                //7864811
+                pargral[13, 1] = "1";
+                pargral[15, 1] = "";//txt
+                pargral[16, 1] = "1";//xlsx
+                web_conv_sin_exp_mod conv_sin_exp = new web_conv_sin_exp_mod();
+                inf = conv_sin_exp.conv_sin_exp(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), "3", pargral, visible_sql, rep_id.ToString());
+                //inf = reservacion_ltl.reservacion_ltl(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), pargral, visible_sql);                
                 arch = xlsx.CrearExcel_filen(inf.LisDT, inf.LisDT_tit, Carpeta + "\\" + inf.arch + ".xlsx", null, null, 1, 0);
                 encorr = 1;
                 break;
-            case "bosch_pedim3ok":
-                //5335530                
-                Bosch_pedimentos3_mod Bosch_Pedimentos3 = new Bosch_pedimentos3_mod();
-                inf = Bosch_Pedimentos3.Bosch_Pedimentos3(Carpeta, tab_archivos, "01/09/2004", "09/04/2006", "2478", "1", null, null, pargral, visible_sql);
-                //inf = Bosch_Pedimentos3.Bosch_Pedimentos3(Carpeta, tab_archivos, FECHA_1     , FECHA_2     , util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")),util.nvl(util.Tcampo(tdato_repor, "PARAM_4")), pargral,  visible_sql);
-                encorr = 2;
-                break;
-            case "bosch_pedim3":
-                //case "bosch_pedim3_xls":
-                //5335530                
-                Bosch_pedimentos3_xls_mod Bosch_Pedimentos3_xls = new Bosch_pedimentos3_xls_mod();
-                inf = Bosch_Pedimentos3_xls.Bosch_Pedimentos3_xls(Carpeta, tab_archivos, "03/14/2013", "03/23/2013", "11244", "1", null, null, pargral, visible_sql);
-                //inf = Bosch_Pedimentos3_xls.Bosch_Pedimentos3_xls(Carpeta, tab_archivos, FECHA_1     , FECHA_2     , util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")),util.nvl(util.Tcampo(tdato_repor, "PARAM_4")), pargral,  visible_sql);
-                arch = xlsx.CrearExcel_filen(inf.LisDT, inf.LisDT_tit, Carpeta + "\\" + inf.arch + ".xlsx", null, null, 1, 0);
-                encorr = 1;
-                break;
-            //case "bosch_pedim3_xls":
-*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                /*
+                            case "transmision_edocs_bosch":
+                                //5132031
+                                web_transmision_edocs_bosch edocs_bosch = new web_transmision_edocs_bosch();
+                                edocs_bosch.transmision_edocs_bosch(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), pargral, contmail, visible_sql);
+                                break;
+
+                            case "ind_cal_bosch":
+                                //5071980
+                                web_indice_cal_bosch indice_cal_bosch = new web_indice_cal_bosch();
+                                inf = indice_cal_bosch.indice_cal_bosch(Carpeta, tab_archivos, FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), pargral, contmail, visible_sql);
+                                //indice_cal_bosch.indice_cal_bosch(Carpeta, tab_archivos[0], FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), visible_sql);
+                                arch = xlsx.CrearExcel_filen(inf.LisDT, inf.LisDT_tit, Carpeta + "\\" + inf.arch + ".xlsx", null, null, 5, 2, 1, 1);
+                                encorr = 1;
+
+                                break;
+                            case "bosch_pedim2":
+                                //case "bosch_pedim3":
+                                //5335530
+                                Bosch_pedimentos2_mod Bosch_Pedimentos2 = new Bosch_pedimentos2_mod();
+                                inf = Bosch_Pedimentos2.Bosch_Pedimentos2(Carpeta, tab_archivos, FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), pargral, contmail, visible_sql);
+                                encorr = 2;
+                                break;
+                            //case "bosch_pedim3":
+                            case "bosch_pedim2_xlsok":
+                                //5335530
+                                Bosch_pedimentos2_xls_mod Bosch_Pedimentos2_xls = new Bosch_pedimentos2_xls_mod();
+                                inf = Bosch_Pedimentos2_xls.Bosch_Pedimentos2_xls(Carpeta, tab_archivos, FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), pargral, visible_sql);
+                                arch = xlsx.CrearExcel_filen(inf.LisDT, inf.LisDT_tit, Carpeta + "\\" + inf.arch + ".xlsx", null, null, 1, 0);
+                                encorr = 1;
+                                break;
+                            case "bosch_pedim3ok":
+                                //5335530                
+                                Bosch_pedimentos3_mod Bosch_Pedimentos3 = new Bosch_pedimentos3_mod();
+                                inf = Bosch_Pedimentos3.Bosch_Pedimentos3(Carpeta, tab_archivos, "01/09/2004", "09/04/2006", "2478", "1", null, null, pargral, visible_sql);
+                                //inf = Bosch_Pedimentos3.Bosch_Pedimentos3(Carpeta, tab_archivos, FECHA_1     , FECHA_2     , util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")),util.nvl(util.Tcampo(tdato_repor, "PARAM_4")), pargral,  visible_sql);
+                                encorr = 2;
+                                break;
+                            case "bosch_pedim3":
+                                //case "bosch_pedim3_xls":
+                                //5335530                
+                                Bosch_pedimentos3_xls_mod Bosch_Pedimentos3_xls = new Bosch_pedimentos3_xls_mod();
+                                inf = Bosch_Pedimentos3_xls.Bosch_Pedimentos3_xls(Carpeta, tab_archivos, "03/14/2013", "03/23/2013", "11244", "1", null, null, pargral, visible_sql);
+                                //inf = Bosch_Pedimentos3_xls.Bosch_Pedimentos3_xls(Carpeta, tab_archivos, FECHA_1     , FECHA_2     , util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")),util.nvl(util.Tcampo(tdato_repor, "PARAM_4")), pargral,  visible_sql);
+                                arch = xlsx.CrearExcel_filen(inf.LisDT, inf.LisDT_tit, Carpeta + "\\" + inf.arch + ".xlsx", null, null, 1, 0);
+                                encorr = 1;
+                                break;
+                            //case "bosch_pedim3_xls":
+                */
         }
         if (encorr > 0)
         {
