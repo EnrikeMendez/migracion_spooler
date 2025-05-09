@@ -355,15 +355,22 @@ try
                 break;
 
             case "conv_sin_exp":
-                //7864811
+                //7947853
                 pargral[13, 1] = "1";
                 pargral[15, 1] = "";//txt
                 pargral[16, 1] = "1";//xlsx
+                Carpeta = Path.GetTempPath();
                 web_conv_sin_exp_mod conv_sin_exp = new web_conv_sin_exp_mod();
-                inf = conv_sin_exp.conv_sin_exp(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), "3", pargral, visible_sql, rep_id.ToString());
-                //inf = reservacion_ltl.reservacion_ltl(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), pargral, visible_sql);                
-                arch = xlsx.CrearExcel_filen(inf.LisDT, inf.LisDT_tit, Carpeta + "\\" + inf.arch + ".xlsx", null, null, 1, 0);
-                encorr = 1;
+                inf = conv_sin_exp.conv_sin_exp(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), pargral, visible_sql, rep_id.ToString());
+                //arch = xlsx.CrearExcel_filen(inf.LisDT, inf.LisDT_tit, Carpeta + "\\" + inf.arch + ".xlsx", null, null, 1, 0);
+                if (File.Exists(inf.arch))
+                {
+                    encorr = 1;
+                }
+                else
+                {
+                    encorr = 0;
+                }
                 break;
 
 
@@ -461,7 +468,7 @@ try
                 string[,] cor = new string[0, 0];
                 //correo.send_mail("Report: " + html[1, 0] + " created v2024", contacmail, mensaje, arh);
                 // correo.send_mail("Report: Reservacion_de_Guias_LTL  created v2024", [], mensaje, arh);
-                correo.send_mail("Report: " + html[1, 0] + " created v2024", [], mensaje, arh);
+                correo.send_mail("Report: " + html[1, 0] + " created v"+DateTime.Now.Year, [], mensaje, arh);
             
             }
             DM.act_proceso(pargral, visible_sql);
@@ -481,7 +488,7 @@ try
 catch (Exception e)
 {
     Console.WriteLine(e.Message + " No. error" + e.HResult);
-
+    Console.WriteLine(e);
 }
 trep_cron.Dispose();
 tdato_repor.Dispose();

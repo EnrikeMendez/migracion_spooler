@@ -12,7 +12,8 @@ namespace serverreports
     internal class envio_correo
     {
         //string [] mail_grupo_error = ["desarrollo_web@logis.com.mx"];
-        string[] mail_grupo_error = ["raulrgg@logis.com.mx"];
+        //string[] mail_grupo_error = ["raulrgg@logis.com.mx"];
+        string[] mail_grupo_error = ["desarrollo_net@logis.com.mx"];
         Utilerias util = new Utilerias();
 
         private string email_usuario()

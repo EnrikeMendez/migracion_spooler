@@ -180,6 +180,10 @@ namespace serverreports
             var zipFileName = Path.Combine(ruta, "", outFileName);
             if (add == 0)
             {
+                if(File.Exists(zipFileName))
+                {
+                    File.Delete(zipFileName);
+                }
                 using (ZipArchive archive = ZipFile.Open(zipFileName, ZipArchiveMode.Create))
                       archive.CreateEntryFromFile(fileNameToAdd, Path.GetFileName(fileNameToAdd));
             }
