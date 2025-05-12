@@ -13,7 +13,7 @@ namespace serverreports
     {
         //string [] mail_grupo_error = ["desarrollo_web@logis.com.mx"];
         //string[] mail_grupo_error = ["raulrgg@logis.com.mx"];
-        string[] mail_grupo_error = ["desarrollo_net@logis.com.mx"];
+        string[] mail_grupo_error; //= ["desarrollo_net@logis.com.mx"];
         Utilerias util = new Utilerias();
 
         private string email_usuario()
@@ -36,6 +36,7 @@ namespace serverreports
             //correo_p = configuration["us_mail2"] + "|" + configuration["pwd_mail2"] + "|" + configuration["smtp_mail2"] + "|" + configuration["puerto_mail2"] + "|" + configuration["Ssl_mail2"];
             // toma el valor de app.config
             //correo_p = ConfigurationManager.AppSettings["us_mail"]+ "|"+ ConfigurationManager.AppSettings["pwd_mail"];
+            mail_grupo_error = configuration["correo_error"].Split(";");
             return correo_p;
         }
 
