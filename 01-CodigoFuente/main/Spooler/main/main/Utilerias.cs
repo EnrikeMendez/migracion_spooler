@@ -899,5 +899,49 @@ Next
             }
             return dtTemp_re;
         }
+
+
+        public string cambioIpServer(String ruta, String IP1, String IP2)
+        {
+            return ruta.Replace(IP1, IP2);
+        }
+
+        public Boolean genera_arbol_carpetas_local(string directorios)
+        {
+            try
+            {
+                // Separa cada subdirectorio utilizando el separador de directorios del sistema
+                string[] subdirs = directorios.Split(Path.DirectorySeparatorChar);
+
+                // Comienza desde la raíz del path
+                string arbol_dirs = subdirs[0] + Path.DirectorySeparatorChar;
+
+                // Recorre cada subdirectorio y valida si existe
+                for (int i = 1; i < subdirs.Length; i++)
+                {
+                    arbol_dirs = Path.Combine(arbol_dirs, subdirs[i]);
+
+                    if (!Directory.Exists(arbol_dirs))
+                    {
+                        Directory.CreateDirectory(arbol_dirs);
+                        Console.WriteLine($"Directorio creado: {arbol_dirs}");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"El directorio ya existe: {arbol_dirs}");
+                    }
+                }
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error al crear directorios: " + e.Message.ToString());
+                return false;
+
+            }
+
+        }
+
+
     }
 }
