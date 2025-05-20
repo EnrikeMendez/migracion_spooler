@@ -373,6 +373,14 @@ try
                 }
                 break;
 
+            case "fact_pend_cedis_ori":
+
+                pargral[13, 1] = "1";
+                trading_pend_cedis_ori_mod facturas_pendientes = new trading_pend_cedis_ori_mod();
+                inf = facturas_pendientes.trading_fact_pend_cedis_ori(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), pargral, visible_sql);
+                encorr = File.Exists(inf.arch) ? 1 : 0;
+
+                break;
 
 
 
