@@ -942,6 +942,32 @@ Next
 
         }
 
+        public string Tcampo_reg(DataTable dtTemp, string campo, int pos)
+        {
+            string valor = "";
+            if (dtTemp.Rows.Count > 0 && campo != "" && pos != 0)
+            {
+                for (int j = 0; j < dtTemp.Columns.Count; j++)
+                {
+                    if (dtTemp.Columns[j].ColumnName == campo)
+                    {
+                        valor = dtTemp.Rows[pos][campo].ToString();
+                        break;
+                    }
+                    else
+                    {
+                        valor = "campo invalido";
+                    }
+                }
+            }
+            else
+            {
+                if (dtTemp.Rows.Count == 0) valor = "no hay reg";
+                if (campo == null) valor = "Espcificar campo";
+                if (pos == 0) valor = "Espcificar posicion";
+            }
+            return valor;
+        }
 
     }
 }
