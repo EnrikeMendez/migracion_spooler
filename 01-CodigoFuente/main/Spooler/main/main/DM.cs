@@ -177,7 +177,10 @@ internal class DM
                     if (sw_cur == 0)
                     {
                         OracleDataReader reader = cmd.ExecuteReader();
-                        info.Item3 = cmd.Parameters[campo_out].Value.ToString();
+                        if (campo_out != "")
+                            info.Item3 = cmd.Parameters[campo_out].Value.ToString();
+                        else
+                            info.Item3 = "NA";
                     }
                     else
                     {
