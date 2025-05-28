@@ -383,15 +383,15 @@ try
                 break;
 
 
+            case "evid_clientes_sftp":
 
+                pargral[13, 1] = "1";
+                pargral[0, 1] =  mail_grupo_error[0];
 
+                dist_transfer_ftp_mod dist_transfer_ftp_mod = new dist_transfer_ftp_mod();
+                dist_transfer_ftp_mod.dist_ftp_transfer(rep_id, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), pargral[6, 1], pargral[7, 1], pargral, visible_sql);
 
-
-
-
-
-
-
+                break;
 
 
 
@@ -516,7 +516,7 @@ void init_var()
     "web-master@logis.com.mx for any question or to unsubscribe.";
     mail_From = "web-reports@logis.com.mx";
     mail_FromName = "Logis report server";
-    mail_grupo_error[0] = "desarrollo_web@logis.com.mx ;";
+    mail_grupo_error[0] = "notificacion_spooler@logis.com.mx";
     /*
     IP_servidor1 = "192.168.100.5";
     IP_servidor2 = "192.168.100.4";

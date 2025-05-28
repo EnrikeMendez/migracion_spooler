@@ -53,7 +53,7 @@ namespace serverreports
             send_mail("Report: < Logis " + rep + " > Error", [], mensaje);
         }
 
-        public string send_mail(string asunto, string[] contact, string mensaje, string[]? arh = null, string?[] cc = null)
+        public string send_mail(string asunto, string[] contact, string mensaje, string[]? arh = null, string?[] cc = null, Boolean bodyHtml = true)
         {
             string[] dat_mail = new string[1];
             dat_mail = email_usuario().Split("|");
@@ -64,22 +64,22 @@ namespace serverreports
             {
                 correo.From = new MailAddress(dat_mail[0]);
                 correo.Subject = asunto;
-                correo.IsBodyHtml = true;
+                correo.IsBodyHtml = bodyHtml;
                 correo.Body = mensaje;
-                
+
                 if (contact.Length > 0)
                     for (int i = 0; i < contact.Length; i++)
                         correo.To.Add(contact[i]);
                 else
                     for (int i = 0; i < mail_grupo_error.Length; i++)
-                        correo.To.Add(mail_grupo_error[i]);               
+                        correo.To.Add(mail_grupo_error[i]);
                 if (cc != null)
                 {
-                    for (int i = 0; i < cc.Length; i++) 
+                    for (int i = 0; i < cc.Length; i++)
                     {
                         correo.CC.Add(cc[i]);
                     }
-                        //MailAddress ccm = new MailAddress(cc);
+                    //MailAddress ccm = new MailAddress(cc);
                     //correo.To.Add(contact[i]);
 
                     //MailAddress ccm = new MailAddress(cc[i]);
@@ -104,7 +104,7 @@ namespace serverreports
                         }
                     }
                     try
-                    {                 
+                    {
                         servidor.Send(correo);
                         correo.Attachments.Dispose();
                         Console.WriteLine("\t\tCorreo enviado de manera exitosa");
@@ -193,21 +193,32 @@ namespace serverreports
             //Console.WriteLine(dat_mail[0]);
             //Console.WriteLine(dat_mail[1]);
             Console.WriteLine("\t\t\tEnviar Correo Electronico");
-            MailMessage correo = new MailMessage("prueba@gmail.com", "raulrgg@logis.com.mx", asunto, mensaje);
+            //MailMessage correo = new MailMessage("prueba@gmail.com", "raulrgg@logis.com.mx", asunto, mensaje);
+
+            MailMessage correo = new MailMessage();
+            correo.From = new MailAddress(dat_mail[0]);
+            correo.Subject = asunto;
+
+
             if (contact.Length > 0)
                 for (int i = 0; i < contact.Length; i++)
                     correo.To.Add(contact[i]);
             else
                 for (int i = 0; i < mail_grupo_error.Length; i++)
                     correo.To.Add(mail_grupo_error[i]);
-            SmtpClient servidor = new SmtpClient("smtp.gmail.com", 587);
+
+            correo.Body = mensaje;
+
+            correo.IsBodyHtml = false;
+
+            SmtpClient servidor = new SmtpClient(dat_mail[2], int.Parse(dat_mail[3]));
             NetworkCredential credenciales = new NetworkCredential(dat_mail[0], dat_mail[1]);
             servidor.Credentials = credenciales;
             servidor.EnableSsl = true;
             //– 465 y 578
             try
             {
-                //  servidor.Send(correo);
+                servidor.Send(correo);
                 correo.Attachments.Dispose();
                 correo.Dispose();
                 return "OK";
@@ -287,7 +298,7 @@ namespace serverreports
             + "    <IMG SRC=\"" + servidor + "/images/pixel.gif\" WIDTH=\"20\" HEIGHT=\"20\" alt=\"\"><IMG SRC=\"" + servidor + "/images/pointeurgris.gif\" alt=\"\">&nbsp;<B>Date :</B> " + DateTime.Now.ToString("dd/MM/yyyy H: mm") + "\n"
             + "    <br>\n";
             // for (int i = 0; i < tab_archivos.Length - 5; i++)
-            for (int i = 0; i < tab_archivos.Rank-1; i++)
+            for (int i = 0; i < tab_archivos.Rank - 1; i++)
 
             {
                 display_mail = display_mail + "    <IMG SRC=\"" + servidor + " /images/pixel.gif\" WIDTH =\"20\" HEIGHT =\"20\" alt =\"\" ><IMG SRC=\"" + servidor + " /images/pointeurgris.gif\" alt =\"\" > &nbsp;<B>Reporte :</B> " + tab_archivos[1, 0] + "\n"

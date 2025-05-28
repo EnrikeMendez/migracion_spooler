@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace serverreports
 {
@@ -24,36 +25,52 @@ namespace serverreports
 
 
         //Conexión al repositorio SFTP
-        public Boolean sftp_conexion()
+        public bool sftp_conexion(out string error)
         {
-            if (!_sftpClient.IsConnected)
+            try
             {
-                _sftpClient.Connect();
-
-                if (_sftpClient.IsConnected)
+                if (!_sftpClient.IsConnected)
                 {
-                    Console.WriteLine("Conectado al servidor SFTP");
-                    return true;
+                    _sftpClient.Connect();
+
+                    if (_sftpClient.IsConnected)
+                    {
+                        Console.WriteLine("Conectado al servidor SFTP");
+
+                        error = "";
+                        return true;
+                    }
+                    else
+                    {
+                        error = "Se produjo un error al intentar conectar al repositorio remoto.";
+                        return false;
+                    }
                 }
                 else
                 {
-                    return false;
+                    sftp_desconexion();
+
+                    _sftpClient.Connect();
+                    if (_sftpClient.IsConnected)
+                    {
+                        Console.WriteLine("Conectado al servidor SFTP");
+
+                        error = "";
+                        return true;
+                    }
+                    else
+                    {
+                        error = "Se produjo un error al intentar conectar al repositorio remoto.";
+                        return false;
+                    }
                 }
             }
-            else
+            catch (Exception ex)
             {
+                Console.WriteLine("Se produjo un error al intentar conectar al repositorio remoto: \n\n Detalle: \n" + ex.Message);
                 sftp_desconexion();
-                
-                _sftpClient.Connect();
-                if (_sftpClient.IsConnected)
-                {
-                    Console.WriteLine("Conectado al servidor SFTP");
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                error = ex.Message;
+                return false;
             }
         }
 
@@ -86,12 +103,49 @@ namespace serverreports
 
 
         //Transmite archivo al repositorio SFTP
-        public void sftp_transmitir_archivo(string ruta_archivo_local, string ruta_archivo_remoto)
+        public bool sftp_transmitir_archivo(string ruta_archivo_local, string ruta_remota, string archivo, bool genera_directorios_remotos, out string error)
         {
-            using (var fileStream = new FileStream(ruta_archivo_local, FileMode.Open))
+            string err;
+            try
             {
-                _sftpClient.UploadFile(fileStream, ruta_archivo_remoto);
-                Console.WriteLine($"Archivo transmitido: {ruta_archivo_remoto}");
+                //***** (1). Conexion *****
+                if (sftp_conexion(out err) == true)
+                {
+                    //***** (2). Generacion de directorios remotos *****
+                    if (genera_directorios_remotos == true)
+
+                    {
+                        sftp_genera_arbol_carpetas(ruta_remota);
+                    }
+
+                    //***** (3). Transmitir el archivo *****
+                    using (var fileStream = new FileStream(ruta_archivo_local, FileMode.Open))
+                    {
+                        _sftpClient.UploadFile(fileStream, ruta_remota + archivo);
+                        Console.WriteLine($"Archivo transmitido: {ruta_remota + archivo}");
+                    }
+
+                    //***** (4). Desconectar y liberar recursos *****
+                    sftp_desconexion();
+
+                    error = "";
+                    return true;
+                }
+                else
+                {
+                    sftp_desconexion();
+
+                    error = "No conectado al repositorio remoto.";
+                    return false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Se produjo un error en el proceso de transmisión del archivo: \n\n Detalle: \n" + ex.Message);
+                sftp_desconexion();
+                error = ex.Message;
+                return false;
             }
         }
 
