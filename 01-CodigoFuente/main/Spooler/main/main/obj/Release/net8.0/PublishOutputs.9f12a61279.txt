@@ -21,8 +21,11 @@ C:\pc\raul\programas consola\main\Spooler\main\main\aplicativo\Microsoft.Extensi
 C:\pc\raul\programas consola\main\Spooler\main\main\aplicativo\Microsoft.Win32.SystemEvents.dll
 C:\pc\raul\programas consola\main\Spooler\main\main\aplicativo\Newtonsoft.Json.dll
 C:\pc\raul\programas consola\main\Spooler\main\main\aplicativo\Oracle.ManagedDataAccess.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\aplicativo\Renci.SshNet.Async.dll
 C:\pc\raul\programas consola\main\Spooler\main\main\aplicativo\SixLabors.Fonts.dll
 C:\pc\raul\programas consola\main\Spooler\main\main\aplicativo\SpreadsheetLight.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\aplicativo\Renci.SshNet.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\aplicativo\SshNet.Security.Cryptography.dll
 C:\pc\raul\programas consola\main\Spooler\main\main\aplicativo\System.Configuration.ConfigurationManager.dll
 C:\pc\raul\programas consola\main\Spooler\main\main\aplicativo\System.Diagnostics.EventLog.dll
 C:\pc\raul\programas consola\main\Spooler\main\main\aplicativo\System.Diagnostics.PerformanceCounter.dll
@@ -31,6 +34,7 @@ C:\pc\raul\programas consola\main\Spooler\main\main\aplicativo\System.Drawing.Co
 C:\pc\raul\programas consola\main\Spooler\main\main\aplicativo\System.IO.Packaging.dll
 C:\pc\raul\programas consola\main\Spooler\main\main\aplicativo\System.Security.Cryptography.Pkcs.dll
 C:\pc\raul\programas consola\main\Spooler\main\main\aplicativo\System.Security.Cryptography.ProtectedData.dll
+C:\pc\raul\programas consola\main\Spooler\main\main\aplicativo\System.Xml.XPath.XmlDocument.dll
 C:\pc\raul\programas consola\main\Spooler\main\main\aplicativo\XLParser.dll
 C:\pc\raul\programas consola\main\Spooler\main\main\aplicativo\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
 C:\pc\raul\programas consola\main\Spooler\main\main\aplicativo\runtimes\win\lib\net8.0\System.Diagnostics.EventLog.Messages.dll

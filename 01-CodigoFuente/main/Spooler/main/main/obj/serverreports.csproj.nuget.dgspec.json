@@ -66,6 +66,10 @@
               "target": "Package",
               "version": "[23.4.0, )"
             },
+            "Renci.SshNet.Async": {
+              "target": "Package",
+              "version": "[1.4.0, )"
+            },
             "SpreadsheetLight": {
               "target": "Package",
               "version": "[3.5.0, )"
