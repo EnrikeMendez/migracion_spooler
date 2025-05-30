@@ -1,0 +1,4 @@
+192.168.100.43
+usr_rs_sftp_dist
+cBH6oGF8dr
+22
