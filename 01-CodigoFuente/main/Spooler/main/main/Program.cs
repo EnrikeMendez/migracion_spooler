@@ -393,7 +393,17 @@ try
 
                 break;
 
-
+            case "trading_lista_citas":
+                //7760421
+                pargral[13, 1] = "1";
+                pargral[6, 1] = "01/02/2024";
+                pargral[7, 1] = "02/23/2024";
+                trading_lista_citas_mod trading_lista_citas = new trading_lista_citas_mod();
+                inf = trading_lista_citas.trading_lista_citas(tab_archivos, "22824", util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), pargral, visible_sql);
+                //inf = trading_lista_citas.trading_lista_citas( tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), pargral, visible_sql);
+                arch = xlsx.CrearExcel_filen(inf.LisDT, inf.LisDT_tit, Carpeta + "\\" + inf.arch + ".xlsx", null, null, 1, 0);
+                encorr = 1;
+                break;
 
 
                 /*
