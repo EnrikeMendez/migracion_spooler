@@ -386,7 +386,7 @@ namespace serverreports
         /// <param name="dsTitles">Opcional: En caso de requerir encabezados específicos, se debe declarar un DataTable de encabezados por cada DataTable de Datos.</param>
         /// <param name="filename">Opcional: Nombre que se le dará al archivo, por default se almacenará como wroksheet_logis_{ddMMyyyyHHmmssfff}.xlsx</param>
         /// <returns>Ruta y nombre del archivo creado.</returns>
-        public string CreateExcel_file(DataSet dsData, DataSet dsTitles = null, string? filename = "")
+        public string CreateExcel_file(DataSet dsData, DataSet dsTitles = null, string? filename = "", string? carpeta = "")
         {
             int i = 0;
             int j = 0;
@@ -481,7 +481,16 @@ namespace serverreports
 
                         sl.DeleteWorksheet(hoja_default);
                         sl.SelectWorksheet(hoja_inicial);
-                        ruta_nombre = string.Format("{0}{1}", Path.GetTempPath(), filename);
+
+
+                        if (carpeta == "")
+                        {
+                            ruta_nombre = string.Format("{0}{1}", Path.GetTempPath(), filename);
+                        } else
+                        {
+                            ruta_nombre = carpeta + "\\" + filename;
+                        }
+                        
 
                         sl.SaveAs(ruta_nombre);
                     }

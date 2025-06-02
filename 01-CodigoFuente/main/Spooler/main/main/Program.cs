@@ -404,7 +404,13 @@ try
                 arch = xlsx.CrearExcel_filen(inf.LisDT, inf.LisDT_tit, Carpeta + "\\" + inf.arch + ".xlsx", null, null, 1, 0);
                 encorr = 1;
                 break;
+			case "cd_ltl_doc_pendiente":
+				pargral[13, 1] = "1";
+				web_doc_interna_pendientes_mod doc_ltl_cd_pend_scan = new web_doc_interna_pendientes_mod();
+				inf = doc_ltl_cd_pend_scan.web_cd_ltl_doc_interna_pend(Carpeta, tab_archivos, pargral, util.nvl(util.Tcampo(tdato_repor, "LAST_CONF_DATE_1")), util.nvl(util.Tcampo(tdato_repor, "LAST_CONF_DATE_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), util.nvl(util.Tcampo(tdato_repor, "PARAM_4")));
+				encorr = File.Exists(inf.arch) ? 1 : 0;
 
+				break;
 
                 /*
                             case "transmision_edocs_bosch":
