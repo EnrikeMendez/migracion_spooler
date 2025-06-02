@@ -800,6 +800,7 @@ Next
             if (((ancho + sw) + spacio) == vi)
             {
                 posini = Convert.ToChar(vi + 65).ToString();
+
             }
             if (abc == var)
                 sw = vi;
@@ -815,8 +816,8 @@ Next
             arryapos[0, 0] = var;
             arryapos[0, 1] = posini;
 
-            Console.WriteLine("posicion de inicial :" + arryapos[0, 0].ToString());
-            Console.WriteLine("ancho :" + arryapos[0, 1].ToString());
+            //Console.WriteLine("posicion de inicial :" + arryapos[0, 0].ToString());
+            //Console.WriteLine("ancho :" + arryapos[0, 1].ToString());
             return arryapos;
         }
 

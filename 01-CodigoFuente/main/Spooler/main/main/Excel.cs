@@ -297,13 +297,13 @@ namespace serverreports
                             double fChartWidth = 7;
                             //table = sl.CreateTable(2, 2, 5, 6);                            
                             SLChart chart;
-                            Console.WriteLine(" Posicion Init  " + postabla[0, 0] + (posinitablav - 1).ToString());
-                            Console.WriteLine(" Posicion fInit " + postabla[0, 1] + (posinitablav - 1).ToString());
-                            Console.WriteLine(" Posicion Ini   " + postabla[0, 0] + (posinitablav + 1).ToString());
-                            Console.WriteLine(" Posicion fin   " + postabla[0, 1] + ((posinitabla - 1) + row + 1).ToString());
-                            Console.WriteLine(" Posicion fin 1 " + postabla[0, 1] + ((posinitabla) + row + 1).ToString());
-                            Console.WriteLine(" Posicion fin 2 " + postabla[0, 1] + ((posinitabla - 1) + row).ToString());
-                          //  chart = sl.CreateChart("A5", "G11", new SLCreateChartOptions() { RowsAsDataSeries = false });
+                            //Console.WriteLine(" Posicion Init  " + postabla[0, 0] + (posinitablav - 1).ToString());
+                            //Console.WriteLine(" Posicion fInit " + postabla[0, 1] + (posinitablav - 1).ToString());
+                            //Console.WriteLine(" Posicion Ini   " + postabla[0, 0] + (posinitablav + 1).ToString());
+                            //Console.WriteLine(" Posicion fin   " + postabla[0, 1] + ((posinitabla - 1) + row + 1).ToString());
+                            //Console.WriteLine(" Posicion fin 1 " + postabla[0, 1] + ((posinitabla) + row + 1).ToString());
+                            //Console.WriteLine(" Posicion fin 2 " + postabla[0, 1] + ((posinitabla - 1) + row).ToString());
+                            //  chart = sl.CreateChart("A5", "G11", new SLCreateChartOptions() { RowsAsDataSeries = false });
                             chart = sl.CreateChart(postabla[0, 0] + (posinitablav).ToString(), postabla[0, 1] + ((posinitabla - graf_ran_row_neg) + row).ToString(), new SLCreateChartOptions() { RowsAsDataSeries = false });
 
                             chart.SetChartType(SLColumnChartType.ClusteredColumn);
