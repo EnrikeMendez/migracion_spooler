@@ -46,25 +46,50 @@ namespace serverreports
 
         public string dist_ftp_transfer(long id_cron, String cliente, String fecha_1, String fecha_2, string[,] pargral, int vs)
         {
-            // *** Inicializa variables locales...
-            my_id_cron = id_cron;
-            my_cliente = cliente;
-            //Formateo de fechas a DD/MM/YYYY/:
-            fecha1 = DateTime.ParseExact(fecha_1, "MM/dd/yyyy", CultureInfo.InvariantCulture);
-            fecha2 = DateTime.ParseExact(fecha_2, "MM/dd/yyyy", CultureInfo.InvariantCulture);
-            my_fecha_1 = fecha1.ToString("dd/MM/yyyy");
-            my_fecha_2 = fecha2.ToString("dd/MM/yyyy");
-            my_pargral = pargral;
-            my_vs = vs;
+            try
+            {
+                // *** Inicializa variables locales...
+                my_id_cron = id_cron;
+                my_cliente = cliente;
+                //Formateo de fechas a DD/MM/YYYY/:
+                fecha1 = DateTime.ParseExact(fecha_1, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+                fecha2 = DateTime.ParseExact(fecha_2, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+                my_fecha_1 = fecha1.ToString("dd/MM/yyyy");
+                my_fecha_2 = fecha2.ToString("dd/MM/yyyy");
+                my_pargral = pargral;
+                my_vs = vs;
 
-            // (1) *** Se validan credenciales registradas en base de datos y se realiza la prueba de conexión al repositorio cliente y espejo.
-            sub_valida_conexion_repositorio();
+                // (1) *** Se validan credenciales registradas en base de datos y se realiza la prueba de conexión al repositorio cliente y espejo.
+                sub_valida_conexion_repositorio();
 
-            // (2) *** Se consultan las evidencias a enviar por el periodo de fecha específico, si no hay evidencias por enviar se notifica sin evidencias.
-            sub_consulta_evidencias();
+                // (2) *** Se consultan las evidencias a enviar por el periodo de fecha específico, si no hay evidencias por enviar se notifica sin evidencias.
+                sub_consulta_evidencias();
 
-            // (3) *** Si se encontraron evidencias por enviar, se conectará a cada repositorio (cliente / espejo) y las transmitirá, una vez transmitido todo, se notificará el resumen de lo enviado.
-            sub_transmite_evidencias();
+                // (3) *** Si se encontraron evidencias por enviar, se conectará a cada repositorio (cliente / espejo) y las transmitirá, una vez transmitido todo, se notificará el resumen de lo enviado.
+                sub_transmite_evidencias();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                if (dt_conf_sftp_cliente != null)
+                {
+                    dt_conf_sftp_cliente.Dispose();
+                    GC.SuppressFinalize(dt_conf_sftp_cliente);
+                }
+                if (dt_conf_sftp_espejo != null)
+                {
+                    dt_conf_sftp_espejo.Dispose();
+                    GC.SuppressFinalize(dt_conf_sftp_espejo);
+                }
+                if (dt_evid_transmitir != null)
+                {
+                    dt_evid_transmitir.Dispose();
+                    GC.SuppressFinalize(dt_evid_transmitir);
+                }
+            }
 
             return "";
         }
@@ -206,9 +231,6 @@ namespace serverreports
                 {
                     obj_envio_sftp_cliente = new envio_sftp(obj_utilerias.nvl("" + dt_conf_sftp_cliente.Rows[0]["FTP_DIRECCION"]), 22, obj_utilerias.nvl("" + dt_conf_sftp_cliente.Rows[0]["FTP_LOGIN"]), obj_utilerias.nvl("" + dt_conf_sftp_cliente.Rows[0]["FTP_PWD"]));
 
-                    //¡PRUEBA LOCAL!:
-                    //obj_envio_sftp_cliente = new envio_sftp("192.168.200.137", 22, "tester", "password");
-
                     if (obj_envio_sftp_cliente.sftp_conexion(out error) != false)
                     {
                         transmite_cliente = true;
@@ -282,9 +304,6 @@ namespace serverreports
                 my_datos_sp = obj_dm.datos_sp([my_datos_sp.sql], par_st, Convert.ToInt32(my_pargral[13, 1]), my_vs);
 
                 dt_evid_transmitir = my_datos_sp.tb;
-
-                //¡PRUEBA LOCAL!:
-                //LlenarDataTablepPrueba(dt_evid_transmitir);
 
                 if (dt_evid_transmitir.Rows.Count <= 0)
                 {
@@ -602,56 +621,6 @@ namespace serverreports
 
             return false;
         }
-
-
-        private static void LlenarDataTablepPrueba(DataTable dataTable)
-        {
-            // Validar si las columnas no están definidas
-            if (dataTable.Columns.Count == 0)
-            {
-                dataTable.Columns.Add("ID_ARCHIVO", typeof(int));
-                dataTable.Columns.Add("ID_CLIENTE", typeof(int));
-                dataTable.Columns.Add("RUTA_ORIGEN", typeof(string));
-                dataTable.Columns.Add("RUTA_DESTINO_CLIENTE", typeof(string));
-                dataTable.Columns.Add("RUTA_DESTINO_ESPEJO", typeof(string));
-                dataTable.Columns.Add("NOMBRE_ORIGEN", typeof(string));
-                dataTable.Columns.Add("NOMBRE_DESTINO", typeof(string));
-                dataTable.Columns.Add("CREATED_BY", typeof(string));
-                dataTable.Columns.Add("DATE_CREATED", typeof(string));
-                dataTable.Columns.Add("MODIFIED_BY", typeof(string));
-                dataTable.Columns.Add("DATE_MODIFIED", typeof(string));
-                dataTable.Columns.Add("STATUS", typeof(string));
-                dataTable.Columns.Add("OBSERVACIONES", typeof(string));
-
-            }
-
-            // //Publica/Evidencias/Cliente_Pruebas// --> cliente (Mi Local)
-            // /evidencias/ --> cliente (SFTP Infra)
-            // /Publica/Evidencias/Cliente_Pruebas/ --> Espejo (Mi Local)
-
-            // Llenar con datos de prueba
-
-            dataTable.Rows.Add(26948, 22573, "D:\\TMP\\evidencias_test\\", "/evidencias/20123/2025/05/", "/pruebas_spooler_espejo/Publica/Evidencias/pruebas/20123/2025/05/", "PRUEBA_DE_CARGA_SFTP_TEST_1.pdf", "1234567890.pdf", "SPOOLER-DESA", "15/05/2025", "", "", "2", "");
-            dataTable.Rows.Add(26950, 22573, "D:\\TMP\\evidencias_test\\", "/evidencias/20123/2025/05/", "/pruebas_spooler_espejo/Publica/Evidencias/pruebas/20123/2025/05/", "PRUEBA_DE_CARGA_SFTP_TEST_1 - copia.pdf", "1234567891.pdf", "SPOOLER-DESA", "15/05/2025", "", "", "0", "");
-            //dataTable.Rows.Add(13866, 20123, "D:\\TMP\\evidencias_test\\", "/pruebas_spooler_cliente/logis/evidencias/20123/2025/06/", "/pruebas_spooler_espejo/Publica/Evidencias/pruebas/20123/2025/06/", "PRUEBA_DE_CARGA_SFTP_TEST_1 - copia (9).pdf", "1234567892.pdf", "SPOOLER-DESA", "15/05/2025", "", "", "0", "");
-            //dataTable.Rows.Add(13867, 20123, "D:\\TMP\\evidencias_test\\", "/pruebas_spooler_cliente/logis/evidencias/20123/2025/06/", "/pruebas_spooler_espejo/Publica/Evidencias/pruebas/20123/2025/06/", "PRUEBA_DE_CARGA_SFTP_TEST_1 - copia (8).pdf", "1234567893.pdf", "SPOOLER-DESA", "15/05/2025", "", "", "0", "");
-            //dataTable.Rows.Add(13868, 20123, "D:\\TMP\\evidencias_test\\", "/pruebas_spooler_cliente/logis/evidencias/20123/2025/06/", "/pruebas_spooler_espejo/Publica/Evidencias/pruebas/20123/2025/06/", "PRUEBA_DE_CARGA_SFTP_TEST_1 - copia (7).pdf", "1234567894.pdf", "SPOOLER-DESA", "15/05/2025", "", "", "0", "");
-            //dataTable.Rows.Add(13869, 20123, "D:\\TMP\\evidencias_test\\", "/pruebas_spooler_cliente/logis/evidencias/20123/2024/05/", "/pruebas_spooler_espejo/Publica/Evidencias/pruebas/20123/2024/05/", "PRUEBA_DE_CARGA_SFTP_TEST_1 - copia (6).pdf", "1234567895.pdf", "SPOOLER-DESA", "15/05/2025", "", "", "0", "");
-            //dataTable.Rows.Add(13870, 20123, "D:\\TMP\\evidencias_test\\", "/pruebas_spooler_cliente/logis/evidencias/20123/2024/05/", "/pruebas_spooler_espejo/Publica/Evidencias/pruebas/20123/2024/05/", "PRUEBA_DE_CARGA_SFTP_TEST_1 - copia (5).pdf", "1234567896.pdf", "SPOOLER-DESA", "15/05/2025", "", "", "0", "");
-            //dataTable.Rows.Add(13871, 20123, "D:\\TMP\\evidencias_test\\", "/pruebas_spooler_cliente/logis/evidencias/20123/2024/05/", "/pruebas_spooler_espejo/Publica/Evidencias/pruebas/20123/2024/05/", "PRUEBA_DE_CARGA_SFTP_TEST_1 - copia (4).pdf", "1234567897.pdf", "SPOOLER-DESA", "15/05/2025", "", "", "0", "");
-            //dataTable.Rows.Add(13872, 20123, "D:\\TMP\\evidencias_test\\", "/pruebas_spooler_cliente/logis/evidencias/20123/2024/05/", "/pruebas_spooler_espejo/Publica/Evidencias/pruebas/20123/2024/05/", "PRUEBA_DE_CARGA_SFTP_TEST_1 - copia (3).pdf", "1234567898.pdf", "SPOOLER-DESA", "15/05/2025", "", "", "0", "");
-            //dataTable.Rows.Add(13873, 20123, "D:\\TMP\\evidencias_test\\", "/pruebas_spooler_cliente/logis/evidencias/20123/2024/06/", "/pruebas_spooler_espejo/Publica/Evidencias/pruebas/20123/2024/06/", "PRUEBA_DE_CARGA_SFTP_TEST_1 - copia (2).pdf", "1234567899.pdf", "SPOOLER-DESA", "15/05/2025", "", "", "0", "");
-
-            //error:
-            dataTable.Rows.Add(26949, 22573, "D:\\TMP\\evidencias_test\\", "/evidencias/pruebas/20123/2024/06/", "/pruebas_spooler_espejo/Publica/Evidencias/pruebas/20123/2024/06/", "PRUEBA_DE_CARGA_SFTP_TEST_1 - copia (10).pdf", "1234567810.pdf", "SPOOLER-DESA", "15/05/2025", "", "", "0", "");
-
-            //dataTable.Rows.Add(13875, 20123, "D:\\TMP\\evidencias_test\\", "/pruebas_spooler_cliente/logis/evidencias/20123/2024/07/", "/pruebas_spooler_espejo/Publica/Evidencias/pruebas/20123/2024/07/", "PRUEBA_DE_CARGA_SFTP_TEST_1 - copia (5).pdf", "12345678991.pdf", "SPOOLER-DESA", "15/05/2025", "", "", "0", "");
-            //dataTable.Rows.Add(13876, 20123, "D:\\TMP\\evidencias_test\\", "/pruebas_spooler_cliente/logis/evidencias/20123/2024/08/", "/pruebas_spooler_espejo/Publica/Evidencias/pruebas/20123/2024/08/", "PRUEBA_DE_CARGA_SFTP_TEST_1 - copia (4).pdf", "12345678992.pdf", "SPOOLER-DESA", "15/05/2025", "", "", "0", "");
-            dataTable.Rows.Add(26951, 22573, "D:\\TMP\\evidencias_test\\", "/evidencias/20123/2024/09/", "/pruebas_spooler_espejo/Publica/Evidencias/pruebas/20123/2024/09/", "PRUEBA_DE_CARGA_SFTP_TEST_1 - copia (3).pdf", "12345678993.pdf", "SPOOLER-DESA", "15/05/2025", "", "", "0", "");
-            //dataTable.Rows.Add(13878, 20123, "D:\\TMP\\evidencias_test\\", "/pruebas_spooler_cliente/logis/evidencias/20123/2024/10/", "/pruebas_spooler_espejo/Publica/Evidencias/pruebas/20123/2024/10/", "PRUEBA_DE_CARGA_SFTP_TEST_1 - copia (2).pdf", "12345678994.pdf", "SPOOLER-DESA", "15/05/2025", "", "", "0", "");
-
-        }
-
 
     }
 }
