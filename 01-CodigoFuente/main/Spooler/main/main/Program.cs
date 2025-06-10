@@ -412,6 +412,13 @@ try
 
 				break;
 
+            case "talones_seguros":
+                pargral[13, 1] = "1";
+                web_talones_seguros_mod talones_con_seguro = new web_talones_seguros_mod();
+                inf = talones_con_seguro.web_talones_seguros(Carpeta, tab_archivos, pargral, util.nvl(util.Tcampo(tdato_repor, "LAST_CONF_DATE_1")), util.nvl(util.Tcampo(tdato_repor, "LAST_CONF_DATE_2")));
+                encorr = File.Exists(inf.arch) ? 1 : 0;
+
+                break;
                 /*
                             case "transmision_edocs_bosch":
                                 //5132031
