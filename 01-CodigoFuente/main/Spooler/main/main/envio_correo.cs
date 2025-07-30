@@ -36,10 +36,33 @@ namespace serverreports
             //correo_p = configuration["us_mail2"] + "|" + configuration["pwd_mail2"] + "|" + configuration["smtp_mail2"] + "|" + configuration["puerto_mail2"] + "|" + configuration["Ssl_mail2"];
             // toma el valor de app.config
             //correo_p = ConfigurationManager.AppSettings["us_mail"]+ "|"+ ConfigurationManager.AppSettings["pwd_mail"];
-            mail_grupo_error = configuration["correo_error"].Split(";");
+            
+            //if (configuration["correo_error"].Length>0)
+            //if(!configuration["correo_error"].ToString().Equals(string.Empty))
+            if (configuration["correo_error"]!=null)
+            {
+                mail_grupo_error = configuration["correo_error"].Split(";");
+            }
+            else
+            {
+                mail_grupo_error = new string[] { "desarrollo_net@logis.com.mx" };
+            }
+
+            /* BORRAR_INI */
+            Console.WriteLine("correo_error:");
+            Console.WriteLine(mail_grupo_error);
+            /* BORRAR_FIN */
             return correo_p;
         }
 
+        /// <summary>
+        /// Genera un mensaje de tipo error para presentarlo en el cuerpo de la notificación de error considerando el nombre dle reporte, el código de error (si existe) y el mensaje correspondiente al código de error (si existe);
+        /// una vez generado, hace el envío del correo electrónico.
+        /// </summary>
+        /// <param name="rep">Nombre del reporte</param>
+        /// <param name="codigo">Código de error</param>
+        /// <param name="msg">Mensaje de error</param>
+        /// <returns>Ejecuta la función que envía el correo electrónico.</returns>
         public void msg_error(string rep, string? codigo = "NA", string? msg = "NA")
         {
             string mensaje = "Hola,  \n"
@@ -53,8 +76,16 @@ namespace serverreports
             send_mail("Report: < Logis " + rep + " > Error", [], mensaje);
         }
 
-        public string send_mail(string asunto, string[] contact, string mensaje, string[]? arh = null, string?[] cc = null, Boolean bodyHtml = true)
+        public string send_mail(string asunto, string[] contact, string mensaje, string[]? arh = null, string?[] cc = null, Boolean bodyHtml = true, string?[] bcc = null)
         {
+
+            ////// Nuevo Esquema///////////////
+            var configuration = new ConfigurationBuilder()
+                                          .AddUserSecrets(Assembly.GetExecutingAssembly())
+                                             .Build();
+            ///////////////////////////////////
+            
+
             string[] dat_mail = new string[1];
             dat_mail = email_usuario().Split("|");
             //Console.WriteLine(dat_mail[0]);
@@ -85,6 +116,18 @@ namespace serverreports
                     //MailAddress ccm = new MailAddress(cc[i]);
                     //correo.CC.Add(cc[i]);
                 }
+
+                ///// Nuevo Esquema ///////////
+                correo.Bcc.Add(configuration["correo_BCC"]);
+
+                if (bcc != null)
+                {
+                    for (int i = 0; i < bcc.Length; i++)
+                    {
+                        correo.Bcc.Add(bcc[i]);
+                    }
+                }
+                ////////////////////////////
 
                 //using (SmtpClient servidor = new SmtpClient("192.168.100.6", 25))
                 using (SmtpClient servidor = new SmtpClient(dat_mail[2], int.Parse(dat_mail[3])))

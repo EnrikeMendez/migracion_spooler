@@ -13,6 +13,8 @@ using System.Text;
 using System.Threading.Tasks;
 using MD5Hash;
 using System.Security.Cryptography;
+using Microsoft.Extensions.Configuration;
+using System.Reflection;
 
 namespace serverreports
 {
@@ -105,7 +107,7 @@ namespace serverreports
             }
             return rcad;
         }
-        
+
         public string arma_param(string cad, int num)
         {
             string valor = "";
@@ -150,25 +152,29 @@ namespace serverreports
             arc_nom = arc_nom.Replace("%Y", DateTime.Now.ToString("yyyy", CultureInfo.CreateSpecificCulture(idioma)));
             string[] new_date_1 = date_1.Split("/");
             string[] new_date_2 = date_2.Split("/");
+            dt = DateTime.Parse(new_date_1[1] + "-" + new_date_1[0] + "-" + new_date_1[2]).ToString("MMM-dd-yyyy");
             if (date_2 != "" && date_2 != date_1)
             {
-                dt = DateTime.Parse(new_date_1[1] + "-" + new_date_1[0] + "-" + new_date_1[2]).ToString("MMM-dd-yyyy") +
+                dt = dt + // DateTime.Parse(new_date_1[1] + "-" + new_date_1[0] + "-" + new_date_1[2]).ToString("MMM-dd-yyyy") +
                              DateTime.Parse(new_date_2[1] + "-" + new_date_2[0] + "-" + new_date_2[2]).ToString("MMM-dd-yyyy");
                 arc_nom = arc_nom.Replace("%P", dt.Replace(".", ""));
+                arc_nom = arc_nom.Replace("%p", dt.Replace(".", ""));
 
             }
             else
             {
                 if (date_1 != "")
                 {
-                    dt = DateTime.Parse(new_date_1[1] + "-" + new_date_1[0] + "-" + new_date_1[2]).ToString("MMM-dd-yyyy");
+                    //dt = DateTime.Parse(new_date_1[1] + "-" + new_date_1[0] + "-" + new_date_1[2]).ToString("MMM-dd-yyyy");
                     arc_nom = arc_nom.Replace("%P", dt.Replace(".", ""));
+                    arc_nom = arc_nom.Replace("%p", dt.Replace(".", ""));
                 }
             }
             if (date_1 != "")
             {
-                dt = DateTime.Parse(new_date_1[1] + "-" + new_date_1[0] + "-" + new_date_1[2]).ToString("MMM-dd-yyyy");
+                //dt = DateTime.Parse(new_date_1[1] + "-" + new_date_1[0] + "-" + new_date_1[2]).ToString("MMM-dd-yyyy");
                 arc_nom = arc_nom.Replace("%P", dt.Replace(".", ""));
+                arc_nom = arc_nom.Replace("%p", dt.Replace(".", ""));
             }
             return arc_nom;
         }
@@ -180,28 +186,28 @@ namespace serverreports
             var zipFileName = Path.Combine(ruta, "", outFileName);
             if (add == 0)
             {
-                if(File.Exists(zipFileName))
+                if (File.Exists(zipFileName))
                 {
                     File.Delete(zipFileName);
                 }
                 using (ZipArchive archive = ZipFile.Open(zipFileName, ZipArchiveMode.Create))
-                      archive.CreateEntryFromFile(fileNameToAdd, Path.GetFileName(fileNameToAdd));
+                    archive.CreateEntryFromFile(fileNameToAdd, Path.GetFileName(fileNameToAdd));
             }
             if (add > 0)
             {
                 using (ZipArchive archive = ZipFile.Open(zipFileName, ZipArchiveMode.Update))
-                       archive.CreateEntryFromFile(fileNameToAdd, Path.GetFileName(fileNameToAdd));           
+                    archive.CreateEntryFromFile(fileNameToAdd, Path.GetFileName(fileNameToAdd));
             }
         }
 
-        public void CrearZip2(string fileToAdd ,  string ruta,int contador)
+        public void CrearZip2(string fileToAdd, string ruta, int contador)
         {
-            var zip   = Path.GetFileNameWithoutExtension(fileToAdd) + ".zip";
+            var zip = Path.GetFileNameWithoutExtension(fileToAdd) + ".zip";
             var add_arch = Path.Combine(ruta, "", fileToAdd);
-            var arch_zip   = Path.Combine(ruta, "", zip);
+            var arch_zip = Path.Combine(ruta, "", zip);
             using (ZipArchive archive = ZipFile.Open(arch_zip, ZipArchiveMode.Create))
             {
-               archive.CreateEntryFromFile(fileToAdd, Path.GetFileName(add_arch));
+                archive.CreateEntryFromFile(fileToAdd, Path.GetFileName(add_arch));
             }
             Console.WriteLine(" zip creado");
         }
@@ -209,7 +215,7 @@ namespace serverreports
 
         public string agregar_zip_ant(string[] arch, string nombre, string ruta)
         {
-    
+
             //   try
             //  {
             for (int i = 0; i < arch.Length - 1; i++)
@@ -277,7 +283,7 @@ namespace serverreports
             }
             return sb.ToString();
         }
-        public string[,] hexafile_nv(string[,] file_name, string Carpeta, int id_rep, string file_n, string[,] pargral)        
+        public string[,] hexafile_nv(string[,] file_name, string Carpeta, int id_rep, string file_n, string[,] pargral)
         {
             string[,] html = file_name;
             //string[,] html = array;
@@ -285,11 +291,115 @@ namespace serverreports
             // string actualHash;
             DM DM = new DM();
 
+            ////////////////Nuevo Esquema/////////////////////
+            (string? codigo, string? msg, string? sql, DataTable? dt) datosSP;
+
+            string[,] par_st;
+            par_st = new string[15, 4];
+
+            par_st[0, 0] = "i";
+            par_st[0, 1] = "i";
+            par_st[0, 2] = "p_Id_Cron";
+            par_st[0, 3] = pargral[9, 1];
+
+            par_st[1, 0] = "i";
+            par_st[1, 1] = "i";
+            par_st[1, 2] = "p_Id_Reporte";
+            par_st[1, 3] = pargral[5, 1];
+
+            par_st[2, 0] = "i";
+            par_st[2, 1] = "v";
+            par_st[2, 2] = "p_carpeta";
+            par_st[2, 3] = pargral[1, 1];
+
+            par_st[3, 0] = "i";
+            par_st[3, 1] = "v";
+            par_st[3, 2] = "p_subcarpeta";
+            par_st[3, 3] = pargral[4, 1];
+
+            par_st[4, 0] = "i";
+            par_st[4, 1] = "v";
+            par_st[4, 2] = "p_nombre_archivo";
+            //par_st[4, 3] = html[0, i];
+            par_st[4, 3] = "";
+
+            par_st[5, 0] = "i";
+            par_st[5, 1] = "i";
+            par_st[5, 2] = "p_respaldo";
+            par_st[5, 3] = "0";
+
+            par_st[6, 0] = "i";
+            par_st[6, 1] = "i";
+            par_st[6, 2] = "p_borrado";
+            par_st[6, 3] = "0";
+
+            par_st[7, 0] = "i";
+            par_st[7, 1] = "v";
+            par_st[7, 2] = "p_parametros_utilizados";
+            par_st[7, 3] = pargral[2, 1];
+
+            par_st[8, 0] = "i";
+            par_st[8, 1] = "v";
+            par_st[8, 2] = "p_dias_borrado";
+            par_st[8, 3] = pargral[3, 1];
+
+            par_st[9, 0] = "i";
+            par_st[9, 1] = "v";
+            par_st[9, 2] = "p_hash";
+            //par_st[9, 3] = html[0, i];
+            par_st[9, 3] = "";
+
+            par_st[10, 0] = "i";
+            par_st[10, 1] = "v";
+            par_st[10, 2] = "p_fecha_inicio";
+
+            if (pargral[6, 1].ToString() != "")
+            {
+                par_st[10, 3] = DateTime.ParseExact(pargral[6, 1], "MM/dd/yyyy", CultureInfo.InvariantCulture).ToString("dd/MM/yyyy");
+            }
+            else
+            {
+                par_st[10, 1] = "N/A";
+                par_st[10, 3] = "";
+            }
+
+
+            par_st[11, 0] = "i";
+            par_st[11, 1] = "v";
+            par_st[11, 2] = "p_fecha_fin";
+
+            if (pargral[7, 1].ToString() != "")
+            {
+                par_st[11, 3] = DateTime.ParseExact(pargral[7, 1], "MM/dd/yyyy", CultureInfo.InvariantCulture).ToString("dd/MM/yyyy");
+            }
+            else
+            {
+                par_st[11, 1] = "N/A";
+                par_st[11, 3] = "";
+            }
+
+            par_st[12, 0] = "i";
+            par_st[12, 1] = "v";
+            par_st[12, 2] = "p_usuario";
+            par_st[12, 3] = "USR_RS_DIST";
+
+            par_st[13, 0] = "o";
+            par_st[13, 1] = "v";
+            par_st[13, 2] = "p_MENSAJE";
+            par_st[13, 3] = "msg";
+
+            par_st[14, 0] = "o";
+            par_st[14, 1] = "i";
+            par_st[14, 2] = "p_CODIGO_ERROR";
+            par_st[14, 3] = "cod";
+
+            //////////////////////////////////////////////////
+
             for (int i = 0; i < file_name.Rank - 1; i++)
             {
                 string arch1 = file_name[0, i];
 
-                
+
                 long sizeInBytes = new FileInfo(Carpeta + "\\" + arch1).Length;
                 //html[2, i] = sizeInBytes.ToString();
                 html[2, i] = format_tam(sizeInBytes);
@@ -361,6 +471,8 @@ namespace serverreports
                 pargral[7, 0] = "FECHA_2";
                 pargral[8, 0] = "fecha_1_intervalo";
                 */
+                ////////////Nuevo Esquema/////////////////////////
+                /*
                 string ins = "insert into rep_archivos (id_rep, carpeta, nombre, date_created, DEST_MAIL, PARAMS, days_deleted, subcarpeta, tipo_reporte, HASH_MD5, FECHA_INICIO, FECHA_FIN) "
                   + "values ('" + id_rep.ToString() + "', '" + pargral[1, 1] + "', '" + html[0, i] + "', sysdate, '" + pargral[0, 1] + "'";
                 if (pargral[8, 1] == "")
@@ -369,6 +481,19 @@ namespace serverreports
                     ins = ins + ",'" + pargral[2, 1].Replace("'", "''") + "', " + pargral[3, 1] + ", '" + nvl(pargral[4, 1]) + "', '" + nvl(pargral[5, 1]) + "', '" + html[3, i] + "', to_date('" + pargral[8, 1] + "', 'mm/dd/yyyy'), to_date('" + pargral[6, 1] + "', 'mm/dd/yyyy'))";
                 //Console.WriteLine(ins);
                 DM.ejecuta_sql(ins);
+                */
+
+                datosSP.sql = "SC_RS_DIST.SPG_REP_REPORTES.P_INS_REP_ARCHIVO";
+                par_st[4, 3] = html[0, i];
+                par_st[9, 3] = html[3, i];
+
+                datosSP = DM.datos_sp([datosSP.sql], par_st, 3);
+
+                if (datosSP.codigo == "1")
+                {
+                    Console.WriteLine("INS Rep_Archivos exitoso ID_CRON: " + pargral[9, 1]);
+                }
+                /////////////////////////////////////////////////////////////
             }
             return html;
         }
@@ -379,7 +504,7 @@ namespace serverreports
             for (int i = 0; i < file_name.Rank - 1; i++)
             {
                 long sizeInBytes = new FileInfo(Carpeta + "\\" + file_name[0, 0] + ".xlsx").Length;
-                
+
                 html[2, i] = sizeInBytes.ToString();
                 if (sizeInBytes >= 104857600 || sizeInBytes <= 0)
                     html[3, i] = StringToHex(Carpeta + "\\" + file_name[0, 0] + System.IO.Path.GetTempFileName());
@@ -433,10 +558,10 @@ namespace serverreports
                 string ins = "insert into rep_archivos (id_rep, carpeta, nombre, date_created, DEST_MAIL, PARAMS, days_deleted, subcarpeta, tipo_reporte, HASH_MD5, FECHA_INICIO, FECHA_FIN) "
                   + "values ('" + id_rep.ToString() + "', '" + pargral[1, 1] + "', '" + html[0, i] + "', sysdate, '" + pargral[0, 1] + "'";
                 if (pargral[8, 1] == "")
-                    ins = ins + ",'" + pargral[2, 1].Replace("'","''") + "', " + pargral[3, 1] + ", '" + nvl(pargral[4, 1]) + "', '" + nvl(pargral[5, 1]) + "', '" + html[3, i] + "', to_date('" + pargral[6, 1] + "', 'mm/dd/yyyy'), to_date('" + pargral[7, 1] + "', 'mm/dd/yyyy'))";
+                    ins = ins + ",'" + pargral[2, 1].Replace("'", "''") + "', " + pargral[3, 1] + ", '" + nvl(pargral[4, 1]) + "', '" + nvl(pargral[5, 1]) + "', '" + html[3, i] + "', to_date('" + pargral[6, 1] + "', 'mm/dd/yyyy'), to_date('" + pargral[7, 1] + "', 'mm/dd/yyyy'))";
                 else
                     ins = ins + ",'" + pargral[2, 1].Replace("'", "''") + "', " + pargral[3, 1] + ", '" + nvl(pargral[4, 1]) + "', '" + nvl(pargral[5, 1]) + "', '" + html[3, i] + "', to_date('" + pargral[8, 1] + "', 'mm/dd/yyyy'), to_date('" + pargral[6, 1] + "', 'mm/dd/yyyy'))";
-                
+
                 Console.WriteLine(ins);
 
             }
@@ -610,11 +735,12 @@ Next
             DataTable dtTemp_re = new DataTable();
             dtTemp_re = dtTemp;
             DataRow nvreg;
-            int total = 0;
+            decimal total = 0;
             int varcolporc = 0;
             decimal total_gral = 0;
             string tit = "";
             string val = "";
+            String[] val_comp;
             if (ing_tot == 1)
             {
                 nvreg = dtTemp_re.NewRow();
@@ -624,6 +750,7 @@ Next
                     if (i == col_ini)
                     {
                         nvreg[dtTemp.Columns[i - 1].ColumnName] = "Total";
+
                     }
                     for (int j = 0; j < dtTemp.Rows.Count; j++)
                     {
@@ -631,8 +758,12 @@ Next
                         {
                             tit = dtTemp.Columns[i].ColumnName;
                         }
-                        val = dtTemp.Rows[j][i].ToString();
-                        total = total + Convert.ToInt32(val);
+                        val_comp = dtTemp.Rows[j][i].ToString().Split("|");
+                        val = val_comp[0];
+                        //val = dtTemp.Rows[j][i].ToString();                        
+                        try { total = total + Convert.ToDecimal(val); } catch (Exception ex) { total = total + 0; }
+                        ; // encabezados tabla
+
                     }
                     if (dtTemp.Rows.Count > 0)
                         nvreg[tit] = total.ToString();
@@ -641,15 +772,15 @@ Next
                         tit = dtTemp.Columns[i].ColumnName;
                         nvreg[tit] = total.ToString();
                     }
+
                 }
                 total_gral = total;
                 dtTemp_re.Rows.Add(nvreg);
             }
             // nvreg = dtTemp_re.NewRow();
             Console.WriteLine("Total :" + total_gral.ToString());
-
             //porcetanje
-            if (total_gral == 0)
+            if (total_gral == 0 && porc > 0)
             {
                 total = 0;
                 for (int i = col_tot_proc; i < dtTemp.Columns.Count; i++)
@@ -660,7 +791,7 @@ Next
                         if (j == dtTemp.Rows.Count - 1)
                         {
                             val = dtTemp.Rows[j][i].ToString();
-                            total = total + Convert.ToInt32(val);
+                            total = total + Convert.ToDecimal(val);
                             break;
                         }
                     }
@@ -668,14 +799,13 @@ Next
                 }
                 total_gral = total;
             }
-  
+
             if (porc == 1)
             {
-                Console.WriteLine("Total rev:" + total_gral.ToString());
                 nvreg = dtTemp_re.NewRow();
                 varcolporc = 0;
                 if (ing_tot == 0) varcolporc = dtTemp.Columns.Count - (col_tot_proc);
-                for (int i = col_ini; i < dtTemp.Columns.Count- varcolporc; i++)
+                for (int i = col_ini; i < dtTemp.Columns.Count - varcolporc; i++)
                 {
                     total = 0;
                     if (i == dtTemp.Columns.Count - int_fin) break;
@@ -693,7 +823,7 @@ Next
                         if (j == dtTemp.Rows.Count - 1)
                         {
                             val = dtTemp.Rows[j][i].ToString();
-                            total = total + Convert.ToInt32(val);
+                            total = total + Convert.ToDecimal(val);
                         }
                     }
                     if (total == 0)
@@ -703,6 +833,7 @@ Next
                 }
                 dtTemp_re.Rows.Add(nvreg);
             }
+
             return dtTemp_re;
         }
 
@@ -711,7 +842,7 @@ Next
             DataTable dtTemp_re = new DataTable();
             string tit = "";
             string val = "";
-            
+
             for (int j = 0; j < dtTemp.Rows.Count; j++)
             {
                 if (j == 0)
@@ -721,7 +852,7 @@ Next
                 }
                 tit = dtTemp.Rows[j][0].ToString();
                 dtTemp_re.Columns.Add(tit, typeof(System.Decimal));
-     
+
             }
             for (int i = 1; i < dtTemp.Columns.Count; i++)
             {
@@ -736,7 +867,8 @@ Next
                     }
                     tit = dtTemp_re.Columns[j + 1].ColumnName;
                     val = dtTemp.Rows[j][i].ToString();
-                    nvreg[tit] = val;                }
+                    nvreg[tit] = val;
+                }
                 dtTemp_re.Rows.Add(nvreg);
             }
 
@@ -968,6 +1100,252 @@ Next
                 if (pos <= 0) valor = "Espcificar posicion (NA negativos) ";
             }
             return valor;
+        }
+
+        public int getIndexArrMulti(string[,] arrOri, string valFind, int dim)
+        {
+            int i;
+
+            for (i = 0; i < arrOri.GetLength(0); i++)
+            {
+                if (valFind == arrOri[i, dim])
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+        /// <summary> 
+        /// Genera objeto datatable tomado un arreglo la primer posiscion son los titulos 
+        public DataTable genera_tab(string[,] datosdef)
+        {
+            DataTable dtTemp_re = new DataTable();
+            string tit;
+            string val = "";
+
+            for (int j = 0; j < datosdef.GetLength(1); j++)
+            {
+                tit = datosdef[0, j];
+                if (tit != "")
+                {
+                    if (j > 0)
+                        //dtTemp_re.Columns.Add(tit, typeof(System.Int32));
+                        dtTemp_re.Columns.Add(tit);
+                    else
+                        dtTemp_re.Columns.Add(tit);
+                }
+            }
+
+
+            for (int j = 1; j < datosdef.GetLength(0); j++)
+            {
+                DataRow nvreg = dtTemp_re.NewRow();
+                for (int i = 0; i < datosdef.GetLength(1); i++)
+                {
+                    tit = datosdef[0, i];
+                    if (tit != "")
+                    {
+                        val = datosdef[j, i];
+                        nvreg[tit] = val;
+                    }
+                }
+                dtTemp_re.Rows.Add(nvreg);
+            }
+            return dtTemp_re;
+        }
+
+        /// <summary>
+        /// Convierte las columnas de un DataTable a typo string 
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns> </returns>
+        public DataTable convDataTypeString(DataTable dt)
+        {
+            DataTable dttemp = new DataTable();
+
+            dttemp = dt.Clone();
+
+            for (int k = 0; k < dt.Columns.Count; k++)
+            {
+                dttemp.Columns[dt.Columns[k].ColumnName.ToString()].DataType = typeof(string);
+            }
+
+            dttemp.Merge(dt, false, MissingSchemaAction.Ignore);
+
+            return dttemp;
+
+        }
+
+
+        /// </summary>
+        /// <param name="rdf"></param> paraemtros de objeto  RDF
+        /// <param name="cliente"></param> Numero de cliente
+        /// <param name="ruta"></param> Ruta donde se crea el archvio
+        /// <param name="arch"></param> Nombre de archvio con extendion PDF
+        /// <returns></returns> nombre y ubicacion de archivo
+        public string genera_pdf(string rdf, string cliente, string ruta, string arch)
+        {
+            string archivo_pdf = "";
+            try
+            {
+
+                var configuration = new ConfigurationBuilder()
+                                          .AddUserSecrets(Assembly.GetExecutingAssembly())
+                                          .Build();
+
+                string url = configuration["Pdf_url"];
+                url = url.Replace("#rdf#", rdf);
+                url = url.Replace("#cte#", cliente);
+                WebClient pdf_cli = new WebClient();
+                archivo_pdf = ruta + arch;
+                pdf_cli.DownloadFile(url, archivo_pdf);
+                pdf_cli.Dispose();
+            }
+            catch (Exception ex)
+            {
+                archivo_pdf = "";
+            }
+            return archivo_pdf;
+        }
+
+
+        ///Nuevo Esquema////
+        public DataTable repParametros(DataTable dtParamTemp)
+        {
+
+            DataTable dtTemp = new DataTable();
+            string descripcion = "";
+            string numParametro = "";
+
+            DataRow row = dtTemp.NewRow();
+            for (int i = 0; i < dtParamTemp.Rows.Count; i++)
+            {
+                descripcion = dtParamTemp.Rows[i]["DESCRIPCION"].ToString().ToUpper();
+
+                if (descripcion == "FECHA INICIAL" || descripcion == "FECHA FINAL" || descripcion == "CORREO")
+                {
+                    DataColumn dtColumn = new DataColumn(descripcion, typeof(string));
+                    dtTemp.Columns.Add(dtColumn);
+                    row[descripcion] = dtParamTemp.Rows[i]["VALOR"].ToString();
+                }
+                else
+                {
+                    numParametro = dtParamTemp.Rows[i]["NUMERO_PARAMETRO"].ToString();
+                    DataColumn dtColumn = new DataColumn("PARAM_" + numParametro, typeof(string));
+                    dtTemp.Columns.Add(dtColumn);
+                    row["PARAM_" + numParametro] = dtParamTemp.Rows[i]["VALOR"].ToString();
+                }
+            }
+
+            //Se valida si existen los campos para evitar errores, si no existen se agregan, se quedan vacíos 
+            if (dtTemp.Columns.IndexOf("FECHA INICIAL") < 0)
+            {
+                DataColumn dtColumn = new DataColumn("FECHA INICIAL", typeof(string));
+                dtTemp.Columns.Add(dtColumn);
+                row["FECHA INICIAL"] = "";
+            }
+            if (dtTemp.Columns.IndexOf("FECHA FINAL") < 0)
+            {
+                DataColumn dtColumn = new DataColumn("FECHA FINAL", typeof(string));
+                dtTemp.Columns.Add(dtColumn);
+                row["FECHA FINAL"] = "";
+            }
+            if (dtTemp.Columns.IndexOf("CORREO") < 0)
+            {
+                DataColumn dtColumn = new DataColumn("CORREO", typeof(string));
+                dtTemp.Columns.Add(dtColumn);
+                row["CORREO"] = "";
+            }
+
+            dtTemp.Rows.Add(row);
+            dtTemp.AcceptChanges();
+
+            return dtTemp;
+        }
+
+        public (string[] arrCorreoTo, string[] arrCorreoCC, string[] arrCorreoBCC) getDestinaratios(string idNotificacion)
+        {
+            (string[] arrCorreoTo, string[] arrCorreoCC, string[] arrCorreoBCC) dest;
+            DM dm = new DM();
+            DataTable dtEmail = new DataTable();
+
+
+            string[] arrEmailTo = new string[0];
+            string[] arrEmailCC = new string[0];
+            string[] arrEmailBCC = new string[0];
+
+            string[,] par_st;
+            (string? codigo, string? msg, string? sql, DataTable? tb) datos_sp;
+
+
+            par_st = new string[4, 4];
+            par_st[0, 0] = "i";
+            par_st[0, 1] = "i";
+            par_st[0, 2] = "p_Id_Notificacion";
+            par_st[0, 3] = idNotificacion;
+
+            par_st[1, 0] = "o";
+            par_st[1, 1] = "c";
+            par_st[1, 2] = "p_Cur_Destinatarios_Rep";
+
+            par_st[2, 0] = "o";
+            par_st[2, 1] = "v";
+            par_st[2, 2] = "p_Mensaje";
+            par_st[2, 3] = "msg";
+
+            par_st[3, 0] = "o";
+            par_st[3, 1] = "i";
+            par_st[3, 2] = "p_Codigo_Error";
+            par_st[3, 3] = "cod";
+
+            datos_sp.sql = "SC_RS_DIST.SPG_REP_REPORTES.P_DAT_OBTEN_DESTINATARIOS_REP";
+            datos_sp = dm.datos_sp([datos_sp.sql], par_st, 3);
+            dtEmail = datos_sp.tb.Copy();
+
+            if (dtEmail.Rows.Count > 0)
+            {
+                for (int j = 0; j < dtEmail.Rows.Count; j++)
+                {
+                    if (dtEmail.Rows[j]["ID_TIPO_ENVIO"].ToString() == "1")
+                    {
+                        Array.Resize(ref arrEmailTo, arrEmailTo.Length + 1);
+                        arrEmailTo[arrEmailTo.Length - 1] = dtEmail.Rows[j]["CORREO"].ToString();
+                    }
+                    else if (dtEmail.Rows[j]["ID_TIPO_ENVIO"].ToString() == "2")
+                    {
+                        Array.Resize(ref arrEmailCC, arrEmailTo.Length + 1);
+                        arrEmailCC[arrEmailCC.Length - 1] = dtEmail.Rows[j]["CORREO"].ToString();
+                    }
+                    else if (dtEmail.Rows[j]["ID_TIPO_ENVIO"].ToString() == "3")
+                    {
+                        Array.Resize(ref arrEmailBCC, arrEmailTo.Length + 1);
+                        arrEmailBCC[arrEmailBCC.Length - 1] = dtEmail.Rows[j]["CORREO"].ToString();
+                    }
+                }
+            }
+
+            dest.arrCorreoTo = arrEmailTo;
+            dest.arrCorreoCC = arrEmailCC;
+            dest.arrCorreoBCC = arrEmailBCC;
+
+            return dest;
+        }
+
+        ////////////////////
+
+        public void EscribirLog(string ruta_log, string mensaje)
+        {
+            try
+            {
+                string mensajeConFecha = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} - {mensaje}";
+                File.AppendAllText(ruta_log, mensajeConFecha + Environment.NewLine);
+            }
+            catch (Exception ex)
+            {
+                // Manejo de error simple
+                Console.WriteLine("Error al escribir el log: " + ex.Message);
+            }
         }
 
     }

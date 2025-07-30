@@ -1,0 +1,55 @@
+2025-07-30 15:17:55 - Cliente:19808 - :::::::::::::::::::::::::::::::::::::::::::::::::::::: Inicialización de proceso ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+2025-07-30 15:17:57 - Cliente:19808 - [ERROR]. Hubo una excepción en la ejecución del proceso a causa del siguiente error: 
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at serverreports.envio_correo.send_mail(String asunto, String[] contact, String mensaje, String[] arh, String[] cc, Boolean bodyHtml, String[] bcc) in C:\Repositorios\migracion-spooler\01-CodigoFuente\main\Spooler\main\main\envio_correo.cs:line 101
+   at serverreports.dist_transfer_ftp_mod.sub_valida_conexion_repositorio() in C:\Repositorios\migracion-spooler\01-CodigoFuente\main\Spooler\main\main\dist_transfer_ftp_mod.cs:line 266
+   at serverreports.dist_transfer_ftp_mod.dist_ftp_transfer(Int64 id_cron, String cliente, String carpeta_espejo, String fecha_1, String fecha_2, String[,] pargral, DataTable dtNotif, Int32 vs) in C:\Repositorios\migracion-spooler\01-CodigoFuente\main\Spooler\main\main\dist_transfer_ftp_mod.cs:line 96
+2025-07-30 15:17:57 - Cliente:19808 - :::::::::::::::::::::::::::::::::::::::::::::::::::::: Finaliza proceso ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+2025-07-30 15:18:35 - Cliente:19808 - :::::::::::::::::::::::::::::::::::::::::::::::::::::: Inicialización de proceso ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+2025-07-30 15:18:37 - Cliente:19808 - [ERROR]. Hubo una excepción en la ejecución del proceso a causa del siguiente error: 
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at serverreports.envio_correo.send_mail(String asunto, String[] contact, String mensaje, String[] arh, String[] cc, Boolean bodyHtml, String[] bcc) in C:\Repositorios\migracion-spooler\01-CodigoFuente\main\Spooler\main\main\envio_correo.cs:line 101
+   at serverreports.dist_transfer_ftp_mod.sub_valida_conexion_repositorio() in C:\Repositorios\migracion-spooler\01-CodigoFuente\main\Spooler\main\main\dist_transfer_ftp_mod.cs:line 266
+   at serverreports.dist_transfer_ftp_mod.dist_ftp_transfer(Int64 id_cron, String cliente, String carpeta_espejo, String fecha_1, String fecha_2, String[,] pargral, DataTable dtNotif, Int32 vs) in C:\Repositorios\migracion-spooler\01-CodigoFuente\main\Spooler\main\main\dist_transfer_ftp_mod.cs:line 96
+2025-07-30 15:18:37 - Cliente:19808 - :::::::::::::::::::::::::::::::::::::::::::::::::::::: Finaliza proceso ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+2025-07-30 16:24:12 - Cliente:24165 - :::::::::::::::::::::::::::::::::::::::::::::::::::::: Inicialización de proceso ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+2025-07-30 16:24:17 - Cliente:24165 - [EXITO]. Conectado al repositorio espejo con IP: 192.168.100.43
+2025-07-30 16:24:18 - Cliente:24165 - [ERROR]. Hubo una excepción en la ejecución del proceso a causa del siguiente error: 
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at serverreports.envio_correo.send_mail(String asunto, String[] contact, String mensaje, String[] arh, String[] cc, Boolean bodyHtml, String[] bcc) in C:\Repositorios\migracion-spooler\01-CodigoFuente\main\Spooler\main\main\envio_correo.cs:line 101
+   at serverreports.dist_transfer_ftp_mod.sub_consulta_archivos() in C:\Repositorios\migracion-spooler\01-CodigoFuente\main\Spooler\main\main\dist_transfer_ftp_mod.cs:line 348
+   at serverreports.dist_transfer_ftp_mod.dist_ftp_transfer(Int64 id_cron, String cliente, String carpeta_espejo, String fecha_1, String fecha_2, String[,] pargral, DataTable dtNotif, Int32 vs) in C:\Repositorios\migracion-spooler\01-CodigoFuente\main\Spooler\main\main\dist_transfer_ftp_mod.cs:line 99
+2025-07-30 16:24:18 - Cliente:24165 - :::::::::::::::::::::::::::::::::::::::::::::::::::::: Finaliza proceso ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+2025-07-30 16:55:07 - Cliente:24165 - :::::::::::::::::::::::::::::::::::::::::::::::::::::: Inicialización de proceso ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+2025-07-30 16:55:16 - Cliente:24165 - [EXITO]. Conectado al repositorio espejo con IP: 192.168.100.43
+2025-07-30 16:55:16 - Cliente:24165 - [ERROR]. Hubo una excepción en la ejecución del proceso a causa del siguiente error: 
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at serverreports.envio_correo.send_mail(String asunto, String[] contact, String mensaje, String[] arh, String[] cc, Boolean bodyHtml, String[] bcc) in C:\Repositorios\migracion-spooler\01-CodigoFuente\main\Spooler\main\main\envio_correo.cs:line 101
+   at serverreports.dist_transfer_ftp_mod.sub_consulta_archivos() in C:\Repositorios\migracion-spooler\01-CodigoFuente\main\Spooler\main\main\dist_transfer_ftp_mod.cs:line 348
+   at serverreports.dist_transfer_ftp_mod.dist_ftp_transfer(Int64 id_cron, String cliente, String carpeta_espejo, String fecha_1, String fecha_2, String[,] pargral, DataTable dtNotif, Int32 vs) in C:\Repositorios\migracion-spooler\01-CodigoFuente\main\Spooler\main\main\dist_transfer_ftp_mod.cs:line 99
+2025-07-30 16:55:16 - Cliente:24165 - :::::::::::::::::::::::::::::::::::::::::::::::::::::: Finaliza proceso ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+2025-07-30 17:13:51 - Cliente:24165 - :::::::::::::::::::::::::::::::::::::::::::::::::::::: Inicialización de proceso ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+2025-07-30 17:14:02 - Cliente:24165 - [EXITO]. Conectado al repositorio espejo con IP: 192.168.100.43
+2025-07-30 17:14:11 - Cliente:24165 - [ERROR]. Archivo/evidencia/Publica/Evidencias/Quaker//Reportes/2025-07-30_24165 NO transmitido al repositorio espejo a causa del siguiente error: 
+Could not find file 'C:\Users\Desarrollo\2025-07-30_24165'.
+2025-07-30 17:14:12 - Cliente:24165 - :::::::::::::::::::::::::::::::::::::::::::::::::::::: Finaliza proceso ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+2025-07-30 17:14:30 - Cliente:19808 - :::::::::::::::::::::::::::::::::::::::::::::::::::::: Inicialización de proceso ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+2025-07-30 17:14:40 - Cliente:19808 - [EXITO]. Conectado al repositorio espejo con IP: 192.168.100.43
+2025-07-30 17:15:48 - Cliente:19808 - [ERROR]. Archivo/evidencia/Publica/Evidencias/Helvex//Reportes/2025-07-30_19808 NO transmitido al repositorio espejo a causa del siguiente error: 
+No conectado al repositorio remoto.
+2025-07-30 17:15:48 - Cliente:19808 - :::::::::::::::::::::::::::::::::::::::::::::::::::::: Finaliza proceso ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+2025-07-30 17:25:46 - Cliente:19808 - :::::::::::::::::::::::::::::::::::::::::::::::::::::: Inicialización de proceso ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+2025-07-30 17:26:12 - Cliente:19808 - [EXITO]. Conectado al repositorio espejo con IP: 192.168.100.43
+2025-07-30 17:26:17 - Cliente:19808 - [ERROR]. Archivo/evidencia/Publica/Evidencias/Helvex//Reportes/2025-07-30_19808 NO transmitido al repositorio espejo a causa del siguiente error: 
+Could not find file 'C:\Users\Desarrollo\2025-07-30_19808'.
+2025-07-30 17:26:39 - Cliente:19808 - :::::::::::::::::::::::::::::::::::::::::::::::::::::: Finaliza proceso ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+2025-07-30 17:31:06 - Cliente:19808 - :::::::::::::::::::::::::::::::::::::::::::::::::::::: Inicialización de proceso ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+2025-07-30 17:31:31 - Cliente:19808 - [EXITO]. Conectado al repositorio espejo con IP: 192.168.100.43
+2025-07-30 17:31:36 - Cliente:19808 - [ERROR]. Archivo/evidencia/Publica/Evidencias/Helvex//Reportes/2025-07-30_19808 NO transmitido al repositorio espejo a causa del siguiente error: 
+Could not find file 'C:\WINDOWS\system32\2025-07-30_19808'.
+2025-07-30 17:31:57 - Cliente:19808 - :::::::::::::::::::::::::::::::::::::::::::::::::::::: Finaliza proceso ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+2025-07-30 17:32:04 - Cliente:24165 - :::::::::::::::::::::::::::::::::::::::::::::::::::::: Inicialización de proceso ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+2025-07-30 17:32:29 - Cliente:24165 - [EXITO]. Conectado al repositorio espejo con IP: 192.168.100.43
+2025-07-30 17:32:33 - Cliente:24165 - [ERROR]. Archivo/evidencia/Publica/Evidencias/Quaker//Reportes/2025-07-30_24165 NO transmitido al repositorio espejo a causa del siguiente error: 
+Could not find file 'C:\WINDOWS\system32\2025-07-30_24165'.
+2025-07-30 17:32:54 - Cliente:24165 - :::::::::::::::::::::::::::::::::::::::::::::::::::::: Finaliza proceso ::::::::::::::::::::::::::::::::::::::::::::::::::::::

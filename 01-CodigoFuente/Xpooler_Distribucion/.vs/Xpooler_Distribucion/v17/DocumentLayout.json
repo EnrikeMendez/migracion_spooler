@@ -1,26 +1,10 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Repositorios\\migracion_spooler\\01-CodigoFuente\\Xpooler_Distribucion\\",
+  "WorkspaceRootPath": "C:\\Repositorios\\migracion-spooler\\01-CodigoFuente\\Xpooler_Distribucion\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{907ACA3E-41A4-4536-A30E-0833E19902C9}|Xpooler_Distribucion.csproj|c:\\repositorios\\migracion_spooler\\01-codigofuente\\xpooler_distribucion\\serviceworker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{907ACA3E-41A4-4536-A30E-0833E19902C9}|Xpooler_Distribucion.csproj|solutionrelative:serviceworker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{907ACA3E-41A4-4536-A30E-0833E19902C9}|Xpooler_Distribucion.csproj|c:\\repositorios\\migracion_spooler\\01-codigofuente\\xpooler_distribucion\\mainservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{907ACA3E-41A4-4536-A30E-0833E19902C9}|Xpooler_Distribucion.csproj|solutionrelative:mainservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{907ACA3E-41A4-4536-A30E-0833E19902C9}|Xpooler_Distribucion.csproj|c:\\repositorios\\migracion_spooler\\01-codigofuente\\xpooler_distribucion\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{907ACA3E-41A4-4536-A30E-0833E19902C9}|Xpooler_Distribucion.csproj|c:\\repositorios\\migracion-spooler\\01-codigofuente\\xpooler_distribucion\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{907ACA3E-41A4-4536-A30E-0833E19902C9}|Xpooler_Distribucion.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{907ACA3E-41A4-4536-A30E-0833E19902C9}|Xpooler_Distribucion.csproj|c:\\repositorios\\migracion_spooler\\01-codigofuente\\xpooler_distribucion\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{907ACA3E-41A4-4536-A30E-0833E19902C9}|Xpooler_Distribucion.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{907ACA3E-41A4-4536-A30E-0833E19902C9}|Xpooler_Distribucion.csproj|c:\\repositorios\\migracion_spooler\\01-codigofuente\\xpooler_distribucion\\xpooler_distribucion.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
-      "RelativeMoniker": "D:0:0:{907ACA3E-41A4-4536-A30E-0833E19902C9}|Xpooler_Distribucion.csproj|solutionrelative:xpooler_distribucion.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,70 +14,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Repositorios\\migracion_spooler\\01-CodigoFuente\\Xpooler_Distribucion\\appsettings.json",
-              "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "C:\\Repositorios\\migracion_spooler\\01-CodigoFuente\\Xpooler_Distribucion\\appsettings.json",
-              "RelativeToolTip": "appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-06-04T23:04:53.052Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Repositorios\\migracion_spooler\\01-CodigoFuente\\Xpooler_Distribucion\\Program.cs",
+              "DocumentMoniker": "C:\\Repositorios\\migracion-spooler\\01-CodigoFuente\\Xpooler_Distribucion\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Repositorios\\migracion_spooler\\01-CodigoFuente\\Xpooler_Distribucion\\Program.cs",
+              "ToolTip": "C:\\Repositorios\\migracion-spooler\\01-CodigoFuente\\Xpooler_Distribucion\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAvAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-04T16:32:30.534Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ServiceWorker.cs",
-              "DocumentMoniker": "C:\\Repositorios\\migracion_spooler\\01-CodigoFuente\\Xpooler_Distribucion\\ServiceWorker.cs",
-              "RelativeDocumentMoniker": "ServiceWorker.cs",
-              "ToolTip": "C:\\Repositorios\\migracion_spooler\\01-CodigoFuente\\Xpooler_Distribucion\\ServiceWorker.cs",
-              "RelativeToolTip": "ServiceWorker.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAowEMAAAB0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-04T17:04:56.251Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MainService.cs",
-              "DocumentMoniker": "C:\\Repositorios\\migracion_spooler\\01-CodigoFuente\\Xpooler_Distribucion\\MainService.cs",
-              "RelativeDocumentMoniker": "MainService.cs",
-              "ToolTip": "C:\\Repositorios\\migracion_spooler\\01-CodigoFuente\\Xpooler_Distribucion\\MainService.cs",
-              "RelativeToolTip": "MainService.cs",
-              "ViewState": "AgIAAI0AAAAAAAAAAAASwHcAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-04T00:31:00.306Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Xpooler_Distribucion",
-              "DocumentMoniker": "C:\\Repositorios\\migracion_spooler\\01-CodigoFuente\\Xpooler_Distribucion\\Xpooler_Distribucion.csproj",
-              "RelativeDocumentMoniker": "Xpooler_Distribucion.csproj",
-              "ToolTip": "C:\\Repositorios\\migracion_spooler\\01-CodigoFuente\\Xpooler_Distribucion\\Xpooler_Distribucion.csproj",
-              "RelativeToolTip": "Xpooler_Distribucion.csproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-06-04T00:27:26.053Z",
               "EditorCaption": ""
             }
           ]

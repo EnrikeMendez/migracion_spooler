@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Repositorios\\migracion_spooler\\01-CodigoFuente\\Xpooler_Distribucion\\Xpooler_Distribucion.csproj": {}
+    "C:\\Repositorios\\migracion-spooler\\01-CodigoFuente\\Xpooler_Distribucion\\Xpooler_Distribucion.csproj": {}
   },
   "projects": {
-    "C:\\Repositorios\\migracion_spooler\\01-CodigoFuente\\Xpooler_Distribucion\\Xpooler_Distribucion.csproj": {
+    "C:\\Repositorios\\migracion-spooler\\01-CodigoFuente\\Xpooler_Distribucion\\Xpooler_Distribucion.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Repositorios\\migracion_spooler\\01-CodigoFuente\\Xpooler_Distribucion\\Xpooler_Distribucion.csproj",
+        "projectUniqueName": "C:\\Repositorios\\migracion-spooler\\01-CodigoFuente\\Xpooler_Distribucion\\Xpooler_Distribucion.csproj",
         "projectName": "Xpooler_Distribucion",
-        "projectPath": "C:\\Repositorios\\migracion_spooler\\01-CodigoFuente\\Xpooler_Distribucion\\Xpooler_Distribucion.csproj",
+        "projectPath": "C:\\Repositorios\\migracion-spooler\\01-CodigoFuente\\Xpooler_Distribucion\\Xpooler_Distribucion.csproj",
         "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Repositorios\\migracion_spooler\\01-CodigoFuente\\Xpooler_Distribucion\\obj\\",
+        "outputPath": "C:\\Repositorios\\migracion-spooler\\01-CodigoFuente\\Xpooler_Distribucion\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -61,6 +61,7 @@ namespace Xpooler_Distribucion
                             }
                         }
                         await Task.Delay(timeDelay, stoppingToken);
+                        Console.Clear();
                     }
                 }
                 else
@@ -71,6 +72,7 @@ namespace Xpooler_Distribucion
             catch (Exception ex)
             {
                 _logger.LogError(ex.ToString(), ex);
+                //LOG.RegistraExcepcion(ex);
             }
         }
     }

@@ -1,6 +1,4 @@
 ﻿using System.Reflection;
-using Microsoft.Extensions.Configuration;
-using static System.Collections.Specialized.BitVector32;
 using Oracle.ManagedDataAccess.Client;
 using System.Data;
 
@@ -8,6 +6,8 @@ namespace Xpooler_Distribucion
 {
     public sealed class MainService
     {
+        //private readonly ILogger<ServiceWorker> _logger;
+
         public string GetConfigValue(string section)
         {
             var configuration = new ConfigurationBuilder().AddJsonFile(Assembly.GetExecutingAssembly().Location.Replace("Xpooler_Distribucion.dll", "appsettings.json")).Build();
@@ -33,10 +33,10 @@ namespace Xpooler_Distribucion
             string sql = string.Empty;
             string dbConfig = string.Empty;
             string run_process = string.Empty;
-            DataTable dt = null;
-            OracleCommand command = null;
-            OracleDataAdapter adapter = null;
-            OracleConnection connection = null;
+            DataTable? dt = null;
+            OracleCommand? command = null;
+            OracleDataAdapter? adapter = null;
+            OracleConnection? connection = null;
 
             try
             {
@@ -52,7 +52,8 @@ namespace Xpooler_Distribucion
                 connection.Close();
                 */
 
-                dt = GetProcessOnDemand();
+                //dt = GetProcessOnDemand();
+                dt = GetAllProcess();
 
                 if (dt != null)
                 {
@@ -64,7 +65,8 @@ namespace Xpooler_Distribucion
             }
             catch (Exception ex)
             {
-
+                //_logger.LogError(ex.ToString(), ex);
+                LOG.RegistraExcepcion(ex);
             }
             finally
             {
@@ -122,10 +124,10 @@ namespace Xpooler_Distribucion
             string process = string.Empty;
             string sql = string.Empty;
             string dbConfig = string.Empty;
-            DataTable dt = null;
-            OracleCommand command = null;
-            OracleDataAdapter adapter = null;
-            OracleConnection connection = null;
+            DataTable dt = new DataTable();
+            OracleCommand? command = null;
+            OracleDataAdapter? adapter = null;
+            OracleConnection? connection = null;
 
             sql = string.Format("{0}SELECT  RDR.ID_CRON \"IdCron\", \n", sql);
             sql = string.Format("{0}        RDR.ID_REP \"IdRep\", \n", sql);
@@ -170,6 +172,72 @@ namespace Xpooler_Distribucion
 
 
             return process;
+        }
+
+        private DataTable GetAllProcess()
+        {
+            OracleCommand? command = null;
+            string dbConfig = string.Empty;
+            DataTable dt = new DataTable();
+            OracleDataAdapter? adapter = null;
+            OracleConnection? connection = null;
+
+            try
+            {
+                dbConfig = GetConfigValue("DB_DIST");
+                connection = new OracleConnection(dbConfig);
+
+                connection.Open();
+                command = new OracleCommand();
+                command.Connection = connection;
+                command.CommandType=CommandType.StoredProcedure;
+                command.CommandText = "SC_RS_DIST.SPG_REP_REPORTES.P_DAT_PROCESOS_XPOOLER";
+                
+                command.Parameters.Clear();
+                command.Parameters.Add("p_Cur_Procesos_XP", OracleDbType.RefCursor, ParameterDirection.Output);
+                /*command.Parameters.Add("p_Mensaje", OracleDbType.NVarchar2, 4000, ParameterDirection.Output);*/
+                command.Parameters.Add("p_Mensaje", OracleDbType.NVarchar2, 4000, null, ParameterDirection.Output);
+                command.Parameters.Add("p_Codigo_Error", OracleDbType.Int64, ParameterDirection.Output);
+                
+                adapter = new OracleDataAdapter(command);
+                adapter.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                ex.Source = string.Format("SC_RS_DIST.SPG_REP_REPORTES.P_DAT_PROCESOS_XPOOLER \n {0}", ex.Source);
+                //_logger.LogError(ex.ToString(), ex);
+                LOG.RegistraExcepcion(ex);
+            }
+            finally
+            {
+                if(dbConfig!=null)
+                {
+                    dbConfig = string.Empty;
+                    GC.SuppressFinalize(dbConfig);
+                }
+                if(adapter!=null)
+                {
+                    adapter.Dispose();
+                    GC.SuppressFinalize (adapter);
+                }
+                if(command!=null)
+                {
+                    command.Dispose();
+                    GC.SuppressFinalize(command);
+                }
+                if(connection!=null)
+                {
+                    if(connection.State == ConnectionState.Open)
+                    {
+                        connection.Close();
+                    }
+                    connection.Dispose();
+                    GC.SuppressFinalize(connection);
+                }
+                GC.Collect();
+            }
+
+            return dt;
         }
     }
 

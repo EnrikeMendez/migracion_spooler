@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using DocumentFormat.OpenXml.Bibliography;
+using Microsoft.Extensions.Configuration;
 using Oracle.ManagedDataAccess.Client;
 using System.Data;
 using System.Reflection;
@@ -11,6 +12,9 @@ internal class DM
     private string conecBD(int? Usr = 0)
     {
         string orfeo = "Error";
+		
+		/*	C:\Users\Desarrollo\AppData\Roaming\Microsoft\UserSecrets\850e964a-5cbf-45ca-9534-537ca3f4fa8f	*/
+		
         try
         {
             var configuration = new ConfigurationBuilder()
@@ -27,6 +31,11 @@ internal class DM
                 case 2:
                     orfeo = configuration["USR_COEX"];
                     break;
+                /////////Nuevo Esquema////////
+                case 3:
+                    orfeo = configuration["USR_DIST_19"];
+                    break;
+                /////////////////////////////
             }
             //orfeo = configuration["Orfeo2"];
             // toma el valor de app.config
@@ -34,9 +43,15 @@ internal class DM
             //  orfeo = ConfigurationManager.ConnectionStrings["ORFEODES"].ToString();
             // toma el valor de app.config
             //orfeo = ConfigurationManager.ConnectionStrings["ORFEODES2"].ToString();
+            /*
+            Console.WriteLine("La cadena es: ");
+            Console.WriteLine(orfeo);
+            */
         }
         catch (Exception ex)
         {
+            Console.WriteLine("Se produjo un error no controlado:");
+            Console.WriteLine(ex);
             orfeo = orfeo + ex.Message;
         }
         return orfeo;
@@ -128,7 +143,12 @@ internal class DM
         {
             using (cnn)
             {
+                Console.WriteLine("iniciando conexion");
+                /*
+                Console.WriteLine(SQL);
+                */
                 cnn.Open();
+                Console.WriteLine("conectado");
                 if ((cnn.State) > 0)
                 {
                     OracleCommand cmd = new OracleCommand(SQL[0], cnn);
@@ -216,6 +236,7 @@ internal class DM
                 if (cnn.State == ConnectionState.Open)
                 {
                     cnn.Close();
+                    Console.WriteLine("desconectado");
                 }
                 cnn.Dispose();
                 GC.SuppressFinalize(cnn);
@@ -301,7 +322,7 @@ internal class DM
         return info;
     }
 
-    public (DataTable tb, string val) Main_rep(string nom_proc, string id_cron, int? vs, string? addsq = "", string? cliente = null, string? fecha = null)
+    public (DataTable tb, string val) Main_rep(string nom_proc, string id_cron, int? vs, string? addsq = "", string? cliente = null, string? fecha = null, string ? id_notifi = null, string? frecuencia = null)
     {
         DataTable dtTemp1 = new DataTable();
         (DataTable tb, string val) dtTemp;
@@ -379,8 +400,40 @@ internal class DM
                     dtTemp.tb = datos_spr.tb;
                 break;
                 case "main_num_param":
-                    dtTemp.Item1 = datos(main_num_param(id_cron.ToString(), vs));
-                break;
+                    ///////////////Nuevo Esquema///////////////
+                    ////dtTemp.Item1 = datos(main_num_param(id_cron.ToString(), vs));
+
+                    par_st = new string[4, 4];
+                    par_st[0, 0] = "i";
+                    par_st[0, 1] = "i";
+                    par_st[0, 2] = "p_Id_Cron";
+                    par_st[0, 3] = id_cron.ToString();
+
+                    par_st[1, 0] = "o";
+                    par_st[1, 1] = "v";
+                    par_st[1, 2] = "p_Numero_Parametro";
+                    par_st[1, 3] = "o";
+
+                    par_st[2, 0] = "o";
+                    par_st[2, 1] = "v";
+                    par_st[2, 2] = "p_Mensaje";
+                    par_st[2, 3] = "msg";
+
+                    par_st[3, 0] = "o";
+                    par_st[3, 1] = "i";
+                    par_st[3, 2] = "p_Codigo_Error";
+                    par_st[3, 3] = "cod";
+
+                    datos_spr.sql = "SC_RS_DIST.SPG_REP_REPORTES.P_OBTEN_NUM_PARAMS";
+                    datos_spr = datos_sp([datos_spr.sql, "1"], par_st, 3, vs);
+
+                    if (datos_spr.codigo == "1")
+                    {
+                        dtTemp.tb = datos_spr.tb;
+                        dtTemp.val = datos_spr.sql;
+                    }
+                    /////////////////////////////////////////////
+                    break;
                 case "confirmacion2":
                     par_st = new string[5, 4];
                     par_st[0, 0] = "i";
@@ -509,6 +562,202 @@ internal class DM
                     datos_spr = datos_sp([datos_spr.sql, "1"], par_st, 0, vs);
                     dtTemp.val = datos_spr.sql;
                 break;
+
+
+                ///Nuevo Esquema////
+                case "rep_dat_enca":
+                    par_st = new string[4, 4];
+                    par_st[0, 0] = "i";
+                    par_st[0, 1] = "i";
+                    par_st[0, 2] = "p_Id_Cron";
+                    par_st[0, 3] = id_cron.ToString();
+
+                    par_st[1, 0] = "o";
+                    par_st[1, 1] = "c";
+                    par_st[1, 2] = "p_Cur_Info_Reporte";
+
+                    par_st[2, 0] = "o";
+                    par_st[2, 1] = "v";
+                    par_st[2, 2] = "p_Mensaje";
+                    par_st[2, 3] = "msg";
+
+                    par_st[3, 0] = "o";
+                    par_st[3, 1] = "i";
+                    par_st[3, 2] = "p_Codigo_Error";
+                    par_st[3, 3] = "cod";
+
+                    datos_spr.sql = "SC_RS_DIST.SPG_REP_REPORTES.P_DAT_INFO_REPORTE";
+                    datos_spr = datos_sp([datos_spr.sql], par_st, 3, vs);
+                    dtTemp.tb = datos_spr.tb;
+                    break;
+
+                case "rep_param":
+                    par_st = new string[4, 4];
+                    par_st[0, 0] = "i";
+                    par_st[0, 1] = "i";
+                    par_st[0, 2] = "p_Id_Cron";
+                    par_st[0, 3] = id_cron.ToString();
+
+                    par_st[1, 0] = "o";
+                    par_st[1, 1] = "c";
+                    par_st[1, 2] = "p_Cur_Paramtros_Rep";
+
+                    par_st[2, 0] = "o";
+                    par_st[2, 1] = "v";
+                    par_st[2, 2] = "p_Mensaje";
+                    par_st[2, 3] = "msg";
+
+                    par_st[3, 0] = "o";
+                    par_st[3, 1] = "i";
+                    par_st[3, 2] = "p_Codigo_Error";
+                    par_st[3, 3] = "cod";
+
+                    datos_spr.sql = "SC_RS_DIST.SPG_REP_REPORTES.P_DAT_PARAMETROS_REPORTE";
+                    datos_spr = datos_sp([datos_spr.sql], par_st, 3, vs);
+                    dtTemp.tb = datos_spr.tb;
+                    break;
+
+                case "rep_notifi":
+                    par_st = new string[4, 4];
+                    par_st[0, 0] = "i";
+                    par_st[0, 1] = "i";
+                    par_st[0, 2] = "p_Id_Cron";
+                    par_st[0, 3] = id_cron.ToString();
+
+                    par_st[1, 0] = "o";
+                    par_st[1, 1] = "c";
+                    par_st[1, 2] = "p_Cur_Notif_Rep";
+
+                    par_st[2, 0] = "o";
+                    par_st[2, 1] = "v";
+                    par_st[2, 2] = "p_Mensaje";
+                    par_st[2, 3] = "msg";
+
+                    par_st[3, 0] = "o";
+                    par_st[3, 1] = "i";
+                    par_st[3, 2] = "p_Codigo_Error";
+                    par_st[3, 3] = "cod";
+
+                    datos_spr.sql = "SC_RS_DIST.SPG_REP_REPORTES.P_DAT_NOTIFICACIONES_REPORTE";
+                    datos_spr = datos_sp([datos_spr.sql], par_st, 3, vs);
+                    dtTemp.tb = datos_spr.tb;
+                    break;
+                case "rep_dest":
+                    par_st = new string[4, 4];
+                    par_st[0, 0] = "i";
+                    par_st[0, 1] = "i";
+                    par_st[0, 2] = "p_Id_Notificacion";
+                    par_st[0, 3] = id_notifi;
+
+                    par_st[1, 0] = "o";
+                    par_st[1, 1] = "c";
+                    par_st[1, 2] = "p_Cur_Destinatarios_Rep";
+
+                    par_st[2, 0] = "o";
+                    par_st[2, 1] = "v";
+                    par_st[2, 2] = "p_Mensaje";
+                    par_st[2, 3] = "msg";
+
+                    par_st[3, 0] = "o";
+                    par_st[3, 1] = "i";
+                    par_st[3, 2] = "p_Codigo_Error";
+                    par_st[3, 3] = "cod";
+
+                    datos_spr.sql = "SC_RS_DIST.SPG_REP_REPORTES.P_DAT_OBTEN_DESTINATARIOS_REP";
+                    datos_spr = datos_sp([datos_spr.sql], par_st, 3, vs);
+                    dtTemp.tb = datos_spr.tb;
+                    break;
+
+                case "rep_fechas_auto":
+                    par_st = new string[4, 4];
+                    par_st[0, 0] = "i";
+                    par_st[0, 1] = "i";
+                    par_st[0, 2] = "p_Frecuencia";
+                    par_st[0, 3] = frecuencia;
+
+                    par_st[1, 0] = "o";
+                    par_st[1, 1] = "v";
+                    par_st[1, 2] = "p_Fecha_Frecuencia";
+                    par_st[1, 3] = "o";
+
+                    par_st[2, 0] = "o";
+                    par_st[2, 1] = "v";
+                    par_st[2, 2] = "p_Mensaje";
+                    par_st[2, 3] = "msg";
+
+                    par_st[3, 0] = "o";
+                    par_st[3, 1] = "i";
+                    par_st[3, 2] = "p_Codigo_Error";
+                    par_st[3, 3] = "cod";
+
+                    datos_spr.sql = "SC_RS_DIST.SPG_REP_REPORTES.P_OBTEN_FECHA_REP_AUTO";
+                    datos_spr = datos_sp([datos_spr.sql, "1"], par_st, 3, vs);
+
+
+                    if (datos_spr.codigo == "1")
+                    {
+                        dtTemp.tb = datos_spr.tb;
+                        dtTemp.val = datos_spr.sql;
+                    }
+
+                    break;
+
+                case "rep_act_progress_chron":
+                    par_st = new string[3, 4];
+                    par_st[0, 0] = "i";
+                    par_st[0, 1] = "i";
+                    par_st[0, 2] = "p_Id_Cron";
+                    par_st[0, 3] = id_cron.ToString();
+
+                    par_st[1, 0] = "o";
+                    par_st[1, 1] = "v";
+                    par_st[1, 2] = "p_Mensaje";
+                    par_st[1, 3] = "msg";
+
+                    par_st[2, 0] = "o";
+                    par_st[2, 1] = "i";
+                    par_st[2, 2] = "p_Codigo_Error";
+                    par_st[2, 3] = "cod";
+
+                    datos_spr.sql = "SC_RS_DIST.SPG_REP_REPORTES.P_ACT_LIMPIA_CHRON_PROGRESO";
+
+                    datos_spr = datos_sp([datos_spr.sql], par_st, 3);
+
+                    if (datos_spr.codigo == "1")
+                    {
+                        dtTemp.tb = datos_spr.tb;
+                        dtTemp.val = datos_spr.codigo;
+                    }
+                    break;
+
+                case "rep_elimina_id_cron":
+                    par_st = new string[3, 4];
+                    par_st[0, 0] = "i";
+                    par_st[0, 1] = "i";
+                    par_st[0, 2] = "p_Id_Cron";
+                    par_st[0, 3] = id_cron.ToString();
+
+                    par_st[1, 0] = "o";
+                    par_st[1, 1] = "v";
+                    par_st[1, 2] = "p_Mensaje";
+                    par_st[1, 3] = "msg";
+
+                    par_st[2, 0] = "o";
+                    par_st[2, 1] = "i";
+                    par_st[2, 2] = "p_Codigo_Error";
+                    par_st[2, 3] = "cod";
+
+                    datos_spr.sql = "SC_RS_DIST.SPG_REP_REPORTES.P_ACT_ELIMINA_CHRON_PROCESO";
+
+                    datos_spr = datos_sp([datos_spr.sql], par_st, 3);
+
+                    if (datos_spr.codigo == "1")
+                    {
+                        dtTemp.tb = datos_spr.tb;
+                        dtTemp.val = datos_spr.codigo;
+                    }
+                    break;
+                    ////////////////////
             }
 
             if ((dtTemp.tb.Rows.Count <= 0) || (datos_spr.codigo != "1"))
@@ -929,14 +1178,50 @@ internal class DM
         return SQL;
     }
 
-    public int act_proceso(string[,] pargral,int? vs)
+    public int act_proceso(string[,] pargral, int? vs)
     {
         //'una vez que esta generado el reporte, actualizamos los campos del detalle :
         //'last_created : ultima fecha a cual fue creado el reporte
         //'last_conf_date_1 y 2 el rango de fecha del reporte que fue generado
         string SQL;
+
+        /////////////////Nuevo Esquema/////////////////////////
+        (string? codigo, string? msg, string? sql, DataTable? dt) datosSP;
+
+        string[,] par_st;
+        par_st = new string[5, 4];
+
+        par_st[0, 0] = "i";
+        par_st[0, 1] = "i";
+        par_st[0, 2] = "p_Id_Cron";
+        par_st[0, 3] = pargral[9, 1];
+
+        par_st[1, 0] = "i";
+        par_st[1, 1] = "v";
+        par_st[1, 2] = "p_FECHA_INICIO";
+        par_st[1, 3] = pargral[6, 1];
+
+        par_st[2, 0] = "i";
+        par_st[2, 1] = "v";
+        par_st[2, 2] = "p_FECHA_FINAL";
+        par_st[2, 3] = pargral[7, 1];
+
+        par_st[3, 0] = "o";
+        par_st[3, 1] = "v";
+        par_st[3, 2] = "p_MENSAJE";
+        par_st[3, 3] = "msg";
+
+        par_st[4, 0] = "o";
+        par_st[4, 1] = "i";
+        par_st[4, 2] = "p_CODIGO_ERROR";
+        par_st[4, 3] = "cod";
+
+        datosSP.sql = "SC_RS_DIST.SPG_REP_REPORTES.P_ACT_REPORTE";
+        ///////////////////////////////////////////////////////////////////
+
         if (pargral[0, 1] == "")
         {
+            /*
             //    actualizacion de las fechas
             SQL = "update rep_detalle_reporte set last_created=sysdate " +
                          ", last_conf_date_1 = to_date('" + pargral[6, 1] + "', 'mm/dd/yyyy') " +
@@ -946,13 +1231,35 @@ internal class DM
             //decir a la tabla rep_chron que esta generado el reporte : ponemos el campo IN_PROGRESS a 0            
             SQL = "update rep_chron set in_progress=0 where id_rapport= '" + pargral[9, 1] + "' ";
             ejecuta_sql(SQL, Convert.ToInt32(pargral[13, 1]), vs);
+            */
+
+            //    actualizacion de las fechas
+            datosSP.sql = "SC_RS_DIST.SPG_REP_REPORTES.P_ACT_REPORTE";
+            datosSP = datos_sp([datosSP.sql], par_st, 3);
+
+            if (datosSP.codigo == "1") { Console.WriteLine("UP exitoso ID_CRON: " + pargral[9, 1]); }
+
+            //decir a la tabla rep_chron que esta generado el reporte : ponemos el campo IN_PROGRESS a 0 
+            string cod = Main_rep("rep_act_progress_chron", pargral[9, 1], 0, null, null, null, null, null).val;
+
+            if (cod == "1") { Console.WriteLine("UP InPorgress exitoso ID_CRON: " + pargral[9, 1]); }
         }
         else
         {
+
             //es un reporte generado desde la web o puntual
             //borramos el detalle
+
+            ///////////////////Nuevo Esquema//////////////////////
+            /*
             SQL = "delete from rep_detalle_reporte where id_cron= '" + pargral[9, 1] + "'";
             ejecuta_sql(SQL, Convert.ToInt32(pargral[13, 1]), vs);
+            */
+
+            string cod = Main_rep("rep_elimina_id_cron", pargral[9, 1], 0, null, null, null, null, null).val;
+            if (cod == "1") { Console.WriteLine("Delete(estatus 0) exitoso ID_CRON: " + pargral[9, 1]); }
+
+            /////////////////////////////////////////////////////
         }
         return 1;
     }
@@ -977,17 +1284,19 @@ internal class DM
         par_st[3, 3] = "cod";
         (string? codigo, string? msg, string? sql, DataTable? tb) datos_sp1;
         datos_sp1.sql = "SC_DIST.SPG_RS_COEX.P_OBTEN_TEMP_MENSAJE ";
-        datos_sp1 = datos_sp([datos_sp1.sql], par_st, vs); 
+        datos_sp1 = datos_sp([datos_sp1.sql], par_st, vs);
         if (util.Tcampo(datos_sp1.tb, "VER") == "ok")
-            warning_message = util.Tcampo(datos_sp1.tb, "TEMP_MENSAJE");
-        else
-            if (util.Tcampo(datos_sp1.tb, "TEMP_MENSAJE") != "")
         {
-            string SQL_02 = "update rep_reporte set TEMP_MENSAJE = NULL " +
-                            " , TEMP_MENSAJE_FECHA = NULL " +
-                            " where id_rep= '" + pargral[9, 1] + "' ";
-            ejecuta_sql(SQL_02, Convert.ToInt32(pargral[13, 1]), vs);
+            warning_message = util.Tcampo(datos_sp1.tb, "TEMP_MENSAJE");
         }
+        ///else
+        ///    if (util.Tcampo(datos_sp1.tb, "TEMP_MENSAJE") != "")
+        ///{
+        ///    string SQL_02 = "update rep_reporte set TEMP_MENSAJE = NULL " +
+        ///                    " , TEMP_MENSAJE_FECHA = NULL " +
+        ///                    " where id_rep= '" + pargral[9, 1] + "' ";
+        ///    ejecuta_sql(SQL_02, Convert.ToInt32(pargral[13, 1]), vs);
+        ///}
         return warning_message;
     }
     public DataTable sc_reportes_gen_rep_clave(int? Usr = 0,int? vs = 0 )

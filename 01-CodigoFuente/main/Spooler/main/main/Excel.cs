@@ -44,7 +44,7 @@ namespace serverreports
                         }
                     }
 
-                    workbook.SaveAs(name+".xlsx");
+                    workbook.SaveAs(name + ".xlsx");
                     Console.WriteLine("Se genero Archivo " + name);
                 }
                 catch (Exception ex)
@@ -66,15 +66,15 @@ namespace serverreports
             hoja.Font.FontColor = XLColor.Black;
             if (tp.ToUpper() == "E")
             {
-               hoja.Fill.BackgroundColor = XLColor.Black;
-               hoja.Font.FontColor = XLColor.White;
+                hoja.Fill.BackgroundColor = XLColor.Black;
+                hoja.Font.FontColor = XLColor.White;
             }
             return hoja;
         }
 
         public void grafica()
         {
-           /* using SpreadsheetLight;*/
+            /* using SpreadsheetLight;*/
             SLDocument sl = new SLDocument();
             sl.SetCellValue("C2", "Enero");
             sl.SetCellValue("D2", "Febrero");
@@ -125,7 +125,7 @@ namespace serverreports
             sl.InsertChart(chart);
 
             sl.SaveAs("ChartsBar.xlsx");
-            */  
+            */
             chart = sl.CreateChart("B2", "G6");
             chart.SetChartType(SLColumnChartType.ClusteredColumn);
             //chart.SetChartPosition(1, 9, 1 + fChartHeight, 9 + fChartWidth);
@@ -163,10 +163,10 @@ namespace serverreports
             chart.SetChartType(SLPieChartType.ExplodedPie3D);
             chart.SetChartStyle(SLChartStyle.Style10);
             chart.SetChartPosition(16, 9, 16 + fChartHeight, 9 + fChartWidth);
-     
+
             sl.InsertChart(chart);
 
-            sl.SaveAs("Grafica.xlsx");           
+            sl.SaveAs("Grafica.xlsx");
             Console.WriteLine("Grafica");
         }
 
@@ -186,6 +186,7 @@ namespace serverreports
             string enc_hh = "";
             string enc_ht = "";
             string enc_hg = "";
+            string det_alig = "";
             String[] enc;
             String[] vert;
             try
@@ -195,6 +196,11 @@ namespace serverreports
                 {
                     if (LisDT[i] != null)
                     {
+                        enc_h = "";
+                        enc_hh = "";
+                        enc_ht = "";
+                        enc_hg = "";
+                        det_alig = "";
                         /*
                         enc = tit[i, 0].Split("|");
                         enc_h = enc[0];
@@ -215,9 +221,29 @@ namespace serverreports
                         row = LisDT[i].Rows.Count;
                         if (enc.Length > 1)
                         {
-                            enc_hh = enc[1];
-                            enc_ht = enc[2];
-                            enc_hg = enc[3];
+                            switch (enc.Length)
+                            {
+                                case 2:
+                                    enc_hh = enc[1]; //encabezado de hoja                                    
+                                    break;
+                                case 3:
+                                    enc_hh = enc[1]; //encabezado de hoja
+                                    enc_ht = enc[2];//encabezado de tablas                                   
+                                    break;
+                                case 4:
+                                    enc_hh = enc[1]; //encabezado de hoja
+                                    enc_ht = enc[2];//encabezado de tablas                                   
+                                    enc_hg = enc[3];//encabezado de grafica
+                                    break;
+                                case 5:
+                                    enc_hh = enc[1]; //encabezado de hoja
+                                    enc_ht = enc[2];//encabezado de tablas                                   
+                                    enc_hg = enc[3];//encabezado de grafica
+                                    //det_ft = enc[4];//encabezado de grafica
+                                    det_alig = enc[4];//encabezado de grafica
+                                    break;
+
+                            }
                         }
 
                         if (hoja == enc_h)
@@ -232,15 +258,15 @@ namespace serverreports
                         if (LisDT[i].Rows.Count == 0)
                         {
                             DataTable dt = new DataTable();
-                            dt.Columns.Add("Tabla", typeof(string));
+                            if (enc_ht == "") dt.Rows.Add("Sin Inf."); else dt.Rows.Add(enc_ht);//
                             dt.Rows.Add("Sin Inf.");
                             LisDT[i] = dt;
                             col = LisDT[i].Columns.Count;
                         }
                         //Vertical
-                       // if (tit[i,0] == "Resumen")
-                       if (tit[i, 1] != null)
-                       {
+                        // if (tit[i,0] == "Resumen")
+                        if (tit[i, 1] != null)
+                        {
                             /*
                             pos = 1;
                             posinitabla = 1;
@@ -252,24 +278,30 @@ namespace serverreports
                             if ((i == 0))
                             {
                                 //posinitabla =1 ;
-                                posinitabla = int.Parse(vert[1]); ;
+                                posinitabla = int.Parse(vert[1]);
+                                pos = pos;
+                                espacio = int.Parse(vert[1]);
                             }
                             else
                             {
+                                espacio = int.Parse(vert[1]);
                                 posinitabla = posinitabla + LisDT[i - 1].Rows.Count + espacio;
+                                pos = pos;
                             }
- 
+
                         }
                         else
-                            posinitabla = (int)(posinitablav);                      
+                            posinitabla = (int)(posinitablav);
 
                         //vertical                          
 
                         sl.ImportDataTable(posinitabla, pos, LisDT[i], true);//cambio
                         //
-                        sl.AutoFitColumn(pos, col);
+                        
                         sl.SetCellStyle(posinitabla, pos, posinitabla, (col - 1) + (pos), estilo_bosch(sl, "e"));
-                        sl.SetCellStyle(posinitabla + 1, pos, (posinitabla - 1) + row + 1, col + (pos), estilo_bosch(sl, "d"));
+                        sl.SetCellStyle(posinitabla + 1, pos, (posinitabla - 1) + row + 1, col + (pos), estilo_bosch(sl, "d", det_alig));
+                        sl.AutoFitColumn(pos - 1, col);
+
                         SLTable table = null;
                         if (del_col != null)
                         {
@@ -283,7 +315,7 @@ namespace serverreports
                         table.HasBandedRows = true;
                         table.HasAutoFilter = false;
                         table.HasBandedColumns = true;
-                        sl.SetColumnWidth(1, col);
+                        
                         if (fre_row != null)
                         {
                             sl.FreezePanes((int)fre_row, 0);
@@ -335,10 +367,10 @@ namespace serverreports
                             chart.SetChartPosition(rowg + 6, pos - 1, rowg + 6 + fChartHeight, pos + fChartWidth - 2);
                             sl.InsertChart(chart);
                         }
-                         if (enc_ht != "")
+                        if (enc_ht != "")
                         {
-                            sl.SetCellValue(postabla[0, 0] + (posinitablav - 1).ToString(), enc_ht);
-                            sl.MergeWorksheetCells(postabla[0, 0] + (posinitablav - 1).ToString(), postabla[0, 1] + (posinitablav - 1).ToString(), estilo_bosch(sl, "e"));
+                            sl.SetCellValue(postabla[0, 0] + (posinitabla - 1).ToString(), enc_ht);
+                            sl.MergeWorksheetCells(postabla[0, 0] + (posinitabla - 1).ToString(), postabla[0, 1] + (posinitabla - 1).ToString(), estilo_bosch(sl, "e"));
                         }
 
                         if (hoja != enc_h && enc_hh != "")
@@ -352,7 +384,7 @@ namespace serverreports
                 }
 
                 sl.SaveAs(name);
-                archivo = name ;
+                archivo = name;
 
             }
             catch (Exception ex)
@@ -362,13 +394,16 @@ namespace serverreports
             sl.Dispose();
             return archivo;
         }
-        public SLStyle estilo_bosch(SLDocument sl, string tp)
+        public SLStyle estilo_bosch(SLDocument sl, string tp, String? Alig = "")
         {
             SLStyle style_d = sl.CreateStyle();
             style_d.SetFont("Arial", 8);
             style_d.SetFontBold(true);
             style_d.SetVerticalAlignment(DocumentFormat.OpenXml.Spreadsheet.VerticalAlignmentValues.Center);
-            style_d.SetHorizontalAlignment(DocumentFormat.OpenXml.Spreadsheet.HorizontalAlignmentValues.Center);
+            if (Alig == "")
+                style_d.SetHorizontalAlignment(DocumentFormat.OpenXml.Spreadsheet.HorizontalAlignmentValues.Center);
+            else
+                style_d.SetHorizontalAlignment(DocumentFormat.OpenXml.Spreadsheet.HorizontalAlignmentValues.Left);
             style_d.Fill.SetPattern(PatternValues.Solid, System.Drawing.Color.White, System.Drawing.Color.Black);
             style_d.SetFontColor(System.Drawing.Color.Black);
             if (tp.ToUpper() == "E")
@@ -396,16 +431,22 @@ namespace serverreports
             string hoja_inicial = string.Empty;
             DataSet dsResultante = new DataSet();
             SLStyle headerStyle = new SLStyle();
+            SLStyle styleFont = new SLStyle();
 
             try
             {
                 headerStyle = new SLStyle();
                 headerStyle.Font.Bold = true;
+                headerStyle.SetFont("Arial", 8);
                 headerStyle.Font.FontColor = System.Drawing.Color.White;
                 headerStyle.Fill.SetPatternType(PatternValues.Solid);
                 headerStyle.Fill.SetPatternBackgroundColor(System.Drawing.Color.Black);
                 headerStyle.Alignment.Horizontal = DocumentFormat.OpenXml.Spreadsheet.HorizontalAlignmentValues.Center;
 
+                styleFont = new SLStyle();
+                styleFont.SetFont("Arial", 8);
+                styleFont.Font.Bold = true;
+                styleFont.Alignment.Horizontal = DocumentFormat.OpenXml.Spreadsheet.HorizontalAlignmentValues.Center;
 
                 if (filename != null)
                 {
@@ -450,6 +491,14 @@ namespace serverreports
                             }
                         }
                     }
+                    else if (dsData.Tables.Count > 0)
+                    {
+                        i = 0;
+                        foreach (DataTable dt in dsData.Tables)
+                        {
+                            dsResultante.Tables.Add(dt.Copy());
+                        }
+                    }
                 }
                 else if (dsData != null && dsTitles == null)
                 {
@@ -476,7 +525,9 @@ namespace serverreports
                             sl.ImportDataTable(1, 1, dt, true);
                             sl.AutoFitColumn(1, dt.Columns.Count);
                             sl.FreezePanes(1, 0);
-                            sl.SetRowStyle(1, headerStyle);
+                            //sl.SetRowStyle(1, headerStyle);
+                            sl.SetCellStyle(1, 1, 1, dt.Columns.Count, headerStyle);
+                            sl.SetCellStyle(1, 1, dt.Rows.Count + 1, dt.Columns.Count, styleFont);
                         }
 
                         sl.DeleteWorksheet(hoja_default);
@@ -486,11 +537,15 @@ namespace serverreports
                         if (carpeta == "")
                         {
                             ruta_nombre = string.Format("{0}{1}", Path.GetTempPath(), filename);
-                        } else
+                            carpeta = Path.GetTempPath();
+                        }
+                        else
                         {
                             ruta_nombre = carpeta + "\\" + filename;
                         }
-                        
+
+                        ruta_nombre = ruta_nombre.Replace("\\\\", "\\");
+
 
                         sl.SaveAs(ruta_nombre);
                     }
@@ -504,11 +559,42 @@ namespace serverreports
             return ruta_nombre;
         }
 
-        public SLStyle stylecol(SLDocument sl, string color)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sl"></param>
+        /// <param name="color">El color puede enviar en formato de nombre o por Hexadecimal</param>
+        /// <param name="tipo">C= colo en formato nombre, H= Formato Hexadecimal</param>
+        /// <returns></returns>
+        public SLStyle stylecol(SLDocument sl, string color, string? tipo = null)
         {
             SLStyle style_d = sl.CreateStyle();
-            style_d.Fill.SetPattern(PatternValues.Solid, System.Drawing.Color.FromName(color), System.Drawing.Color.White);
+            string tipocolor;
+
+            if (tipo == null)
+            {
+                tipocolor = color.IndexOf("#", 0) >= 0 ? "H" : "C";
+            }
+            else
+            {
+                tipocolor = tipo;
+            }
+
+            if (tipocolor == "C")
+            {
+                style_d.Fill.SetPattern(PatternValues.Solid, System.Drawing.Color.FromName(color), System.Drawing.Color.White);
+            }
+            else if (tipocolor == "H")
+            {
+                style_d.Fill.SetPattern(PatternValues.Solid, System.Drawing.ColorTranslator.FromHtml(color), System.Drawing.Color.White);
+            }
+            else
+            {
+                style_d.Fill.SetPattern(PatternValues.Solid, System.Drawing.Color.White, System.Drawing.Color.White);
+            }
+
             return style_d;
+
         }
 
         public string CreateExcel_file_FacPend(DataSet dsData, string sheet, string columPrint, string indexColumPrint, string columColor, DataSet dsTitles = null, string? filename = "")
@@ -641,6 +727,349 @@ namespace serverreports
 
             return ruta_nombre;
         }
+
+        public string CreateExcel_file_Style(DataSet dsData, DataSet? dsTitles = null, string? filename = "", string? carpeta = "", string[,]? styls = null, string?[,] tbInSheet = null)
+        {
+            int i = 0;
+            int j = 0;
+            int index;
+            string campo;
+            string color;
+            string dat;
+            int round = 0;
+            string nameSheetTemp = "";
+            int refCelRow = 0;
+            string refCelColIni = "";
+            string refCelColFin = "";
+            string rango = "";
+            string titCellCom = "";
+            string colCelCom = "";
+            string colHeader = "";
+
+            SLDocument sl = new SLDocument();
+            string ruta_nombre = string.Empty;
+            string hoja_default = string.Empty;
+            string hoja_inicial = string.Empty;
+            DataSet dsResultante = new DataSet();
+            SLStyle headerStyle = new SLStyle();
+            SLStyle styleFont = new SLStyle();
+            SLStyle styleBorde = new SLStyle();
+            Utilerias utils = new Utilerias();
+
+            try
+            {
+                headerStyle = new SLStyle();
+                headerStyle.Font.Bold = true;
+                headerStyle.SetFont("Arial", 8);
+                headerStyle.Font.FontColor = System.Drawing.Color.White;
+                headerStyle.Fill.SetPatternType(PatternValues.Solid);
+                headerStyle.Fill.SetPatternBackgroundColor(System.Drawing.Color.Black);
+                headerStyle.Alignment.Horizontal = DocumentFormat.OpenXml.Spreadsheet.HorizontalAlignmentValues.Center;
+
+                styleFont = new SLStyle();
+                styleFont.SetFont("Arial", 8);
+                styleFont.Font.Bold = true;
+                styleFont.Alignment.Horizontal = DocumentFormat.OpenXml.Spreadsheet.HorizontalAlignmentValues.Center;
+
+                styleBorde = new SLStyle();
+                styleBorde.Border.Outline = true;
+                styleBorde.Border.SetLeftBorder(BorderStyleValues.Thick, System.Drawing.Color.White);
+                styleBorde.Border.SetRightBorder(BorderStyleValues.Thick, System.Drawing.Color.White);
+                styleBorde.Border.SetTopBorder(BorderStyleValues.Thick, System.Drawing.Color.White);
+                styleBorde.Border.SetBottomBorder(BorderStyleValues.Thick, System.Drawing.Color.White);
+
+
+                if (filename != null)
+                {
+                    if (!filename.Trim().Equals(string.Empty))
+                    {
+                        if (!filename.ToLower().EndsWith(".xls") && !filename.ToLower().EndsWith(".xlsx"))
+                        {
+                            filename = string.Format("{0}.xlsx", filename);
+                        }
+                    }
+                    else
+                    {
+                        filename = string.Format("wroksheet_logis_{0}.xlsx", DateTime.Now.ToString("ddMMyyyyHHmmssfff"));
+                    }
+                }
+                else
+                {
+                    filename = string.Format("wroksheet_logis_{0}.xlsx", DateTime.Now.ToString("ddMMyyyyHHmmssfff"));
+                }
+                if (dsData != null && dsTitles != null)
+                {
+                    if (dsData.Tables.Count > 0 && dsTitles.Tables.Count > 0)
+                    {
+                        if (dsData.Tables.Count.Equals(dsTitles.Tables.Count))
+                        {
+                            i = 0;
+                            foreach (DataTable dt in dsData.Tables)
+                            {
+                                j = 0;
+                                dsResultante.Tables.Add(dt.Copy());
+
+                                if (dsResultante.Tables[i].Columns.Count.Equals(dsTitles.Tables[i].Rows.Count))
+                                {
+                                    foreach (DataRow dr in dsTitles.Tables[i].Rows)
+                                    {
+                                        dsResultante.Tables[i].Columns[j].ColumnName = dr[0].ToString();
+                                        j++;
+                                    }
+                                }
+
+                                i++;
+                            }
+                        }
+                    }
+                    else if (dsData.Tables.Count > 0)
+                    {
+                        i = 0;
+                        foreach (DataTable dt in dsData.Tables)
+                        {
+                            dsResultante.Tables.Add(dt.Copy());
+                        }
+                    }
+                }
+                else if (dsData != null && dsTitles == null)
+                {
+                    i = 0;
+                    foreach (DataTable dt in dsData.Tables)
+                    {
+                        dsResultante.Tables.Add(dt.Copy());
+                    }
+                }
+                if (dsResultante != null)
+                {
+                    if (dsResultante.Tables.Count > 0)
+                    {
+                        sl = new SLDocument();
+                        hoja_default = sl.GetCurrentWorksheetName();
+
+                        foreach (DataTable dt in dsResultante.Tables)
+                        {
+
+
+
+                            //Bloque de tablas en una misma hoja
+                            if (tbInSheet != null)
+                            {
+                                index = utils.getIndexArrMulti(tbInSheet, dt.TableName, 1);
+
+                                if (index != -1)
+                                {
+                                    if (hoja_inicial.Trim().Equals(string.Empty))
+                                    {
+                                        hoja_inicial = tbInSheet[index, 0].ToString();
+                                    }
+
+
+                                    if (nameSheetTemp != tbInSheet[index, 0].ToString())
+                                    {
+                                        sl.AddWorksheet(tbInSheet[index, 0].ToString());
+                                        round = 0;
+                                    }
+
+                                    if (round == 0)
+                                    {
+                                        sl.ImportDataTable(2, 1, dt, true);
+                                    }
+                                    else
+                                    {
+                                        sl.ImportDataTable(sl.GetCells().Keys.Max() + 4, 1, dt, true);
+                                    }
+
+                                    sl.AutoFitColumn(1, dt.Columns.Count);
+
+                                    if (round == 0)
+                                    {
+                                        sl.SetCellStyle(1, 1, sl.GetCells().Keys.Max(), dt.Columns.Count, styleFont);
+                                    }
+                                    else
+                                    {
+                                        sl.SetCellStyle(sl.GetCells().Keys.Max() - dt.Rows.Count, 1, sl.GetCells().Keys.Max(), dt.Columns.Count, styleFont);
+                                    }
+
+
+                                    //Bloque de combinar Celdas
+                                    if (tbInSheet.GetLength(1) >= 2)
+                                    {
+                                        refCelRow = tbInSheet[index, 2].Split("|").GetValue(0).ToString() == "S" ? (sl.GetCells().Keys.Max() - dt.Rows.Count) - 1 : sl.GetCells().Keys.Max() - dt.Rows.Count;
+
+                                        if (tbInSheet[index, 2].Split("|").GetValue(0).ToString() == "S" && tbInSheet[index, 2].ToString().Split("|").Length > 1)
+                                        {
+                                            colHeader = tbInSheet[index, 2].Split("|").GetValue(1).ToString();
+
+                                            if (colHeader != "")
+                                            {
+                                                sl.SetCellStyle(refCelRow + 1, 1, refCelRow + 1, dt.Columns.Count, stylecol(sl, colHeader));
+                                            }
+                                        }
+
+                                        for (i = 0; i < tbInSheet[index, 3].Split("|").Count(); i++)
+                                        {
+                                            rango = tbInSheet[index, 3].Split("|").GetValue(i).ToString();
+
+                                            refCelColIni = rango.Split("-").GetValue(0).ToString();
+                                            refCelColFin = rango.Split("-").GetValue(1).ToString();
+                                            titCellCom = rango.Split("-").Length > 2 ? rango.Split("-").GetValue(2).ToString() : "";
+                                            colCelCom = rango.Split("-").Length > 3 ? rango.Split("-").GetValue(3).ToString() : "";
+
+                                            sl.MergeWorksheetCells(refCelColIni + refCelRow.ToString(), refCelColFin + refCelRow.ToString(), styleBorde);
+                                            sl.SetCellValue(refCelColIni + refCelRow.ToString(), titCellCom);
+
+                                            if (colCelCom != "")
+                                            {
+                                                sl.SetCellStyle(refCelColIni + refCelRow.ToString(), stylecol(sl, colCelCom));
+                                            }
+
+                                            sl.SetCellStyle(refCelColIni + refCelRow.ToString(), styleFont);
+                                        }
+                                    }
+
+                                    round = 1;
+                                    rango = "";
+                                    refCelColIni = "";
+                                    refCelColFin = "";
+                                    titCellCom = "";
+                                    refCelRow = 0;
+                                    nameSheetTemp = tbInSheet[index, 0].ToString();
+
+                                }
+                                else
+                                {
+
+                                    if (hoja_inicial.Trim().Equals(string.Empty))
+                                    {
+                                        hoja_inicial = dt.TableName;
+                                    }
+
+                                    sl.AddWorksheet(dt.TableName);
+                                    sl.ImportDataTable(1, 1, dt, true);
+                                    sl.AutoFitColumn(1, dt.Columns.Count);
+                                    sl.FreezePanes(1, 0);
+                                    sl.SetCellStyle(1, 1, 1, dt.Columns.Count, headerStyle);
+                                    sl.SetCellStyle(1, 1, dt.Rows.Count + 1, dt.Columns.Count, styleFont);
+                                }
+                            }
+                            else
+                            {
+
+                                if (hoja_inicial.Trim().Equals(string.Empty))
+                                {
+                                    hoja_inicial = dt.TableName;
+                                }
+
+                                sl.AddWorksheet(dt.TableName);
+                                sl.ImportDataTable(1, 1, dt, true);
+                                sl.AutoFitColumn(1, dt.Columns.Count);
+                                sl.FreezePanes(1, 0);
+                                sl.SetCellStyle(1, 1, 1, dt.Columns.Count, headerStyle);
+                                sl.SetCellStyle(1, 1, dt.Rows.Count + 1, dt.Columns.Count, styleFont);
+                            }
+
+
+                            ///Bloque de estilos a campos
+                            if (styls != null)
+                            {
+                                index = utils.getIndexArrMulti(styls, sl.GetCurrentWorksheetName(), 0); // Si la hoja se encuentra en el arreglo, llevara color
+                                if (index != -1)
+                                {
+                                    for (i = 0; i <= sl.GetCells().Keys.Max(); i++) //registros de la hoja
+                                    {
+
+                                        if (styls[index, 1].Split("|").Length > 1)
+                                        {
+
+                                            for (j = 0; j < styls[index, 1].ToString().Split("|").Length; j++) // ciclo por columnas a pintar 
+                                            {
+                                                campo = sl.GetCellValueAsString(i + 1, dt.Columns.IndexOf(styls[index, 1].Split("|").GetValue(j).ToString()) + 1); //obtiene valor del campo "Info|Color"
+
+                                                color = (campo.Split("|").Length > 1 ? campo.Split("|").GetValue(1).ToString() : "").Trim();  //Obtiene el color del campo obtenido anteriormente "|Color"
+                                                dat = (campo.Split("|").Length > 0 ? campo.Split("|").GetValue(0).ToString() : campo).Trim(); //Obtiene la información del campo obtenido anteriormente "Info|"
+
+                                                if (color != "")
+                                                {
+                                                    sl.SetCellStyle(i + 1, dt.Columns.IndexOf(styls[index, 1].Split("|").GetValue(j).ToString()) + 1, stylecol(sl, color)); //Coloca el estilo a la celda (fila, columna, stylo)
+                                                }
+                                                sl.SetCellValue(i + 1, dt.Columns.IndexOf(styls[index, 1].Split("|").GetValue(j).ToString()) + 1, dat); // cambia el valor del campo por solo la información (fila, columna, datos)
+                                            }
+                                        }
+                                        else
+                                        {
+                                            for (j = 1; j < sl.GetWorksheetStatistics().NumberOfColumns; j++)
+                                            {
+                                                campo = sl.GetCellValueAsString(i + 1, j);
+
+                                                color = (campo.Split("|").Length > 1 ? campo.Split("|").GetValue(1).ToString() : "").Trim();
+                                                dat = (campo.Split("|").Length > 0 ? campo.Split("|").GetValue(0).ToString() : "").Trim();
+
+                                                if (color != "")
+                                                {
+                                                    sl.SetCellStyle(i + 1, j, stylecol(sl, color)); //Coloca el estilo a la celda (fila, columna, stylo)
+                                                }
+                                                sl.SetCellValue(i + 1, j, dat);
+
+                                            }
+
+                                        }
+
+                                        //Coloca el formato del encabezado para los casos en que se coloque mas de una tabla en la misma hoja
+                                        if (styls.GetLength(1) >= 3)
+                                        {
+                                            if (styls.GetValue(index, 2).ToString() != "" && i != 0)
+                                            {
+                                                if (sl.GetCellValueAsString(i + 1, dt.Columns.IndexOf(styls[index, 2].ToString()) + 1).ToString() == styls.GetValue(index, 2).ToString())
+                                                {
+                                                    sl.SetCellStyle(i + 1, 1, i + 1, dt.Columns.Count, headerStyle);
+                                                }
+                                            }
+                                        }
+
+                                        //Remplaza la primer fila por la segunda 
+                                        if (styls.GetLength(1) >= 4)
+                                        {
+                                            if (styls.GetValue(index, 3).ToString() == "S" && i == 1)
+                                            {
+                                                sl.DeleteRow(1, 1);
+                                                break;
+                                            }
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+
+                        sl.DeleteWorksheet(hoja_default);
+                        sl.SelectWorksheet(hoja_inicial);
+
+
+                        if (carpeta == "")
+                        {
+                            ruta_nombre = string.Format("{0}{1}", Path.GetTempPath(), filename);
+                            carpeta = Path.GetTempPath();
+                        }
+                        else
+                        {
+                            ruta_nombre = carpeta + "\\" + filename;
+                        }
+
+                        ruta_nombre = ruta_nombre.Replace("\\\\", "\\");
+
+                        sl.SaveAs(ruta_nombre);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex);
+            }
+
+            return ruta_nombre;
+        }
+
+
 
     }
 }

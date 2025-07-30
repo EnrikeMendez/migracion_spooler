@@ -1,0 +1,93 @@
+Archivo creado el 21/07/2025 13:28:41.834 
+
+13:28:41.844 Error: ORA-28000: the account is locked
+https://docs.oracle.com/error-help/db/ora-28000/ Oracle Data Provider for .NET, Managed Driver    at OracleInternal.ConnectionPool.PoolManager`3.Get(ConnectionString csWithDiffOrNewPassw, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch, Boolean bAsync)
+   at OracleInternal.ConnectionPool.OraclePoolManager.Get(ConnectionString csWithNewPassw, Boolean bGetForApp, OracleConnection connRefForCriteria, String affinityInstanceName, Boolean bForceMatch, Boolean bAsync)
+   at OracleInternal.ConnectionPool.OracleConnectionDispenser`3.Get(ConnectionString cs, PM conPM, ConnectionString pmCS, OracleOpaqueString opaquePassw, OracleOpaqueString securedProxyPassw, OracleConnection connRefForCriteria, Boolean bAsync)
+   at Oracle.ManagedDataAccess.Client.OracleConnectionInternal.OpenInternal(Boolean bAsync)
+   at Oracle.ManagedDataAccess.Client.OracleConnectionInternal.Open()
+   at Oracle.ManagedDataAccess.Client.OracleConnection.Open()
+   at Xpooler_Distribucion.MainService.GetAllProcess() Get csWithDiffOrNewPassw = string.Empty
+ bGetForApp = string.Empty
+ connRefForCriteria = string.Empty
+ affinityInstanceName = NULL
+ bForceMatch = False
+ bAsync = False
+13:31:31.868 Error: ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'P_DAT_PROCESOS_XPOOLER'
+ORA-06550: línea 1, columna 7:
+PLS-00306: número o tipos de argumentos erróneos al llamar a 'P_DAT_PROCESOS_XPOOLER'
+ORA-06550: línea 1, columna 7:
+PL/SQL: Statement ignored
+https://docs.oracle.com/error-help/db/ora-06550/ Oracle Data Provider for .NET, Managed Driver    at OracleInternal.ServiceObjects.OracleFailoverMgrImpl.OnError(OracleConnection connection, CallHistoryRecord chr, Object mi, Exception ex, Boolean bTopLevelCall, Boolean& bCanRecordNewCall)
+   at Oracle.ManagedDataAccess.Client.OracleDataAdapter.Fill(DataTable dataTable)
+   at Xpooler_Distribucion.MainService.GetAllProcess() in C:\Repositorios\migracion-spooler\01-CodigoFuente\Xpooler_Distribucion\MainService.cs:line 202 OnError connection = string.Empty
+ chr = string.Empty
+ mi = string.Empty
+ ex = string.Empty
+ bTopLevelCall = string.Empty
+ bCanRecordNewCall = string.Empty
+13:43:52.264 Error: ORA-06502: PL/SQL: error : buffer de cadenas de caracteres demasiado pequeño numérico o de valor
+ORA-06512: en "SC_RS_DIST.SPG_REP_REPORTES", línea 452
+ORA-06502: PL/SQL: error : buffer de cadenas de caracteres demasiado pequeño numérico o de valor
+ORA-06512: en "SC_RS_DIST.SPG_REP_REPORTES", línea 444
+ORA-06512: en línea 1
+https://docs.oracle.com/error-help/db/ora-06502/ Oracle Data Provider for .NET, Managed Driver    at OracleInternal.ServiceObjects.OracleFailoverMgrImpl.OnError(OracleConnection connection, CallHistoryRecord chr, Object mi, Exception ex, Boolean bTopLevelCall, Boolean& bCanRecordNewCall)
+   at Oracle.ManagedDataAccess.Client.OracleDataAdapter.Fill(DataTable dataTable)
+   at Xpooler_Distribucion.MainService.GetAllProcess() in C:\Repositorios\migracion-spooler\01-CodigoFuente\Xpooler_Distribucion\MainService.cs:line 204 OnError connection = string.Empty
+ chr = string.Empty
+ mi = string.Empty
+ ex = string.Empty
+ bTopLevelCall = string.Empty
+ bCanRecordNewCall = string.Empty
+13:48:36.779 Error: ORA-06502: PL/SQL: error : buffer de cadenas de caracteres demasiado pequeño numérico o de valor
+ORA-06512: en "SC_RS_DIST.SPG_REP_REPORTES", línea 452
+ORA-06502: PL/SQL: error : buffer de cadenas de caracteres demasiado pequeño numérico o de valor
+ORA-06512: en "SC_RS_DIST.SPG_REP_REPORTES", línea 444
+ORA-06512: en línea 1
+https://docs.oracle.com/error-help/db/ora-06502/ 
+ Oracle Data Provider for .NET, Managed Driver 
+    at OracleInternal.ServiceObjects.OracleFailoverMgrImpl.OnError(OracleConnection connection, CallHistoryRecord chr, Object mi, Exception ex, Boolean bTopLevelCall, Boolean& bCanRecordNewCall)
+   at Oracle.ManagedDataAccess.Client.OracleDataAdapter.Fill(DataTable dataTable)
+   at Xpooler_Distribucion.MainService.GetAllProcess() in C:\Repositorios\migracion-spooler\01-CodigoFuente\Xpooler_Distribucion\MainService.cs:line 204 
+ OnError 
+ connection = string.Empty 
+ chr = string.Empty 
+ mi = string.Empty 
+ ex = string.Empty 
+ bTopLevelCall = string.Empty 
+ bCanRecordNewCall = string.Empty
+13:59:38.132 Error: ORA-06502: PL/SQL: error : buffer de cadenas de caracteres demasiado pequeño numérico o de valor
+ORA-06512: en "SC_RS_DIST.SPG_REP_REPORTES", línea 452
+ORA-06502: PL/SQL: error : buffer de cadenas de caracteres demasiado pequeño numérico o de valor
+ORA-06512: en "SC_RS_DIST.SPG_REP_REPORTES", línea 444
+ORA-06512: en línea 1
+https://docs.oracle.com/error-help/db/ora-06502/ 
+ Oracle Data Provider for .NET, Managed Driver 
+    at OracleInternal.ServiceObjects.OracleFailoverMgrImpl.OnError(OracleConnection connection, CallHistoryRecord chr, Object mi, Exception ex, Boolean bTopLevelCall, Boolean& bCanRecordNewCall)
+   at Oracle.ManagedDataAccess.Client.OracleDataAdapter.Fill(DataTable dataTable)
+   at Xpooler_Distribucion.MainService.GetAllProcess() in C:\Repositorios\migracion-spooler\01-CodigoFuente\Xpooler_Distribucion\MainService.cs:line 204 
+ OnError 
+ connection = string.Empty 
+ chr = string.Empty 
+ mi = string.Empty 
+ ex = string.Empty 
+ bTopLevelCall = string.Empty 
+ bCanRecordNewCall = string.Empty
+14:23:58.354 Error: ORA-06502: PL/SQL: error : buffer de cadenas de caracteres demasiado pequeño numérico o de valor
+ORA-06512: en "SC_RS_DIST.SPG_REP_REPORTES", línea 452
+ORA-06502: PL/SQL: error : buffer de cadenas de caracteres demasiado pequeño numérico o de valor
+ORA-06512: en "SC_RS_DIST.SPG_REP_REPORTES", línea 444
+ORA-06512: en línea 1
+https://docs.oracle.com/error-help/db/ora-06502/ 
+ Oracle Data Provider for .NET, Managed Driver 
+    at OracleInternal.ServiceObjects.OracleFailoverMgrImpl.OnError(OracleConnection connection, CallHistoryRecord chr, Object mi, Exception ex, Boolean bTopLevelCall, Boolean& bCanRecordNewCall)
+   at Oracle.ManagedDataAccess.Client.OracleDataAdapter.Fill(DataTable dataTable)
+   at Xpooler_Distribucion.MainService.GetAllProcess() in C:\Repositorios\migracion-spooler\01-CodigoFuente\Xpooler_Distribucion\MainService.cs:line 204 
+ OnError 
+ connection = string.Empty 
+ chr = string.Empty 
+ mi = string.Empty 
+ ex = string.Empty 
+ bTopLevelCall = string.Empty 
+ bCanRecordNewCall = string.Empty

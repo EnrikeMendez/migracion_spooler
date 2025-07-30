@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xKBj+zpzyfk=",
+  "dgSpecHash": "zoIbP0ca2jA=",
   "success": true,
-  "projectFilePath": "C:\\Repositorios\\migracion_spooler\\01-CodigoFuente\\Xpooler_Distribucion\\Xpooler_Distribucion.csproj",
+  "projectFilePath": "C:\\Repositorios\\migracion-spooler\\01-CodigoFuente\\Xpooler_Distribucion\\Xpooler_Distribucion.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.extensions.configuration\\8.0.0\\microsoft.extensions.configuration.8.0.0.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\8.0.0\\microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",

@@ -48,15 +48,26 @@ string MiComando = "";
 string fecha_1_intervalo = "";
 
 string[,] pargral = new string[17, 2];
-string[] contmail;
+string[] contmail = new string[0];
+
+///Nuevo Esquema////
+string[] EmailCC = new string[0];
+string[] EmailBCC = new string[0];
+////////////////////
+
 DataTable trep_cron = new DataTable();
 DataTable tdato_repor = new DataTable();
 DataTable tnum_param = new DataTable();
 DataTable tmail_contact = new DataTable();
 DataTable tconfirmacion2 = new DataTable();
+
+///Nuevo Esquema////
+DataTable dtTempParam = new DataTable();
+////////////////////
+
 try
 {
-
+    Console.WriteLine("Inicia proceso.");
     Utilerias util = new Utilerias();
     DM DM = new DM();
     (string[,]? LisDT_tit, DataTable[]? LisDT, string? arch) inf;
@@ -76,7 +87,11 @@ try
 
     if (rep_id != 1)
     {
-        trep_cron = DM.Main_rep("main_rp_cron", rep_id.ToString(), visible_sql, reporte_temporal.ToString()).tb;
+        ///Nuevo Esquema////
+        /////trep_cron = DM.Main_rep("main_rp_cron", rep_id.ToString(), visible_sql, reporte_temporal.ToString()).tb;
+        trep_cron = DM.Main_rep("rep_dat_enca", rep_id.ToString(), visible_sql, reporte_temporal.ToString()).tb;
+        ////////////////////
+
         if (trep_cron.Rows.Count > 0)
             sw_cron = 1;
     }
@@ -105,25 +120,44 @@ try
          GoTo Errman
          End If
         */
-        
+
+        ///Nuevo Esquema////
+        dtTempParam = DM.Main_rep("rep_param", rep_id.ToString(), visible_sql).tb;
+        tdato_repor = util.repParametros(dtTempParam);
+        ////////////////////
+
+
         if (reporte_temporal == 0)
         {
-            string tm_fec = util.Tcampo(trep_cron, "fecha");
+            ///Nuevo Esquema////
+            ///string tm_fec = util.Tcampo(trep_cron, "fecha");
+            string frecuencia = trep_cron.Rows[0]["FRECUENCIA"].ToString();
+            string tm_fec = DM.Main_rep("rep_fechas_auto", rep_id.ToString(), visible_sql, reporte_temporal.ToString(), null, null, null, frecuencia).val;
+            ////////////////////
+
             FECHA_1 = tm_fec.Substring(0, 10);
             FECHA_2 = tm_fec.Substring(tm_fec.Length - 10, 10);
         }
         else
         {
-            FECHA_1 = util.Tcampo(trep_cron, "fecha_1");
-            FECHA_2 = util.Tcampo(trep_cron, "fecha_2");
+
+            ///Nuevo Esquema////
+            ///FECHA_1 = util.Tcampo(trep_cron, "fecha_1");
+            ///FECHA_2 = util.Tcampo(trep_cron, "fecha_2");
+
+            FECHA_1 = util.nvl(util.Tcampo(tdato_repor, "FECHA INICIAL"));
+            FECHA_2 = util.nvl(util.Tcampo(tdato_repor, "FECHA FINAL"));
+            ////////////////////
         }
 
+        //////////////LOGICA COMENTADO YA QUE NO SE UTILIZA, SE MANTIENE POR SI SE REQUIERE////////////////////////
+        /*
         if (FECHA_1 == FECHA_2)
         {
 
             //  Console.WriteLine("************** rep_dias_libres **************");
             string dialib = DM.Main_rep("rep_dias_libres", rep_id.ToString(), visible_sql, reporte_temporal.ToString(), util.Tcampo(trep_cron, "cliente"), FECHA_1).val;
-                    //Por aplicar
+            //Por aplicar
             //            if (dialib != "")
             if (dialib != "0")
             {
@@ -134,31 +168,19 @@ try
                 Environment.Exit(0);
             }
         }
+        */
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        if ((util.nvl(util.Tcampo(trep_cron, "CONFIRMACION")) == "1") && (reporte_temporal == 0))
-        //    if (1 == 1)
+        //////////////LOGICA COMENTADO YA QUE NO SE UTILIZA, SE MANTIENE POR SI SE REQUIERE////////////////////////
+        /*
+        if ((util.nvl(util.Tcampo(trep_cron, "CONFIRMACION")) == "1") && (reporte_temporal == 0))   
         {
-            string SQL_p2 = "select check_fecha_confirmacion2('" + util.Tcampo(trep_cron, "FRECUENCIA") + "',conf_date, conf_date_2) as ok \n" +
-                          " , to_char(conf.conf_date, 'mm/dd/yyyy') as fecha_1 \n" +
-                          " , to_char(conf.conf_date_2, 'mm/dd/yyyy') as fecha_2, conf.param \n" +
-                          " from rep_confirmacion conf \n" +
-                          " where conf.ID_CONF = '" + rep_id + "' \n" +
-                          " and check_fecha_confirmacion2('" + util.Tcampo(trep_cron, "FRECUENCIA") + "',conf_date, conf_date_2) = 'ok' \n" +
-                          " and trunc(conf_date) +decode(" + util.Tcampo(trep_cron, "FRECUENCIA") + ", 1, 1, 0) <= trunc(sysdate) \n" +
-                          "";
-            //Console.WriteLine("************** confirma fecha **************");
-            //Console.WriteLine(SQL_p2);
-
+           
             tconfirmacion2 = DM.Main_rep("confirmacion2", rep_id.ToString(), visible_sql, reporte_temporal.ToString(), null, util.Tcampo(trep_cron, "FRECUENCIA")).tb;
 
-            if (util.Tcampo(tconfirmacion2, "CONFIRMACION") != "")            
+            if (util.Tcampo(tconfirmacion2, "CONFIRMACION") != "")
             {
-                SQL_p2 = "select display_fecha_confirmacion4(('" + util.Tcampo(trep_cron, "FRECUENCIA") + "',conf.CONF_DATE,conf.CONF_DATE_2,decode(conf.CONF_DATE,null,1,0)) as next_fecha \n" +
-             " from rep_confirmacion conf \n" +
-             " where  conf.ID_CONF = '" + rep_id + "' \n" +
-             " order by to_date(next_fecha, 'mm/dd/yyyy') desc \n";
                 string confirma4 = DM.Main_rep("confirmacion4", rep_id.ToString(), visible_sql, reporte_temporal.ToString(), null, util.Tcampo(trep_cron, "FRECUENCIA")).val;
-                //  Console.WriteLine(" valor confirma4 =" + confirma4);
 
                 if (confirma4 != "null")
                     mail_error = "agregar valor de " + confirma4;
@@ -166,10 +188,12 @@ try
                     mail_error = "Ninguna confirmacion llegada.";
             }
             //Console.WriteLine("************** confirma fecha 2**************");
-            
         }
+        */
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
+        //////////////LOGICA COMENTADO YA QUE NO SE UTILIZA, SE MANTIENE POR SI SE REQUIERE////////////////////////
+        /*
         if (mail_error != "")
         {
             tmail_contact = DM.Main_rep("main_mail_contact", rep_id.ToString(), visible_sql).tb;
@@ -195,7 +219,22 @@ try
                  mail_footer;
             Errror = DM.ejecuta_sql("update rep_chron set in_progress=0 where id_rapport= '" + rep_id + "'");
         }
+        */
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+        /////////////////////Nuevo Esquema///////////////////
+        DataTable dtEmail = new DataTable();
+        DataTable dtNotif = new DataTable();
+
+        dtNotif = DM.Main_rep("rep_notifi", rep_id.ToString(), 0).tb;
+
+        dest_mail = (dtNotif.Rows.Count > 0 ? "" : util.nvl(util.Tcampo(tdato_repor, "CORREO")));
+
+        /////////////////////////////////////////////////////
+
+        //////////////////Lógica cambiada por el Nuevo Esquema /////////////////////////////////
+        /*
         tdato_repor = DM.Main_rep("main_datos_rep", rep_id.ToString(), visible_sql, util.arma_param("REP.PARAM_", num_of_param)).tb;
         if (tdato_repor.Rows.Count > 0)
         {
@@ -209,20 +248,53 @@ try
             contmail = new string[0];
 
         dest_mail = util.nvl(util.Tcampo(tdato_repor, "DEST_MAIL"));
+        */
+        ///////////////////////////////////////////////////////////////////////////////////////////
+
+        /////////////Nuevo Esquema//////////////////
+        /*
         for (int i = 1; i <= num_of_param; i++)
         {
             param_string = param_string + util.nvl(util.Tcampo(tdato_repor, "PARAM_" + i));
             if (i != num_of_param) { param_string = param_string + "|"; }
         }
+        */
+
+        num_of_param = tdato_repor.Columns.Count;
+
+        for (int i = 0; i < num_of_param; i++)
+        {
+            param_string += (tdato_repor.Rows[0][i].ToString() != "" ? tdato_repor.Rows[0][i].ToString() + "|" : "|");
+
+        }
+        ///////////////////////////////////////////
+
+        //////////////Nuevo Esquema////////////////
+        /*
         reporte_name = util.nvl(util.Tcampo(tdato_repor, "NAME"));
         days_deleted = Int32.Parse(util.nvl(util.Tcampo(tdato_repor, "DAYS_DELETED"), "n"));
         //file_name = util.nvl(util.Tcampo(tdato_repor, "FILE_NAME"));
         file_name = util.filter_file_name(util.nvl(util.Tcampo(tdato_repor, "FILE_NAME")), FECHA_1, FECHA_2);
+        
+        file_name= string.Format("{0}_{1}", file_name, DateTime.Now.ToString("ddMMHHmmssfff"));
+        
         id_Reporte = Int32.Parse(util.nvl(util.Tcampo(tdato_repor, "ID_REP")));
         //Carpeta = first_path & NVL(rs.Fields("CARPETA")) & "\" & IIf(NVL(rs.Fields("SUBCARPETA")) <> "", NVL(rs.Fields("SUBCARPETA")) & "\", "")
         Carpeta = first_path + util.nvl(util.Tcampo(tdato_repor, "CARPETA")) + "\\" +
                           util.iff(util.nvl(util.Tcampo(tdato_repor, "SUBCARPETA")), "<>", "", util.nvl(util.Tcampo(tdato_repor, "SUBCARPETA")) + "\\", "");
         MiComando = util.nvl(util.Tcampo(tdato_repor, "COMMAND"));
+        */
+
+        reporte_name = util.nvl(util.Tcampo(trep_cron, "NOMBRE"));
+        days_deleted = Int32.Parse(util.nvl(util.Tcampo(trep_cron, "DIAS_EN_SERVIDOR"), "n"));
+        file_name = util.filter_file_name(util.nvl(util.Tcampo(trep_cron, "NOMBRE_ARCHIVO")), FECHA_1, FECHA_2);
+        file_name = string.Format("{0}_{1}", file_name, DateTime.Now.ToString("ddMMHHmmssfff"));
+        id_Reporte = Int32.Parse(util.nvl(util.Tcampo(trep_cron, "ID_REPORTE")));
+        Carpeta = first_path + util.nvl(util.Tcampo(trep_cron, "CARPETA")) + "\\" +
+                          util.iff(util.nvl(util.Tcampo(trep_cron, "SUBCARPETA")), "<>", "", util.nvl(util.Tcampo(trep_cron, "SUBCARPETA")) + "\\", "");
+        MiComando = util.nvl(util.Tcampo(trep_cron, "PROCESO_FUNCION"));
+        ////////////////////////////////////////////////
+
 
         tab_archivos = new string[6, 2];
         tab_archivos[0, 0] = file_name;
@@ -246,13 +318,19 @@ try
         pargral[0, 0] = "DEST_MAIL";
         pargral[0, 1] = dest_mail;
         pargral[1, 0] = "Carpeta";
-        pargral[1, 1] = util.nvl(util.Tcampo(tdato_repor, "CARPETA"));
+        ///Nuevo Esquema////
+        ///pargral[1, 1] = util.nvl(util.Tcampo(tdato_repor, "CARPETA"));
+        pargral[1, 1] = util.nvl(util.Tcampo(trep_cron, "CARPETA"));
+        ////////////////////
         pargral[2, 0] = "param_string";
         pargral[2, 1] = param_string;
         pargral[3, 0] = "days_deleted";
         pargral[3, 1] = days_deleted.ToString();
         pargral[4, 0] = "SUBCARPETA";
-        pargral[4, 1] = util.nvl(util.Tcampo(tdato_repor, "SUBCARPETA"));
+        ///Nuevo Esquema////
+        ////pargral[4, 1] = util.nvl(util.Tcampo(tdato_repor, "SUBCARPETA"));
+        pargral[4, 1] = util.nvl(util.Tcampo(trep_cron, "SUBCARPETA"));
+        ////////////////////
         pargral[5, 0] = "id_Reporte";
         pargral[5, 1] = id_Reporte.ToString();
         pargral[6, 0] = "FECHA_1";
@@ -270,13 +348,27 @@ try
         pargral[12, 0] = "Path_file";
         pargral[12, 1] = Carpeta;
         pargral[13, 0] = "usr_bd";
-        pargral[13, 1] = "2";
+        pargral[13, 1] = "1";
         pargral[14, 0] = "ip";
-        pargral[14, 1] = util.Tcampo(trep_cron, "IP_ADDRESS_err");
+
+        ///Nuevo Esquema////
+        ///pargral[14, 1] = util.Tcampo(trep_cron, "IP_ADDRESS_err");
+        pargral[14, 1] = "";
+        ////////////////////
+
         pargral[15, 0] = "param3";
-        pargral[15, 1] = util.nvl(util.Tcampo(tdato_repor, "PARAM_3"));
+
+        ///Nuevo Esquema////
+        ///pargral[15, 1] = util.nvl(util.Tcampo(tdato_repor, "PARAM_3"));
+        pargral[15, 1] = "";
+        ////////////////////
+
         pargral[16, 0] = "param4";
-        pargral[16, 1] = util.nvl(util.Tcampo(tdato_repor, "PARAM_4"));
+
+        ///Nuevo Esquema//// 
+        ///pargral[16, 1] = util.nvl(util.Tcampo(tdato_repor, "PARAM_4"));
+        pargral[16, 1] = "";
+        ////////////////////
 
         string[] arh;
         if (tab_archivos[4, 0] == "1")
@@ -293,7 +385,7 @@ try
                 trading_genera_GSK_mod trading_genera_GSK = new trading_genera_GSK_mod();
                 trading_genera_GSK.trading_genera_GSK(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), rep_id, pargral, contmail, visible_sql);
                 break;
-            
+
             case "porteos_tln":
                 // 6651805
                 pargral[13, 1] = "1";
@@ -374,7 +466,7 @@ try
                 break;
 
             case "fact_pend_cedis_ori":
-
+                //
                 pargral[13, 1] = "1";
                 trading_pend_cedis_ori_mod facturas_pendientes = new trading_pend_cedis_ori_mod();
                 inf = facturas_pendientes.trading_fact_pend_cedis_ori(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), pargral, visible_sql);
@@ -386,10 +478,10 @@ try
             case "evid_clientes_sftp":
 
                 pargral[13, 1] = "1";
-                pargral[0, 1] =  mail_grupo_error[0];
+                pargral[0, 1] = mail_grupo_error[0];
 
                 dist_transfer_ftp_mod dist_transfer_ftp_mod = new dist_transfer_ftp_mod();
-                dist_transfer_ftp_mod.dist_ftp_transfer(rep_id, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), pargral[6, 1], pargral[7, 1], pargral, visible_sql);
+                dist_transfer_ftp_mod.dist_ftp_transfer(rep_id, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), pargral[6, 1], pargral[7, 1], pargral, dtNotif, visible_sql);
 
                 break;
 
@@ -404,21 +496,52 @@ try
                 arch = xlsx.CrearExcel_filen(inf.LisDT, inf.LisDT_tit, Carpeta + "\\" + inf.arch + ".xlsx", null, null, 1, 0);
                 encorr = 1;
                 break;
-			case "cd_ltl_doc_pendiente":
-				pargral[13, 1] = "1";
-				web_doc_interna_pendientes_mod doc_ltl_cd_pend_scan = new web_doc_interna_pendientes_mod();
-				inf = doc_ltl_cd_pend_scan.web_cd_ltl_doc_interna_pend(Carpeta, tab_archivos, pargral, util.nvl(util.Tcampo(tdato_repor, "LAST_CONF_DATE_1")), util.nvl(util.Tcampo(tdato_repor, "LAST_CONF_DATE_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), util.nvl(util.Tcampo(tdato_repor, "PARAM_4")));
-				encorr = File.Exists(inf.arch) ? 1 : 0;
+            case "cd_ltl_doc_pendiente":
+                pargral[13, 1] = "1";
+                web_doc_interna_pendientes_mod doc_ltl_cd_pend_scan = new web_doc_interna_pendientes_mod();
+                inf = doc_ltl_cd_pend_scan.web_cd_ltl_doc_interna_pend(Carpeta, tab_archivos, pargral, FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), util.nvl(util.Tcampo(tdato_repor, "PARAM_4")));
+                encorr = File.Exists(inf.arch) ? 1 : 0;
 
-				break;
+                break;
 
             case "talones_seguros":
                 pargral[13, 1] = "1";
                 web_talones_seguros_mod talones_con_seguro = new web_talones_seguros_mod();
-                inf = talones_con_seguro.web_talones_seguros(Carpeta, tab_archivos, pargral, util.nvl(util.Tcampo(tdato_repor, "LAST_CONF_DATE_1")), util.nvl(util.Tcampo(tdato_repor, "LAST_CONF_DATE_2")));
+                inf = talones_con_seguro.web_talones_seguros(Carpeta, tab_archivos, pargral, FECHA_1, FECHA_2);
                 encorr = File.Exists(inf.arch) ? 1 : 0;
 
                 break;
+
+            case "talones_envios":
+                pargral[13, 1] = "1";
+                web_talones_envios_mod web_talones_envios = new web_talones_envios_mod();
+                inf = web_talones_envios.talones_envios(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), pargral[6, 1], pargral[7, 1], util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), pargral, visible_sql);
+                encorr = File.Exists(inf.arch) ? 1 : 0;
+                break;
+            case "cp_carga_unidades":
+                //7951073
+                pargral[13, 1] = "1";
+                web_cp_carga_unidades_mod cp_carga_unidades = new web_cp_carga_unidades_mod();
+                inf = cp_carga_unidades.carta_porte_carga_unidades(Carpeta, tab_archivos, pargral, FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")));
+                encorr = File.Exists(inf.arch) ? 1 : 0;
+                break;
+            case "control_digit3":
+                //117772 0
+                pargral[13, 1] = "1";
+                web_control_digit3_mod control_digit3 = new web_control_digit3_mod();
+                inf = control_digit3.control_digit3(Carpeta, tab_archivos, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")), pargral, visible_sql);
+                arch = xlsx.CrearExcel_filen(inf.LisDT, inf.LisDT_tit, Carpeta + "\\" + inf.arch + ".xlsx", null, null, 1, 0);
+                encorr = 1;
+                break;
+            case "stats_CEDIS_resumen":
+                //7951074
+                pargral[13, 1] = "1";
+                trading_stats_CEDIS_resumen_mod estad_cesis_resumen = new trading_stats_CEDIS_resumen_mod();
+                inf = estad_cesis_resumen.stats_cedis_resumen(Carpeta, tab_archivos, pargral, FECHA_1, FECHA_2, util.nvl(util.Tcampo(tdato_repor, "PARAM_1")), util.nvl(util.Tcampo(tdato_repor, "PARAM_2")), util.nvl(util.Tcampo(tdato_repor, "PARAM_3")));
+                encorr = File.Exists(inf.arch) ? 1 : 0;
+
+                break;
+
                 /*
                             case "transmision_edocs_bosch":
                                 //5132031
@@ -473,6 +596,37 @@ try
         {
             string[,] html = new string[6, 1];
             arch = tab_archivos[0, 0];
+
+            ////////Nuevo Esquema Notificación exito/////////////////////
+            string tipoNotif = "";
+            string asunto = "";
+            if (dtNotif.Rows.Count > 0 || reporte_temporal == 0)
+            {
+
+                DataRow[] drTipoNotif = dtNotif.Select("ID_TIPO_NOTIFICACION = '1'");   // Notifica Exito
+                //DataRow[] drTipoNotif = dtNotif.Select("ID_TIPO_NOTIFICACION = '2'"); // Notifica Error
+                DataTable dtTipoNotif = drTipoNotif.CopyToDataTable();
+                tipoNotif = dtTipoNotif.Rows[0]["ID_NOTIFICACION"].ToString();
+                asunto = dtTipoNotif.Rows[0]["ASUNTO"].ToString();
+
+                if (util.nvl(util.Tcampo(tdato_repor, "CORREO")) != "" && reporte_temporal == 1)
+                {
+                    contmail = new string[1];
+                    contmail[0] = util.nvl(util.Tcampo(tdato_repor, "CORREO"));
+                }
+                else
+                {
+                    (contmail, EmailCC, EmailBCC) = util.getDestinaratios(tipoNotif);
+                }
+
+            }
+            else if (util.nvl(util.Tcampo(tdato_repor, "CORREO")) != "" && reporte_temporal == 1)
+            {
+                contmail = new string[1];
+                contmail[0] = util.nvl(util.Tcampo(tdato_repor, "CORREO"));
+            }
+            ///////////////////////////////////////////////////////////////
+
             if (encorr == 2)
             {
                 arh[0] = Carpeta + "\\" + tab_archivos[0, 0] + ".txt";
@@ -494,17 +648,42 @@ try
             html = util.hexafile_nv(tab_archivos, Carpeta, int.Parse(pargral[9, 1]), arch, pargral);
             string mensaje = correo.display_mail(pargral[10, 1], "", arch, html, Int32.Parse(pargral[3, 1]), "");
             util.replica_tem(arch, pargral);
+
+            /////////// Nuevo Esquema////////////////
+            /*
             if (contmail.Length > 0)
             {
                 string[,] cor = new string[0, 0];
                 //correo.send_mail("Report: " + html[1, 0] + " created v2024", contacmail, mensaje, arh);
                 // correo.send_mail("Report: Reservacion_de_Guias_LTL  created v2024", [], mensaje, arh);
-                correo.send_mail("Report: " + html[1, 0] + " created v"+DateTime.Now.Year, [], mensaje, arh);
-            
+                correo.send_mail("Report: " + html[1, 0] + " created v" + DateTime.Now.Year, [], mensaje, arh);
             }
-            DM.act_proceso(pargral, visible_sql);
+            */
+
+            if (contmail.Length > 0 || EmailCC.Length > 0 || EmailBCC.Length > 0)
+            {
+                string[,] cor = new string[0, 0];
+                //correo.send_mail("Report: " + html[1, 0] + " created v2024", contacmail, mensaje, arh);
+                // correo.send_mail("Report: Reservacion_de_Guias_LTL  created v2024", [], mensaje, arh);
+
+                ///correo.send_mail("Report: " + html[1, 0] + " created v"+DateTime.Now.Year, [], mensaje, arh,);
+                if (reporte_temporal == 0 || dtNotif.Rows.Count > 0)
+                {
+                    correo.send_mail(asunto, contmail, mensaje, arh, EmailCC, true, EmailBCC);
+                }
+                else
+                {
+                    correo.send_mail("Report: " + html[1, 0] + " created v" + DateTime.Now.Year, contmail, mensaje, arh, EmailCC, true, EmailBCC);
+                }
+            }
+            ////////////////////////////////////
+
+
+
+            /////DM.act_proceso(pargral, visible_sql);
             util.borra_arch(arh, Carpeta);
         }
+        DM.act_proceso(pargral, visible_sql);
     }
     else
         Console.WriteLine("Error es necesario especifica los parametros \n 1. Falta numero reporte: ''{0}'' \n 2. valor tipo de reporte: {1} " + msg, rep_id, reporte_temporal);

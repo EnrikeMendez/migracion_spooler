@@ -9,9 +9,9 @@ namespace serverreports
 
         {
             DM DM = new DM();
-            DataSet ds = null;
-            DataTable dt = null;
             Excel xls = new Excel();
+            DataSet ds = new DataSet();
+            DataTable dt = new DataTable();
             Utilerias util = new Utilerias();
             DataTable[] LisDT = new DataTable[2];
             List<string> elementos = new List<string>();
@@ -56,7 +56,7 @@ namespace serverreports
                 par_st[4, 0] = "o";
                 par_st[4, 1] = "c";
                 par_st[4, 2] = "p_Cur_Convert_Sin_Exp";
-                par_st[4, 3] = null;
+                //par_st[4, 3] = null;
 
                 par_st[5, 0] = "o";
                 par_st[5, 1] = "v";
@@ -68,22 +68,33 @@ namespace serverreports
                 par_st[6, 2] = "p_Codigo_Error";
                 par_st[6, 3] = "cod";
 
-                datos_sp.sql = " SC_RS.SPG_RS_DIST_CONVERT_SIN_EXP.P_DAT_CONVERT_SIN_EXP_ENC ";
+                datos_sp.sql = " SC_RS_DIST.SPG_RS_DIST_CONVERT_SIN_EXP.P_DAT_CONVERT_SIN_EXP_ENC ";
+                /*datos_sp.sql = " SC_RS_DIST.SPG_RS_DIST_CONVERT_SIN_EXP ";*/
+                /*datos_sp.sql = " SC_RS_DIST.SPG_RS_DIST_CONVERT_SIN_EXP_ENC ";*/
+                /*datos_sp.sql = " SC_RS.SPG_RS_DIST_CONVERT_SIN_EXP.P_DAT_CONVERT_SIN_EXP_ENC ";*/
                 datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(pargral[13, 1]), visible_sql);
 
 
                 if (datos_sp.codigo == "1")
                 {
-                    dt = datos_sp.tb.Copy();
+                    if (datos_sp.tb != null)
+                    {
+                        dt = datos_sp.tb.Copy();
+                    }
                     dt.TableName = "Convertidores sin Exp";
                     LisDT[0] = dt;
 
-                    datos_sp.sql = " SC_RS.SPG_RS_DIST_CONVERT_SIN_EXP.P_DAT_CONVERT_SIN_EXP_DET ";
+                    /*datos_sp.sql = " SC_RS_DIST.SPG_RS_DIST_CONVERT_SIN_EXP_DET ";*/
+                    /*datos_sp.sql = " SC_RS.SPG_RS_DIST_CONVERT_SIN_EXP.P_DAT_CONVERT_SIN_EXP_DET ";*/
+                    datos_sp.sql = " SC_RS_DIST.SPG_RS_DIST_CONVERT_SIN_EXP.P_DAT_CONVERT_SIN_EXP_DET ";
                     datos_sp = DM.datos_sp([datos_sp.sql], par_st, Convert.ToInt32(pargral[13, 1]), visible_sql);
 
                     if (datos_sp.codigo == "1")
                     {
-                        dt = datos_sp.tb.Copy();
+                        if (datos_sp.tb != null)
+                        {
+                            dt = datos_sp.tb.Copy();
+                        }
                         dt.TableName = "Detalle Convertidores";
                         LisDT[1] = dt;
 
@@ -92,9 +103,18 @@ namespace serverreports
                         ds.Tables.Add(LisDT[1]);
 
                         file = file_name[0, 0].Trim().Equals(string.Empty) ? "Convertidores_sin_expedicion_" + DateTime.Now.ToString("ddMMyyyyHHmmssfff") : file_name[0, 0];
-                        arch = xls.CreateExcel_file(ds, null, file);
-                        Carpeta = arch.Replace(file + ".xlsx", "");
+                        arch = xls.CreateExcel_file(ds, new DataSet(), file, Carpeta);
+                        /*Carpeta = arch.Replace(file + ".xlsx", "");*/
+                        file_name[0, 0] = arch.Replace(Carpeta, string.Empty).Split(".")[0];
                     }
+                    else
+                    {
+                        new envio_correo().msg_error(id_cron + "=>" + arch + "-DETALLE", datos_sp.codigo, datos_sp.msg + "\n" + datos_sp.sql);
+                    }
+                }
+                else
+                {
+                    new envio_correo().msg_error(id_cron + "=>" + arch + "-ENCABEZADO", datos_sp.codigo, datos_sp.msg + "\n" + datos_sp.sql);
                 }
 
                 /*
@@ -106,6 +126,7 @@ namespace serverreports
             }
             catch (Exception ex)
             {
+                new envio_correo().msg_error(id_cron + "=>" + arch, ex.HResult.ToString(), ex.Source + "\n" + ex.StackTrace + "\n" + ex.Message);
             }
             finally
             {
